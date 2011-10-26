@@ -17,6 +17,9 @@ EmacsでRails開発しているニチアサツイートクリエーター。
 - 整理前
   - 4sq
   - bitbucket
+  - github
+  - gist
+  - booklog
 
 ** Amazon乞食リスト
 - [[http://www.amazon.co.jp/registry/wishlist/14VB9Z1EBXJJH][コンピュータ関連書籍]]
