@@ -1,7 +1,8 @@
-* 麦汁のぺーじ(test)
+* mugijiru.github.com
 
 ** 自己紹介
-EmacsでRails開発しているニチアサツイートクリエーター。
+- 麦汁
+- EmacsでRails開発しているニチアサツイートクリエーター。
 
 ** 利用中のサービス
 - Twitter: [[http://twitter.com/mugijiru/][@mugijiru]]
@@ -14,9 +15,10 @@ EmacsでRails開発しているニチアサツイートクリエーター。
 - THEINTERVIEWS: http://theinterviews.jp/mugijiru
 - mixi: http://mixi.jp/show_profile.pl?id=186310
 - hatena: http://www.hatena.ne.jp/mugijiru/
-- 整理前
-  - 4sq
-  - bitbucket
+
+** 発表資料
+   - [[http://mugijiru.github.com/pdf/okinawa-it.pdf][沖縄のITを盛り上げるためには(PDF)]]
+   - [[http://mugijiru.github.com/pdf/goby-emacs-w3m.pdf][Emacsにひきこもろう!(PDF)]]
 
 ** Amazon乞食リスト
 - [[http://www.amazon.co.jp/registry/wishlist/14VB9Z1EBXJJH][コンピュータ関連書籍]]
