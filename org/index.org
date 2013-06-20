@@ -2,9 +2,9 @@
 
 ** 自己紹介
 - 麦汁
-- EmacsでRails開発しているニチアサツイートクリエーター。
+- Emacsで開発しているニチアサツイートクリエーター。
 
-** 利用中のサービス
+** 利用中のサービスなど
 - Twitter: [[http://twitter.com/mugijiru/][@mugijiru]]
 - Tumblr: http://mugijiru.tumblr.com/
 - Blog: http://mugijiru.seesaa.net/
@@ -16,11 +16,11 @@
 - mixi: http://mixi.jp/show_profile.pl?id=186310
 - hatena: http://www.hatena.ne.jp/mugijiru/
 
-** 発表資料
-   - [[http://mugijiru.github.com/pdf/okinawa-it.pdf][沖縄のITを盛り上げるためには(PDF)]]
-   - [[http://mugijiru.github.com/pdf/goby-emacs-w3m.pdf][Emacsにひきこもろう!(PDF)]]
+** 作ってる何か
+   - [[https://github.com/mugijiru/fuelphp-mode][fuelphp-mode]] :: FuelPHP開発のためのマイナーモード
+   - [[https://github.com/mugijiru/saykotoeri-el][saykotoeri-el]] :: SayKotoeriを使ってEmacsに喋らせるためのマイナーモード。
+   - [[https://github.com/mugijiru/lupin-title][lupin-title]] :: Emacsでルパンのタイトルっぽく表示するやつ
 
 ** Amazon乞食リスト
 - [[http://www.amazon.co.jp/registry/wishlist/14VB9Z1EBXJJH][コンピュータ関連書籍]]
 - [[http://www.amazon.co.jp/registry/wishlist/33W7LD3C7PRHI][ほしい物リスト]]
-
