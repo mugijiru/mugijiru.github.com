@@ -16,6 +16,12 @@
 - mixi: http://mixi.jp/show_profile.pl?id=186310
 - hatena: http://www.hatena.ne.jp/mugijiru/
 
+
+** 発表資料
+
+   - [[http://mugijiru.github.com/pdf/goby-emacs-w3m.pdf][Emacsにひきこもろう!(PDF)]]
+   - [[http://mugijiru.github.com/pdf/xhago4.pdf][Emacsの中の恋人達(pdf)]]
+
 ** 作ってる何か
    - [[https://github.com/mugijiru/fuelphp-mode][fuelphp-mode]] :: FuelPHP開発のためのマイナーモード
    - [[https://github.com/mugijiru/saykotoeri-el][saykotoeri-el]] :: SayKotoeriを使ってEmacsに喋らせるためのマイナーモード。
