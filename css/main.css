@@ -55,6 +55,12 @@ a {
   border-color: #000;
 }
 
+.top-page__main-visual {
+  background-image: url("../images/coding-dark.jpg");
+  background-size: 100% 100%;
+  color: #fff;
+}
+
 .top-page__section {
   display: grid;
   grid-template:
