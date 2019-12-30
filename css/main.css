@@ -1,6 +1,7 @@
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'HiraKakuProN-W3', 'Hiragino Kaku Gothic ProN W3', 'HiraKakuN-W3', 'Hiragino Kaku Gothic N W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Arial', 'Helvetica Neue', 'Helvetica', system-ui, sans-serif;
 }
 
 a {
@@ -25,6 +26,7 @@ a {
 
 .top-page__section__title {
   grid-area: title;
+  font-size: 40px;
 }
 
 .top-page__section__description {
