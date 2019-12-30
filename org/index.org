@@ -7,22 +7,20 @@
   フロントエンドは Vue.js と Ember.js とみんな大好き jQuery を使ってる。
 
 * Profile
-   | HN       | 麦汁                         |
-   |----------+------------------------------|
-   | 職業     | Web プログラマ               |
-   | Twitter  | @mugijiru                    |
-   | GitHub   | mugijiru                     |
-   | Blog     | https://mugijiru.seesaa.net/ |
-   | 出身地   | 沖縄県                       |
-   | エディタ | Emacs(メイン)、Vim(サブ)     |
+   - HN       :: 麦汁
+   - 職業     :: Web プログラマ
+   - Twitter  :: @mugijiru
+   - GitHub   :: mugijiru
+   - Blog     :: https://mugijiru.seesaa.net/
+   - 出身地   :: 沖縄県
+   - エディタ :: Emacs(メイン)、Vim(サブ)
 
-* 利用中のサービスなど
+* SNS Accounts
    - Twitter :: [[http://twitter.com/mugijiru/][@mugijiru]]
    - Twilog :: http://twilog.org/mugijiru/
-   - Blog :: http://mugijiru.seesaa.net/
    - About.me :: http://about.me/mugijiru
    - hatena :: http://www.hatena.ne.jp/mugijiru/
-   - Instegram :: https://www.picuki.com/profile/mugijiru
+   - Instegram :: https://www.instagram.com/mugijiru/
 
 * Slides
    - [[http://mugijiru.github.com/pdf/goby-emacs-w3m.pdf][Emacsにひきこもろう!(PDF)]]
