@@ -110,7 +110,10 @@ a {
   font-weight: bold;
 }
 
+.top-page__link-text {
+  text-decoration: underline;
+}
 
 .top-page__list {
-
+  list-style-type: none;
 }
