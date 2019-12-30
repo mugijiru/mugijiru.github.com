@@ -1,32 +1,33 @@
-* mugijiru.github.com
+#+TITLE: 麦汁
+#+SUBTITLE: Web Programmer
 
-** 自己紹介
-- 麦汁
-- Emacsで開発しているニチアサツイートクリエーター。
+* About
+  主に Emacs で Rails の開発をしている沖縄出身のWebプログラマ。
+  サブで Vim も使っている。
+  フロントエンドは Vue.js と Ember.js とみんな大好き jQuery を使ってる。
 
-** 利用中のサービスなど
-- Twitter: [[http://twitter.com/mugijiru/][@mugijiru]]
-- Tumblr: http://mugijiru.tumblr.com/
-- Blog: http://mugijiru.seesaa.net/
-- About.me: http://about.me/mugijiru
-- Iddy: http://iddy.jp/profile/mugijiru/
-- Twilog: http://twilog.org/mugijiru/
-- Flavors: http://jp.flavors.me/mugijiru
-- THEINTERVIEWS: http://theinterviews.jp/mugijiru
-- mixi: http://mixi.jp/show_profile.pl?id=186310
-- hatena: http://www.hatena.ne.jp/mugijiru/
+* Profile
+   - HN       :: 麦汁
+   - 職業     :: Web プログラマ
+   - Twitter  :: @mugijiru
+   - GitHub   :: mugijiru
+   - Blog     :: https://mugijiru.seesaa.net/
+   - 出身地   :: 沖縄県
+   - エディタ :: Emacs(メイン)、Vim(サブ)
 
+* SNS Accounts
+   - Twitter :: [[http://twitter.com/mugijiru/][@mugijiru]]
+   - Twilog :: http://twilog.org/mugijiru/
+   - About.me :: http://about.me/mugijiru
+   - hatena :: http://www.hatena.ne.jp/mugijiru/
+   - Instegram :: https://www.instagram.com/mugijiru/
 
-** 発表資料
-
+* Slides
    - [[http://mugijiru.github.com/pdf/goby-emacs-w3m.pdf][Emacsにひきこもろう!(PDF)]]
    - [[http://mugijiru.github.com/pdf/xhago4.pdf][Emacsの中の恋人達(pdf)]]
 
-** 作ってる何か
+* Repositories
    - [[https://github.com/mugijiru/fuelphp-mode][fuelphp-mode]] :: FuelPHP開発のためのマイナーモード
    - [[https://github.com/mugijiru/saykotoeri-el][saykotoeri-el]] :: SayKotoeriを使ってEmacsに喋らせるためのマイナーモード。
-   - [[https://github.com/mugijiru/lupin-title][lupin-title]] :: Emacsでルパンのタイトルっぽく表示するやつ
-
-** Amazon乞食リスト
-- [[http://www.amazon.co.jp/registry/wishlist/14VB9Z1EBXJJH][コンピュータ関連書籍]]
-- [[http://www.amazon.co.jp/registry/wishlist/33W7LD3C7PRHI][ほしい物リスト]]
+   - https://github.com/mugijiru/.emacs.d :: Emacs の設定ファイル
+   - https://github.com/mugijiru/small-scripts :: 業務で使ってる適当に書いたスクリプト群
