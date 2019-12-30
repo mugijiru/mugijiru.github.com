@@ -11,17 +11,18 @@ a {
 }
 
 .top-page__header {
-  position: absolute;
+  position: fixed;
   top: 0;
   display: grid;
   align-items: center;
   width: 100vw;
   grid-template:
-    " .    .    .   .    .  " 5px
+    " .    .    .  nav   .  " 5px
     " .   name  .  nav   .  " 40px
-    " .    .    .   .    .  " 5px /
+    " .    .    .  nav   .  " 5px /
      20px auto 1fr auto 20px;
   border-bottom: 1px solid #aaa;
+  background-color: #fff;
 }
 
 .top-page__site-name {
@@ -31,15 +32,27 @@ a {
 
 .top-page__nav {
   grid-area: nav;
+  height: 100%;
+}
+
+.top-page__nav-list {
+  display: grid;
+  grid-gap: 10px;
+  grid-auto-flow: column;
+  white-space: nowrap;
+  line-height: 49px;
+  height: 100%;
 }
 
 .top-page__nav-item {
-  display: inline-block;
-  margin-left: 10px;
+  display: block;
+  height: 100%;
+  transition: .3s;
+  border-bottom: 2px solid transparent;
 }
 
-.top-page__nav-item:first-child {
-  margin-left: 0;
+.top-page__nav-item:hover {
+  border-color: #000;
 }
 
 .top-page__section {
