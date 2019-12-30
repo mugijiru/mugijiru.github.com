@@ -2,6 +2,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: 'HiraKakuProN-W3', 'Hiragino Kaku Gothic ProN W3', 'HiraKakuN-W3', 'Hiragino Kaku Gothic N W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Arial', 'Helvetica Neue', 'Helvetica', system-ui, sans-serif;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -9,15 +10,44 @@ a {
   text-decoration: none;
 }
 
+.top-page__header {
+  position: absolute;
+  top: 0;
+  display: grid;
+  align-items: center;
+  width: 100vw;
+  grid-template:
+    " .    .    .   .    .  " 5px
+    " .   name  .  nav   .  " 40px
+    " .    .    .   .    .  " 5px /
+     20px auto 1fr auto 20px;
+  border-bottom: 1px solid #aaa;
+}
+
+.top-page__site-name {
+  grid-area: name;
+  font-size: 30px;
+}
+
+.top-page__nav {
+  grid-area: nav;
+}
+
+.top-page__nav-item {
+  display: inline-block;
+}
+
+
 .top-page__section {
   display: grid;
   grid-template:
-    ". . ." auto
+    ". . ." 1fr
     ". title ." 70px
     ". body ." auto
-    ". . . " auto /
+    ". . . " 1fr /
     auto minmax(300px, 600px) auto;
   min-height: 100vh;
+  border-bottom: 1px solid #aaa;
 }
 
 .top-page__section--centered {
