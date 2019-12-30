@@ -66,6 +66,10 @@ a {
   color: #fff;
 }
 
+.top-page__main-visual__title {
+  letter-spacing: 10px;
+}
+
 .top-page__section {
   display: grid;
   grid-template:
@@ -97,6 +101,7 @@ a {
 
 .top-page__description {
   line-height: 1.8;
+  letter-spacing: -.3px;
 }
 
 .top-page__definition-list {
