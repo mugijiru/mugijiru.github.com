@@ -54,24 +54,27 @@ a {
   text-align: center;
 }
 
-.top-page__section__title {
+.top-page__section-title {
   grid-area: title;
   font-size: 40px;
 }
 
-.top-page__section__description {
+.top-page__section-body {
   grid-area: body;
-  line-height: 1.8;
 }
 
-.top-page__section__description--centered {
+.top-page__section-body--centered {
   text-align: center;
 }
 
-.top-page__section__definitions {
-  grid-area: body;
+.top-page__description {
+  line-height: 1.8;
 }
 
-.top-page__section__list {
-  grid-area: body;
+.top-page__definition-list {
+
+}
+
+.top-page__list {
+
 }
