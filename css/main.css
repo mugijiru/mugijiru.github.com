@@ -21,7 +21,7 @@ a {
     " .   name  .  nav   .  " 40px
     " .    .    .  nav   .  " 5px /
      20px auto 1fr auto 20px;
-  border-bottom: 1px solid #aaa;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .3);
   background-color: #fff;
 }
 
@@ -40,7 +40,7 @@ a {
   grid-gap: 10px;
   grid-auto-flow: column;
   white-space: nowrap;
-  line-height: 49px;
+  line-height: 48px;
   height: 100%;
 }
 
@@ -53,6 +53,11 @@ a {
 
 .top-page__nav-item:hover {
   border-color: #000;
+}
+
+.top-page__nav-link {
+  display: block;
+  height: 100%;
 }
 
 .top-page__main-visual {
