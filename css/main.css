@@ -3,6 +3,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: initial;
+  text-decoration: none;
+}
+
 .top-page__section {
   display: grid;
   grid-template:
