@@ -77,7 +77,7 @@ a {
     ". title ." 70px
     ". body ." auto
     ". . . " 1fr /
-    auto minmax(300px, 600px) auto;
+    auto 700px auto;
   min-height: 100vh;
   border-bottom: 1px solid #aaa;
 }
