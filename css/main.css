@@ -35,8 +35,12 @@ a {
 
 .top-page__nav-item {
   display: inline-block;
+  margin-left: 10px;
 }
 
+.top-page__nav-item:first-child {
+  margin-left: 0;
+}
 
 .top-page__section {
   display: grid;
