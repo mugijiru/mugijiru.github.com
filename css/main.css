@@ -1,0 +1,35 @@
+.top-page__section {
+  display: grid;
+  grid-template:
+    ". . ." auto
+    ". title ." 70px
+    ". body ." auto
+    ". . . " auto /
+    auto minmax(300px, 600px) auto;
+  min-height: 100vh;
+}
+
+.top-page__section--centered {
+  text-align: center;
+}
+
+.top-page__section__title {
+  grid-area: title;
+}
+
+.top-page__section__description {
+  grid-area: body;
+  line-height: 1.8;
+}
+
+.top-page__section__description--centered {
+  text-align: center;
+}
+
+.top-page__section__definitions {
+  grid-area: body;
+}
+
+.top-page__section__list {
+  grid-area: body;
+}
