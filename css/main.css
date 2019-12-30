@@ -95,8 +95,16 @@ a {
 }
 
 .top-page__definition-list {
-
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(auto-fill, 20px);
+  grid-gap: 10px 20px;
 }
+
+.top-page__definition-term {
+  font-weight: bold;
+}
+
 
 .top-page__list {
 
