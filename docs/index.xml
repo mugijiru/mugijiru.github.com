@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>麦汁三昧</title>
+    <link>https://mugijiru.github.io/</link>
+    <description>Recent content on 麦汁三昧</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 20 Dec 2020 15:22:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 始めました</title>
+      <link>https://mugijiru.github.io/posts/starting-hugo/</link>
+      <pubDate>Sun, 20 Dec 2020 15:22:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/starting-hugo/</guid>
+      <description>&lt;p&gt;Emacs 界隈で流行ってるし自分のサイトだっせーなーって思ってたので
+Hugo で既存テンプレートを使って Web サイトを構築してみることにした。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Profile</title>
+      <link>https://mugijiru.github.io/profile/</link>
+      <pubDate>Sun, 20 Dec 2020 12:15:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/profile/</guid>
+      <description>都内で Ruby on Rails と Vue.js を使った Web アプリケーションを開発している Web プログラマ。一部インフラ(AWS)もかじっている。
+最近は実装よりも、仕様策定や全体の進捗管理、調査、その他雑用をしていることが多い。
+好きなエディタは Emacs。サブで Vim も使っている。
+1983年生まれ。沖縄出身。
+経歴  2009年 沖縄の IT ベンチャー企業に就職しWebプログラマとして活動 2012年 別の沖縄の IT ベンチャー企業に転職し引き続きWebプログラマとして活動 2016年 都内 IT ベンチャー企業に転職しWebプログラマとして活動 現在 リードエンジニアとして活動中  SNSなど  Twitter @mugijiru GitHub mugijiru 旧Blog 麦汁三昧  </description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://mugijiru.github.io/about/</link>
+      <pubDate>Sun, 20 Dec 2020 11:59:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/about/</guid>
+      <description>この Web サイトは Web プログラマである麦汁の個人サイトです。
+気が向いたらブログ記事を更新したりするはず。</description>
+    </item>
+    
+  </channel>
+</rss>

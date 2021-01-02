@@ -1,0 +1,55 @@
+baseURL        = "https://mugijiru.github.io"
+languageCode   = "ja-JP"
+HasCJKLanguage = true
+title          = "麦汁三昧"
+theme          = "hello-friend-ng"
+paginate       = 10
+publishDir     = "docs"
+
+
+[params]
+    author = "麦汁"
+    info = "Emacs を使って Rails アプリケーションを開発している人"
+    description = "麦汁の個人サイト"
+    keywords = "blog,developer,personal"
+
+    # for hello-frint-ng
+    dateform          = "2020年01月01日"
+    dateformShort     = "01月01日"
+    dateformNum       = "2020年01月01日"
+    dateformNumTime   = "2020年01月01日 15:04"
+
+    disableReadOtherPosts = false
+    enableSharingButtons  = true
+
+    homeSubtitle = "麦汁さんの個人サイト"
+
+    enableGitInfo = false
+
+  [params.logo]
+    logoText = "$ cd /home/mugijiru"
+  # Social icons
+  [[params.social]]
+    name = "twitter"
+    url  = "https://twitter.com/mugijiru"
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/mugijiru"
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 1
+  [[menu.main]]
+    identifier = "profile"
+    name = "Profile"
+    url = "/profile/"
+    weight = 2
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/posts/"
+    weight = 3
