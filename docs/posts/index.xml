@@ -1,0 +1,27 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on 麦汁三昧</title>
+        <link>https://mugijiru.github.io/posts/</link>
+        <description>Recent content in Posts on 麦汁三昧</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ja-JP</language>
+        <lastBuildDate>Sun, 20 Dec 2020 15:22:00 +0900</lastBuildDate>
+        <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Hugo 始めました</title>
+            <link>https://mugijiru.github.io/posts/starting-hugo/</link>
+            <pubDate>Sun, 20 Dec 2020 15:22:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/starting-hugo/</guid>
+            <description>&lt;p&gt;Emacs 界隈で流行ってるし自分のサイトだっせーなーって思ってたので
+Hugo で既存テンプレートを使って Web サイトを構築してみることにした。&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<p>Emacs 界隈で流行ってるし自分のサイトだっせーなーって思ってたので
+Hugo で既存テンプレートを使って Web サイトを構築してみることにした。</p>
+<p>他の静的サイト generator もちょっと検討したけど機能面とかも考慮した上で Hugo がいいかなって。主な理由は「流行ってるから」ですが。ほら、流行りに乗りたいじゃん。ちょっと乗り遅れてる気もするけど。</p>
+<p>今とりあえず作ってる最中なんだけど、つい BBS とかチャットとかリンク集とか置きたくなる。
+90年代または2000年代脳である。おえかき BBS も置いたろうか。</p>]]></content>
+        </item>
+        
+    </channel>
+</rss>
