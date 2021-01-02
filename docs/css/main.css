@@ -111,6 +111,10 @@ a {
   grid-gap: 10px 20px;
 }
 
+.top-page__definision-list a{
+  color: #00f;
+}
+
 .top-page__definition-term {
   font-weight: bold;
 }
