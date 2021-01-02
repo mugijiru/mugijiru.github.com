@@ -1,0 +1,124 @@
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'HiraKakuProN-W3', 'Hiragino Kaku Gothic ProN W3', 'HiraKakuN-W3', 'Hiragino Kaku Gothic N W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Arial', 'Helvetica Neue', 'Helvetica', system-ui, sans-serif;
+  scroll-behavior: smooth;
+}
+
+a {
+  color: initial;
+  text-decoration: none;
+}
+
+.top-page__header {
+  position: fixed;
+  top: 0;
+  display: grid;
+  align-items: center;
+  width: 100vw;
+  grid-template:
+    " .    .    .  nav   .  " 5px
+    " .   name  .  nav   .  " 40px
+    " .    .    .  nav   .  " 5px /
+     20px auto 1fr auto 20px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .3);
+  background-color: #fff;
+}
+
+.top-page__site-name {
+  grid-area: name;
+  font-size: 30px;
+}
+
+.top-page__nav {
+  grid-area: nav;
+  height: 100%;
+}
+
+.top-page__nav-list {
+  display: grid;
+  grid-gap: 10px;
+  grid-auto-flow: column;
+  white-space: nowrap;
+  line-height: 48px;
+  height: 100%;
+}
+
+.top-page__nav-item {
+  display: block;
+  height: 100%;
+  transition: .3s;
+  border-bottom: 2px solid transparent;
+}
+
+.top-page__nav-item:hover {
+  border-color: #000;
+}
+
+.top-page__nav-link {
+  display: block;
+  height: 100%;
+}
+
+.top-page__main-visual {
+  background-image: url("../images/coding-dark.jpg");
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.top-page__main-visual__title {
+  letter-spacing: 10px;
+}
+
+.top-page__section {
+  display: grid;
+  grid-template:
+    ". . ." 1fr
+    ". title ." 70px
+    ". body ." auto
+    ". . . " 1fr /
+    auto 700px auto;
+  min-height: 100vh;
+  border-bottom: 1px solid #aaa;
+}
+
+.top-page__section--centered {
+  text-align: center;
+}
+
+.top-page__section-title {
+  grid-area: title;
+  font-size: 40px;
+}
+
+.top-page__section-body {
+  grid-area: body;
+}
+
+.top-page__section-body--centered {
+  text-align: center;
+}
+
+.top-page__description {
+  line-height: 1.8;
+  letter-spacing: -.3px;
+}
+
+.top-page__definition-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(auto-fill, 20px);
+  grid-gap: 10px 20px;
+}
+
+.top-page__definition-term {
+  font-weight: bold;
+}
+
+.top-page__link-text {
+  text-decoration: underline;
+}
+
+.top-page__list {
+  list-style-type: none;
+}
