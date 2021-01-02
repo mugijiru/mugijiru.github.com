@@ -1,0 +1,33 @@
+#+TITLE: 麦汁
+#+SUBTITLE: Web Programmer
+
+* About
+  主に Emacs で Rails の開発をしている沖縄出身のWebプログラマ。
+  サブで Vim も使っている。
+  フロントエンドは Vue.js と Ember.js とみんな大好き jQuery を使ってる。
+
+* Profile
+   - HN       :: 麦汁
+   - 職業     :: Web プログラマ
+   - Twitter  :: @mugijiru
+   - GitHub   :: mugijiru
+   - Blog     :: https://mugijiru.seesaa.net/
+   - 出身地   :: 沖縄県
+   - エディタ :: Emacs(メイン)、Vim(サブ)
+
+* SNS Accounts
+   - Twitter :: [[http://twitter.com/mugijiru/][@mugijiru]]
+   - Twilog :: http://twilog.org/mugijiru/
+   - About.me :: http://about.me/mugijiru
+   - hatena :: http://www.hatena.ne.jp/mugijiru/
+   - Instegram :: https://www.instagram.com/mugijiru/
+
+* Slides
+   - [[http://mugijiru.github.com/pdf/goby-emacs-w3m.pdf][Emacsにひきこもろう!(PDF)]]
+   - [[http://mugijiru.github.com/pdf/xhago4.pdf][Emacsの中の恋人達(pdf)]]
+
+* Repositories
+   - [[https://github.com/mugijiru/fuelphp-mode][fuelphp-mode]] :: FuelPHP開発のためのマイナーモード
+   - [[https://github.com/mugijiru/saykotoeri-el][saykotoeri-el]] :: SayKotoeriを使ってEmacsに喋らせるためのマイナーモード。
+   - https://github.com/mugijiru/.emacs.d :: Emacs の設定ファイル
+   - https://github.com/mugijiru/small-scripts :: 業務で使ってる適当に書いたスクリプト群
