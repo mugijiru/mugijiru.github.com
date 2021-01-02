@@ -5,8 +5,26 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 20 Dec 2020 15:22:00 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 02 Jan 2021 20:31:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>新年明けましておめでとうございます</title>
+            <link>https://mugijiru.github.io/posts/happy-new-year-2021/</link>
+            <pubDate>Sat, 02 Jan 2021 20:31:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/happy-new-year-2021/</guid>
+            <description>&lt;p&gt;新年明けましておめでとうございます。麦汁です。昨年の終わり頃、世間では AdventCalendar で賑ってる頃に、ふと「サイトのリニューアルしたいなあ」なんてことを思って、リニューアルに着手しましたが、ようやくそれが実りそうです。&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<p>新年明けましておめでとうございます。麦汁です。昨年の終わり頃、世間では AdventCalendar で賑ってる頃に、ふと「サイトのリニューアルしたいなあ」なんてことを思って、リニューアルに着手しましたが、ようやくそれが実りそうです。</p>
+<p>なんでそんなことをしてるかというと前の記事 <a href="/posts/starting-hugo/">Hugo 始めました</a> でも書いたように「自分が作ったサイトだっせー」ってのが1つあります。</p>
+<p>それを構築した時には「デザインとかも全部自分でやっちまおう」ということで全部やろうとしていたのですがデザインセンスが壊滅的だったとか時間がろくに取れないとかやる気が他に吸われていったとかでイマイチなまま放置していました。よくないですねえ。</p>
+<p>あと、そことは別にブログサービスを借りて使ってるのですがそっちはそっちで更新がだるいなってのもあってリニューアルと同時に今後のブログ更新はこっちにしてしまおう、というのもあったりします。</p>
+<p>Hugo でブログもやってしまう方が <a href="https://ox-hugo.scripter.co/">ox-hugo</a> も使って記事を書き出せるので
+org-mode 使い的には幸せになれそうですし。</p>
+<p>あとは折角リニューアルしたんだからモチベーションが続くことを願っています。</p>
+<p>というわけで 2021 年の抱負は「月に2回はブログを更新する」とします。</p>
+<p>結構、緩めな抱負ですが、仕事じゃないのでこのぐらいの方が良かろう……。</p>]]></content>
+        </item>
         
         <item>
             <title>Hugo 始めました</title>
@@ -14,13 +32,15 @@
             <pubDate>Sun, 20 Dec 2020 15:22:00 +0900</pubDate>
             
             <guid>https://mugijiru.github.io/posts/starting-hugo/</guid>
-            <description>&lt;p&gt;Emacs 界隈で流行ってるし自分のサイトだっせーなーって思ってたので
-Hugo で既存テンプレートを使って Web サイトを構築してみることにした。&lt;/p&gt;</description>
-            <content type="html"><![CDATA[<p>Emacs 界隈で流行ってるし自分のサイトだっせーなーって思ってたので
-Hugo で既存テンプレートを使って Web サイトを構築してみることにした。</p>
-<p>他の静的サイト generator もちょっと検討したけど機能面とかも考慮した上で Hugo がいいかなって。主な理由は「流行ってるから」ですが。ほら、流行りに乗りたいじゃん。ちょっと乗り遅れてる気もするけど。</p>
-<p>今とりあえず作ってる最中なんだけど、つい BBS とかチャットとかリンク集とか置きたくなる。
-90年代または2000年代脳である。おえかき BBS も置いたろうか。</p>]]></content>
+            <description>&lt;p&gt;Hugo はなんか Emacs 界隈で流行ってるし、自分のサイトだっせーなーって思ってたので
+Hugo を使って、公開されてるテンプレートを適用して
+Web サイトを再構築してみることにした。&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<p>Hugo はなんか Emacs 界隈で流行ってるし、自分のサイトだっせーなーって思ってたので
+Hugo を使って、公開されてるテンプレートを適用して
+Web サイトを再構築してみることにした。</p>
+<p>他の静的サイトジェネレータもちょっと検討したけど機能面とかも考慮した上で Hugo がいいかなって。主な理由は「流行ってるから」ですが。ほら、流行りに乗りたいじゃん。ちょっと乗り遅れてる気もするけど。</p>
+<p>今、とりあえず作ってる最中なんだけど、つい BBS とかチャットとかリンク集とか置きたくなる。
+90年代または2000年代脳である。お絵描き BBS も置いたろうかって気持ちになる。</p>]]></content>
         </item>
         
     </channel>

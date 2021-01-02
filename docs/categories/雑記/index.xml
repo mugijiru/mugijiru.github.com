@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>麦汁三昧</title>
-    <link>https://mugijiru.github.io/</link>
-    <description>Recent content on 麦汁三昧</description>
+    <title>雑記 on 麦汁三昧</title>
+    <link>https://mugijiru.github.io/categories/%E9%9B%91%E8%A8%98/</link>
+    <description>Recent content in 雑記 on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 02 Jan 2021 20:31:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jan 2021 20:31:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/%E9%9B%91%E8%A8%98/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>新年明けましておめでとうございます</title>
       <link>https://mugijiru.github.io/posts/happy-new-year-2021/</link>
@@ -25,24 +25,6 @@
       <description>&lt;p&gt;Hugo はなんか Emacs 界隈で流行ってるし、自分のサイトだっせーなーって思ってたので
 Hugo を使って、公開されてるテンプレートを適用して
 Web サイトを再構築してみることにした。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Profile</title>
-      <link>https://mugijiru.github.io/profile/</link>
-      <pubDate>Sun, 20 Dec 2020 12:15:00 +0900</pubDate>
-      
-      <guid>https://mugijiru.github.io/profile/</guid>
-      <description>都内で Ruby on Rails と Vue.js を使った Web アプリケーションを開発している Web プログラマ。一部インフラ(AWS)もかじっている。 最近は実装よりも、仕様策定や全体</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://mugijiru.github.io/about/</link>
-      <pubDate>Sun, 20 Dec 2020 11:59:00 +0900</pubDate>
-      
-      <guid>https://mugijiru.github.io/about/</guid>
-      <description>この Web サイトは Web プログラマである麦汁の個人サイトです。 気が向いたらブログ記事を更新したりするはず。</description>
     </item>
     
   </channel>
