@@ -25,7 +25,12 @@ GitHub でのリポジトリでのコードの位置でブラウザを開いて�
 <p>コードの上でと書いたけど、リージョンを選択していればその範囲が選択された状態で実行すると選択した行がハイライトされた状態で開いて便利。</p>
 <p>その状態から GitHub 上で <code>Copy permalink</code> をしておいて
 PR のコメントにコピーしたリンクを貼り付けるとコードも表示されて便利。</p>
-<p>という使い方をしているけど実は似た機能を提供している <a href="https://github.com/sshaw/git-link">git-link</a> で <code>git-link-use-commit</code> のフラグを立てておいて他にもいくつか設定を入れたりしたらもっといい感じのことができるのかもしれない。今度試すか……。</p>
+<p>で、結構よく使うコマンドとなったので
+Hydra から即呼び出せるようにしてある。</p>
+<p>Global に使うコマンドを突っ込んでる Hydra は key-chord で <code>jk</code> を叩くと呼べるようにしていてその中で <code>B</code> を叩けば browse-at-point が呼ばれるようにしてある。</p>
+<p>というわけで、導入と Hydra の設定を追加しているプルリクが以下になります。
+<a href="https://github.com/mugijiru/.emacs.d/pull/205">https://github.com/mugijiru/.emacs.d/pull/205</a></p>
+<p>という使い方をしているけど、実は似た機能を提供している <a href="https://github.com/sshaw/git-link">git-link</a> で <code>git-link-use-commit</code> のフラグを立てておいて他にもいくつか設定を入れたりしたらもっといい感じのことができるのかもしれない。今度試すか……。</p>
 ]]></content>
         </item>
         

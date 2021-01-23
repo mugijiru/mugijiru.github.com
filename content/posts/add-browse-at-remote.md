@@ -22,4 +22,12 @@ GitHub でのリポジトリでのコードの位置でブラウザを開いて�
 その状態から GitHub 上で `Copy permalink` をしておいて
 PR のコメントにコピーしたリンクを貼り付けるとコードも表示されて便利。
 
-という使い方をしているけど実は似た機能を提供している [git-link](https://github.com/sshaw/git-link) で `git-link-use-commit` のフラグを立てておいて他にもいくつか設定を入れたりしたらもっといい感じのことができるのかもしれない。今度試すか……。
+で、結構よく使うコマンドとなったので
+Hydra から即呼び出せるようにしてある。
+
+Global に使うコマンドを突っ込んでる Hydra は key-chord で `jk` を叩くと呼べるようにしていてその中で `B` を叩けば browse-at-point が呼ばれるようにしてある。
+
+というわけで、導入と Hydra の設定を追加しているプルリクが以下になります。
+<https://github.com/mugijiru/.emacs.d/pull/205>
+
+という使い方をしているけど、実は似た機能を提供している [git-link](https://github.com/sshaw/git-link) で `git-link-use-commit` のフラグを立てておいて他にもいくつか設定を入れたりしたらもっといい感じのことができるのかもしれない。今度試すか……。
