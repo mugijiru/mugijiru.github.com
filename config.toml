@@ -14,10 +14,10 @@ publishDir     = "docs"
     keywords = "blog,developer,personal"
 
     # for hello-frint-ng
-    dateform          = "2020年01月01日"
-    dateformShort     = "01月01日"
-    dateformNum       = "2020年01月01日"
-    dateformNumTime   = "2020年01月01日 15:04"
+    dateform          = "2006年01月02日"
+    dateformShort     = "01月02日"
+    dateformNum       = "2006年01月02日"
+    dateformNumTime   = "2006年01月02日 15:04"
 
     disableReadOtherPosts = false
     enableSharingButtons  = true
