@@ -5,8 +5,29 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sat, 02 Jan 2021 20:31:00 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 23 Jan 2021 23:18:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>browse-at-remote を導入した</title>
+            <link>https://mugijiru.github.io/posts/add-browse-at-remote/</link>
+            <pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid>
+            <description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description>
+            <content type="html"><![CDATA[<p>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょくある。</p>
+<p>そういうことをする時、まずそもそも差し示したいコードを確認するんだけどその時は Emacs の中で探す方が早い。で、探して確認するまではいいんだけど、そこから GitHub 上のコードへのリンクを取得しようとするとちょっと面倒。</p>
+<p>これまでは、GitHub のリポジトリのトップからディレクトリを辿って行って当該コードを再度探していました。めんどくさいねっ。</p>
+<p>というわけで解決する手段を探していて最近導入したのが <a href="https://github.com/rmuslimov/browse-at-remote">browse-at-remote</a> というやつ。</p>
+<p>こいつを入れてる状態で、GitHub のリポジトリに突っ込んであるコードの上で
+<code>M-x browse-at-remote</code> を実行すると
+GitHub でのリポジトリでのコードの位置でブラウザを開いてくれる。</p>
+<p>コードの上でと書いたけど、リージョンを選択していればその範囲が選択された状態で実行すると選択した行がハイライトされた状態で開いて便利。</p>
+<p>その状態から GitHub 上で <code>Copy permalink</code> をしておいて
+PR のコメントにコピーしたリンクを貼り付けるとコードも表示されて便利。</p>
+<p>という使い方をしているけど実は似た機能を提供している <a href="https://github.com/sshaw/git-link">git-link</a> で <code>git-link-use-commit</code> のフラグを立てておいて他にもいくつか設定を入れたりしたらもっといい感じのことができるのかもしれない。今度試すか……。</p>
+]]></content>
+        </item>
         
         <item>
             <title>新年明けましておめでとうございます</title>

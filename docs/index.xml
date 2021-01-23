@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 02 Jan 2021 20:31:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Jan 2021 23:18:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>browse-at-remote を導入した</title>
+      <link>https://mugijiru.github.io/posts/add-browse-at-remote/</link>
+      <pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid>
+      <description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description>
+    </item>
+    
     <item>
       <title>新年明けましておめでとうございます</title>
       <link>https://mugijiru.github.io/posts/happy-new-year-2021/</link>
