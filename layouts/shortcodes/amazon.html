@@ -1,0 +1,17 @@
+{{- $tag := .Site.Params.amazonJpAffiliate }}
+{{- $asin := .Get "asin" -}}
+{{- $title := .Get "title" -}}
+<a class="amazon-widget" href="https://www.amazon.co.jp/gp/product/{{ $asin }}/?tag={{ $tag }}">
+  <img class="amazon-widget__img" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN={{ $asin }}&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL350_&tag={{ $tag }}">
+  <div class="amazon-widget__info">
+    <span class="amazon-widget__title">
+      {{ $title }}
+    </span>
+    <div class="amazon-widget__via">
+      <img class="amazon-widget__via-icon" src="https://www.amazon.co.jp/favicon.ico">
+      <span class="amazon-widget__via">
+        amazon.co.jp
+      </span>
+    </div>
+  </div>
+</a>

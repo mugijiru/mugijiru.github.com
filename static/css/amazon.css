@@ -1,0 +1,31 @@
+.amazon-widget {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(auto, 200px) 1fr;
+  grid-template-rows: minmax(auto, 200px);
+  padding: 8px;
+  border: 1px solid #eee;
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.amazon-widget__img {
+  border-radius: 4px;
+}
+
+.amazon-widget__title {
+  font-size: 1.4em;
+}
+
+.amazon-widget__via {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.8em;
+}
+
+.amazon-widget__via-icon {
+  display: inline-block;
+  height: 1em;
+  margin-right: 4px;
+}
