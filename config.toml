@@ -26,6 +26,10 @@ publishDir     = "docs"
 
     enableGitInfo = false
 
+    customCSS = ["/css/amazon.css"]
+
+    amazonJpAffiliate = "nue06-22"
+
   [params.logo]
     logoText = "$ cd /home/mugijiru"
   # Social icons
