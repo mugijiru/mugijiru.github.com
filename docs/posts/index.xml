@@ -5,8 +5,55 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sat, 23 Jan 2021 23:18:00 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 13 Feb 2021 01:15:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>2021年にもなって ember-rails で新規アプリを書いてみてる</title>
+            <link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link>
+            <pubDate>Sat, 13 Feb 2021 01:15:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/ember-rails-in-2021/</guid>
+            <description>少し思うところがあって、 2021 年になったというのに ember-rails を使って新規で Web アプリを書いている。 ember-rails とは? ember-rails は Ember.js という Web フロントエンド MVC なフレームワークを</description>
+            <content type="html"><![CDATA[<p>少し思うところがあって、
+2021 年になったというのに <a href="https://github.com/emberjs/ember-rails">ember-rails</a> を使って新規で Web アプリを書いている。</p>
+<h2 id="ember-rails-とは">ember-rails とは?</h2>
+<p>ember-rails は
+Ember.js という Web フロントエンド MVC なフレームワークを
+Rails といい感じに連携してくれて快適な Web アプリケーション開発体験を提供してくれるものであった。</p>
+<p>過去形なのは、ember-rails は Rails3 とか 4 とかの時代に主に使われていて既にメンテナンスされてないのと、今はそれよりも良い <a href="https://github.com/thoughtbot/ember-cli-rails">ember-cli-rails</a> というのがあるから。</p>
+<h2 id="今-ember-rails-を使うと何がつらいか">今 ember-rails を使うと何がつらいか</h2>
+<p>色々つらい。</p>
+<h3 id="まずメンテナンスが止まってる">まずメンテナンスが止まってる</h3>
+<p>なので Rails 6 で動くかがわからない。多分、試している人はいないし、自分もそこまで試す気力はない。</p>
+<h3 id="ember-dot-js-のサポートが-2-dot-18-dot-2-までとなっている">Ember.js のサポートが 2.18.2 までとなっている。</h3>
+<p>より詳細に話すと
+ember-rails が依存している Gem である ember-source で本当は 3.0.0.beta.2 まで出てるんだけど、β版のことは無視する。
+<a href="https://rubygems.org/gems/ember-source/versions/2.18.2">https://rubygems.org/gems/ember-source/versions/2.18.2</a></p>
+<p>で、その 2.18.2 は既にサポートされてないバージョンである。</p>
+<p>サポートされてないバージョンを使うのはセキュリティ面でもまずいしもはや情報もあまり落ちてないので苦行である。</p>
+<p>Ember.js 公式サイトのドキュメントが過去のバージョンのものも残されているのでそれを頼りにするしかない。というか公式で残しててくれてありがとう。それがないと何もできないよ。</p>
+<h3 id="ember-rails-だと-ember-dot-js-の-addon-が導入できない">ember-rails だと Ember.js の addon が導入できない</h3>
+<p>例えば Handlebars でロジックを書く上でとても基本的な比較用のヘルパーを提供してくれる <a href="https://github.com/jmurphyau/ember-truth-helpers">ember-truth-helper</a> が使えない。これが使えないはめっちゃ不便で、それをなんとかするために同じようなコードを自前で用意するハメになる。</p>
+<p>他にも <a href="https://github.com/ember-community-russia/awesome-ember">ember-community-russia/awesome-ember</a> に載っている色々なものが使えないわけだ。つらいどころか悲しくなってくる。</p>
+<h3 id="自動テストが書けない">自動テストが書けない</h3>
+<p>Ember.js は QUnit で自動テストができるようになっているのだが
+ember-rails だとそれも使えない。すなわちフロントエンドのコンポーネントの単体テストが書けないのである。</p>
+<h2 id="それでも-ember-rails-を使いたい方には">それでも ember-rails を使いたい方には</h2>
+<p>どうして素直に ember-cli-rails や ember-cli そのものを使おうとしないのかはわからないけどどうしても ember-rails の世界に住みたいのであれば
+<a href="https://github.com/discourse/discourse">discourse</a> のソースを参考にしたら良いと思う。</p>
+<p>どうやら <a href="https://github.com/discourse/discourse/pull/11932">ember-cli に乗り換える方針で動いているよう</a> だが今日時点の Gemfile には未だに discourse-ember-source などの記述が残っている状態であり、まだ完全移行はできてない様子。</p>
+<p><a href="https://rubygems.org/gems/discourse-ember-source/versions/3.12.2.2">discourse-ember-source</a> は 3.12 系まで追従していたようなのでそこまでは discourse の真似をすれば使えるだろう。</p>
+<p>また彼らは ember-rails を使いながら qunit でのテストもできるようにしているようである。正直マジか頑張ったなって気持ち。ちょっとどうやって動かしているのかはわからない。あんまり調べる気力もない。なんとなくわかったことは ES6 の module システムを活用して頑張ってる雰囲気があることである。</p>
+<p>他にも addon も使えるようにしている様子でもあるが、これもちょっとよくわかってない。あまり adoon が使われてる気もしないが……。</p>
+<p>ともかく ember-rails を独自に拡張した上で色々頑張っているようである。すごい。それでももう ember-cli-rails に乗り換えようとしているようなので今から ember-rails の世界に住もうとするのはやめた方がいいはず。</p>
+<p>あ、よく見ると Rails は 6.0 系だ。ってことは少なくとも discourse-ember-rails なら Rails 6.0 でも動くわけか。なるほど。</p>
+<h2 id="で-なぜ自分は-ember-rails-で新規アプリを書いているか">で、なぜ自分は ember-rails で新規アプリを書いているか</h2>
+<p>マゾなので、敢えてその環境で新規アプリを用意しておいてそこから ember-cli-rails に移行する、みたいなことをしてみたいから。</p>
+<p>本当は自分で ember-rails なアプリを書くつもりはなかったんだけどサンプルになるようなアプリが探せなかったってのもある。これが Yak Shaving か〜と思いながら粛々と小さなアプリを書いていくのであった</p>
+<p>できたらまた記事にする。アプリ自体は公開しないけど、ソースは GitHub に上げるつもり。</p>
+]]></content>
+        </item>
         
         <item>
             <title>browse-at-remote を導入した</title>

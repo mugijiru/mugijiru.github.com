@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "main.css",
-	"sourceRoot": "/home/mugijiru/projects/private/mugijiru.github.com",
+	"sourceRoot": "/Users/nuehara/projects/private/mugijiru.github.com",
 	"sources": [
 		"themes/hello-friend-ng/assets/scss/main.scss",
 		"themes/hello-friend-ng/assets/scss/_normalize.scss",

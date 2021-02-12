@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ember-js on 麦汁三昧</title>
+    <link>https://mugijiru.github.io/categories/ember-js/</link>
+    <description>Recent content in Ember-js on 麦汁三昧</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sat, 13 Feb 2021 01:15:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2021年にもなって ember-rails で新規アプリを書いてみてる</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link>
+      <pubDate>Sat, 13 Feb 2021 01:15:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-in-2021/</guid>
+      <description>少し思うところがあって、 2021 年になったというのに ember-rails を使って新規で Web アプリを書いている。 ember-rails とは? ember-rails は Ember.js という Web フロントエンド MVC なフレームワークを</description>
+    </item>
+    
+  </channel>
+</rss>
