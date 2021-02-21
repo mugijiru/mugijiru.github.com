@@ -244,7 +244,7 @@
      できたらまた記事にする。
      アプリ自体は公開しないけど、ソースは GitHub に上げるつもり。
 
-*** DONE ember-rails で書いた Web アプリを GitHub で公開した
+*** DONE ember-rails で書いた Web アプリを GitHub で公開した :@Rails:@Ember_js:
     CLOSED: [2021-02-21 日 15:40]
     :PROPERTIES:
     :EXPORT_FILE_NAME: publish-ember-rails-app
@@ -316,6 +316,74 @@
 **** 最後に
 
      ここから段々と最新の Ember.js を使えるように寄せていくつもり。
+
+*** DONE 古い ember-rails App で一部ファイルを ES6 Module 化 :@Rails:@Ember_js:
+    CLOSED: [2021-02-21 日 22:41]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: ember-rails-partial-modulize
+    :END:
+**** これは何?
+     ember-rails を古いスタイルで書いておいて
+     それをモダン化していく企画の第一弾の記事。
+
+**** 何をしたのか
+     今回は ES6 module を使ってない ember-rails アプリケーションで
+     一部のファイルだけ ES6 Module にしてみた。
+
+**** 何が嬉しい?
+     今回扱ってるアプリケーションのサイズはとても小さいので
+     まとめて置き換えることも可能というか、
+     ぶっちゃけ [[https://github.com/mugijiru/ember-rails-todo-app/pull/7][古いスタイルに書き換えた PR]] を revert するだけで
+     ES6 Module 化できたりする。
+
+     しかし、世の中に潜んでいる、レガシー化した ember-rails のプロジェクトでは
+     全部まとめて ES6 Module にするのはファイル数が多過ぎて困難かと考え、
+     敢えて一部のファイルだけ ES6 Module 化する方法を探してみた。
+
+**** どうやったらできるの?
+
+     簡単に言うと
+     ES6 Module 形式で書いたやつを import して
+     Ember.js Application の Namespace に放り込めばいいだけ。
+
+***** Example
+      #+NAME: app/assets/javascripts/ember-app/components/foo.module.es6
+      #+begin_src js
+      import Ember from 'ember';
+
+      export default Ember.Component.extend({});
+      #+end_src
+
+      のように書いておいて
+
+      ~app/assets/javascripts/ember-app/application.js.es6~ の末尾にでも
+
+      #+begin_src js
+      import FooComponent from 'ember-app/components/foo';
+
+      EmberApp.FooComponent = FooComponent;
+      #+end_src
+
+      のように書いたら、
+      一応 module 形式で書けるし、
+      それを window.EmberApp で用意した Ember.js Application で使える。
+
+**** 関連 PR
+
+     実際に動くコードは以下の PR で用意した。
+     https://github.com/mugijiru/ember-rails-todo-app/pull/8
+
+     PR では ~modules~ フォルダにさらに components フォルダを掘って
+     その中にファイルを配置している。
+
+     その方が全部移行できた後にまるっと置き換えするのに楽そうだからだ。
+
+     また import して Namespace に放り込む処理も別ファイルに追い出している。
+     これも、完全移行が済んだら不要になるファイルなので
+     消しやすさを重視して分割しておいた。
+
+     CI でテストも通しているしバッチリだと思う。
+     デプロイできるようにはしてないからサーバで動くかは確認してないけど、ま、大丈夫だろ
 
 *** TODO org-agenda を活用し始めた                              :@Emacs:@org:
     :PROPERTIES:
