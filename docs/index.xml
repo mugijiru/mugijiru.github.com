@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 13 Feb 2021 01:15:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 15:40:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-rails で書いた Web アプリを GitHub で公開した</title>
+      <link>https://mugijiru.github.io/posts/publish-ember-rails-app/</link>
+      <pubDate>Sun, 21 Feb 2021 15:40:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/publish-ember-rails-app/</guid>
+      <description>この間の記事 で書いたように ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。 先週時点では「テストとかなくてもいいから動けばいいだ</description>
+    </item>
+    
     <item>
       <title>2021年にもなって ember-rails で新規アプリを書いてみてる</title>
       <link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link>

@@ -146,7 +146,6 @@
     他にもいくつか設定を入れたりしたらもっといい感じのことができるのかもしれない。
     今度試すか……。
 
-
 *** DONE 2021年にもなって ember-rails で新規アプリを書いてみてる :@Rails:@Ember_js:
     CLOSED: [2021-02-13 土 01:15]
     :PROPERTIES:
@@ -203,7 +202,6 @@
       ember-rails だとそれも使えない。
       すなわちフロントエンドのコンポーネントの単体テストが書けないのである。
 
-
 **** それでも ember-rails を使いたい方には
 
      どうして素直に ember-cli-rails や ember-cli そのものを使おうとしないのかはわからないけど
@@ -246,6 +244,78 @@
      できたらまた記事にする。
      アプリ自体は公開しないけど、ソースは GitHub に上げるつもり。
 
+*** DONE ember-rails で書いた Web アプリを GitHub で公開した
+    CLOSED: [2021-02-21 日 15:40]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: publish-ember-rails-app
+    :END:
+
+    [[*2021年にもなって ember-rails で新規アプリを書いてみてる][この間の記事]] で書いたように
+    ember-rails で簡単なアプリケーションを作ってた。
+    よくある TODO アプリである。
+
+    [[file:images/screenshot-ember-rails-todo-app.png]]
+
+    先週時点では「テストとかなくてもいいから動けばいいだろ」って気持ちだったけど
+    なんとなーくテストを追加したくなったり
+    あんまり慣れてない docker-compose 対応してみたりしていたのと
+    平日はこのプログラムに触れてなかったので、結構日が空いてしまった。
+
+    まあ、それはともかくとして、
+    とりあえず [[https://github.com/mugijiru/ember-rails-todo-app/]] に置いておいた
+    現時点の最新コミットで [[https://github.com/mugijiru/ember-rails-todo-app/tree/v1.1.1][v1.1.1]] のタグを振ってるやつは
+    自分の知ってる一番古いスタイルで書かれてる状態にしてある。
+
+**** 使ってる Gem
+
+     - Ember.js 関係
+       - ember-rails
+       - ember-source
+       - jquery-rails
+         - Ember.js は 2 系まで jquery に依存しているので
+           - よく見ると ember-rails の依存に入ってるから書かなくて良かったな……
+       - active_model_serializers 0.9
+         - 0.9 系じゃないとうまく動かないっぽい
+     - CSS framework
+       - bootstrap-sass
+         - レガシー感の演出のため敢えてこれにしている
+     - テスト関係
+       - rspec-rails
+       - factory_bot_rails
+       - database_rewinder
+       - capybara
+       - selenium-webdriver
+
+     あたり。
+
+**** レガシー感の演出
+
+     レガシー感を出すために bootstrap-sass(Bootstrap3系になる)を使ったりはしているが
+     あまり特別なものは使ってない。
+
+     また ember-rails で ember アプリのソースコードを generate すると
+     es6 module を使ったようなコードが出力されるけど、
+     これも敢えてレガシー感を出すために module を使わない形式に書き直している。
+
+     よりレガシー感を出すために CoffeeScript にするという手もあったけど、
+     さすがにそこまでは頑張りたくないw
+     もう何年も触ってないよ CoffeeScript...
+
+     そしてページ全体を Ember.js にはしないで
+     ページの一部を Ember.js にする [[https://guides.emberjs.com/v2.18.0/configuring-ember/embedding-applications/][埋め込み]] 形式を採用している。
+     既存のアプリに Ember.js を後乗せした感の演出である。
+     実際、構築時には一時的に普通の Rails App として動くようにしていた。
+
+     他にこだわったところは、今回は単一のアプリケーションしか動かしてないけど
+     [[https://github.com/emberjs/ember-rails#multiple-ember-application][Multiple Ember Application]]
+     の作法に則って、Ember アプリケーションを追加で乗せられるようにしている。
+     これにより「この画面も Ember 化しようず」という流れで
+     Ember アプリが複数動いてる状態により近くなったんじゃないかなと。
+     実際今回動いてるのは1つだから、ちょっと違うけどね。。。
+
+**** 最後に
+
+     ここから段々と最新の Ember.js を使えるように寄せていくつもり。
 
 *** TODO org-agenda を活用し始めた                              :@Emacs:@org:
     :PROPERTIES:

@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mugijiru.github.io/posts/publish-ember-rails-app/</loc>
+    <lastmod>2021-02-21T15:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mugijiru.github.io/posts/</loc>
+    <lastmod>2021-02-21T15:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mugijiru.github.io/</loc>
+    <lastmod>2021-02-21T15:40:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mugijiru.github.io/posts/ember-rails-in-2021/</loc>
     <lastmod>2021-02-13T01:15:00+09:00</lastmod>
   </url>
@@ -18,17 +33,7 @@
   </url>
   
   <url>
-    <loc>https://mugijiru.github.io/posts/</loc>
-    <lastmod>2021-02-13T01:15:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mugijiru.github.io/categories/rails/</loc>
-    <lastmod>2021-02-13T01:15:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mugijiru.github.io/</loc>
     <lastmod>2021-02-13T01:15:00+09:00</lastmod>
   </url>
   
