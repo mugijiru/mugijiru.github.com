@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 21 Feb 2021 15:40:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Feb 2021 22:41:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>古い ember-rails App で一部ファイルを ES6 Module 化</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</link>
+      <pubDate>Sun, 21 Feb 2021 22:41:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</guid>
+      <description>これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部</description>
+    </item>
+    
     <item>
       <title>ember-rails で書いた Web アプリを GitHub で公開した</title>
       <link>https://mugijiru.github.io/posts/publish-ember-rails-app/</link>

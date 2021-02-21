@@ -5,8 +5,48 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 21 Feb 2021 15:40:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 21 Feb 2021 22:41:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>古い ember-rails App で一部ファイルを ES6 Module 化</title>
+            <link>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</link>
+            <pubDate>Sun, 21 Feb 2021 22:41:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</guid>
+            <description>これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部</description>
+            <content type="html"><![CDATA[<h2 id="これは何">これは何?</h2>
+<p>ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。</p>
+<h2 id="何をしたのか">何をしたのか</h2>
+<p>今回は ES6 module を使ってない ember-rails アプリケーションで一部のファイルだけ ES6 Module にしてみた。</p>
+<h2 id="何が嬉しい">何が嬉しい?</h2>
+<p>今回扱ってるアプリケーションのサイズはとても小さいのでまとめて置き換えることも可能というか、ぶっちゃけ <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/7">古いスタイルに書き換えた PR</a> を revert するだけで
+ES6 Module 化できたりする。</p>
+<p>しかし、世の中に潜んでいる、レガシー化した ember-rails のプロジェクトでは全部まとめて ES6 Module にするのはファイル数が多過ぎて困難かと考え、敢えて一部のファイルだけ ES6 Module 化する方法を探してみた。</p>
+<h2 id="どうやったらできるの">どうやったらできるの?</h2>
+<p>簡単に言うと
+ES6 Module 形式で書いたやつを import して
+Ember.js Application の Namespace に放り込めばいいだけ。</p>
+<h3 id="example">Example</h3>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Ember</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({});
+</code></pre></div><p>のように書いておいて</p>
+<p><code>app/assets/javascripts/ember-app/application.js.es6</code> の末尾にでも</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">FooComponent</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-app/components/foo&#39;</span>;
+
+<span style="color:#a6e22e">EmberApp</span>.<span style="color:#a6e22e">FooComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">FooComponent</span>;
+</code></pre></div><p>のように書いたら、一応 module 形式で書けるし、それを window.EmberApp で用意した Ember.js Application で使える。</p>
+<h2 id="関連-pr">関連 PR</h2>
+<p>実際に動くコードは以下の PR で用意した。
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/8">https://github.com/mugijiru/ember-rails-todo-app/pull/8</a></p>
+<p>PR では <code>modules</code> フォルダにさらに components フォルダを掘ってその中にファイルを配置している。</p>
+<p>その方が全部移行できた後にまるっと置き換えするのに楽そうだからだ。</p>
+<p>また import して Namespace に放り込む処理も別ファイルに追い出している。これも、完全移行が済んだら不要になるファイルなので消しやすさを重視して分割しておいた。</p>
+<p>CI でテストも通しているしバッチリだと思う。デプロイできるようにはしてないからサーバで動くかは確認してないけど、ま、大丈夫だろ</p>
+]]></content>
+        </item>
         
         <item>
             <title>ember-rails で書いた Web アプリを GitHub で公開した</title>
