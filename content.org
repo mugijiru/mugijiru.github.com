@@ -347,7 +347,8 @@
      Ember.js Application の Namespace に放り込めばいいだけ。
 
 ***** Example
-      #+NAME: app/assets/javascripts/ember-app/components/foo.module.es6
+      ~app/assets/javascripts/ember-app/components/foo.module.es6~ ってファイル名で
+
       #+begin_src js
       import Ember from 'ember';
 
@@ -366,7 +367,14 @@
 
       のように書いたら、
       一応 module 形式で書けるし、
-      それを window.EmberApp で用意した Ember.js Application で使える。
+      それを window.EmberApp で用意した Ember.js Application で使えるって感じ。
+
+      拡張子が ~.module.es6~ というのがポイントで、
+      そうしておくと
+      [[https://github.com/tricknotes/ember-es6_template][ember-es6_template]] という Gem が
+      自動的に ES6 の module として判定してくれるようになっている
+      https://github.com/tricknotes/ember-es6_template/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6_template/sprockets.rb#L10
+
 
 **** 関連 PR
 

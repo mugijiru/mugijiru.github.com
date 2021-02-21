@@ -32,7 +32,8 @@ Ember.js Application の Namespace に放り込めばいいだけ。
 
 ### Example {#example}
 
-<a id="code-snippet--app-assets-javascripts-ember-app-components-foo.module.es6"></a>
+`app/assets/javascripts/ember-app/components/foo.module.es6` ってファイル名で
+
 ```js
 import Ember from 'ember';
 
@@ -49,7 +50,11 @@ import FooComponent from 'ember-app/components/foo';
 EmberApp.FooComponent = FooComponent;
 ```
 
-のように書いたら、一応 module 形式で書けるし、それを window.EmberApp で用意した Ember.js Application で使える。
+のように書いたら、一応 module 形式で書けるし、それを window.EmberApp で用意した Ember.js Application で使えるって感じ。
+
+拡張子が `.module.es6` というのがポイントで、そうしておくと
+[ember-es6\_template](https://github.com/tricknotes/ember-es6%5Ftemplate) という Gem が自動的に ES6 の module として判定してくれるようになっている
+<https://github.com/tricknotes/ember-es6%5Ftemplate/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6%5Ftemplate/sprockets.rb#L10>
 
 
 ## 関連 PR {#関連-pr}
