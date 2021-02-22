@@ -28,25 +28,43 @@ ES6 Module 化できたりする。</p>
 ES6 Module 形式で書いたやつを import して
 Ember.js Application の Namespace に放り込めばいいだけ。</p>
 <h3 id="example">Example</h3>
-<p><code>app/assets/javascripts/ember-app/components/foo.module.es6</code> ってファイル名で</p>
+<p>まずはコンポーネントなどを
+<code>app/assets/javascripts/ember-app/components/foo.module.es6</code> ってファイル名で</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Ember</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember&#39;</span>;
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({});
-</code></pre></div><p>のように書いておいて</p>
-<p><code>app/assets/javascripts/ember-app/application.js.es6</code> の末尾にでも</p>
+</code></pre></div><p>のように書いておく。拡張子が <code>.module.es6</code> というのがポイントで、そうしておくと
+<a href="https://github.com/tricknotes/ember-es6%5Ftemplate">ember-es6_template</a> という Gem が自動的に ES6 の module として判定してくれるようになっている
+<a href="https://github.com/tricknotes/ember-es6%5Ftemplate/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6%5Ftemplate/sprockets.rb#L10">https://github.com/tricknotes/ember-es6%5Ftemplate/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6%5Ftemplate/sprockets.rb#L10</a></p>
+<p>そして <code>app/assets/javascripts/ember-app/application.js.es6</code> の末尾にでも</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">FooComponent</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-app/components/foo&#39;</span>;
 
 <span style="color:#a6e22e">EmberApp</span>.<span style="color:#a6e22e">FooComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">FooComponent</span>;
 </code></pre></div><p>のように書いたら、一応 module 形式で書けるし、それを window.EmberApp で用意した Ember.js Application で使えるって感じ。</p>
-<p>拡張子が <code>.module.es6</code> というのがポイントで、そうしておくと
-<a href="https://github.com/tricknotes/ember-es6%5Ftemplate">ember-es6_template</a> という Gem が自動的に ES6 の module として判定してくれるようになっている
-<a href="https://github.com/tricknotes/ember-es6%5Ftemplate/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6%5Ftemplate/sprockets.rb#L10">https://github.com/tricknotes/ember-es6%5Ftemplate/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6%5Ftemplate/sprockets.rb#L10</a></p>
+<h2 id="ファイルの数と同じ量の-import-書くの">ファイルの数と同じ量の import 書くの?</h2>
+<p>だるいよね。なので import 処理は
+<code>app/assets/javascripts/ember-app/import-modules.js.es6.erb</code>
+という erb template でも分離して</p>
+<pre><code class="language-erb" data-lang="erb">&lt;% module_dir = Rails.root.join('app/assets/javascripts/ember-app/modules') %&gt;
+&lt;% Dir.each_child(module_dir) do |dir| %&gt;
+  &lt;% next unless FileTest.directory?(&quot;#{module_dir}/#{dir}&quot;) %&gt;
+  &lt;% Dir.glob('*.module.es6', base: &quot;#{module_dir}/#{dir}&quot;) do |module_file| %&gt;
+    &lt;% module_name = File.basename(module_file, '.module.es6') %&gt;
+    &lt;% klass_name = &quot;#{module_name.underscore.camelize}#{dir.underscore.singularize.camelize}&quot; %&gt;
+import &lt;%= klass_name %&gt; from 'ember-app/modules/&lt;%= dir %&gt;/&lt;%= module_name %&gt;';
+EmberApp.&lt;%= klass_name %&gt; = &lt;%= klass_name %&gt;;
+  &lt;% end %&gt;
+&lt;% end %&gt;
+</code></pre><p>とでも書いておけば全部いい感じに読んでくれる。</p>
 <h2 id="関連-pr">関連 PR</h2>
 <p>実際に動くコードは以下の PR で用意した。
-<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/8">https://github.com/mugijiru/ember-rails-todo-app/pull/8</a></p>
-<p>PR では <code>modules</code> フォルダにさらに components フォルダを掘ってその中にファイルを配置している。</p>
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/8">https://github.com/mugijiru/ember-rails-todo-app/pull/8</a>
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/9">https://github.com/mugijiru/ember-rails-todo-app/pull/9</a></p>
+<p>最初の PR で <code>modules</code> フォルダにさらに components フォルダを掘ってその中にファイルを配置している。</p>
 <p>その方が全部移行できた後にまるっと置き換えするのに楽そうだからだ。</p>
 <p>また import して Namespace に放り込む処理も別ファイルに追い出している。これも、完全移行が済んだら不要になるファイルなので消しやすさを重視して分割しておいた。</p>
+<p>さらに後続の PR で、複数のタイプが来ても対応できるように書き換えている。
+Model は対応できてないけど、ま、Model は移行してないのでとりあえず放置。</p>
 <p>CI でテストも通しているしバッチリだと思う。デプロイできるようにはしてないからサーバで動くかは確認してないけど、ま、大丈夫だろ</p>
 ]]></content>
         </item>
