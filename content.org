@@ -739,6 +739,125 @@
      両方のパターンが使えることがわかったので、
      ES6 Module 対応版への移行がまだでも躊躇せずライブラリを分割できそう。
 
+*** DONE ember-rails でコンポーネントをサブフォルダに配置する :@Rails:@Ember_js:
+    CLOSED: [2021-02-28 日 11:19]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: ember-rails-component-in-subfolder
+    :END:
+    Ember.js に限らずコンポーネントは増えてくると
+    サブフォルダに分割して管理したくなるよね。
+    ということでそのあたりの記事。
+
+    これも、ES6 Module 対応版と旧来版の両方を書く。
+    ES6 Module 対応版は何も考えることがないので、
+    この記事は旧来版のためにあるようなものだけど。
+
+**** ES6 Module 対応版の場合
+     上に書いたように
+     これは https://github.com/mugijiru/ember-rails-todo-app/pull/14 に実装してあるけど
+     とっても簡単
+
+***** component をサブフォルダに移動
+      ~components~ の下に適当なフォルダを掘って
+      その中に移動するだけ。
+
+***** template をサブフォルダに移動
+      ~templates/components~ の下に適当なフォルダを掘って
+      その中に移動するだけ。
+
+***** template からの呼び出し
+      template, component をそれぞれ
+
+      - template :: ~templates/components/hoge/fuga.hbs~
+      - component :: ~components/hoge/fuga.module.es6~
+
+      と配置した場合は
+      ~{{hoge/fuga}}~ と書いて呼び出せばいい感じに動く。以上。
+
+      こういう感じで動くように [[https://github.com/ember-cli/ember-resolver/tree/v0.1.21][ember-resolver@0.1.21]] が作られてるっぽいのでとても楽。
+
+      Ember.js のドキュメントなどを見ている感じだと
+      多分もっと新しいバージョンでも同じ感じで動くっぽい。
+      というわけで Ember.js@3 にしても多分動きそうなので安心感がある。
+
+**** 旧来版の場合
+     これは GlobalsResolver の挙動のおかげでちょっと大変。
+
+     と言っても
+     https://github.com/mugijiru/ember-rails-todo-app/pull/15
+     で実装してある。
+
+     今回やりたかったことは、
+     テンプレートとコンポーネントをサブフォルダに移動して扱えるようにすることなので、
+     その実現方法を書いておく
+
+***** template からの呼び出し
+      ~{{hoge/fuga}}~ と呼び出した際に [[https://github.com/emberjs/ember.js/tree/v2.18.2/packages/ember-application/lib/system/resolver.js#L34][GlobalsResolver]] でどう解釈されるとかというと
+      [[*ember-rails でコンポーネントを共通ライブラリとして切り出す][前の記事]] にも書いたように
+      Hoge という名前空間の FugaComponent を探しに行くようになってるというのが前提。
+
+***** component をサブフォルダに移動
+
+      GlobalsRegister の解釈に合わせて
+      FugaCompnent を Hoge 名前空間に所属させればいいので
+
+      #+begin_src js
+      Hoge.FugaComponent = Ember.Compnent.extend()
+      #+end_src
+
+      という形で定義しておけばいい。
+
+      旧来方式だとファイル自体は components の中にあればファイル名も位置も何でもいいはずなので
+      人間がわかりやすいように ~components/hoge/fuga.js.es6~ として配置したら良い。
+
+      また、事前に Hoge という名前空間は必要なので
+      ~components/hoge.js.es6~ とファイルで
+
+      #+begin_src js
+      window.Hoge = Ember.Namespace.create()
+      #+end_src
+
+      としておく。
+
+      前回の共通ライブラリ切り出しと大体似たお話ですね。
+
+***** template をサブフォルダに移動
+      これは難しいことは何もなくて
+      ~templates/components/<名前空間>/<コンポーネント名>.hbs~
+      みたいに配置したら良い。
+
+      つまり ~Hoge.FugaComponent~ の場合は
+      ~templates/components/hoge/fuga.hbs~
+      と置けばいい。
+
+***** さらにネストさせたい場合
+      試してないけど、
+      [[https://github.com/emberjs/ember.js/blob/e2007b6ecb046fd06f6b43c381e8a1128914ad43/packages/%40ember/application/globals-resolver.js#L221][GlobalsRegister の実装]] を見ている感じだと、多分
+
+      #+begin_src js
+      window.Hoge = Ember.Namesupace.create()
+      #+end_src
+
+      #+begin_src js
+      Hoge.Fuga = Ember.Namesupace.create()
+      #+end_src
+
+      #+begin_src js
+      Hoge.Fuga.PiyoComponent = Ember.Component.extend()
+      #+end_src
+
+      にみたいな感じに名前空間をネストさせれば大丈夫そう。
+
+**** 最後に
+     前回の共通ライブラリ切り出しよりは簡単でしたね。
+
+     ES6 Module 対応版では直感的にやるだけで終わるし、
+     旧来版でも共通ライブラリと大体やること一緒というか、
+     それよりも手順が少ないので、サブフォルダへの移動を先にやった方が良かったかも。
+
+     あと、今回も両パターンでやってるので、
+     ES6 Module 移行前にこちらを実施しても簡単な修正で対応できることがわかりました。やったね。
+
 *** TODO org-agenda を活用し始めた                              :@Emacs:@org:
     :PROPERTIES:
     :EXPORT_FILE_NAME: try-org-agenda
