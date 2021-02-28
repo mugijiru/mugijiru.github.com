@@ -858,6 +858,130 @@
      あと、今回も両パターンでやってるので、
      ES6 Module 移行前にこちらを実施しても簡単な修正で対応できることがわかりました。やったね。
 
+*** DONE ember-rails でユーザー情報を Rails から inject    :@Rails:@Ember_js:
+    CLOSED: [2021-02-28 日 13:10]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: ember-rails-inject-from-rails
+    :END:
+
+    フロントエンドのフレームワークを使っていて、
+    そのフレームワークで Server Side Rendering をしてない時に
+    API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡したい時がある。
+
+    ember-rails を使ってる時もそれはあって、
+    今回は Haml 経由で Ember.js に情報を渡して表示する方法を書いてみた。
+    もちろん旧来版と ES6 Module 対応版の両方で実装している。
+
+**** 旧来版
+     https://github.com/mugijiru/ember-rails-todo-app/pull/16 で実装したやつ。
+
+
+***** おおまかな実装内容
+      こちらは名前空間に Ember.js の外からアクセスできるので
+      Haml 内に JavaScript を埋め込んで Ember に渡すというちょっと乱暴なことができる。
+
+      今回は email を todo-items テンプレート内で表示したかったので
+      [[https://github.com/mugijiru/ember-rails-todo-app/pull/16/files#diff-69c2e4b0a6040f2873e963c79265340fd97c099e1ea1a7fbf579902259126e3fR1][Ember.js の呼び出し元の haml]] 内で
+
+      #+begin_src js
+      :javascript
+        TodoApp.register('session:current-user', Ember.Object.extend({ email: '#{current_user.email}' }));
+        TodoApp.inject('controller:todo-items', 'current-user', 'session:current-user');
+      #+end_src
+
+      と書いてみた。
+
+      以下にもう少し詳細に書いてみる。
+
+***** ユーザー情報の登録
+      #+begin_src js
+      TodoApp.register('session:current-user', Ember.Object.extend({ email: '#{current_user.email}' }));
+      #+end_src
+
+      という記述で JavaScript の中に Haml での Ruby のコード呼び出し機能を用いて
+      email を EmberObject を継承したクラスにぶち込んでいる。
+
+      正直 ~:javascript~ で書いて Ruby のコードを呼び出すのは結構乱暴だとは思うけど
+      できちゃうのでやっちゃった。
+
+***** コントローラへの inject
+
+      アプリケーションに ~session:current-user~ として登録できたので、後はもう
+
+     #+begin_src js
+     TodoApp.inject('controller:todo-items', 'current-user', 'session:current-user');
+     #+end_src
+
+     として controller に inject することができる。
+
+***** template での表示
+
+      inject された controller の template で ~{{current-user.email}}~ と記述するだけで
+      そのユーザーのメアドが表示される。以上。
+
+**** ES6 Module 対応版
+     https://github.com/mugijiru/ember-rails-todo-app/pull/17 で実装したやつ。
+
+***** おおまかな実装内容
+      こちらは旧来版とは違って名前空間は隠蔽されているため
+      Haml で JavaScript を書いて埋め込むなんて荒技はできない。
+
+      だけどまあそんなことをしなくても
+      data 属性に情報を埋めておいて
+      それを initializer で取得して使えばいいだけである。
+
+***** Haml へのデータ埋め込み
+      Haml の方では
+
+      #+begin_src haml
+      #todo-app{ data: { email: current_user.email } }
+      #+end_src
+
+      こんな感じにデータを埋めておく。
+      それを Ember.js の initializer で取得して処理してあげれば良い。
+
+***** initializer でのデータの取得
+      まずはデータを
+
+      #+begin_src js
+      const currentUser = Ember.Object.extend({
+        email: document.querySelector(application.rootElement).dataset.email
+      });
+      #+end_src
+
+      という感じで取得して適当な変数に放り込んでおく。
+      ま、大体普通の JavaScript なので何も難しいことはない。
+
+***** アプリケーションへの登録
+      上で取得したデータをアプリケーションから見れるように登録してあげる必要があるので
+      以下のように ~application.register()~ でデータを登録する。
+
+      #+begin_src js
+      application.register('session:current-user', currentUser);
+      #+end_src
+
+***** controller への inject
+      上に書いた感じで application に登録してしまえば、後は旧来版と同じように
+
+      #+begin_src js
+      application.inject('controller:todo-items', 'current-user', 'session:current-user');
+      #+end_src
+
+      という感じで設定できる。
+
+***** template での表示
+      あとは旧来版と同じく
+      inject された controller の template で ~{{current-user.email}}~ と記述するだけで
+      そのユーザーのメアドが表示されると。うん、簡単でしたね。
+
+**** 最後に
+     API を経由せずに Ember.js にデータを渡す方法が
+     旧来版と ES6 Module 対応版の両方で書けることがわかったので、
+     旧来版から移行しようとした時もすぐ書き直せそうで安心。
+
+     ES6 Module 対応版の方は、
+     ember-rails から ember-cli-rails とかに乗り換えてもそのまま使えそうだしね。
+
 *** TODO org-agenda を活用し始めた                              :@Emacs:@org:
     :PROPERTIES:
     :EXPORT_FILE_NAME: try-org-agenda
