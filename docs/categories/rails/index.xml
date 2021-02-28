@@ -6,7 +6,16 @@
     <description>Recent content in Rails on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 28 Feb 2021 10:45:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Feb 2021 11:19:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-rails でコンポーネントをサブフォルダに配置する</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link>
+      <pubDate>Sun, 28 Feb 2021 11:19:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</guid>
+      <description>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。 これも、ES6 Module 対応版と旧来版</description>
+    </item>
+    
     <item>
       <title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title>
       <link>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</link>

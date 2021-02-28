@@ -5,8 +5,79 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 28 Feb 2021 10:45:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 28 Feb 2021 11:19:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>ember-rails でコンポーネントをサブフォルダに配置する</title>
+            <link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link>
+            <pubDate>Sun, 28 Feb 2021 11:19:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</guid>
+            <description>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。 これも、ES6 Module 対応版と旧来版</description>
+            <content type="html"><![CDATA[<p>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。</p>
+<p>これも、ES6 Module 対応版と旧来版の両方を書く。
+ES6 Module 対応版は何も考えることがないので、この記事は旧来版のためにあるようなものだけど。</p>
+<h2 id="es6-module-対応版の場合">ES6 Module 対応版の場合</h2>
+<p>上に書いたようにこれは <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/14">https://github.com/mugijiru/ember-rails-todo-app/pull/14</a> に実装してあるけどとっても簡単</p>
+<h3 id="component-をサブフォルダに移動">component をサブフォルダに移動</h3>
+<p><code>components</code> の下に適当なフォルダを掘ってその中に移動するだけ。</p>
+<h3 id="template-をサブフォルダに移動">template をサブフォルダに移動</h3>
+<p><code>templates/components</code> の下に適当なフォルダを掘ってその中に移動するだけ。</p>
+<h3 id="template-からの呼び出し">template からの呼び出し</h3>
+<p>template, component をそれぞれ</p>
+<dl>
+<dt>template</dt>
+<dd><code>templates/components/hoge/fuga.hbs</code></dd>
+<dt>component</dt>
+<dd><code>components/hoge/fuga.module.es6</code></dd>
+</dl>
+<p>と配置した場合は
+<code>{{hoge/fuga}}</code> と書いて呼び出せばいい感じに動く。以上。</p>
+<p>こういう感じで動くように <a href="https://github.com/ember-cli/ember-resolver/tree/v0.1.21">ember-resolver@0.1.21</a> が作られてるっぽいのでとても楽。</p>
+<p>Ember.js のドキュメントなどを見ている感じだと多分もっと新しいバージョンでも同じ感じで動くっぽい。というわけで Ember.js@3 にしても多分動きそうなので安心感がある。</p>
+<h2 id="旧来版の場合">旧来版の場合</h2>
+<p>これは GlobalsResolver の挙動のおかげでちょっと大変。</p>
+<p>と言っても
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/15">https://github.com/mugijiru/ember-rails-todo-app/pull/15</a>
+で実装してある。</p>
+<p>今回やりたかったことは、テンプレートとコンポーネントをサブフォルダに移動して扱えるようにすることなので、その実現方法を書いておく</p>
+<h3 id="template-からの呼び出し">template からの呼び出し</h3>
+<p><code>{{hoge/fuga}}</code> と呼び出した際に <a href="https://github.com/emberjs/ember.js/tree/v2.18.2/packages/ember-application/lib/system/resolver.js#L34">GlobalsResolver</a> でどう解釈されるとかというと
+<a href="/posts/ember-rails-extract-common-libs/">前の記事</a> にも書いたように
+Hoge という名前空間の FugaComponent を探しに行くようになってるというのが前提。</p>
+<h3 id="component-をサブフォルダに移動">component をサブフォルダに移動</h3>
+<p>GlobalsRegister の解釈に合わせて
+FugaCompnent を Hoge 名前空間に所属させればいいので</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">Hoge</span>.<span style="color:#a6e22e">FugaComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Compnent</span>.<span style="color:#a6e22e">extend</span>()
+</code></pre></div><p>という形で定義しておけばいい。</p>
+<p>旧来方式だとファイル自体は components の中にあればファイル名も位置も何でもいいはずなので人間がわかりやすいように <code>components/hoge/fuga.js.es6</code> として配置したら良い。</p>
+<p>また、事前に Hoge という名前空間は必要なので
+<code>components/hoge.js.es6</code> とファイルで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window.<span style="color:#a6e22e">Hoge</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Namespace</span>.<span style="color:#a6e22e">create</span>()
+</code></pre></div><p>としておく。</p>
+<p>前回の共通ライブラリ切り出しと大体似たお話ですね。</p>
+<h3 id="template-をサブフォルダに移動">template をサブフォルダに移動</h3>
+<p>これは難しいことは何もなくて
+<code>templates/components/&lt;名前空間&gt;/&lt;コンポーネント名&gt;.hbs</code>
+みたいに配置したら良い。</p>
+<p>つまり <code>Hoge.FugaComponent</code> の場合は
+<code>templates/components/hoge/fuga.hbs</code>
+と置けばいい。</p>
+<h3 id="さらにネストさせたい場合">さらにネストさせたい場合</h3>
+<p>試してないけど、
+<a href="https://github.com/emberjs/ember.js/blob/e2007b6ecb046fd06f6b43c381e8a1128914ad43/packages/%40ember/application/globals-resolver.js#L221">GlobalsRegister の実装</a> を見ている感じだと、多分</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window.<span style="color:#a6e22e">Hoge</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Namesupace</span>.<span style="color:#a6e22e">create</span>()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">Hoge</span>.<span style="color:#a6e22e">Fuga</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Namesupace</span>.<span style="color:#a6e22e">create</span>()
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">Hoge</span>.<span style="color:#a6e22e">Fuga</span>.<span style="color:#a6e22e">PiyoComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
+</code></pre></div><p>にみたいな感じに名前空間をネストさせれば大丈夫そう。</p>
+<h2 id="最後に">最後に</h2>
+<p>前回の共通ライブラリ切り出しよりは簡単でしたね。</p>
+<p>ES6 Module 対応版では直感的にやるだけで終わるし、旧来版でも共通ライブラリと大体やること一緒というか、それよりも手順が少ないので、サブフォルダへの移動を先にやった方が良かったかも。</p>
+<p>あと、今回も両パターンでやってるので、
+ES6 Module 移行前にこちらを実施しても簡単な修正で対応できることがわかりました。やったね。</p>
+]]></content>
+        </item>
         
         <item>
             <title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title>
