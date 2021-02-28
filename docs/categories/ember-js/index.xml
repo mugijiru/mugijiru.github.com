@@ -6,7 +6,16 @@
     <description>Recent content in Ember-js on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 28 Feb 2021 11:19:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Feb 2021 13:10:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-rails でユーザー情報を Rails から inject</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</link>
+      <pubDate>Sun, 28 Feb 2021 13:10:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</guid>
+      <description>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し</description>
+    </item>
+    
     <item>
       <title>ember-rails でコンポーネントをサブフォルダに配置する</title>
       <link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link>
