@@ -6,7 +6,16 @@
     <description>Recent content in Rails on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 23 Feb 2021 20:45:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Feb 2021 10:45:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</link>
+      <pubDate>Sun, 28 Feb 2021 10:45:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</guid>
+      <description>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ</description>
+    </item>
+    
     <item>
       <title>古い ember-rails App で ES6 Module 化を完了した</title>
       <link>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</link>
