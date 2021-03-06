@@ -6,7 +6,16 @@
     <description>Recent content in Ember-js on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 28 Feb 2021 13:10:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Mar 2021 17:05:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-rails から ember-cli-rails へ</title>
+      <link>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</link>
+      <pubDate>Sat, 06 Mar 2021 17:05:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</guid>
+      <description>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、 ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。 やったことはいつも通り GitHub の</description>
+    </item>
+    
     <item>
       <title>ember-rails でユーザー情報を Rails から inject</title>
       <link>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</link>
