@@ -5,8 +5,99 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sat, 06 Mar 2021 17:05:00 +0900</lastBuildDate>
+        <lastBuildDate>Wed, 24 Mar 2021 13:04:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Ember.js の共通コンポーネントの NPM への分離</title>
+            <link>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</link>
+            <pubDate>Wed, 24 Mar 2021 13:04:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</guid>
+            <description>相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ</description>
+            <content type="html"><![CDATA[<p>相変わらず Rails における Ember.js 関連で遊んでいます。</p>
+<p>今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだけど、後追いで出す「分離したリポジトリを Gem としても使えるようにし ember-rails 環境で動かす」という感じに記事の前振りです。</p>
+<p>本当は1つの記事にしたかったけど記述量が増えたから分割……。</p>
+<h2 id="目的">目的</h2>
+<p>なんでこんなことをしているかというと「単一ソースで ember-cli にも ember-rails にも対応したい」「じゃあ NPM と Gem で公開してインスコしたらいいんじゃね」という考えから。</p>
+<p>というのも、この一連の記事は ember-rails から ember-cli-rails に徐々に移行していく手段を確立することが目的なので、
+1つの Rails の中に複数の Ember.js アプリがあって
+ember-rails と ember-cli-rails が混在している状況も有り得るかなあと。</p>
+<p>そういう時に、共通コンポーネントは単一ソースで使いたいよね〜と思って両対応ができるようにしてみている。</p>
+<p>まあ今回は ember-cli-rails だけの対応なんだけども。</p>
+<h2 id="実践">実践</h2>
+<p>ember-cli-rails に移行した時に元々 <code>RAILS_ROOT/app/assets/javascripts/ember-libs</code> というところに共通コンポーネントとして置いていたファイル群を
+<code>RAILS_ROOT/ember/my-components</code> というところに
+Ember.js のアドオンという形で設置していました。</p>
+<p>正直そのままの方が、同一リポジトリなので改修とかしやすいんだけど「他のプロジェクトでも使いたい」といった時には分離も必要になるかなと。まあ今回の目的は別のところにあるけども。</p>
+<h3 id="従来の実装を-ember-components-に移植">従来の実装を ember-components に移植</h3>
+<p><a href="https://github.com/mugijiru/ember-components/commit/847981e9732385d08db4f5f703813196622b80d2">https://github.com/mugijiru/ember-components/commit/847981e9732385d08db4f5f703813196622b80d2</a></p>
+<p>でやっていること。</p>
+<p>基本的には、元々のソースを addons 以下に置いているだけ。なんとなく、コンポーネントの prefix を my- から mg- に変えてるけど。</p>
+<p>あとは ember-cli-htmlbars を dependencies にも移動する必要あり。</p>
+<p><a href="https://github.com/mugijiru/ember-components/commit/922d1f7ed5f6b3372b1d1551792f4e9739f5b1e3">https://github.com/mugijiru/ember-components/commit/922d1f7ed5f6b3372b1d1551792f4e9739f5b1e3</a></p>
+<p>他にも <a href="https://github.com/mugijiru/ember-components/commit/30b3257227dab623c86dedfab032b85f32414e42">Docker で動かせるようにしたり</a>
+<a href="https://github.com/mugijiru/ember-components/commit/34e81e2905e32dd2878b95fb9d5c7eb3b3a0b463">GitHub Actions でテストできるようにしたり</a>
+ちょっと細かい修正をしたりしている。</p>
+<p>ここまでの差分は
+<a href="https://github.com/mugijiru/ember-components/compare/bbaf38aa0f6c99ebbc7e0cb7ee5ac2c201706bc6...34e81e2905e32dd2878b95fb9d5c7eb3b3a0b463">https://github.com/mugijiru/ember-components/compare/bbaf38aa0f6c99ebbc7e0cb7ee5ac2c201706bc6...34e81e2905e32dd2878b95fb9d5c7eb3b3a0b463</a>
+で確認可能。</p>
+<h3 id="github-packages-の-npm-package-の公開">GitHub Packages の NPM Package の公開</h3>
+<p>まず <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#publishing-a-package">パッケージを公開する</a> に従って以下の変更をしている。</p>
+<p>パッケージ名を <code>@mugijiru/ember-components</code> にしたり、</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;@mugijiru/ember-components&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>publishConfig の registry に GitHub Packages の URL を入れることでそこで公開できるようにしている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;publishConfig&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+  <span style="color:#f92672">&#34;access&#34;</span>: <span style="color:#e6db74">&#34;restricted&#34;</span>,
+  <span style="color:#f92672">&#34;registry&#34;</span>: <span style="color:#e6db74">&#34;https://npm.pkg.github.com&#34;</span>
+}<span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>access は GitHub 側の記載は何もないが
+<a href="https://tech.plaid.co.jp/npm-private-registry-to-github-packages-registry/">https://tech.plaid.co.jp/npm-private-registry-to-github-packages-registry/</a>
+を参考にして restricted にすることで、許可された人だけが使えるようにしている。</p>
+<p>今は公開リポジトリにしているから public でもいい気もするけど、実装当時はより業務でやりそうな雰囲気にしたかったので、非公開リポジトリかつ限定的な公開で進めていたので、このようになっている。</p>
+<p>さらに、今後 GitHub Packages に複数パッケージ公開するかもしれないので
+<a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#publishing-multiple-packages-to-the-same-repository">同じリポジトリへの複数パッケージの公開</a> に従って registory を指定したりしている</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;repository&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;git://github.com/mugijiru/ember-components.git&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>その上で
+<a href="https://github.com/mugijiru/ember-components/blob/main/.github/workflows/release.yml">https://github.com/mugijiru/ember-components/blob/main/.github/workflows/release.yml</a>
+のようなワークフローを用意すると
+Tag を打って push して
+GitHub 上でそのタグを使って Release を作成すると
+NPM Package として公開されるようになっている。</p>
+<p>上にも出した <a href="https://tech.plaid.co.jp/npm-private-registry-to-github-packages-registry/">https://tech.plaid.co.jp/npm-private-registry-to-github-packages-registry/</a> を真似するともっとスマートな感じになりそうだけど、一旦これでいいやってなってる。</p>
+<h3 id="公開したパッケージを利用する">公開したパッケージを利用する</h3>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/48">https://github.com/mugijiru/ember-rails-todo-app/pull/48</a> の PR でやったこと。</p>
+<p>元々は <code>RAILS_ROOT/ember/my-components</code> に置いていたやつを NPM Package にしているので
+my-components 関連のやつをさっくり消してあげている。</p>
+<p>具体的には <code>ember/my-components</code> は全部消して
+package.json の devDependencies に入れていた
+<code>&quot;my-components&quot;: &quot;link:../my-components&quot;</code> を削除している。</p>
+<p>今思ったけどこれ devDependencies だと多分 production 環境だと動かなかったな。まあ 2.18 なので公開する気がゼロだったからすっかり気付かなかったんだけど。</p>
+<p>まあそれは置いといて公開したパッケージを入れるため dependencies に以下のように記述する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;dependencies&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+  <span style="color:#f92672">&#34;@mugijiru/ember-components&#34;</span>: <span style="color:#e6db74">&#34;^0.0.1&#34;</span>
+}<span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>あとはプライベートなパッケージを入れられるように
+<code>RAILS_ROOT/ember/todo-app/.npmrc</code> に以下のような設定を入れている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">@mugijiru:registry=https://npm.pkg.github.com
+</code></pre></div><p>この設定は <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#installing-a-package">パッケージをインストールする</a> の通りだとなんかうまく動かなかったので
+<a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#installing-packages-from-other-organizations">他のOrganizationからのパッケージのインストール</a> のやり方を採用している。あとでまた検証した方がいいかもなあ。。。</p>
+<p>それと <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages">GitHub Packages への認証を行う</a> に従って</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+</code></pre></div><p>としている。
+NPM_TOKEN には GitHub のパーソナルアクセストークンが入るので環境変数にしている。</p>
+<p>なので GitHub Actions で CI を回す際のパッケージのインストール時に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">env</span>:
+  <span style="color:#f92672">NPM_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.NPM_AUTH_TOKEN }}</span>
+</code></pre></div><p>みたいに環境変数に PAT を入れてあげる必要あり。</p>
+<p>他には、これまた公開したパッケージを使う上で本質的ではないんだけど、移植した際に <code>my-button</code> から <code>mg-button</code> みたいに全部
+<code>my-</code> prefix だったのを <code>mg-</code> prefix にしているので利用箇所でそれらの修正の必要あり。命名を適当にやってたのでここでそれが仇になってる。つらい。</p>
+<p>以上で GitHub Packages に NPM として公開した Ember.js の Addon を
+ember-cli-rails で使えるようになりますよっと。正直 NPM とかに慣れてる人ならさっくりできそうな内容。。。</p>
+<p>まあ Ember.js の Addon も実際は NPM Package なので普通に NPM Package として公開するだけで使えたりするってだけですね。
+.ember-cli-build.js を活用したらまたちょっと話は違うはずだけど今回のはそこまでのやつじゃないし……。</p>
+]]></content>
+        </item>
         
         <item>
             <title>ember-rails から ember-cli-rails へ</title>
