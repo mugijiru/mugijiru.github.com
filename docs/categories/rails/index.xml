@@ -6,7 +6,16 @@
     <description>Recent content in Rails on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 24 Mar 2021 13:04:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 Mar 2021 01:49:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</title>
+      <link>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</link>
+      <pubDate>Fri, 26 Mar 2021 01:49:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</guid>
+      <description>前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で</description>
+    </item>
+    
     <item>
       <title>Ember.js の共通コンポーネントの NPM への分離</title>
       <link>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</link>
