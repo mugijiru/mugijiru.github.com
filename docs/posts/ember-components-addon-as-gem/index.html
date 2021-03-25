@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2903738-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2903738-8');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で" />
+<meta name="keywords" content="blog,developer,personal" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://mugijiru.github.io/posts/ember-components-addon-as-gem/" />
+
+
+    <title>
+        
+            自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した :: 麦汁三昧 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.393856bf2c430bb6c01d7af07c6fe966e7cce8073435cfbbc46e590bab7405ef.css">
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/amazon.css">
+    
+
+
+
+
+
+<meta itemprop="name" content="自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した">
+<meta itemprop="description" content="前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で">
+<meta itemprop="datePublished" content="2021-03-26T01:49:00+09:00" />
+<meta itemprop="dateModified" content="2021-03-26T01:49:00+09:00" />
+<meta itemprop="wordCount" content="3455">
+
+
+
+<meta itemprop="keywords" content="" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した"/>
+<meta name="twitter:description" content="前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で"/>
+
+
+
+
+
+    <meta property="article:section" content="Rails" />
+
+    <meta property="article:section" content="Ember-js" />
+
+
+
+    <meta property="article:published_time" content="2021-03-26 01:49:00 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/mugijiru</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://mugijiru.github.io/about/">About</a></li><li><a href="https://mugijiru.github.io/profile/">Profile</a></li><li><a href="https://mugijiru.github.io/posts/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        7 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://mugijiru.github.io/posts/ember-components-addon-as-gem/">自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <p><a href="/posts/my-ember-libs-to-npm/">前回の記事</a> で Ember.js の共通コンポーネントを詰めた Addon を
+NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して
+ember-rails でも使えるようにしたよ、というお話です。</p>
+<h2 id="目的">目的</h2>
+<p>Ember.js の Addon として切り出した共通コンポーネントを同一ソースで ember-rails でも使いたいな〜、使えるようにしたいな〜、という目的。</p>
+<p>ほら。
+ember-rails で1つの Rails アプリケーションの上に複数の Ember.js アプリを動かしていて一部ずつ ember-cli-rails 移行を進めていたらどうしても混ざる時期あるじゃないですか。</p>
+<p>そういう時に共通コンポーネントは同一ソースで両方で動かせると多分便利じゃないですか。</p>
+<h2 id="ember-components-の-gem-化">ember-components の Gem 化</h2>
+<p>Gem にして ember-rails でも使えるようにするために色々やりました。こんなにやらないといけないのかってぐらいやった気がします。。。</p>
+<h3 id="component-の書き方を古い方式に戻した">Component の書き方を古い方式に戻した</h3>
+<p>ember-rails だとどうも</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Component</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@ember/component&#39;</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({})
+</code></pre></div><p>という書き方だと読み込んでくれないようなので全部以下のように書き換えている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Ember</span> <span style="color:#a6e22e">from</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">ember</span>
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({})
+</code></pre></div><p>で、この変更を加えると eslint に怒られるので新しい記述を要求する eslint のルールをオフにしてあげる必要がある。悲しい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> {
+  <span style="color:#e6db74">&#39;ember/new-module-imports&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;off&#39;</span>
+},
+</code></pre></div><h3 id="components-を-ember-rails-で読み込めるようにする">components を ember-rails で読み込めるようにする</h3>
+<p>ember-libs というフォルダに共通コンポーネントとして分割した時も同じようなことをしたんだけど
+ember-rails に components を読み込ませるためのコードをこのリポジトリに用意してある。</p>
+<p><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/lib/ember/components/templates/ember-components.js">lib/ember/components/templates/ember-components.js</a></p>
+<p>やってることは、
+requirejs で読み込まれてるファイルを調べて component を見つけ次第
+<code>application.register</code> するだけのコードである。このコードは後で利用側から実行されるようにする。</p>
+<h3 id="addon-以下のファイルを-vendor-assets-以下にコピー-変更する-raketask-作成">addon 以下のファイルを vendor/assets 以下にコピー、変更する Raketask 作成</h3>
+<p>ここでやってることは</p>
+<ul>
+<li>上で用意した ember-rails に読み込ませるためのコードをコピー。</li>
+<li>Rails が読んでくれるところにファイルを置きたいのでaddon 以下のファイルを vendor/assets/javascripts 以下にコピー</li>
+<li>ember-rails で module として読み込んでほしいので拡張子を <code>.module.es6</code> に変更</li>
+<li><code>import layout</code> などの Addon 用記述があるとエラーになるのでそれらの記述を強制排除</li>
+</ul>
+<p>となっている。</p>
+<p>後者2つは実装都合上、まとめてやっている</p>
+<h4 id="ファイルのコピー">ファイルのコピー</h4>
+<p>addon 以下に入っていても Rails 的には通常読み込めないので
+<code>vendor/assets/javascripts</code> 以下にファイルをコピーしてあげている。あと上の手順で作った ember-rails に読み込ませるためのコードもコピーしている。</p>
+<p><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L14-L18">https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L14-L18</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;vendor/assets/javascripts/ember-components&#39;</span>
+<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>mkdir_p(path)
+<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp(<span style="color:#e6db74">&#39;lib/ember/components/templates/ember-components.js&#39;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">.module.es6&#34;</span>)
+<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp_r(<span style="color:#e6db74">&#39;addon/templates&#39;</span>, path)
+<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp_r(<span style="color:#e6db74">&#39;addon/components&#39;</span>, path)
+</code></pre></div><p>多分 <code>app/assets/javascripts</code> 以下でもいいんだろう。というかそっちの方が良さそうな気もするけど、
+<code>app</code> は Ember.js 側で使っているので、それと混ざると嫌だなということで避けている。</p>
+<h4 id="addon-用の記述削除-and-拡張子の変更">addon 用の記述削除 &amp; 拡張子の変更</h4>
+<p>component に関しては addon での component 作成のお作法に従い
+<code>import layout</code> とか書いているけど
+ember-rails ではその記述はむしろ不要になるというか
+hbs を import できない問題が発生するのでそれらの行を強制的に削除する処理を入れている。</p>
+<p>また、それと同時に ember-rails で ES6 module として読み込めるように拡張子を <code>.module.es6</code> にしている。</p>
+<p>方法としては、ファイルを <code>.js</code> から <code>.module.es6</code> にコピーしつつ不要な行を消してそれが済んだら <code>.js</code> ファイルを消すという手法を取ってる。結構、無理やり感がある。</p>
+<p><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L19-L33">https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L19-L33</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/*.js&#34;</span><span style="color:#f92672">].</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>file_path<span style="color:#f92672">|</span>
+  <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(file_path, <span style="color:#e6db74">&#39;r&#39;</span>)
+  basename <span style="color:#f92672">=</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>basename(file_path, <span style="color:#e6db74">&#39;.js&#39;</span>)
+  <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/</span><span style="color:#e6db74">#{</span>basename<span style="color:#e6db74">}</span><span style="color:#e6db74">.module.es6&#34;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>write_f<span style="color:#f92672">|</span>
+    <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(file_path, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>read_f<span style="color:#f92672">|</span>
+      read_f<span style="color:#f92672">.</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>line<span style="color:#f92672">|</span>
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> line <span style="color:#f92672">=~</span> <span style="color:#e6db74">/^\s*import layout/</span>
+        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> line <span style="color:#f92672">=~</span> <span style="color:#e6db74">/^\s*layout,/</span>
+
+        write_f<span style="color:#f92672">.</span>puts line
+      <span style="color:#66d9ef">end</span>
+    <span style="color:#66d9ef">end</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>rm(<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/*.js&#34;</span>))
+</code></pre></div><h3 id="rails-engine-化">Rails Engine 化</h3>
+<p>Rails Engine として組み込んで使えるように
+<code>lib</code> 以下にちょろちょろコードを書いている。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/lib/ember/components.rb">lib/ember/components.rb</a></li>
+<li><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/lib/ember/components/version.rb">lib/ember/components/version.rb</a></li>
+<li><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/lib/ember/components/engine.rb">lib/ember/components/engine.rb</a></li>
+</ul>
+<p>ほとんど「Rails Engine のお作法」ってだけのコードだけど上に書いたファイルをコピーしたりする時の
+PATH を取得するための便利メソッドとして以下を生やしている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">.</span><span style="color:#a6e22e">root</span>
+  <span style="color:#66d9ef">Pathname</span>(__FILE__)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;../../..&#39;</span>)
+<span style="color:#66d9ef">end</span>
+</code></pre></div><h3 id="gemspec-修正">gemspec 修正</h3>
+<p>Gem として GitHub Packages に登録するので当然 .gemspec ファイルを用意している。
+<a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/ember-components.gemspec">ember-components.gemspec</a></p>
+<p>一応 GitHub Packages に出すためのお作法として</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;allowed_push_host&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://rubygems.pkg.github.com&#34;</span>
+</code></pre></div><p>というように push できるホストをしていしたり</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;github_repo&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ssh://github.com/mugijiru/ember-components.git&#34;</span>
+spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;git_repo&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ssh://github.com/mugijiru/ember-components.git&#34;</span>
+</code></pre></div><p>というようにリポジトリを指定していたりする。</p>
+<p><a href="https://docs.github.com/ja/packages/guides/configuring-rubygems-for-use-with-github-packages#publishing-multiple-packages-to-the-same-repository">同じリポジトリへの複数パッケージ公開</a> の記述を読む限り
+github_repo だけ指定あれば良さそうな気もするが
+git_repo があっても特に害もないだろうということでとりあえず入れている。</p>
+<p>あとは gem に含めたいファイルとして</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">spec<span style="color:#f92672">.</span>files <span style="color:#f92672">=</span> <span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span>
+  <span style="color:#e6db74">&#39;lib/**/*&#39;</span>,
+  <span style="color:#e6db74">&#39;vendor/**/*&#39;</span>,
+  <span style="color:#e6db74">&#39;README.md&#39;</span>,
+  <span style="color:#e6db74">&#39;LICENSE.md&#39;</span>
+<span style="color:#f92672">]</span>
+</code></pre></div><p>としている。
+lib 以下は Rails Engine として組込むために必要だし
+vendor 以下には ember-rails で読み込める形に変換したファイルがあるので
+gem に含める必要がある。</p>
+<h3 id="github-actions-での-gem-登録">GitHub Actions での Gem 登録</h3>
+<p><a href="/posts/my-ember-libs-to-npm/">NPM Package にした時</a> と同様に
+Tag を打ってそれからリリースを作ったら Gem が登録されるように
+GitHub Actions を設定している。</p>
+<h4 id="gem-の-build">Gem の build</h4>
+<p>publish する前に以下のようにして Rake Task を実行している。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build gem</span>
+  <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">    </span>    <span style="color:#ae81ff">bundle exec rake clean_assets generate_assets build</span>
+</code></pre></div><p>clean_assets は説明してなかったけど <code>vendor/assets/javascripts</code> 以下を真っ新にするだけの処理。</p>
+<p>で、generate_assets が
+<a href="#addon-%E4%BB%A5%E4%B8%8B%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92-vendor-assets-%E4%BB%A5%E4%B8%8B%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC-%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B-raketask-%E4%BD%9C%E6%88%90">addon 以下のファイルを vendor/assets 以下にコピー、変更する Raketask 作成</a>
+のあたりで書いた、コピーしたり中身を弄ったりしている処理。</p>
+<p>最後の build は Gem を作ったことある人ならわかるはずだけど
+gemspec の記述に従って gem ファイルを生成する処理。これを実行する pkg 以下に <code>ember-components-x.y.z.gem</code> みたいなファイルが作られる。</p>
+<h4 id="publish">Publish</h4>
+<p>上の手順で gem はできたので、あとはそれを GitHub Packages に登録するだけである。そのための step が以下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Publish to RubyGems</span>
+  <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">    mkdir -p $HOME/.gem
+</span><span style="color:#e6db74">    touch $HOME/.gem/credentials
+</span><span style="color:#e6db74">    chmod 0600 $HOME/.gem/credentials
+</span><span style="color:#e6db74">    printf -- &#34;---\n:github: Bearer ${{ secrets.GITHUB_TOKEN }}\n&#34; &gt; $HOME/.gem/credentials
+</span><span style="color:#e6db74">    gem push --key github --host https://rubygems.pkg.github.com/mugijiru pkg/*.gem</span>    
+</code></pre></div><p>まずは <a href="https://docs.github.com/en/packages/guides/configuring-rubygems-for-use-with-github-packages#authenticating-with-a-personal-access-token">Authenticating with a personal access token</a> の手順に従って
+<code>~.gem/credentials</code> に
+<code>github: Bearer ${{ secrets.GITHUB_TOKEN }}</code>
+の記述が入るようにしている。</p>
+<p>それをすると GitHub Packages の認証が通るようになるので</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">gem push --key github --host https://rubygems.pkg.github.com/mugijiru pkg/*.gem
+</code></pre></div><p>を実行することで Gem として登録ができる。</p>
+<h2 id="ember-rails-アプリケーションから-gem-化した-addon-の読み込んで利用する">ember-rails アプリケーションから Gem 化した Addon の読み込んで利用する</h2>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/51">https://github.com/mugijiru/ember-rails-todo-app/pull/51</a>
+の PR でやっていることである。</p>
+<p>PR では途中色々ごちゃごちゃやってるけど、ここでは最終結果に基いて説明をする。</p>
+<h3 id="gem-を-bundle-install-できるようにする">Gem を bundle install できるようにする</h3>
+<p>まずは bundle install で組込めないと何も始まらないので
+Gemfile に以下を追加する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">source <span style="color:#e6db74">&#34;https://rubygems.pkg.github.com/mugijiru&#34;</span> <span style="color:#66d9ef">do</span>
+  gem <span style="color:#e6db74">&#34;ember-components&#34;</span>
+<span style="color:#66d9ef">end</span>
+</code></pre></div><p>さらに手元のマシンで以下のコマンドを実行して、
+bundle install の際に GitHub Packages への認証が通るようにする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ bundle config --local https://rubygems.pkg.github.com/mugijiru mugijiru:XXXXXX
+</code></pre></div><p><code>XXXXXX</code> には Gem をインストールできるパーソナルアクセストークンを設定すること。</p>
+<p>こうしておけば</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ bundle install
+</code></pre></div><p>で無事に自作 Gem の ember-components がインストールできる</p>
+<p>Docker を使ってる場合は以下のようにして
+Docker 内で bundle config が設定された状態で <code>bundle</code> を実行する必要あり</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;bundle config --local https://rubygems.pkg.github.com/mugijiru mugijiru:XXXXXX &amp;&amp; bundle&#34;
+</code></pre></div><h3 id="templates-root-への登録">templates_root への登録</h3>
+<p>ember-rails は Rails 側で templates_root を設定してあげる必要がある。</p>
+<p>というわけで config/application.rb で
+<code>ember-components/templates</code> が templates_root として認識されるように記述する。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">config<span style="color:#f92672">.</span>handlebars<span style="color:#f92672">.</span>templates_root <span style="color:#f92672">=</span> <span style="color:#e6db74">%w[todo-app/templates ember-components/templates]</span>
+</code></pre></div><h3 id="sprockets-で-ember-rails-を読み込む">sprockets で ember-rails を読み込む</h3>
+<p>Gem として読み込めるようになったので
+Sprockets で以下のようにして require してあげると
+Gem の <code>vendor/assets/javascrips/ember-components</code> に生成したファイルが
+ember-rails アプリ側で認識されるようになる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//= require ember-components
+</span></code></pre></div><h3 id="ember-dot-js-に-component-を-register-する">Ember.js に component を register する</h3>
+<p>require するだけだと Ember.js ではまだ使えないので
+Gem 内の Componentを登録する必要がある。</p>
+<p>が、基本的な処理は
+<a href="#components-%E3%82%92-ember-rails-%E3%81%A7%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%81%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B">components を ember-rails で読み込めるようにする</a> のところで書いたので、
+ember-rails 側では initializers に以下のような内容のファイルを置けば良い。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">EmberComponents</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-components&#39;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">initialize</span>(<span style="color:#a6e22e">application</span>) {
+  <span style="color:#a6e22e">EmberComponents</span>.<span style="color:#a6e22e">registerAll</span>(<span style="color:#a6e22e">application</span>);
+}
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;register-ember-components&#39;</span>,
+  <span style="color:#a6e22e">initialize</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">initialize</span>
+};
+</code></pre></div><p>実質的にやってることは
+Gem 内のスクリプトに定義している registerAll メソッドを叩いているだけ。</p>
+<p>本当はこういう処理すらなしに使えるのがベストだけどそこまでうまくやる方法は見つけられず……。</p>
+<h3 id="利用箇所の修正">利用箇所の修正</h3>
+<p>これは component の prefix を <code>my-</code> から <code>mg-</code> に変えたから発生している作業なので本質的には不要な作業。</p>
+<p>とにかく <code>my-button</code> のような古い prefix になっているところを
+<code>mg-button</code> というように新しい prefix に置き換えるだけの簡単なお仕事。</p>
+<h3 id="github-actions-の修正">GitHub Actions の修正</h3>
+<h4 id="setup-ruby-で-ember-components-を-bundle-install-できるようにする">setup-ruby で ember-components を bundle install できるようにする</h4>
+<p>GitHub Actions の CI でも bundle install をしているのでそこでもインストールが正常に行われるようにしてあげないといけない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ruby/setup-ruby@v1</span>
+  <span style="color:#f92672">env</span>:
+    <span style="color:#f92672">BUNDLE_HTTPS://RUBYGEMS__PKG__GITHUB__COM/MUGIJIRU/</span>: <span style="color:#e6db74">&#34;mugijiru:${{ secrets.NPM_AUTH_TOKEN }}&#34;</span>
+  <span style="color:#f92672">with</span>:
+    <span style="color:#f92672">bundler-cache</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>のように <code>bundle config</code> で設定したのと同じようなものを
+env で設定してあげるとインストールができる。</p>
+<p>NPM_AUTH_TOKEN なのは、NPM Package にした時に使ったやつが丁度いいスコープを持っていたから流用しちゃった。てへぺろっ。</p>
+<h4 id="assets-precompile">assets:precompile</h4>
+<p>Gem の作りが悪いのか、
+rspec を流す前に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ bin/rails assets:precompile
+</code></pre></div><p>を流さないと component の template がテスト環境でで読まれない。というわけで GitHub Actions で rspec を実行する前にその手順を挟んでいる。</p>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/blob/4acafe0fd741fd24dc4e6bc69d98df5cbb68ef0e/.github/workflows/ci.yml#L32">https://github.com/mugijiru/ember-rails-todo-app/blob/4acafe0fd741fd24dc4e6bc69d98df5cbb68ef0e/.github/workflows/ci.yml#L32</a></p>
+<p>ちなみにこれは手元で rspec を流す時も同じなのでちゃんと手元のマシンでも precompile してあげましょう。だるい。</p>
+<h3 id="旧共通ライブラリの削除">旧共通ライブラリの削除</h3>
+<p><code>app/assets/javascripts/ember-libs</code> に配置していたファイルは不要なのでさっくりと</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ rm -rf app/assets/javascripts/ember-libs
+</code></pre></div><p>して</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//= require_tree ../ember-libs
+</span></code></pre></div><p>としている行が残っていればそれも削除すること。</p>
+<p><code>config/application.rb</code> で templates_root として
+<code>ember-libs/templates</code> を追加している場合はそれも削除しておくこと。まあこれは残っててもエラーにならないけどね。</p>
+<h2 id="旧スタイルの-ember-rails-アプリケーションでも-gem-化-addon-を利用する">旧スタイルの ember-rails アプリケーションでも Gem 化 Addon を利用する</h2>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/52">https://github.com/mugijiru/ember-rails-todo-app/pull/52</a>
+でやっていること。</p>
+<p>まあ正直 module 化しているやつとほとんどやってることは変わらない。</p>
+<p>変わってる点は、registerAll の呼び出し方ぐらいで
+TodoApp という Ember.js アプリケーションが入ってる変数がグローバル空間に収まっているので
+application.js.es6 の方で直接以下のように書いている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">EmberComponents</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-components&#39;</span>;
+<span style="color:#a6e22e">EmberComponents</span>.<span style="color:#a6e22e">registerAll</span>(<span style="color:#a6e22e">TodoApp</span>);
+</code></pre></div><p>他は module 化しているパターンと一緒なので割愛。</p>
+<h2 id="最後に">最後に</h2>
+<p>という手順で
+NPM Package にした Ember.js Addon を若干無理やりながらも ember-rails で使えるようにすることができました。</p>
+<p>まあ mixin とかは試してないのと
+Component をサブフォルダに分割していたりするともうちょっと手をかけないといけなさそうだけどとりあえず動いたから許して。</p>
+<p>正直、無理やり感が結構あるので普通のプロダクトに適用するのは厳しい感じある。</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://mugijiru.github.io/categories/rails/">Rails</a></span>
+        <span class="tag"><a href="https://mugijiru.github.io/categories/ember-js/">Ember-js</a></span>
+        
+    </p>
+
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        3455 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021年03月26日 01:49
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f&amp;caption=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f&amp;canonicalUrl=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f&amp;body=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f&amp;media=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f;description=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f&amp;title=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f&amp;summary=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f&amp;source=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f&amp;resubmit=true&amp;title=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f;title=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f%20https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f&amp;t=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=%e8%87%aa%e4%bd%9c%e3%81%ae%20Ember.js%20Addon%20%e3%82%92%20ember-rails%20%e7%94%a8%e3%81%ab%e7%84%a1%e7%90%86%e3%82%84%e3%82%8a%20Gem%20%e5%8c%96%e3%81%97%e3%81%9f&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fember-components-addon-as-gem%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h"></span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://mugijiru.github.io/posts/my-ember-libs-to-npm/">
+                <span class="button__text">Ember.js の共通コンポーネントの NPM への分離</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
