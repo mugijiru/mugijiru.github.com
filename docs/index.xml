@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 26 Mar 2021 01:49:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Apr 2021 15:38:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</title>
+      <link>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</link>
+      <pubDate>Sun, 04 Apr 2021 15:38:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</guid>
+      <description>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと</description>
+    </item>
+    
     <item>
       <title>自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</title>
       <link>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</link>

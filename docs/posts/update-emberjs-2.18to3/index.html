@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2903738-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2903738-8');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと" />
+<meta name="keywords" content="blog,developer,personal" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://mugijiru.github.io/posts/update-emberjs-2.18to3/" />
+
+
+    <title>
+        
+            ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート :: 麦汁三昧 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.393856bf2c430bb6c01d7af07c6fe966e7cce8073435cfbbc46e590bab7405ef.css">
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/amazon.css">
+    
+
+
+
+
+
+<meta itemprop="name" content="ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート">
+<meta itemprop="description" content="前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと">
+<meta itemprop="datePublished" content="2021-04-04T15:38:00+09:00" />
+<meta itemprop="dateModified" content="2021-04-04T15:38:00+09:00" />
+<meta itemprop="wordCount" content="2677">
+
+
+
+<meta itemprop="keywords" content="" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート"/>
+<meta name="twitter:description" content="前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと"/>
+
+
+
+
+
+    <meta property="article:section" content="Rails" />
+
+    <meta property="article:section" content="Ember-js" />
+
+
+
+    <meta property="article:published_time" content="2021-04-04 15:38:00 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/mugijiru</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://mugijiru.github.io/about/">About</a></li><li><a href="https://mugijiru.github.io/profile/">Profile</a></li><li><a href="https://mugijiru.github.io/posts/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        6 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://mugijiru.github.io/posts/update-emberjs-2.18to3/">ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <p>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。</p>
+<p>で、どう進めていくかというと
+2.18 は最新版からはかなり遠いので
+3系で LTS であったバージョンを順番に適用していく方針。</p>
+<p>それ以外のところだと基本的に
+<a href="https://cli.emberjs.com/release/basic-use/upgrading/">https://cli.emberjs.com/release/basic-use/upgrading/</a>
+に従って対応をしていく。</p>
+<p>というのを実践した PR がこちらになります。
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61">https://github.com/mugijiru/ember-rails-todo-app/pull/61</a></p>
+<h2 id="ember-cli-の更新">ember-cli の更新</h2>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/0b71b86330ab46ec8df46cdcb308daf3ed766681">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/0b71b86330ab46ec8df46cdcb308daf3ed766681</a>
+のコミットでやっていることですね。</p>
+<p>まずは Dockerfile で入れている ember-cli を 2.18 から 3.4 にする。
+3.4 系の最終バージョンは 3.4.4 なのでそれを指定している。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli@3.4.4<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><h2 id="ember-cli-update-の導入">ember-cli-update の導入</h2>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/ded293ff2f686081549d0019e500facb5c2aaa3d">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/ded293ff2f686081549d0019e500facb5c2aaa3d</a>
+のコミットでやってることですね。</p>
+<p>Ember.js をアップデートする際には ember-cli-update を使うのが王道っぽいのでそれも Dockerfile でインストールしておく。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli-update</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli-update<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>また、こいつは今後も 3 系で更新していくにあたり必要と思われるので
+ember-cli よりも先に入れておくことにする。</p>
+<h2 id="bundle-and-and-yarn">bundle &amp;&amp; yarn</h2>
+<p>Dockerfile を更新したので bundle install と yarn install を実行しておく。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bundle
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; yarn&#34;
+</code></pre></div><p>NPM_TOKEN という環境変数を使ってるのは
+ember-components という自作の NPM パッケージを使うために
+<a href="https://github.com/mugijiru/ember-rails-todo-app/blob/7916518d766145fc0b8d9978efbfb08d6937f813/ember/todo-app/.npmrc">.npmrc</a> で GitHub Packages を使うような設定をしているため。</p>
+<h2 id="ember-cli-update-bootstrap-の実行">ember-cli-update bootstrap の実行</h2>
+<p><a href="https://github.com/ember-cli/ember-cli-update/wiki/Getting-Started">https://github.com/ember-cli/ember-cli-update/wiki/Getting-Started</a> に書かれているように</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update bootstrap&#34;
+</code></pre></div><p>を実行することで config/ember-cli-update.json が生成される。
+ember-cli-update は実行時にこのファイルを見て色々処理をする様子。</p>
+<p>雰囲気的には Addon もこれを使って更新できそうだが、ちょっとまだ調べてない。</p>
+<p>とりあえずこの実行結果をコミットしたのが以下。
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/35177e82eac6a9d490c49348ec8e50b31828bb10">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/35177e82eac6a9d490c49348ec8e50b31828bb10</a></p>
+<h2 id="ember-cli-update-で-3-dot-4-dot-4-に更新">ember-cli-update で 3.4.4 に更新</h2>
+<p>いよいよアップデート作業である。とりあえず 3.4.4 に上げたいので以下のコマンドを叩く。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --to 3.4.4&#34;
+</code></pre></div><p>すると</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Blueprint updates have been found. Which one would you like to update?
+&gt; app, current: 2.18.2, latest: 3.25.3
+</code></pre></div><p>というように質問される。恐らく Addon も ember-cli-update で管理できるようにしていたら他の選択肢も出て来るんだろうが、とりあえず今回は app を更新したいだけなので何も考えずに Enter を叩く。</p>
+<p>すると、以下のように何やらファイルが生成されたようなログが出て来る。しかも2回も生成されてる雰囲気。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">installing app
+  create .editorconfig
+  create .ember-cli
+  create .eslintrc.js
+  create .travis.yml
+  create .watchmanconfig
+  create README.md
+  create app/app.js
+  create app/components/.gitkeep
+  create app/controllers/.gitkeep
+  create app/helpers/.gitkeep
+  create app/index.html
+  create app/models/.gitkeep
+  create app/resolver.js
+  create app/router.js
+  create app/routes/.gitkeep
+  create app/styles/app.css
+  create app/templates/application.hbs
+  create app/templates/components/.gitkeep
+  create config/environment.js
+  create config/targets.js
+  create ember-cli-build.js
+  create .gitignore
+  create package.json
+  create public/robots.txt
+  create testem.js
+  create tests/helpers/destroy-app.js
+  create tests/helpers/module-for-acceptance.js
+  create tests/helpers/start-app.js
+  create tests/index.html
+  create tests/integration/.gitkeep
+  create tests/test-helper.js
+  create tests/unit/.gitkeep
+  create vendor/.gitkeep
+WARNING:
+WARNING: The &#39;package.json&#39; file for the addon at /usr/local/share/.config/yarn/global/node_modules/ember-cli/lib/tasks/server/middleware/tests-server
+WARNING:   specifies a missing dependency &#39;exists-sync&#39;
+WARNING: Node v14.16.0 is not tested against Ember CLI on your platform. We recommend that you use the most-recent &#34;Active LTS&#34; version of Node.js. See https://git.io/v7S5n for details.
+installing app
+  create .editorconfig
+  create .ember-cli
+  create .eslintignore
+  create .eslintrc.js
+  create .template-lintrc.js
+  create .travis.yml
+  create .watchmanconfig
+  create README.md
+  create app/app.js
+  create app/components/.gitkeep
+  create app/controllers/.gitkeep
+  create app/helpers/.gitkeep
+  create app/index.html
+  create app/models/.gitkeep
+  create app/resolver.js
+  create app/router.js
+  create app/routes/.gitkeep
+  create app/styles/app.css
+  create app/templates/application.hbs
+  create app/templates/components/.gitkeep
+  create config/environment.js
+  create config/optional-features.json
+  create config/targets.js
+  create ember-cli-build.js
+  create .gitignore
+  create package.json
+  create public/robots.txt
+  create testem.js
+  create tests/helpers/.gitkeep
+  create tests/index.html
+  create tests/integration/.gitkeep
+  create tests/test-helper.js
+  create tests/unit/.gitkeep
+  create vendor/.gitkeep
+</code></pre></div><p>で、実行後に Ember アプリのディレクトリで <code>git status</code> を叩くと以下のような感じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Changes to be committed:
+  (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
+        new file:   .eslintignore
+        modified:   .eslintrc.js
+        modified:   .gitignore
+        new file:   .template-lintrc.js
+        modified:   README.md
+        modified:   config/ember-cli-update.json
+        new file:   config/optional-features.json
+        modified:   config/targets.js
+        modified:   package.json
+        modified:   testem.js
+        new file:   tests/helpers/.gitkeep
+        deleted:    tests/helpers/destroy-app.js
+        deleted:    tests/helpers/module-for-acceptance.js
+        deleted:    tests/helpers/start-app.js
+
+Unmerged paths:
+  (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
+  (use &#34;git add/rm &lt;file&gt;...&#34; as appropriate to mark resolution)
+        deleted by us:   .travis.yml
+</code></pre></div><p>.travis.yml は「どうせ使わねーだろ」ってことで自分で消してあるので改めて <code>git rm .travis.yml</code> すれば良い。</p>
+<p>それ以外の変更点も、ざっと眺めた感じは、きっといい感じに 3 系に対応してくれてそうなので気にせずコミットする。適当である。</p>
+<p>この実行結果のコミットは
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/c78deca904a43aa5587cf1489cabd90461469c31">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/c78deca904a43aa5587cf1489cabd90461469c31</a>
+ですね。</p>
+<h2 id="古いコードを自動置き換え">古いコードを自動置き換え</h2>
+<p><a href="https://cli.emberjs.com/release/basic-use/upgrading/#updatingyourcodeautomatically">https://cli.emberjs.com/release/basic-use/upgrading/#updatingyourcodeautomatically</a></p>
+<p>に書かれてるように <code>ember-cli-update</code> では
+<code>--run-codemods</code> オプションで実行することで古い記述を自動的に新しい書き方に直してくれるという便利機能があるので、それを実行する。後で理由を記載するが、ここでもまた NPM_TOKEN が必要になる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --run-codemods&#34;
+</code></pre></div><p>するとまた</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Which blueprint would you like to run codemods for?
+&gt; ember-cli
+</code></pre></div><p>というように1つしかない選択肢を出される。これもまた Addon を ember-cli-update で更新管理できるようにしていたら選択肢が増えるんだろう、という推測をしてそのまま Enter を叩く。</p>
+<p>すると、今度は以下のようにいくつかの選択肢が出て来る。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? These codemods apply to your project. Select which ones to run. (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)
+❯◯ ember-modules-codemod
+ ◯ ember-qunit-codemod
+ ◯ ember-test-helpers-codemod
+ ◯ es5-getter-ember-codemod
+ ◯ notify-property-change
+ ◯ qunit-dom-codemod
+</code></pre></div><p>それぞれ何をしてくれるかというと、多分大体以下の感じ。</p>
+<dl>
+<dt><a href="https://github.com/ember-codemods/ember-modules-codemod">ember-modules-codemod</a></dt>
+<dd><code>import Ember from 'ember'</code> という古い記述を <code>import Component from '@ember/component'</code> とかに修正するやつ</dd>
+<dt><a href="https://github.com/ember-codemods/es5-getter-ember-codemod">es5-getter-ember-codemod</a></dt>
+<dd><code>obj.get('foo')</code> みたいな古い記述を <code>obj.foo</code> みたいな記述方式に変更するやつ</dd>
+<dt><a href="https://github.com/ember-codemods/ember-test-helpers-codemod">ember-test-helpers-codemod</a></dt>
+<dd>テスト用の記述を新しい書き方に変更するやつ</dd>
+<dt><a href="https://github.com/ember-codemods/ember-qunit-codemod">ember-qunit-codemod</a></dt>
+<dd>ember-qunit の moduleFor とかの書き方を新しい方式に変更するやつ</dd>
+<dt><a href="https://github.com/ember-codemods/ember-3x-codemods/tree/master/transforms/notify-property-change">notify-property-change</a></dt>
+<dd>notifyPropertyChange の書き方が変わる。使ったことないからよくわからん。</dd>
+<dt><a href="https://github.com/simplabs/qunit-dom-codemod">qunit-dom-codemod</a></dt>
+<dd>DOM 選択の記述を jQuery 依存じゃないようにするっぽい</dd>
+</dl>
+<p>例えばここで
+ember-modules-codemod だけ選択して Enter すると何かよくわからないが NPM Package を Fetch しにいき、それが終わるとコードの自動補正が実行される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Running codemod ember-modules-codemod
+Running command 1 of 1
+Skipping path addon which does not exist.
+Skipping path addon-test-support which does not exist.
+Skipping path test-support which does not exist.
+Skipping path lib which does not exist.
+Processing 11 files...
+Spawning 7 workers...
+Sending 2 files to free worker...
+Sending 2 files to free worker...
+Sending 2 files to free worker...
+Sending 2 files to free worker...
+Sending 2 files to free worker...
+Sending 1 files to free worker...
+All done.
+Results:
+0 errors
+6 unmodified
+0 skipped
+5 ok
+Time elapsed: 1.785seconds
+
+Done! All uses of the Ember global have been updated.
+Finished running command 1 of 1
+Finished running codemod ember-modules-codemod
+</code></pre></div><p>これで何が変更されているかというと
+<code>git diff --cached</code> の一部を表示するとこんな感じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">diff --git a/ember/todo-app/app/components/todo-item.js b/ember/todo-app/app/components/todo-item.js
+index bc28c83..a803fc5 100644
+--- a/ember/todo-app/app/components/todo-item.js
++++ b/ember/todo-app/app/components/todo-item.js
+@@ -1,12 +1,14 @@
+-import Ember from &#39;ember&#39;;
++import { later } from &#39;@ember/runloop&#39;;
++import { computed } from &#39;@ember/object&#39;;
++import Component from &#39;@ember/component&#39;;
+
+-export default Ember.Component.extend({
++export default Component.extend({
+   tagName: &#39;li&#39;,
+   classNames: [&#39;p-todo-item&#39;],
+   classNameBindings: [&#39;isCompleted:p-todo-item__completed&#39;],
+
+   item: null,
+-  isCompleted: Ember.computed(&#39;item.isCompleted&#39;, function () {
++  isCompleted: computed(&#39;item.isCompleted&#39;, function () {
+     return this.get(&#39;item.isCompleted&#39;);
+   }),
+</code></pre></div><p><code>import Ember from 'ember'</code> という記述はもう古いので個別に <code>import Component from '@ember/component'</code> とするような記述に変更されている感じ。</p>
+<p>いい感じにコードを変更してくれることがわかったので、同じ調子で ember-qunit-codemods なども適用していく。</p>
+<p>すると <code>ember-test-helpers-codemod</code> でエラーになったりするけどそもそもこのプロジェクトでは Ember.js に対する qunit でのテストをまだ書いてないので多分それが原因で単にファイルがないだけとかなので軽く無視する。</p>
+<p>という感じで実際に適用して変更があったのが</p>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/815ccd8c6d79f6e6bc6171f214f8cd375e1a6537">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/815ccd8c6d79f6e6bc6171f214f8cd375e1a6537</a></li>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/d21b563c6352718c702f4ccd883cd780973d9982">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/d21b563c6352718c702f4ccd883cd780973d9982</a></li>
+</ul>
+<p>の2つだけ。ま、複雑なことしてないしね。</p>
+<h2 id="packages-の更新">packages の更新</h2>
+<p><a href="#ember-cli-update-%E3%81%A7-3-dot-4-dot-4-%E3%81%AB%E6%9B%B4%E6%96%B0">ember-cli-update で 3.4.4 に更新</a> の方でやっておけば良かったんだけど、ここまでの作業で package.json は更新されてるけど実際にインストールされてるライブラリの更新はされてなかったorz</p>
+<p>というわけで Ember.js アプリのディレクトリで <code>yarn</code> を叩いたら色々新しくインストールされて
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/196d9f7b389c5e2c8d690cd1e608251c69a377d2">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/196d9f7b389c5e2c8d690cd1e608251c69a377d2</a>
+みたいな感じで yarn.lock も更新されると。</p>
+<h2 id="テストの実施">テストの実施</h2>
+<p>まあ後はちゃんと動くよねということを確認するためにテストを実行して問題なければ OK ですと。</p>
+<p>このプロジェクトだと system spec を書いているのでそれを実行した上で、念の為手でも動作確認して問題なかった、という感じ。</p>
+<p>もっと複雑なケースだと色々問題あるんだろうな〜。</p>
+<h2 id="問題があった場合">問題があった場合</h2>
+<p>もし問題があったら、エラー内容などを確認しつつ</p>
+<ul>
+<li><a href="https://deprecations.emberjs.com/">Ember Deprecations</a></li>
+<li><a href="https://blog.emberjs.com/tag/releases/">Ember release blog post</a></li>
+</ul>
+<p>と睨めっこしたら良いんだと思う。今回問題がなかったから、そのあたりの知見は得られなかったけど……。</p>
+<h2 id="その他">その他</h2>
+<p>実は eslint で怒られてるのはまだ無視しています。そこまで修正入れると面倒なのと、差分が大きくなるなと思って。それは別の機会に直しておきます。</p>
+<h2 id="最後に">最後に</h2>
+<p>とりあえず3系にするだけならそんなに難しくなさそうな所感を得た。</p>
+<p>eslint で怒られてるの直す必要があるな〜というのと、
+<a href="mailto:ember-components@0.0.3">ember-components@0.0.3</a> がいつから使えなくなるか気になるのと
+ember-bootstrap あたりの Addon を ember-cli-update で管理できるようにしたいなという気持ちは残ったけど。</p>
+<p>ま、そこもおいおい試していく</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://mugijiru.github.io/categories/rails/">Rails</a></span>
+        <span class="tag"><a href="https://mugijiru.github.io/categories/ember-js/">Ember-js</a></span>
+        
+    </p>
+
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        2677 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021年04月04日 15:38
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88&amp;caption=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88&amp;canonicalUrl=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88&amp;body=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f&amp;media=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f;description=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f&amp;title=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88&amp;summary=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88&amp;source=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f&amp;resubmit=true&amp;title=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f;title=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%20https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f&amp;t=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=ember-cli-rails%20%e3%81%ae%20Ember.js%20%e3%82%92%202.18%20%e3%81%8b%e3%82%89%203.4%20%e3%81%ab%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fupdate-emberjs-2.18to3%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h"></span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://mugijiru.github.io/posts/ember-components-addon-as-gem/">
+                <span class="button__text">自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
