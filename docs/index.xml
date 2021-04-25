@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 04 Apr 2021 15:38:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 23:46:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RPA ちょっとだけ調べてみた</title>
+      <link>https://mugijiru.github.io/posts/research-rpa/</link>
+      <pubDate>Sun, 25 Apr 2021 23:46:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/research-rpa/</guid>
+      <description>RPA ちょっとだけ調べてみたのでとりあえず Blog 記事にする。ちなみにいくつかリンク張るけど、面倒なのでアフィリエイトとかそういうのにはなってない。お</description>
+    </item>
+    
     <item>
       <title>ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</title>
       <link>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</link>

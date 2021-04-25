@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://mugijiru.github.io/posts/</loc>
+    <lastmod>2021-04-25T23:46:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mugijiru.github.io/posts/research-rpa/</loc>
+    <lastmod>2021-04-25T23:46:00+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mugijiru.github.io/</loc>
+    <lastmod>2021-04-25T23:46:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://mugijiru.github.io/categories/</loc>
     <lastmod>2021-04-04T15:38:00+09:00</lastmod>
   </url>
@@ -18,17 +33,7 @@
   </url>
   
   <url>
-    <loc>https://mugijiru.github.io/posts/</loc>
-    <lastmod>2021-04-04T15:38:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://mugijiru.github.io/categories/rails/</loc>
-    <lastmod>2021-04-04T15:38:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mugijiru.github.io/</loc>
     <lastmod>2021-04-04T15:38:00+09:00</lastmod>
   </url>
   
