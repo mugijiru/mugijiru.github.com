@@ -2532,7 +2532,8 @@
 
      ま、そこもおいおい試していく
 
-*** TODO RPA ちょっとだけ調べてみた
+*** DONE RPA ちょっとだけ調べてみた
+    CLOSED: [2021-04-25 日 23:46]
     :PROPERTIES:
     :EXPORT_FILE_NAME: research-rpa
     :END:
