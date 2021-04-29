@@ -6,7 +6,16 @@
     <description>Recent content in Emacs on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 29 Apr 2021 18:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Apr 2021 19:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>org-agenda を活用し始めた</title>
+      <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
+      <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
+      <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
+    </item>
+    
     <item>
       <title>最近 org-pomodoro 使ってないことに気付いた</title>
       <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
