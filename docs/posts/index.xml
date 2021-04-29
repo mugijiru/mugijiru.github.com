@@ -5,8 +5,29 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 25 Apr 2021 23:46:00 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 29 Apr 2021 18:03:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>最近 org-pomodoro 使ってないことに気付いた</title>
+            <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
+            <pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid>
+            <description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description>
+            <content type="html"><![CDATA[<p><a href="https://github.com/marcinkoziej/org-pomodoro">org-pomodoro</a> って便利な org-mode の拡張があるんですよ。
+org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。</p>
+<p>デフォルト設定で話すと、何か TODO にカーソルを乗せてる状態で起動したらそいつが clock-in した上で25分のタイマーが動いて、
+25分経過したら clock-out した上で、5分の休憩が挟まってその休憩終了時には「次のポモドーロ開始するかい?」みたいなのが出て来てそこでまた M-x org-pomodoro を叩いたらまた25分のタイマーが開始して……みたいなやつ。</p>
+<p>まあ使い方それで合ってたかちょっと自信ないけど。というのも、表題の通りで、最近使ってないんですよね。便利な雰囲気なのに。</p>
+<p>なんで馴染まないのかな〜。やっぱり割込み作業が多くて pomodoro を乱されるから?
+あとは会議が挟まってくるとどう運用していいかわからなくなるから?</p>
+<p>前者の解決は、タイマー起動中は Slack の通知を切って見れないようにするぐらいじゃないと多分割込みを防げないよな〜という気はする。ちょっとその運用考えるか。</p>
+<p>後者は、まあ会議の時はもう pomodoro 放置でいいっていう割り切りかな。</p>
+<p>という悩みがあるのでポモドーロテクニックを1年以上継続しているぞ! みたいな猛者の方はどうやってそれを維持しているか教えてほしい。</p>
+<p>org-clock は使ってるけどね。pomodoro 存在を忘れてた。無念。</p>
+]]></content>
+        </item>
         
         <item>
             <title>RPA ちょっとだけ調べてみた</title>

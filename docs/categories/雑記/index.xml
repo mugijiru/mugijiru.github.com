@@ -6,7 +6,16 @@
     <description>Recent content in 雑記 on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 02 Jan 2021 20:31:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/%E9%9B%91%E8%A8%98/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Apr 2021 18:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/%E9%9B%91%E8%A8%98/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>最近 org-pomodoro 使ってないことに気付いた</title>
+      <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
+      <pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid>
+      <description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description>
+    </item>
+    
     <item>
       <title>新年明けましておめでとうございます</title>
       <link>https://mugijiru.github.io/posts/happy-new-year-2021/</link>
