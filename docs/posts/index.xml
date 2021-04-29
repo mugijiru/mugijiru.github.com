@@ -5,8 +5,118 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Thu, 29 Apr 2021 18:03:00 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 29 Apr 2021 19:03:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>org-agenda を活用し始めた</title>
+            <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
+            <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
+            <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
+            <content type="html"><![CDATA[<p>昨年から org-mode をもっと活用していこうということで、
+org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。</p>
+<p>org-mode は機能が豊富過ぎてマジで何が出来るのか全貌を把握し切れてないのですが、そんな中で、やっぱり全然把握できてなくて使ってなかった機能の1つが org-agenda ってやつ。</p>
+<p>なんかうまく使うと、予定を組んでたり締切を設定していたりするタスクが一目瞭然になってお仕事などが捗るという素敵な機能らしいのだけど、どうもイマイチ使い方がわからなくて放置していました。</p>
+<p>ただまあ仕事が捗るなら試してみる価値はあるよな〜ということで、今年の頭ぐらいから使い始めている。</p>
+<p>まず、平日朝イチでやっておきたい習慣タスクに対して
+<code>Weekday</code> と <code>Start</code> の2つのタグを振ってるか、
+<code>Daily</code> というタグを振ってるのでそれを表示できるやつを以下のように仕込んでる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;hs&#34;</span> <span style="color:#e6db74">&#34;Weekday Start&#34;</span>
+ ((tags <span style="color:#e6db74">&#34;Weekday&amp;Start|Daily&#34;</span>
+        ((org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
+                                    (:name <span style="color:#e6db74">&#34;今日の作業&#34;</span> :scheduled today)
+                                    (:discard (:anything <span style="color:#66d9ef">t</span>))))))))
+</code></pre></div><p><a href="https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L89-L93">https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L89-L93</a></p>
+<p>麦汁さんのやりたいことを実現するには、デフォルトの org-agenda だとなんか機能が足りないっぽかったのでそれを補うために <a href="https://github.com/alphapapa/org-super-agenda">org-super-agenda</a> も使っている。</p>
+<p>とりあえず上の例の2行目でタグによる絞り込みをしているがこれは org-mode の標準機能を使っていて
+<a href="https://orgmode.org/manual/Storing-searches.html#Storing-searches">https://orgmode.org/manual/Storing-searches.html#Storing-searches</a>
+あたりに書いてる方法で絞り込んでいる。</p>
+<p>で、その後に org-super-agenda の機能である
+<a href="https://github.com/alphapapa/org-super-agenda#group-selectors">Group Selectors</a> というやつでスケジュール通りのやつと、スケジュールが過ぎてるやつとで表示を切り分けてる。</p>
+<p><code>(:discard (:anything t))</code> は、そこまでの条件にマッチしなかったやつを全部無視するような設定。これがないと <code>Other items</code> という形で全部並んでしまって邪魔になる。</p>
+<p>最初の絞り込みで綺麗に絞り込めると良いかもしれないが、そこまで高度な機能は org-mode には備わってなさそう。それか、そういう高度な機能を見つけて使いこなせる能力を俺が有してないか。</p>
+<p>まあそれはともかく、上の感じでタスクを登録していると以下のように表示される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Headlines with TAGS match: Weekday&amp;Start|Daily
+
+ 予定が過ぎてる作業
+  next-actions:TODO 排便                                                      :Weekday:Start:
+
+ 今日の作業
+  next-actions:TODO 体重・体脂肪率計測                                                 :Daily:
+</code></pre></div><p>実際のやつはもっと色々あるというか、そもそもわざわざ排便を org-mode で管理はしてないのであくまでサンプルとして2つ置いてるだけだとご認識ください。</p>
+<p>同じノリでその日の締め作業も取れるように設定している。</p>
+<p>また、日中使うための設定も用意していて、こっちは結構複雑。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;d&#34;</span> <span style="color:#e6db74">&#34;Today&#34;</span>
+ ((agenda <span style="color:#e6db74">&#34;会議など&#34;</span>
+          ((org-agenda-span <span style="color:#e6db74">&#39;day</span>)
+           (org-agenda-files my/org-agenda-calendar-files)))
+  (tags-todo <span style="color:#e6db74">&#34;-Weekday-Daily-Holiday-Weekly-Weekend&#34;</span>
+             ((org-agenda-prefix-format <span style="color:#e6db74">&#34; &#34;</span>)
+              (org-agenda-overriding-header <span style="color:#e6db74">&#34;今日の作業&#34;</span>)
+              (org-habit-show-habits <span style="color:#66d9ef">nil</span>)
+              (org-agenda-span <span style="color:#e6db74">&#39;day</span>)
+              (org-agenda-todo-keyword-format <span style="color:#e6db74">&#34;-&#34;</span>)
+              (org-overriding-columns-format <span style="color:#e6db74">&#34;%25ITEM %TODO&#34;</span>)
+              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/next-actions.org&#34;</span>))
+              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;仕掛かり中&#34;</span> :todo <span style="color:#e6db74">&#34;DOING&#34;</span>)
+                                         (:name <span style="color:#e6db74">&#34;TODO&#34;</span> :todo <span style="color:#e6db74">&#34;TODO&#34;</span>)
+                                         (:name <span style="color:#e6db74">&#34;待ち&#34;</span> :todo <span style="color:#e6db74">&#34;WAIT&#34;</span>)
+                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))
+  (alltodo <span style="color:#e6db74">&#34;&#34;</span>
+             ((org-agenda-prefix-format <span style="color:#e6db74">&#34; &#34;</span>)
+              (org-agenda-overriding-header <span style="color:#e6db74">&#34;予定作業&#34;</span>)
+              (org-habit-show-habits <span style="color:#66d9ef">nil</span>)
+              (org-agenda-span <span style="color:#e6db74">&#39;day</span>)
+              (org-agenda-todo-keyword-format <span style="color:#e6db74">&#34;-&#34;</span>)
+              (org-overriding-columns-format <span style="color:#e6db74">&#34;%25ITEM %TODO&#34;</span>)
+              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/projects.org&#34;</span>))
+              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;〆切が過ぎてる作業&#34;</span> :deadline past)
+                                         (:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
+                                         (:name <span style="color:#e6db74">&#34;今日〆切の作業&#34;</span> :deadline today)
+                                         (:name <span style="color:#e6db74">&#34;今日予定の作業&#34;</span> :scheduled today)
+                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))
+  (tags-todo <span style="color:#e6db74">&#34;Weekday|Daily|Weekly&#34;</span>
+             ((org-agenda-overriding-header <span style="color:#e6db74">&#34;習慣&#34;</span>)
+              (org-habit-show-habits <span style="color:#66d9ef">t</span>)
+              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/next-actions.org&#34;</span>))
+              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
+                                         (:name <span style="color:#e6db74">&#34;今日予定&#34;</span> :scheduled today)
+                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))))
+</code></pre></div><p><a href="https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L109-L144">https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L109-L144</a></p>
+<p>通常なら Agenda for current week or day ってのが標準で用意されてるのでそれを使えばいいかなって思うんだけど
+1 view でいい感じにカテゴライズされていて取得できるってのが欲しかったんですよね。で、それをやろうと思うとやはり org-super-agenda が必要そうだったって感じ。</p>
+<p>とりあえず現在は next-actions.org に、直近やるつもりの作業を詰めていて
+projecs.org に、直近ではないけどやることリストを並べてるって感じ。スプリントバックログとプロダクトバックログみたいな扱いのつもりですね。あとは別途 org-gcal で同期している Google Calendar から取得した予定用のファイルもあったりする。</p>
+<p>そうやっていくつかあるファイルからいい感じになるようにということで設定しているのが先程のコードでそれで org-agenda のバッファを生成すると以下のような雰囲気のやつになる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"> 会議など
+ 11:00-12:00 すごい会議
+ 15:00-18:00 長い会議
+------------------------------
+今日の作業
+ 仕掛かり中
+ - 藁人形の作成
+ 待ち
+ - 五寸釘発注の稟議
+
+予定作業
+ 〆切が過ぎてる作業
+ - 五寸釘の発注
+
+習慣
+ 予定が過ぎてる作業
+ - 排便
+ 今日予定
+ - 体重・体脂肪率計測
+</code></pre></div><p>もちろん、内容はサンプル用に適当にでっち上げたやつです。</p>
+<p>本当はタグも表示されてしまうけど、それはあまり要らないかなと思ってるので、それはなんとか非表示にしたいなあと願ってる。
+<code>org-overriding-columns-format</code> を弄っても今のところいい感じにならなくて悲しい。</p>
+<p>あと、今の設定と使い方だと「あと数日で着手しないといけないタスク」とかそういうやつはわからないので、それもなんとかしたい。</p>
+<p>多分着手予定の日を早めに設定して起きつつ〆切を設定してたら今でもある程度いけるんだろうけど、気付いたら着手予定が同じ日になってていきなりその日に全部やらないといけない雰囲気になるとかありそうでこわい。</p>
+<p>数日前から、着手予定のやつがいつ着手予定なのか見れるようにしたらいいんだろうな〜。ま、少しずつ改善を入れていくしかないか……。</p>
+]]></content>
+        </item>
         
         <item>
             <title>最近 org-pomodoro 使ってないことに気付いた</title>
