@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 29 Apr 2021 19:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 09 May 2021 14:35:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ember.js@3.4 から最新の 3.26 に上げた</title>
+      <link>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</link>
+      <pubDate>Sun, 09 May 2021 14:35:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</guid>
+      <description>いつも Ember.js ネタを書く時に使ってる https://github.com/mugijiru/ember-rails-todo-app のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。 そこへの対応のために https://github.com/mugijiru/ember-components の addon の方も</description>
+    </item>
+    
     <item>
       <title>org-agenda を活用し始めた</title>
       <link>https://mugijiru.github.io/posts/try-org-agenda/</link>

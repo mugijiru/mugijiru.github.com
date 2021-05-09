@@ -5,8 +5,281 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Thu, 29 Apr 2021 19:03:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 09 May 2021 14:35:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Ember.js@3.4 から最新の 3.26 に上げた</title>
+            <link>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</link>
+            <pubDate>Sun, 09 May 2021 14:35:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</guid>
+            <description>いつも Ember.js ネタを書く時に使ってる https://github.com/mugijiru/ember-rails-todo-app のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。 そこへの対応のために https://github.com/mugijiru/ember-components の addon の方も</description>
+            <content type="html"><![CDATA[<p>いつも Ember.js ネタを書く時に使ってる
+<a href="https://github.com/mugijiru/ember-rails-todo-app">https://github.com/mugijiru/ember-rails-todo-app</a>
+のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。</p>
+<p>そこへの対応のために <a href="https://github.com/mugijiru/ember-components">https://github.com/mugijiru/ember-components</a> の addon の方も
+2.18 から最新化することになりました。</p>
+<h2 id="対応の方針">対応の方針</h2>
+<p>どう対応させていったかというと、
+<a href="/posts/update-emberjs-2.18to3/">ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</a>
+の記事でも書いた</p>
+<blockquote>
+<p>3系で LTS であったバージョンを順番に適用していく方針</p>
+</blockquote>
+<p>を実際にやってみたって感じ。</p>
+<h2 id="実際の対応">実際の対応</h2>
+<h3 id="eslint-対応">eslint 対応</h3>
+<p>3.4 に上げた後に、eslint で怒られてるのに対応できそうだなとなったので
+3.8 に上げる前に修正をした</p>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/66">https://github.com/mugijiru/ember-rails-todo-app/pull/66</a></p>
+<p>大きな変更点は
+jQuery を使って要素を取得していたところを純粋な JS に書き換えたところぐらい。</p>
+<h3 id="3-dot-4-3-dot-8">3.4 → 3.8</h3>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/67">https://github.com/mugijiru/ember-rails-todo-app/pull/67</a></p>
+<ol>
+<li><code>ember-cli-update --to 3.8</code></li>
+<li><code>yarn</code></li>
+<li><code>ember-cli-update --codemods</code></li>
+</ol>
+<p>を叩いたぐらい。codemods では特がないので難しいところは何もない。</p>
+<h3 id="3-dot-8-3-dot-12">3.8 → 3.12</h3>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/68">https://github.com/mugijiru/ember-rails-todo-app/pull/68</a></p>
+<p>3.8 に上げるよりはちょっと面倒だった。</p>
+<p>が、基本的には</p>
+<ol>
+<li><code>ember-cli-update --to 3.12</code></li>
+<li><code>yarn</code></li>
+<li><code>ember-cli-update --codemods</code></li>
+</ol>
+<p>を叩いてるだけである。</p>
+<p>とりあえず <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/68/commits/cd7e96493dc9f52c67ee499801144c25b54a4d36">codemods で結構変更があった</a> ので、それを軽く話すと</p>
+<ul>
+<li>handlebars で AngleBraket を使うようになった
+<ul>
+<li>3.4 からサポートされ始めてるけど 3.10 でちゃんと使えるようになったっぽい</li>
+</ul>
+</li>
+<li>handlebars でコンポーネントに値を渡す時に <code>@hoge={{value}}</code> みたいに <code>@</code> をつけるようになった
+<ul>
+<li>これで component の変数か、単なる HTML の属性値かの区別がつくようになったっぽい</li>
+</ul>
+</li>
+<li>model が <code>ember-data</code> ではなく <code>@ember-data/model</code> を import するようになった
+<ul>
+<li>この頃から個別機能を import させる方針になり始めてるっぽい</li>
+</ul>
+</li>
+</ul>
+<p>という感じ。モダンっぽいし、こっちの方が好みの書き方ですね。</p>
+<p>あとは Observer を使ってるところが eslint で怒られていたけど直すのが大変そうだったので eslint の方を無視するようにしちゃった。まあ、これよりずっとあとの手順で直してるんだけども。</p>
+<h3 id="3-dot-12-3-dot-16">3.12 → 3.16</h3>
+<p>Octane が入って来てるからか、
+ember-cli-update での差分も大きく、動くようにするまでにいくつかやることがあった。</p>
+<p>まずはいつものように</p>
+<ol>
+<li><code>ember-cli-update --to 3.16</code></li>
+<li><code>yarn</code></li>
+<li><code>ember-cli-update --codemods</code></li>
+</ol>
+<p>を実行。で、<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/69/commits/da37e4342c120a4c73a88f7b72ee7344d07eb3e6">ember-cli-update したところで</a>
+app.js が書き換えられて自分の設定が消えたのを直すハメになったり同じく config/environment.js が書き換えられてそれも直すハメになったりしてた。新しい文法にするのはいいけど設定を吹っ飛ばすのはやめてほしい。</p>
+<p>あと config/optional-features.json で jquery-integration が false にされたのもいただけなかった。
+<a href="https://github.com/rondale-sc/ember-cli-rails-addon/blob/master/app/initializers/ember-cli-rails-addon-csrf.js">ember-cli-rails-addon-csrf</a> 的に必要なんだよぉ。</p>
+<p>あとは <a href="https://ember-learn.github.io/ember-octane-vs-classic-cheat-sheet/">Ember.js Octane vs Classic Cheat Sheet</a> を参考に書き換えた。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/69/commits/5a2d971f18fa3da9d3f45c344666e7c134b2bf4a">hbs の書き方がさらに変わったので修正</a>
+<ul>
+<li>親から貰った受け取ったプロパティは @ を prefix とするように変更</li>
+<li>自身の持つプロパティは this. を prefix とするように変更</li>
+<li><code>@click=</code> で定義していた click イベントは on を使うように変更</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/69/commits/ed3e7e3c1fdac5a88277fafa6c5ce42a603ff9cb">jQuery に頼ってた部分を素の JS に書き換え</a></li>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/69/commits/0f4113e6a918dbfd5f75500370fd2e00486d1cec">Component の action の書き方などの変更</a>
+<ul>
+<li>actions で囲むのではなく <code>@action</code> というデコレータをメソッドにつける方法になった</li>
+<li>form の button を叩いた時に submit されるようになってしまったので preventDefault で送信されないようにした</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/69/commits/3362321970ed616212ce1250fec3555eba434bd4">Controller の action などの書き方などを変更</a>
+<ul>
+<li>actions で囲むのではなく <code>@action</code> というデコレータをメソッドにつける方法になった</li>
+<li>こっちでも jQuery に頼ってたのを直した</li>
+</ul>
+</li>
+</ul>
+<p>ということをやっている。</p>
+<p>設定が変わってるのをちゃんと戻す作業とか
+jquery-integration の問題とか書き方が色々変わったりしているので、なかなか苦労した。
+hbs は結構変わってるしね……。</p>
+<p>まあでも大体そんな感じのことをしたらなんとかなる。</p>
+<h3 id="3-dot-16-3-dot-20">3.16 → 3.20</h3>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/71">https://github.com/mugijiru/ember-rails-todo-app/pull/71</a></p>
+<p>これは</p>
+<ol>
+<li><code>ember-cli-update --to 3.16</code></li>
+<li><code>yarn</code></li>
+<li><code>ember-cli-update --codemods</code></li>
+</ol>
+<p>だけで済んでるのでちょー楽だった</p>
+<h3 id="2-dot-18-3-dot-4-for-mugijiru-ember-components">2.18 → 3.4 for @mugijiru/ember-components</h3>
+<p>ここで突然別の流れをぶち込むハメに。</p>
+<p>というのも ember-todo-rails-app の Ember.js を 3.24 に上げようとしたらその中で使ってるコンポーネントである @mugijiru/ember-components の方を更新しないと上げられない状態になってしまったから。</p>
+<p>多分 Classic な書き方がダメなんだろうなという推測で、こっちも Octane 対応をしないといけないな、という判断になった。</p>
+<p>で、こっちも段階的に上げていくわけですが、ひとまず 3.4 にするにあたり
+ember-rails サポートも切っておく方が楽なので</p>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-components/pull/5">https://github.com/mugijiru/ember-components/pull/5</a></li>
+<li><a href="https://github.com/mugijiru/ember-components/pull/6">https://github.com/mugijiru/ember-components/pull/6</a></li>
+</ul>
+<p>で 2.18 のままだけど Gem のサポートをやめて module を使う仕組みに書き換えている。
+ember-rails でなければ古い書き方をする必要はないのだ。</p>
+<p>そしてさらに <a href="https://github.com/mugijiru/ember-components/pull/7">https://github.com/mugijiru/ember-components/pull/7</a> で 3.4 に上げている。</p>
+<p>コード変更で面倒だったのは</p>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-components/pull/7/commits/7bf7f7c7905af7a671d84b25991b9ceb68800048">codemods 適用</a>
+<ul>
+<li>テストの書き方が多少変わってるのでそっちを覚えないといけない</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/ember-components/pull/7/commits/b70537441d63aa6f9efafa03c407ef30973461c5">test 用に読み込むパッケージ名の修正</a>
+<ul>
+<li>package.json でパッケージ名が修正されたのに伴う変更。まあこうあるべきって感じ。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/ember-components/pull/7/commits/a6505609e2ccf2c8d17ee703cc1aa7cff2847aea">テストでのレンダリングの仕組みが変わったようなので対応</a>
+<ul>
+<li>どうもレンダリングで Wrapper になる div が入るようになったっぽいので雑に div で取ってたのが動かなくなった</li>
+</ul>
+</li>
+</ul>
+<p>あたりかな。パッケージ名の修正と div のやつはどっちも気付くのに時間がかかってしまったやつ。つらかった。</p>
+<h3 id="3-dot-4-3-dot-8-for-mugijiru-ember-components">3.4 → 3.8 for @mugijiru/ember-components</h3>
+<p><a href="https://github.com/mugijiru/ember-components/pull/8">https://github.com/mugijiru/ember-components/pull/8</a></p>
+<p>まあ難しいことをしなくても普通に上がったやつですね。はい。なので詳細はいいや。</p>
+<h3 id="3-dot-8-3-dot-12-for-mugijiru-ember-components">3.8 → 3.12 for @mugijiru/ember-components</h3>
+<p><a href="https://github.com/mugijiru/ember-components/pull/9">https://github.com/mugijiru/ember-components/pull/9</a></p>
+<p>これもあっさり上がったので特筆することなし</p>
+<h3 id="3-dot-12-3-dot-16-for-mugijiru-ember-components">3.12 → 3.16 for @mugijiru/ember-components</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-components/pull/10">https://github.com/mugijiru/ember-components/pull/10</a>
+<ul>
+<li>3.16 に上げたのはこっち</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/ember-components/pull/12">https://github.com/mugijiru/ember-components/pull/12</a>
+<ul>
+<li>3.16 に上げただけだと修正が足らなかったので追加修正したやつ</li>
+</ul>
+</li>
+</ul>
+<p>いつもの手順はもういいとして、特別にやったことは</p>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-components/pull/10/commits/8bc5e01b97e1740601a4710496d28d6840ce6e4d">hbs の書き方を新しい形式に合わせた</a>
+<ul>
+<li>this をつけただけだけど</li>
+</ul>
+</li>
+<li>Component の書き方修正(<a href="https://github.com/mugijiru/ember-components/pull/10/commits/654619191256c8a778440007fab2c9f16185f247">mg-button</a>, <a href="https://github.com/mugijiru/ember-components/pull/10/commits/9b4beeec63023fecb43b5208a1f324030916e4b0">mg-checkbox</a>, <a href="https://github.com/mugijiru/ember-components/pull/10/commits/7c2b92a8a1634b0a1d4fa1d8dc3fd02732cf9525">mg-toggle-switch</a>)
+<ul>
+<li>addon/templates/components/*.hbs から addon/components/*.hbs に移動
+<ul>
+<li>どうもいつの間にか templates/components に置かなくて良くなったっぽい
+<ul>
+<li>さらに新しい <a href="https://cli.emberjs.com/release/advanced-use/project-layouts/#podslayout">pods layout</a> というのもあるけど addon の場合は互換性維持のために classic 推奨。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>import 元を <code>@glimmer/component</code> にして Native Class を用いた記述に変更
+<ul>
+<li>これまで <code>export default Component.extend</code> していたのが <code>export default class Hoge extends Components</code> という書き方になった</li>
+<li>Native Class になったのでプロパティも普通に <code>hoge = 'fuga'</code>&quot; みたいに書くようになった</li>
+</ul>
+</li>
+<li>className, classNameBindings は使えなくなったので調整</li>
+<li>親から渡って来るパラメータの初期値調整のための記法の使用
+<ul>
+<li><code>get hoge () { return this.args.hoge ?? '' }</code> のようにしてデフォルト空文字列にするなど
+<ul>
+<li>親から渡って来るパラメータは <code>this.args</code> のように隔離された場所に入るようになってる。便利。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/ember-components/pull/12">Click が実行されない問題の修正</a>
+<ul>
+<li>onClick というパラメータで渡って来たやつをクリック時に実行するように調整している</li>
+</ul>
+</li>
+</ul>
+<h3 id="新しい-mugijiru-ember-components-に更新">新しい @mugijiru/ember-components に更新</h3>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/72">https://github.com/mugijiru/ember-rails-todo-app/pull/72</a></p>
+<p>MgButton とかに <code>{{on &quot;click&quot; this.save}}</code> とかでアクションを渡せていたのがここからは <code>@onClick={{this.save}}</code> のように渡さないといけない。なぜなら @mugijiru/ember-components を Octane 対応する際にそういう風に仕様が変わったからだ。</p>
+<p><a href="https://guides.emberjs.com/release/in-depth-topics/patterns-for-actions/">https://guides.emberjs.com/release/in-depth-topics/patterns-for-actions/</a>
+を見た感じ、そうするのが正しいっぽい。ただの button には <code>{{on &quot;click&quot; this.save}}</code> というように書くことになるので混乱がありそうでだるいけど。</p>
+<h3 id="3-dot-20-3-dot-24">3.20 → 3.24</h3>
+<p>@mugijiru/ember-components の Ember.js を 3.16 にして Octane 対応を済ませることで
+ember-rails-todo-app の Ember.js を 3.24 に上げられるようになった。</p>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/73">https://github.com/mugijiru/ember-rails-todo-app/pull/73</a></p>
+<p>ここではあんまり対したことはしてないけど
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/73/commits/9268c5414c2c3052c2537fa1e2dacc0b4ee55886">active_model_serializer を使うことを明示的に書かないといけなくなった</a>
+というのが一番だるいポイントかな。これも原因判明までに時間食ったやつ……。</p>
+<h3 id="3-dot-24-3-dot-26--最新">3.24 → 3.26(最新)</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/74">ember-bootstrap を 4系に上げた</a></li>
+<li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/76">Ember.js を最新化し、文法も最新に合わせて書き直した</a></li>
+</ul>
+<p>あたりで、最新化できた。
+ember-bootstrap は上げられるから上げておいただけだけども。</p>
+<ul>
+<li>native class としてクラス定義するように変更</li>
+<li>@tracked, @sevice, @action, @attr などのデコレータを使うように変更</li>
+<li>computed property は tracked を使う書き方に置き換え</li>
+<li>set, get を使った書き方も古いので <code>this.get('hoge')</code> などを <code>this.hoge</code> みたいに書き換え</li>
+</ul>
+<p>あたりのことをしている。結構変更は多いけど、まあ、基本的に lint のいうことに従って対応しただけである。</p>
+<p>ひとつ initializer で current-user を無理やり inject している処理が
+Native Class に置き換えできなかったので、ここはどこかでなんとかしないとまずそう。多分 Ember.js@4 に追従できなくなる
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/76/commits/f6b6ed65863a9e94ed1b41154387e87e4f0da1bf">https://github.com/mugijiru/ember-rails-todo-app/pull/76/commits/f6b6ed65863a9e94ed1b41154387e87e4f0da1bf</a></p>
+<p>User class を用意して instanceInitializer でそこに突っ込んでやるとか、
+Service class を用意したりしたら、なんとかなりそうな気はしている。</p>
+<h3 id="3-dot-16-3-dot-20-for-mugijiru-ember-components">3.16 → 3.20 for @mugijiru/ember-components</h3>
+<p>アプリ本体だけでなく addon も最新化対象である。
+<a href="https://github.com/mugijiru/ember-components/pull/13">https://github.com/mugijiru/ember-components/pull/13</a></p>
+<p>3.20 に上げるのは何も問題なし。
+3.16 に上げる時に苦労したからねえ。</p>
+<h3 id="3-dot-20-3-dot-24-for-mugijiru-ember-components">3.20 → 3.24 for @mugijiru/ember-components</h3>
+<p><a href="https://github.com/mugijiru/ember-components/pull/15">https://github.com/mugijiru/ember-components/pull/15</a></p>
+<p>3.24 に上げるのも特に苦労なし。</p>
+<h3 id="3-dot-24-3-dot-26--最新--for-mugijiru-ember-components">3.24 → 3.26(最新) for @mugijiru/ember-components</h3>
+<p><a href="https://github.com/mugijiru/ember-components/pull/16">https://github.com/mugijiru/ember-components/pull/16</a></p>
+<p>基本的には難しいことなし。ただし Interactive な要素じゃないのに click させるなって eslint に怒られてたから
+MgChecobox や MgToggleSwitch を div から button に変更した。
+<a href="https://github.com/mugijiru/ember-components/pull/16/commits/d9f14499f92584479fe7154879003bfd5f237f03">https://github.com/mugijiru/ember-components/pull/16/commits/d9f14499f92584479fe7154879003bfd5f237f03</a></p>
+<p><code>input type=&quot;checkbox&quot;</code> が良い気もするけど、ま、一旦いいや。</p>
+<h3 id="最新の-mugijiru-ember-components-取り込み">最新の @mugijiru/ember-components 取り込み</h3>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/77">https://github.com/mugijiru/ember-rails-todo-app/pull/77</a></p>
+<p>最新化する際に、
+div から button に書き換えた影響で style 崩れがあるので調整している。</p>
+<p>@mugijiru/ember-components 用の css は addon 側に置いても良いよなあと思ってるけど今回はそこは放置している。めんどくさくて。</p>
+<h2 id="最後に">最後に</h2>
+<p>ゴールデンウィークをこれで結構消費してしまったのでちょっと残念な気持ちになっている。</p>
+<p>けどまあ、どこで引っ掛かりやすいかは結構洗い出せたので良い。</p>
+<dl>
+<dt>3.8 → 3.12</dt>
+<dd>codemods で結構変更される</dd>
+<dt>3.20 → 3.24</dt>
+<dd>addon が 2.18 で使えるような古い書き方だと使えなくなる</dd>
+<dt>Octane 対応</dt>
+<dd>書き方が色々変わる。古い書き方も一部まだサポートされてそうだけど。</dd>
+</dl>
+<p>とりあえず Octane が鬼門かねえ。</p>
+]]></content>
+        </item>
         
         <item>
             <title>org-agenda を活用し始めた</title>
