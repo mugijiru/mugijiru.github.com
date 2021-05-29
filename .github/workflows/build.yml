@@ -1,0 +1,39 @@
+name: build and publish
+
+on:
+  # push:
+  #   branches:
+  #     - 'entry/**'
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.83.1'
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Check diff
+        run: |
+          git diff --exit-code --quiet || git add . && echo 'found_update=1' >> $GITHUB_ENV
+
+      - if: env.found_update == 1
+        name: Setup git config
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - if: env.found_update == 1
+        name: Commit & Push
+        run: |
+          git commit -m "Build Hugo by GitHub Actions"
+          git push
