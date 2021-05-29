@@ -3,7 +3,8 @@
 <p>一応 <a href="https://github.com/mugijiru/mugijiru.github.com/tree/master/.github/workflows/build.yml">https://github.com/mugijiru/mugijiru.github.com/tree/master/.github/workflows/build.yml</a>
 のあたりにそれ用の workflow が入って来る予定。</p>
 <p>使ってるのは <a href="https://github.com/marketplace/actions/hugo-setup">hugo-setup</a> というやつ。
-<code>run: hugo</code> するだけで build してくれるようで便利そう。</p>
+<code>run: hugo</code> するだけで build してくれるようで便利そう。成功可否はいつものように Slack 通知するし
+push して放置したら良いのは良さそう。</p>
 <p>ま、これで build しないで済むようになったらちょっと楽になりそうで楽しみ。</p>
 ]]></content></item><item><title>ember-rails アプリケーション保守入門</title><link>https://mugijiru.github.io/posts/ember-rails-introduction/</link><pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-introduction/</guid><description>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし</description><content type="html"><![CDATA[<p>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にしちゃうぞ、というエントリです。</p>
 <h2 id="想定する読者">想定する読者</h2>
