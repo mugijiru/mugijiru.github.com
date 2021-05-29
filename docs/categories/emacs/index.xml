@@ -1,1 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Emacs on 麦汁三昧</title><link>https://mugijiru.github.io/categories/emacs/</link><description>Recent content in Emacs on 麦汁三昧</description><generator>Hugo -- gohugo.io</generator><language>ja-JP</language><lastBuildDate>Thu, 29 Apr 2021 19:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml"/><item><title>org-agenda を活用し始めた</title><link>https://mugijiru.github.io/posts/try-org-agenda/</link><pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/try-org-agenda/</guid><description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description></item><item><title>最近 org-pomodoro 使ってないことに気付いた</title><link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link><pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid><description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description></item><item><title>browse-at-remote を導入した</title><link>https://mugijiru.github.io/posts/add-browse-at-remote/</link><pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid><description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Emacs on 麦汁三昧</title>
+    <link>https://mugijiru.github.io/categories/emacs/</link>
+    <description>Recent content in Emacs on 麦汁三昧</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Thu, 29 Apr 2021 19:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>org-agenda を活用し始めた</title>
+      <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
+      <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
+      <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
+    </item>
+    
+    <item>
+      <title>最近 org-pomodoro 使ってないことに気付いた</title>
+      <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
+      <pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid>
+      <description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description>
+    </item>
+    
+    <item>
+      <title>browse-at-remote を導入した</title>
+      <link>https://mugijiru.github.io/posts/add-browse-at-remote/</link>
+      <pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid>
+      <description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description>
+    </item>
+    
+  </channel>
+</rss>

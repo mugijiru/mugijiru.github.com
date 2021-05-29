@@ -1,1 +1,119 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rails on 麦汁三昧</title><link>https://mugijiru.github.io/categories/rails/</link><description>Recent content in Rails on 麦汁三昧</description><generator>Hugo -- gohugo.io</generator><language>ja-JP</language><lastBuildDate>Mon, 24 May 2021 09:02:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml"/><item><title>ember-rails アプリケーション保守入門</title><link>https://mugijiru.github.io/posts/ember-rails-introduction/</link><pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-introduction/</guid><description>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし</description></item><item><title>Ember.js@3.4 から最新の 3.26 に上げた</title><link>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</link><pubDate>Sun, 09 May 2021 14:35:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</guid><description>いつも Ember.js ネタを書く時に使ってる https://github.com/mugijiru/ember-rails-todo-app のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。 そこへの対応のために https://github.com/mugijiru/ember-components の addon の方も</description></item><item><title>ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</title><link>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</link><pubDate>Sun, 04 Apr 2021 15:38:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</guid><description>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと</description></item><item><title>自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</title><link>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</link><pubDate>Fri, 26 Mar 2021 01:49:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</guid><description>前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で</description></item><item><title>Ember.js の共通コンポーネントの NPM への分離</title><link>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</link><pubDate>Wed, 24 Mar 2021 13:04:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</guid><description>相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ</description></item><item><title>ember-rails から ember-cli-rails へ</title><link>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</link><pubDate>Sat, 06 Mar 2021 17:05:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</guid><description>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、 ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。 やったことはいつも通り GitHub の</description></item><item><title>ember-rails でユーザー情報を Rails から inject</title><link>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</link><pubDate>Sun, 28 Feb 2021 13:10:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</guid><description>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し</description></item><item><title>ember-rails でコンポーネントをサブフォルダに配置する</title><link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link><pubDate>Sun, 28 Feb 2021 11:19:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</guid><description>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。 これも、ES6 Module 対応版と旧来版</description></item><item><title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title><link>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</link><pubDate>Sun, 28 Feb 2021 10:45:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</guid><description>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ</description></item><item><title>古い ember-rails App で ES6 Module 化を完了した</title><link>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</link><pubDate>Tue, 23 Feb 2021 20:45:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</guid><description>#10 サブフォルダのファイルを全て module に移行した #11 残りのファイルも module 化した でやってることで全てだけど 前回の記事 でやってた内容を完了まで持って行った</description></item><item><title>古い ember-rails App で一部ファイルを ES6 Module 化</title><link>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</link><pubDate>Sun, 21 Feb 2021 22:41:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</guid><description>これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部</description></item><item><title>2021年にもなって ember-rails で新規アプリを書いてみてる</title><link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link><pubDate>Sat, 13 Feb 2021 01:15:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-in-2021/</guid><description>少し思うところがあって、 2021 年になったというのに ember-rails を使って新規で Web アプリを書いている。 ember-rails とは? ember-rails は Ember.js という Web フロントエンド MVC なフレームワークを</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rails on 麦汁三昧</title>
+    <link>https://mugijiru.github.io/categories/rails/</link>
+    <description>Recent content in Rails on 麦汁三昧</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Mon, 24 May 2021 09:02:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/rails/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-rails アプリケーション保守入門</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-introduction/</link>
+      <pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-introduction/</guid>
+      <description>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし</description>
+    </item>
+    
+    <item>
+      <title>Ember.js@3.4 から最新の 3.26 に上げた</title>
+      <link>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</link>
+      <pubDate>Sun, 09 May 2021 14:35:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</guid>
+      <description>いつも Ember.js ネタを書く時に使ってる https://github.com/mugijiru/ember-rails-todo-app のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。 そこへの対応のために https://github.com/mugijiru/ember-components の addon の方も</description>
+    </item>
+    
+    <item>
+      <title>ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</title>
+      <link>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</link>
+      <pubDate>Sun, 04 Apr 2021 15:38:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</guid>
+      <description>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと</description>
+    </item>
+    
+    <item>
+      <title>自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</title>
+      <link>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</link>
+      <pubDate>Fri, 26 Mar 2021 01:49:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</guid>
+      <description>前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で</description>
+    </item>
+    
+    <item>
+      <title>Ember.js の共通コンポーネントの NPM への分離</title>
+      <link>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</link>
+      <pubDate>Wed, 24 Mar 2021 13:04:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</guid>
+      <description>相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ</description>
+    </item>
+    
+    <item>
+      <title>ember-rails から ember-cli-rails へ</title>
+      <link>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</link>
+      <pubDate>Sat, 06 Mar 2021 17:05:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</guid>
+      <description>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、 ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。 やったことはいつも通り GitHub の</description>
+    </item>
+    
+    <item>
+      <title>ember-rails でユーザー情報を Rails から inject</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</link>
+      <pubDate>Sun, 28 Feb 2021 13:10:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</guid>
+      <description>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し</description>
+    </item>
+    
+    <item>
+      <title>ember-rails でコンポーネントをサブフォルダに配置する</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link>
+      <pubDate>Sun, 28 Feb 2021 11:19:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</guid>
+      <description>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。 これも、ES6 Module 対応版と旧来版</description>
+    </item>
+    
+    <item>
+      <title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</link>
+      <pubDate>Sun, 28 Feb 2021 10:45:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</guid>
+      <description>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ</description>
+    </item>
+    
+    <item>
+      <title>古い ember-rails App で ES6 Module 化を完了した</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</link>
+      <pubDate>Tue, 23 Feb 2021 20:45:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</guid>
+      <description>#10 サブフォルダのファイルを全て module に移行した #11 残りのファイルも module 化した でやってることで全てだけど 前回の記事 でやってた内容を完了まで持って行った</description>
+    </item>
+    
+    <item>
+      <title>古い ember-rails App で一部ファイルを ES6 Module 化</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</link>
+      <pubDate>Sun, 21 Feb 2021 22:41:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</guid>
+      <description>これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部</description>
+    </item>
+    
+    <item>
+      <title>2021年にもなって ember-rails で新規アプリを書いてみてる</title>
+      <link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link>
+      <pubDate>Sat, 13 Feb 2021 01:15:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-rails-in-2021/</guid>
+      <description>少し思うところがあって、 2021 年になったというのに ember-rails を使って新規で Web アプリを書いている。 ember-rails とは? ember-rails は Ember.js という Web フロントエンド MVC なフレームワークを</description>
+    </item>
+    
+  </channel>
+</rss>
