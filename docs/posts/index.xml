@@ -1,21 +1,11 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>Posts on 麦汁三昧</title>
-        <link>https://mugijiru.github.io/posts/</link>
-        <description>Recent content in Posts on 麦汁三昧</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>ja-JP</language>
-        <lastBuildDate>Mon, 24 May 2021 09:02:00 +0900</lastBuildDate>
-        <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-        
-        <item>
-            <title>ember-rails アプリケーション保守入門</title>
-            <link>https://mugijiru.github.io/posts/ember-rails-introduction/</link>
-            <pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-rails-introduction/</guid>
-            <description>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし</description>
-            <content type="html"><![CDATA[<p>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にしちゃうぞ、というエントリです。</p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on 麦汁三昧</title><link>https://mugijiru.github.io/posts/</link><description>Recent content in Posts on 麦汁三昧</description><generator>Hugo -- gohugo.io</generator><language>ja-JP</language><lastBuildDate>Sat, 29 May 2021 23:31:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Hugo の build を GitHub Actions でやることにした</title><link>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</link><pubDate>Sat, 29 May 2021 23:31:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</guid><description>このサイトを構築するにあたりいつも手元で Hugo を build して push していたけどもまあだるいし、そろそろ GitHub Actions にも慣れて来たし探したら既に Action が提供されていたの</description><content type="html"><![CDATA[<p>このサイトを構築するにあたりいつも手元で Hugo を build して push していたけどもまあだるいし、そろそろ GitHub Actions にも慣れて来たし探したら既に Action が提供されていたのでそれを使って build を自動化しました。</p>
+<p>「しました」って書いているけど実は今書いてるこの記事自体がその実験用の記事であり、これを書いている時点ではまだ自動化検証中。なので記事に乗せられるものはほとんどない。</p>
+<p>一応 <a href="https://github.com/mugijiru/mugijiru.github.com/tree/master/.github/workflows/build.yml">https://github.com/mugijiru/mugijiru.github.com/tree/master/.github/workflows/build.yml</a>
+のあたりにそれ用の workflow が入って来る予定。</p>
+<p>使ってるのは <a href="https://github.com/marketplace/actions/hugo-setup">hugo-setup</a> というやつ。
+<code>run: hugo</code> するだけで build してくれるようで便利そう。</p>
+<p>ま、これで build しないで済むようになったらちょっと楽になりそうで楽しみ。</p>
+]]></content></item><item><title>ember-rails アプリケーション保守入門</title><link>https://mugijiru.github.io/posts/ember-rails-introduction/</link><pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-introduction/</guid><description>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし</description><content type="html"><![CDATA[<p>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にしちゃうぞ、というエントリです。</p>
 <h2 id="想定する読者">想定する読者</h2>
 <p>携わっているシステムが ember-rails を利用して作られているために令和になっても 2018 年にサポートが切れてしまった <a href="mailto:Ember.js@2.18">Ember.js@2.18</a> のアプリケーションをなんとか動かし続けないといけない哀れな子羊たち</p>
 <h2 id="記事を書いている人">記事を書いている人</h2>
@@ -146,10 +136,10 @@ Tracked Property を使ってなんとかするのが推奨されている。</p
 <p>Ember.js ではコンポーネントを呼び出す時にも
 <code>{{my-component}}</code> みたいに使います。</p>
 <p>上記の書き方はインラインコンポーネントの呼び出し方でブロックコンポーネントは</p>
-<pre><code class="language-hbs" data-lang="hbs">{{#my-block-component}}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs"><span style="color:#75715e">{{</span><span style="color:#a6e22e">#my-block-component</span><span style="color:#75715e">}}</span>
   ...
-{{/my-block-component}}
-</code></pre><p>みたいな感じになります。</p>
+<span style="color:#75715e">{{</span><span style="color:#a6e22e">/my-block-component</span><span style="color:#75715e">}}</span>
+</code></pre></div><p>みたいな感じになります。</p>
 <p>変数を渡す時は</p>
 <p><code>{{my-component hoge=fuga}}</code></p>
 <p>みたいな感じ。
@@ -369,12 +359,12 @@ Vue.js の class の Binding に似ていて</p>
 </code></pre></div><p>みたいな感じで書く。</p>
 <h4 id="template-で直接使う場合">Template で直接使う場合</h4>
 <p>Template から直接アクションを呼びたい時は</p>
-<pre><code class="language-hbs" data-lang="hbs">&lt;button type=&quot;}button&quot; {{action &quot;hoge&quot;}}&gt;
-</code></pre><p>みたいに書くと、そのボタンを押した時に hoge アクションが動く。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs">&lt;button type=&#34;}button&#34; <span style="color:#75715e">{{</span>action <span style="color:#e6db74">&#34;hoge&#34;</span><span style="color:#75715e">}}</span>&gt;
+</code></pre></div><p>みたいに書くと、そのボタンを押した時に hoge アクションが動く。
 <a href="https://guides.emberjs.com/v2.18.0/components/triggering-changes-with-actions/#toc%5Fdesigning-the-child-component">https://guides.emberjs.com/v2.18.0/components/triggering-changes-with-actions/#toc%5Fdesigning-the-child-component</a></p>
 <h4 id="下位のコンポーネントに渡す場合">下位のコンポーネントに渡す場合</h4>
-<pre><code class="language-hbs" data-lang="hbs">{{child-component foo=(action &quot;hoge&quot;)}}
-</code></pre><p>というように書いて渡すと、child-component では
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs"><span style="color:#75715e">{{</span>child-component <span style="color:#a6e22e">foo</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">(</span>action <span style="color:#e6db74">&#34;hoge&#34;</span><span style="color:#960050;background-color:#1e0010">)</span><span style="color:#75715e">}}</span>
+</code></pre></div><p>というように書いて渡すと、child-component では
 foo というメソッドが定義されていて、その実体は親コンポーネントで定義した hoge アクション、という状態になる</p>
 <p>なので child-component 内のアクションを</p>
 <pre><code class="language-nil" data-lang="nil">actions: {
@@ -418,7 +408,7 @@ didUpdate は初期化時には動かしたくないけど didRender 的に使�
 <h4 id="hook-の使い方">Hook の使い方</h4>
 <p>使い方は2種類あって</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">init</span> () {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_super</span>(...<span style="color:#a6e22e">arguments</span>) <span style="color:#75715e">// 通常の処理をさせておく
+  <span style="color:#66d9ef">this</span>.<span style="color:#ae81ff">_</span><span style="color:#66d9ef">super</span>(...<span style="color:#a6e22e">arguments</span>) <span style="color:#75715e">// 通常の処理をさせておく
 </span><span style="color:#75715e"></span>  <span style="color:#75715e">// ここに特別な処理を書く
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>というように hook 関数を Override する方法と</p>
@@ -443,15 +433,15 @@ didUpdate は初期化時には動かしたくないけど didRender 的に使�
 <h3 id="block-component">Block Component</h3>
 <p><a href="https://guides.emberjs.com/v2.18.0/components/block-params/">Block Component</a> では</p>
 <p>my-component のテンプレートを</p>
-<pre><code class="language-hbs" data-lang="hbs">&lt;div&gt;
-  {{yield}}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs">&lt;div&gt;
+  <span style="color:#75715e">{{</span>yield<span style="color:#75715e">}}</span>
   ↑親から来たやつ↑
 &lt;/div&gt;
-</code></pre><p>みたいに書いてる状態で親から</p>
-<pre><code class="language-hbs" data-lang="hbs">{{#my-component}}
+</code></pre></div><p>みたいに書いてる状態で親から</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs"><span style="color:#75715e">{{</span><span style="color:#a6e22e">#my-component</span><span style="color:#75715e">}}</span>
   hogehoge
-{{/my-component}}
-</code></pre><p>みたいに呼び出すと</p>
+<span style="color:#75715e">{{</span><span style="color:#a6e22e">/my-component</span><span style="color:#75715e">}}</span>
+</code></pre></div><p>みたいに呼び出すと</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span>&gt;
   hogehoge
   ↑親から来たやつ↑
@@ -651,17 +641,7 @@ ember-cli-rails に移行して3系にした方が幸せになれそうなので
 <li><a href="/posts/update-emberjs-3_4-to-latest/">Ember.js@3.4 から最新の 3.26 に上げた</a></li>
 </ul>
 <p>あたりが参考になるかもです。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>Ember.js@3.4 から最新の 3.26 に上げた</title>
-            <link>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</link>
-            <pubDate>Sun, 09 May 2021 14:35:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</guid>
-            <description>いつも Ember.js ネタを書く時に使ってる https://github.com/mugijiru/ember-rails-todo-app のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。 そこへの対応のために https://github.com/mugijiru/ember-components の addon の方も</description>
-            <content type="html"><![CDATA[<p>いつも Ember.js ネタを書く時に使ってる
+]]></content></item><item><title>Ember.js@3.4 から最新の 3.26 に上げた</title><link>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</link><pubDate>Sun, 09 May 2021 14:35:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</guid><description>いつも Ember.js ネタを書く時に使ってる https://github.com/mugijiru/ember-rails-todo-app のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。 そこへの対応のために https://github.com/mugijiru/ember-components の addon の方も</description><content type="html"><![CDATA[<p>いつも Ember.js ネタを書く時に使ってる
 <a href="https://github.com/mugijiru/ember-rails-todo-app">https://github.com/mugijiru/ember-rails-todo-app</a>
 のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。</p>
 <p>そこへの対応のために <a href="https://github.com/mugijiru/ember-components">https://github.com/mugijiru/ember-components</a> の addon の方も
@@ -924,17 +904,7 @@ div から button に書き換えた影響で style 崩れがあるので調整�
 <dd>書き方が色々変わる。古い書き方も一部まだサポートされてそうだけど。</dd>
 </dl>
 <p>とりあえず Octane が鬼門かねえ。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>org-agenda を活用し始めた</title>
-            <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
-            <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
-            <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
-            <content type="html"><![CDATA[<p>昨年から org-mode をもっと活用していこうということで、
+]]></content></item><item><title>org-agenda を活用し始めた</title><link>https://mugijiru.github.io/posts/try-org-agenda/</link><pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/try-org-agenda/</guid><description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description><content type="html"><![CDATA[<p>昨年から org-mode をもっと活用していこうということで、
 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。</p>
 <p>org-mode は機能が豊富過ぎてマジで何が出来るのか全貌を把握し切れてないのですが、そんな中で、やっぱり全然把握できてなくて使ってなかった機能の1つが org-agenda ってやつ。</p>
 <p>なんかうまく使うと、予定を組んでたり締切を設定していたりするタスクが一目瞭然になってお仕事などが捗るという素敵な機能らしいのだけど、どうもイマイチ使い方がわからなくて放置していました。</p>
@@ -1034,17 +1004,7 @@ projecs.org に、直近ではないけどやることリストを並べてる�
 <p>あと、今の設定と使い方だと「あと数日で着手しないといけないタスク」とかそういうやつはわからないので、それもなんとかしたい。</p>
 <p>多分着手予定の日を早めに設定して起きつつ〆切を設定してたら今でもある程度いけるんだろうけど、気付いたら着手予定が同じ日になってていきなりその日に全部やらないといけない雰囲気になるとかありそうでこわい。</p>
 <p>数日前から、着手予定のやつがいつ着手予定なのか見れるようにしたらいいんだろうな〜。ま、少しずつ改善を入れていくしかないか……。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>最近 org-pomodoro 使ってないことに気付いた</title>
-            <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
-            <pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid>
-            <description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description>
-            <content type="html"><![CDATA[<p><a href="https://github.com/marcinkoziej/org-pomodoro">org-pomodoro</a> って便利な org-mode の拡張があるんですよ。
+]]></content></item><item><title>最近 org-pomodoro 使ってないことに気付いた</title><link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link><pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid><description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description><content type="html"><![CDATA[<p><a href="https://github.com/marcinkoziej/org-pomodoro">org-pomodoro</a> って便利な org-mode の拡張があるんですよ。
 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。</p>
 <p>デフォルト設定で話すと、何か TODO にカーソルを乗せてる状態で起動したらそいつが clock-in した上で25分のタイマーが動いて、
 25分経過したら clock-out した上で、5分の休憩が挟まってその休憩終了時には「次のポモドーロ開始するかい?」みたいなのが出て来てそこでまた M-x org-pomodoro を叩いたらまた25分のタイマーが開始して……みたいなやつ。</p>
@@ -1055,17 +1015,7 @@ org-clock とポモドーロテクニックを組み合わせて使える便利�
 <p>後者は、まあ会議の時はもう pomodoro 放置でいいっていう割り切りかな。</p>
 <p>という悩みがあるのでポモドーロテクニックを1年以上継続しているぞ! みたいな猛者の方はどうやってそれを維持しているか教えてほしい。</p>
 <p>org-clock は使ってるけどね。pomodoro 存在を忘れてた。無念。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>RPA ちょっとだけ調べてみた</title>
-            <link>https://mugijiru.github.io/posts/research-rpa/</link>
-            <pubDate>Sun, 25 Apr 2021 23:46:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/research-rpa/</guid>
-            <description>RPA ちょっとだけ調べてみたのでとりあえず Blog 記事にする。ちなみにいくつかリンク張るけど、面倒なのでアフィリエイトとかそういうのにはなってない。お</description>
-            <content type="html"><![CDATA[<p>RPA ちょっとだけ調べてみたのでとりあえず Blog 記事にする。ちなみにいくつかリンク張るけど、面倒なのでアフィリエイトとかそういうのにはなってない。お金は好きだけど面倒が勝った。</p>
+]]></content></item><item><title>RPA ちょっとだけ調べてみた</title><link>https://mugijiru.github.io/posts/research-rpa/</link><pubDate>Sun, 25 Apr 2021 23:46:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/research-rpa/</guid><description>RPA ちょっとだけ調べてみたのでとりあえず Blog 記事にする。ちなみにいくつかリンク張るけど、面倒なのでアフィリエイトとかそういうのにはなってない。お</description><content type="html"><![CDATA[<p>RPA ちょっとだけ調べてみたのでとりあえず Blog 記事にする。ちなみにいくつかリンク張るけど、面倒なのでアフィリエイトとかそういうのにはなってない。お金は好きだけど面倒が勝った。</p>
 <h2 id="モチベーション">モチベーション</h2>
 <p>身の回りで RPA 導入するって話があってそれ聞いて色々思うところがあったから調べてしまった。そんで折角調べたんだから世の中に出してしまえ、というぐらいの軽い気持ち。</p>
 <p>そんな軽い気持ちなので、まだどれ1つ試してはいない。</p>
@@ -1179,17 +1129,7 @@ MS だから Excel も当然使えるしなっ!</p>
 <h2 id="最後に">最後に</h2>
 <p>個人的にはコードを書きたいので RPA あんまり入れる気がしないでござる。テスタビリティなさそうだし。
 NoCode での開発ツールに対する自動テストみたいな、コード書かない縛りプレイの時に使うかも、ぐらいのお気持ち。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</title>
-            <link>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</link>
-            <pubDate>Sun, 04 Apr 2021 15:38:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</guid>
-            <description>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと</description>
-            <content type="html"><![CDATA[<p>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。</p>
+]]></content></item><item><title>ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</title><link>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</link><pubDate>Sun, 04 Apr 2021 15:38:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</guid><description>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと</description><content type="html"><![CDATA[<p>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。</p>
 <p>で、どう進めていくかというと
 2.18 は最新版からはかなり遠いので
 3系で LTS であったバージョンを順番に適用していく方針。</p>
@@ -1451,17 +1391,7 @@ index bc28c83..a803fc5 100644
 <a href="mailto:ember-components@0.0.3">ember-components@0.0.3</a> がいつから使えなくなるか気になるのと
 ember-bootstrap あたりの Addon を ember-cli-update で管理できるようにしたいなという気持ちは残ったけど。</p>
 <p>ま、そこもおいおい試していく</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</title>
-            <link>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</link>
-            <pubDate>Fri, 26 Mar 2021 01:49:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</guid>
-            <description>前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で</description>
-            <content type="html"><![CDATA[<p><a href="/posts/my-ember-libs-to-npm/">前回の記事</a> で Ember.js の共通コンポーネントを詰めた Addon を
+]]></content></item><item><title>自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</title><link>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</link><pubDate>Fri, 26 Mar 2021 01:49:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</guid><description>前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で</description><content type="html"><![CDATA[<p><a href="/posts/my-ember-libs-to-npm/">前回の記事</a> で Ember.js の共通コンポーネントを詰めた Addon を
 NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して
 ember-rails でも使えるようにしたよ、というお話です。</p>
 <h2 id="目的">目的</h2>
@@ -1698,17 +1628,7 @@ NPM Package にした Ember.js Addon を若干無理やりながらも ember-rai
 <p>まあ mixin とかは試してないのと
 Component をサブフォルダに分割していたりするともうちょっと手をかけないといけなさそうだけどとりあえず動いたから許して。</p>
 <p>正直、無理やり感が結構あるので普通のプロダクトに適用するのは厳しい感じある。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>Ember.js の共通コンポーネントの NPM への分離</title>
-            <link>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</link>
-            <pubDate>Wed, 24 Mar 2021 13:04:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</guid>
-            <description>相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ</description>
-            <content type="html"><![CDATA[<p>相変わらず Rails における Ember.js 関連で遊んでいます。</p>
+]]></content></item><item><title>Ember.js の共通コンポーネントの NPM への分離</title><link>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</link><pubDate>Wed, 24 Mar 2021 13:04:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</guid><description>相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ</description><content type="html"><![CDATA[<p>相変わらず Rails における Ember.js 関連で遊んでいます。</p>
 <p>今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだけど、後追いで出す「分離したリポジトリを Gem としても使えるようにし ember-rails 環境で動かす」という感じに記事の前振りです。</p>
 <p>本当は1つの記事にしたかったけど記述量が増えたから分割……。</p>
 <h2 id="目的">目的</h2>
@@ -1789,17 +1709,7 @@ NPM_TOKEN には GitHub のパーソナルアクセストークンが入るの�
 ember-cli-rails で使えるようになりますよっと。正直 NPM とかに慣れてる人ならさっくりできそうな内容。。。</p>
 <p>まあ Ember.js の Addon も実際は NPM Package なので普通に NPM Package として公開するだけで使えたりするってだけですね。
 .ember-cli-build.js を活用したらまたちょっと話は違うはずだけど今回のはそこまでのやつじゃないし……。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>ember-rails から ember-cli-rails へ</title>
-            <link>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</link>
-            <pubDate>Sat, 06 Mar 2021 17:05:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</guid>
-            <description>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、 ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。 やったことはいつも通り GitHub の</description>
-            <content type="html"><![CDATA[<p>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、
+]]></content></item><item><title>ember-rails から ember-cli-rails へ</title><link>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</link><pubDate>Sat, 06 Mar 2021 17:05:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</guid><description>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、 ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。 やったことはいつも通り GitHub の</description><content type="html"><![CDATA[<p>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、
 ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。</p>
 <p>やったことはいつも通り <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/18">GitHub の PR</a> にしています。</p>
 <p>PR の Description で「Rails 側ではこうした」「Ember 側ではこうした」みたいに書いているのでここではある程度時系列に沿ったような書き方にしようかな。</p>
@@ -2137,17 +2047,7 @@ GitHub Actions でもテストが通るし普通に使えるようになる。�
 <p>現実世界のアプリケーションはこのケースよりもっと複雑でしょうけども、やってやれないことはないはず。</p>
 <p>それに ember-cli が使えるようにしておかないと
 3系に移行ができないし、つまり、サポート切れのフレームワークを使い続けることになるのでもしまだ ember-rails のアプリが残っていたら頑張ってやっていきましょ。別フレームワークに置き換えるよりは労力はかからないはずですし。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>ember-rails でユーザー情報を Rails から inject</title>
-            <link>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</link>
-            <pubDate>Sun, 28 Feb 2021 13:10:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</guid>
-            <description>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し</description>
-            <content type="html"><![CDATA[<p>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に
+]]></content></item><item><title>ember-rails でユーザー情報を Rails から inject</title><link>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</link><pubDate>Sun, 28 Feb 2021 13:10:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</guid><description>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し</description><content type="html"><![CDATA[<p>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に
 API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡したい時がある。</p>
 <p>ember-rails を使ってる時もそれはあって、今回は Haml 経由で Ember.js に情報を渡して表示する方法を書いてみた。もちろん旧来版と ES6 Module 対応版の両方で実装している。</p>
 <h2 id="旧来版">旧来版</h2>
@@ -2204,17 +2104,7 @@ inject された controller の template で <code>{{current-user.email}}</code>
 <p>API を経由せずに Ember.js にデータを渡す方法が旧来版と ES6 Module 対応版の両方で書けることがわかったので、旧来版から移行しようとした時もすぐ書き直せそうで安心。</p>
 <p>ES6 Module 対応版の方は、
 ember-rails から ember-cli-rails とかに乗り換えてもそのまま使えそうだしね。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>ember-rails でコンポーネントをサブフォルダに配置する</title>
-            <link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link>
-            <pubDate>Sun, 28 Feb 2021 11:19:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</guid>
-            <description>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。 これも、ES6 Module 対応版と旧来版</description>
-            <content type="html"><![CDATA[<p>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。</p>
+]]></content></item><item><title>ember-rails でコンポーネントをサブフォルダに配置する</title><link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link><pubDate>Sun, 28 Feb 2021 11:19:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</guid><description>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。 これも、ES6 Module 対応版と旧来版</description><content type="html"><![CDATA[<p>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。</p>
 <p>これも、ES6 Module 対応版と旧来版の両方を書く。
 ES6 Module 対応版は何も考えることがないので、この記事は旧来版のためにあるようなものだけど。</p>
 <h2 id="es6-module-対応版の場合">ES6 Module 対応版の場合</h2>
@@ -2275,17 +2165,7 @@ FugaCompnent を Hoge 名前空間に所属させればいいので</p>
 <p>ES6 Module 対応版では直感的にやるだけで終わるし、旧来版でも共通ライブラリと大体やること一緒というか、それよりも手順が少ないので、サブフォルダへの移動を先にやった方が良かったかも。</p>
 <p>あと、今回も両パターンでやってるので、
 ES6 Module 移行前にこちらを実施しても簡単な修正で対応できることがわかりました。やったね。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title>
-            <link>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</link>
-            <pubDate>Sun, 28 Feb 2021 10:45:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</guid>
-            <description>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ</description>
-            <content type="html"><![CDATA[<p>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコンポーネントが必要だというのに気付いて共通ライブラリとして実装したくなることがある。あるんだよ。</p>
+]]></content></item><item><title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title><link>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</link><pubDate>Sun, 28 Feb 2021 10:45:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</guid><description>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ</description><content type="html"><![CDATA[<p>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコンポーネントが必要だというのに気付いて共通ライブラリとして実装したくなることがある。あるんだよ。</p>
 <p>というわけで、その共通化を2パターンでやってみた。
 2パターンというのは 旧来の書き方の場合と
 ES6 Module 対応版の場合とである。</p>
@@ -2379,17 +2259,7 @@ model もいけそうなので user model を共通化するような用途が�
 <p>旧来版と ES6 Module 対応版とで実装方法は異なるがどちらでも同じような使い勝手でコンポーネントを共通ライブラリとすることができることがわかった。</p>
 <p>両方のパターンが使えることがわかったので、
 ES6 Module 対応版への移行がまだでも躊躇せずライブラリを分割できそう。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>古い ember-rails App で ES6 Module 化を完了した</title>
-            <link>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</link>
-            <pubDate>Tue, 23 Feb 2021 20:45:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</guid>
-            <description>#10 サブフォルダのファイルを全て module に移行した #11 残りのファイルも module 化した でやってることで全てだけど 前回の記事 でやってた内容を完了まで持って行った</description>
-            <content type="html"><![CDATA[<ul>
+]]></content></item><item><title>古い ember-rails App で ES6 Module 化を完了した</title><link>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</link><pubDate>Tue, 23 Feb 2021 20:45:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</guid><description>#10 サブフォルダのファイルを全て module に移行した #11 残りのファイルも module 化した でやってることで全てだけど 前回の記事 でやってた内容を完了まで持って行った</description><content type="html"><![CDATA[<ul>
 <li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/10">#10 サブフォルダのファイルを全て module に移行した</a></li>
 <li><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/11">#11 残りのファイルも module 化した</a></li>
 </ul>
@@ -2456,17 +2326,7 @@ require_self するより前ならどこでも良さそうな気はする。</p>
 <p>まあぶっちゃけ ember-cli-rails 移行と module 化を同時にやっちゃうという手もあるけど、
 1回1回の変更差分を小さくするには、バラバラがいいかなってことで分けてやっている。</p>
 <p>だって、そうじゃないと「はい変更の多い PR はリジェクト〜wwww」ってされかねない^^</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>古い ember-rails App で一部ファイルを ES6 Module 化</title>
-            <link>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</link>
-            <pubDate>Sun, 21 Feb 2021 22:41:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</guid>
-            <description>これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部</description>
-            <content type="html"><![CDATA[<h2 id="これは何">これは何?</h2>
+]]></content></item><item><title>古い ember-rails App で一部ファイルを ES6 Module 化</title><link>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</link><pubDate>Sun, 21 Feb 2021 22:41:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</guid><description>これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部</description><content type="html"><![CDATA[<h2 id="これは何">これは何?</h2>
 <p>ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。</p>
 <h2 id="何をしたのか">何をしたのか</h2>
 <p>今回は ES6 module を使ってない ember-rails アプリケーションで一部のファイルだけ ES6 Module にしてみた。</p>
@@ -2517,20 +2377,9 @@ EmberApp.&lt;%= klass_name %&gt; = &lt;%= klass_name %&gt;;
 <p>さらに後続の PR で、複数のタイプが来ても対応できるように書き換えている。
 Model は対応できてないけど、ま、Model は移行してないのでとりあえず放置。</p>
 <p>CI でテストも通しているしバッチリだと思う。デプロイできるようにはしてないからサーバで動くかは確認してないけど、ま、大丈夫だろ</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>ember-rails で書いた Web アプリを GitHub で公開した</title>
-            <link>https://mugijiru.github.io/posts/publish-ember-rails-app/</link>
-            <pubDate>Sun, 21 Feb 2021 15:40:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/publish-ember-rails-app/</guid>
-            <description>この間の記事 で書いたように ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。 先週時点では「テストとかなくてもいいから動けばいいだ</description>
-            <content type="html"><![CDATA[<p><a href="/posts/ember-rails-in-2021/">この間の記事</a> で書いたように
+]]></content></item><item><title>ember-rails で書いた Web アプリを GitHub で公開した</title><link>https://mugijiru.github.io/posts/publish-ember-rails-app/</link><pubDate>Sun, 21 Feb 2021 15:40:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/publish-ember-rails-app/</guid><description>この間の記事 で書いたように ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。 先週時点では「テストとかなくてもいいから動けばいいだ</description><content type="html"><![CDATA[<p><a href="/posts/ember-rails-in-2021/">この間の記事</a> で書いたように
 ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。</p>
-<figure>
-    <img src="/ox-hugo/screenshot-ember-rails-todo-app.png"/> 
+<figure><img src="/ox-hugo/screenshot-ember-rails-todo-app.png"/>
 </figure>
 
 <p>先週時点では「テストとかなくてもいいから動けばいいだろ」って気持ちだったけどなんとなーくテストを追加したくなったりあんまり慣れてない docker-compose 対応してみたりしていたのと平日はこのプログラムに触れてなかったので、結構日が空いてしまった。</p>
@@ -2590,17 +2439,7 @@ es6 module を使ったようなコードが出力されるけど、これも敢
 Ember アプリが複数動いてる状態により近くなったんじゃないかなと。実際今回動いてるのは1つだから、ちょっと違うけどね。。。</p>
 <h2 id="最後に">最後に</h2>
 <p>ここから段々と最新の Ember.js を使えるように寄せていくつもり。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>2021年にもなって ember-rails で新規アプリを書いてみてる</title>
-            <link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link>
-            <pubDate>Sat, 13 Feb 2021 01:15:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/ember-rails-in-2021/</guid>
-            <description>少し思うところがあって、 2021 年になったというのに ember-rails を使って新規で Web アプリを書いている。 ember-rails とは? ember-rails は Ember.js という Web フロントエンド MVC なフレームワークを</description>
-            <content type="html"><![CDATA[<p>少し思うところがあって、
+]]></content></item><item><title>2021年にもなって ember-rails で新規アプリを書いてみてる</title><link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link><pubDate>Sat, 13 Feb 2021 01:15:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/ember-rails-in-2021/</guid><description>少し思うところがあって、 2021 年になったというのに ember-rails を使って新規で Web アプリを書いている。 ember-rails とは? ember-rails は Ember.js という Web フロントエンド MVC なフレームワークを</description><content type="html"><![CDATA[<p>少し思うところがあって、
 2021 年になったというのに <a href="https://github.com/emberjs/ember-rails">ember-rails</a> を使って新規で Web アプリを書いている。</p>
 <h2 id="ember-rails-とは">ember-rails とは?</h2>
 <p>ember-rails は
@@ -2637,17 +2476,7 @@ ember-rails だとそれも使えない。すなわちフロントエンドの�
 <p>マゾなので、敢えてその環境で新規アプリを用意しておいてそこから ember-cli-rails に移行する、みたいなことをしてみたいから。</p>
 <p>本当は自分で ember-rails なアプリを書くつもりはなかったんだけどサンプルになるようなアプリが探せなかったってのもある。これが Yak Shaving か〜と思いながら粛々と小さなアプリを書いていくのであった</p>
 <p>できたらまた記事にする。アプリ自体は公開しないけど、ソースは GitHub に上げるつもり。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>browse-at-remote を導入した</title>
-            <link>https://mugijiru.github.io/posts/add-browse-at-remote/</link>
-            <pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid>
-            <description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description>
-            <content type="html"><![CDATA[<p>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょくある。</p>
+]]></content></item><item><title>browse-at-remote を導入した</title><link>https://mugijiru.github.io/posts/add-browse-at-remote/</link><pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid><description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description><content type="html"><![CDATA[<p>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょくある。</p>
 <p>そういうことをする時、まずそもそも差し示したいコードを確認するんだけどその時は Emacs の中で探す方が早い。で、探して確認するまではいいんだけど、そこから GitHub 上のコードへのリンクを取得しようとするとちょっと面倒。</p>
 <p>これまでは、GitHub のリポジトリのトップからディレクトリを辿って行って当該コードを再度探していました。めんどくさいねっ。</p>
 <p>というわけで解決する手段を探していて最近導入したのが <a href="https://github.com/rmuslimov/browse-at-remote">browse-at-remote</a> というやつ。</p>
@@ -2663,17 +2492,7 @@ Hydra から即呼び出せるようにしてある。</p>
 <p>というわけで、導入と Hydra の設定を追加しているプルリクが以下になります。
 <a href="https://github.com/mugijiru/.emacs.d/pull/205">https://github.com/mugijiru/.emacs.d/pull/205</a></p>
 <p>という使い方をしているけど、実は似た機能を提供している <a href="https://github.com/sshaw/git-link">git-link</a> で <code>git-link-use-commit</code> のフラグを立てておいて他にもいくつか設定を入れたりしたらもっといい感じのことができるのかもしれない。今度試すか……。</p>
-]]></content>
-        </item>
-        
-        <item>
-            <title>新年明けましておめでとうございます</title>
-            <link>https://mugijiru.github.io/posts/happy-new-year-2021/</link>
-            <pubDate>Sat, 02 Jan 2021 20:31:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/happy-new-year-2021/</guid>
-            <description>&lt;p&gt;新年明けましておめでとうございます。麦汁です。昨年の終わり頃、世間では AdventCalendar で賑ってる頃に、ふと「サイトのリニューアルしたいなあ」なんてことを思って、リニューアルに着手しましたが、ようやくそれが実りそうです。&lt;/p&gt;</description>
-            <content type="html"><![CDATA[<p>新年明けましておめでとうございます。麦汁です。昨年の終わり頃、世間では AdventCalendar で賑ってる頃に、ふと「サイトのリニューアルしたいなあ」なんてことを思って、リニューアルに着手しましたが、ようやくそれが実りそうです。</p>
+]]></content></item><item><title>新年明けましておめでとうございます</title><link>https://mugijiru.github.io/posts/happy-new-year-2021/</link><pubDate>Sat, 02 Jan 2021 20:31:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/happy-new-year-2021/</guid><description>&lt;p>新年明けましておめでとうございます。麦汁です。昨年の終わり頃、世間では AdventCalendar で賑ってる頃に、ふと「サイトのリニューアルしたいなあ」なんてことを思って、リニューアルに着手しましたが、ようやくそれが実りそうです。&lt;/p></description><content type="html"><![CDATA[<p>新年明けましておめでとうございます。麦汁です。昨年の終わり頃、世間では AdventCalendar で賑ってる頃に、ふと「サイトのリニューアルしたいなあ」なんてことを思って、リニューアルに着手しましたが、ようやくそれが実りそうです。</p>
 <p>なんでそんなことをしてるかというと前の記事 <a href="/posts/starting-hugo/">Hugo 始めました</a> でも書いたように「自分が作ったサイトだっせー」ってのが1つあります。</p>
 <p>それを構築した時には「デザインとかも全部自分でやっちまおう」ということで全部やろうとしていたのですがデザインセンスが壊滅的だったとか時間がろくに取れないとかやる気が他に吸われていったとかでイマイチなまま放置していました。よくないですねえ。</p>
 <p>あと、そことは別にブログサービスを借りて使ってるのですがそっちはそっちで更新がだるいなってのもあってリニューアルと同時に今後のブログ更新はこっちにしてしまおう、というのもあったりします。</p>
@@ -2681,25 +2500,11 @@ Hydra から即呼び出せるようにしてある。</p>
 org-mode 使い的には幸せになれそうですし。</p>
 <p>あとは折角リニューアルしたんだからモチベーションが続くことを願っています。</p>
 <p>というわけで 2021 年の抱負は「月に2回はブログを更新する」とします。</p>
-<p>結構、緩めな抱負ですが、仕事じゃないのでこのぐらいの方が良かろう……。</p>]]></content>
-        </item>
-        
-        <item>
-            <title>Hugo 始めました</title>
-            <link>https://mugijiru.github.io/posts/starting-hugo/</link>
-            <pubDate>Sun, 20 Dec 2020 15:22:00 +0900</pubDate>
-            
-            <guid>https://mugijiru.github.io/posts/starting-hugo/</guid>
-            <description>&lt;p&gt;Hugo はなんか Emacs 界隈で流行ってるし、自分のサイトだっせーなーって思ってたので
+<p>結構、緩めな抱負ですが、仕事じゃないのでこのぐらいの方が良かろう……。</p>]]></content></item><item><title>Hugo 始めました</title><link>https://mugijiru.github.io/posts/starting-hugo/</link><pubDate>Sun, 20 Dec 2020 15:22:00 +0900</pubDate><guid>https://mugijiru.github.io/posts/starting-hugo/</guid><description>&lt;p>Hugo はなんか Emacs 界隈で流行ってるし、自分のサイトだっせーなーって思ってたので
 Hugo を使って、公開されてるテンプレートを適用して
-Web サイトを再構築してみることにした。&lt;/p&gt;</description>
-            <content type="html"><![CDATA[<p>Hugo はなんか Emacs 界隈で流行ってるし、自分のサイトだっせーなーって思ってたので
+Web サイトを再構築してみることにした。&lt;/p></description><content type="html"><![CDATA[<p>Hugo はなんか Emacs 界隈で流行ってるし、自分のサイトだっせーなーって思ってたので
 Hugo を使って、公開されてるテンプレートを適用して
 Web サイトを再構築してみることにした。</p>
 <p>他の静的サイトジェネレータもちょっと検討したけど機能面とかも考慮した上で Hugo がいいかなって。主な理由は「流行ってるから」ですが。ほら、流行りに乗りたいじゃん。ちょっと乗り遅れてる気もするけど。</p>
 <p>今、とりあえず作ってる最中なんだけど、つい BBS とかチャットとかリンク集とか置きたくなる。
-90年代または2000年代脳である。お絵描き BBS も置いたろうかって気持ちになる。</p>]]></content>
-        </item>
-        
-    </channel>
-</rss>
+90年代または2000年代脳である。お絵描き BBS も置いたろうかって気持ちになる。</p>]]></content></item></channel></rss>
