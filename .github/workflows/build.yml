@@ -1,13 +1,12 @@
 name: build and publish
 
 on:
-  # push:
-  #   branches:
-  #     - 'entry/**'
   pull_request:
+    paths:
+      - 'content/**/*.md'
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,16 +23,29 @@ jobs:
 
       - name: Check diff
         run: |
-          git diff --exit-code --quiet || git add . && echo 'found_update=1' >> $GITHUB_ENV
+          ! git diff --exit-code --quiet
 
-      - if: env.found_update == 1
-        name: Setup git config
+      - name: Setup git config
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
-      - if: env.found_update == 1
-        name: Commit & Push
+      - name: Commit & Push
         run: |
+          git add .
           git commit -m "Build Hugo by GitHub Actions"
           git push
+
+      - name: Notify slack build result
+        uses: homoluctus/slatify@master
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: '*Build*'
+          mention: 'here'
+          username: 'GitHub Actions'
+          mention_if: 'failure'
+          channel: '#develop'
+          url: ${{ secrets.SLACK_WEBHOOK }}
+          commit: true
+          token: ${{ secrets.GITHUB_TOKEN }}
