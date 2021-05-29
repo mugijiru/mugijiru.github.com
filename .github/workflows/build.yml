@@ -2,8 +2,8 @@ name: build and publish
 
 on:
   pull_request:
-    # paths:
-    #   - 'content/**/*.md'
+    paths:
+      - 'content/**/*.md'
 
 jobs:
   build:
