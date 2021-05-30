@@ -5,8 +5,125 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sat, 29 May 2021 23:31:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 30 May 2021 09:50:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>GitHub Actions で使ってる Action 達</title>
+            <link>https://mugijiru.github.io/posts/using-actions-in-github/</link>
+            <pubDate>Sun, 30 May 2021 09:50:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/using-actions-in-github/</guid>
+            <description>個人リポジトリでは CI などを GitHub Actions に任せている。で、誰かが作ってくれた色々な Action に助けられている。 というわけでそれらを、より多く助けられてるなって</description>
+            <content type="html"><![CDATA[<p>個人リポジトリでは CI などを GitHub Actions に任せている。で、誰かが作ってくれた色々な Action に助けられている。</p>
+<p>というわけでそれらを、より多く助けられてるなってやつから紹介してみようと思う。</p>
+<p>正直、自分が何を使ってたかを後から調べる時にこの記事を読めば大体済むよねってなりそうなので書いている部分が大きい。すーぐ忘れるもん。</p>
+<h2 id="actions-checkout">actions/checkout</h2>
+<p><a href="https://github.com/marketplace/actions/checkout">https://github.com/marketplace/actions/checkout</a></p>
+<p>多分 GitHub Actions を使ってる人ならみんな使ってる。だって普通チェックアウトするもんね。使うよね。</p>
+<p>今のところ自分は単純に checkout するのにしか使ってないが何気にオプションが多い。それらの使い方もしっかり書かれていて良い。</p>
+<p>普通に使う分には</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+  <span style="color:#f92672">with</span>:
+    <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">${{ github.head_ref }}</span>
+    <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>だけで良い。これで checkout される。楽。</p>
+<p>自分の場合は submodule が必要だった際に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">with</span>:
+  <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>としてみたり、
+pull_request で動かしたいけど、その hash ではなく branch をチェックアウトしたい時に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">with</span>:
+  <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">${{ github.head_ref }}</span>
+</code></pre></div><p>としたりなどしてた。</p>
+<h2 id="lazy-actions-slatify">lazy-actions/slatify</h2>
+<p><a href="https://github.com/marketplace/actions/slatify">https://github.com/marketplace/actions/slatify</a></p>
+<p>Slack 通知用の Action ですね。オプションが結構充実している。
+CI 終了後に成功/失敗を通知するのに使っている。</p>
+<p>Slack の方に Incoming Webhook を用意してそこを使ってメッセージを飛ばせるようにするやつ。</p>
+<p>自分の場合はこんな感じで、成功失敗に関わらず通知を飛ばしていて、ただ失敗の場合は here mention が飛ぶようにしている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Notify slack build result</span>
+  <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">lazy-actions/slatify@master</span>
+  <span style="color:#f92672">if</span>: <span style="color:#ae81ff">always()</span>
+  <span style="color:#f92672">with</span>:
+    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">${{ job.status }}</span>
+    <span style="color:#f92672">job_name</span>: <span style="color:#e6db74">&#39;*Build*&#39;</span>
+    <span style="color:#f92672">mention</span>: <span style="color:#e6db74">&#39;here&#39;</span>
+    <span style="color:#f92672">username</span>: <span style="color:#e6db74">&#39;GitHub Actions&#39;</span>
+    <span style="color:#f92672">mention_if</span>: <span style="color:#e6db74">&#39;failure&#39;</span>
+    <span style="color:#f92672">channel</span>: <span style="color:#e6db74">&#39;#develop&#39;</span>
+    <span style="color:#f92672">url</span>: <span style="color:#ae81ff">${{ secrets.SLACK_WEBHOOK }}</span>
+    <span style="color:#f92672">commit</span>: <span style="color:#66d9ef">true</span>
+    <span style="color:#f92672">token</span>: <span style="color:#ae81ff">${{ secrets.GITHUB_TOKEN }}</span>
+</code></pre></div><p>ここではやってないけど絵文字も指定できるので便利。まあ Webhook 側に仕込んでいたらあまり使わないんだけども。</p>
+<p>元は <code>homoluctus/slatify</code> だったので
+ember-rails-todo-app とかでまだその設定を残している。変更しないと〜。</p>
+<h2 id="ruby-setup-ruby">ruby/setup-ruby</h2>
+<p><a href="https://github.com/ruby/setup-ruby">https://github.com/ruby/setup-ruby</a></p>
+<p>Ruby やるならこれだよねってやつ。</p>
+<p>多数のバージョンをサポートしているしリポジトリに .ruby-version ファイルがあればそれを見てくれる。</p>
+<p>Bundler 周りも cache 使ったりとかをいい感じにしてくれてとても便利。</p>
+<p>というわけで今のところ自分は以下の感じで間に合ってる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use ruby</span>
+  <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ruby/setup-ruby@v1</span>
+  <span style="color:#f92672">with</span>:
+    <span style="color:#f92672">bundler-cache</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><h2 id="nanasess-setup-chromedriver">nanasess/setup-chromedriver</h2>
+<p><a href="https://github.com/marketplace/actions/setup-chromedriver">https://github.com/marketplace/actions/setup-chromedriver</a></p>
+<p>CI で Chrome でもテストしたい時に使ってる。
+Rails で Capybara でテストする時ですね。</p>
+<p>chromedriver のセットアップなので Capybara 使う時はこれでいいんじゃないかなって思ってる。
+<a href="https://github.com/mugijiru/ember-rails-todo-app/blob/a98a66ae799eb60f16569c16165d3c456d041e76/spec/support/capybara.rb#L3-L14">rspec 側でも色々書く必要があるのでだるい</a> けど、まあ Chromedriver だからなのかな。</p>
+<p>とりあえず workflow 側ではこんな程度でしか使ってない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">use-chromedriver</span>
+  <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">nanasess/setup-chromedriver@master</span>
+</code></pre></div><p>他のプロジェクトだとテストどうやってるのかな。今度調べてみたいね。</p>
+<h2 id="actions-setup-node">actions/setup-node</h2>
+<p><a href="https://github.com/marketplace/actions/setup-node-js-environment">https://github.com/marketplace/actions/setup-node-js-environment</a></p>
+<p>Node.js をセットアップしてくれる。自分は以下のような単純な使い方しかしてないけど、何度もお世話になっている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use Node.js</span>
+  <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v1</span>
+  <span style="color:#f92672">with</span>:
+    <span style="color:#f92672">node-version</span>: <span style="color:#ae81ff">14.</span><span style="color:#ae81ff">x</span>
+</code></pre></div><h2 id="reviewdog-action-setup">reviewdog/action-setup</h2>
+<p><a href="https://github.com/reviewdog/action-setup">https://github.com/reviewdog/action-setup</a></p>
+<p>eslint とか Rubocop とかの結果を使って GitHub 上で指摘してくれたりする便利なワンちゃん。</p>
+<p>まあ eslint や Rubocop あたりは
+<a href="https://github.com/reviewdog/action-eslint">reviewdog/action-eslint</a> とか後述の <a href="#reviewdog-action-rubocop">reviewdog/action-rubocop</a> とかを使えたらそっちを使う方が良い。</p>
+<p>自分は eslint は yarn を使ってるからか自前の NPM ライブラリを使ってるからかで、
+action-eslint だとうまく動かせなかったので
+reviewdog/action-setup で reviewdog のセットアップだけして自前でコマンドを叩く方法を選択している。</p>
+<p>というわけで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">reviewdog/action-setup@v1</span>
+  <span style="color:#f92672">with</span>:
+    <span style="color:#f92672">reviewdog_version</span>: <span style="color:#ae81ff">latest</span>
+</code></pre></div><p>でとりあえず使えるようにして</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run reviewdog</span>
+  <span style="color:#f92672">env</span>:
+    <span style="color:#f92672">REVIEWDOG_GITHUB_API_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.GITHUB_TOKEN }}</span>
+    <span style="color:#f92672">NPM_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.NPM_AUTH_TOKEN }}</span>
+  <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span><span style="color:#e6db74">    </span>    <span style="color:#ae81ff">yarn --silent run eslint -f rdjson . | reviewdog -f=rdjson -reporter=github-pr-review</span>
+</code></pre></div><p>みたいなことをしている。</p>
+<p>Ember.js のテンプレートもそのうち対応しないとなあ……。</p>
+<h2 id="reviewdog-action-rubocop">reviewdog/action-rubocop</h2>
+<p><a href="https://github.com/marketplace/actions/run-rubocop-with-reviewdog">https://github.com/marketplace/actions/run-rubocop-with-reviewdog</a></p>
+<p>最近入れてみた。設定にもよるけど、Rubocop で引っ掛かったところについて
+PR のチェックリスト的なやつで教えてくれたり、コメントを入れてくれたりする。
+Rubocop 先生に怒られたかったので便利。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rubocop</span>
+  <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">reviewdog/action-rubocop@v1</span>
+  <span style="color:#f92672">with</span>:
+    <span style="color:#f92672">rubocop_version</span>: <span style="color:#ae81ff">gemfile</span>
+    <span style="color:#f92672">rubocop_flags</span>: -<span style="color:#ae81ff">a</span>
+    <span style="color:#f92672">rubocop_extensions</span>: <span style="color:#ae81ff">rubocop-rails:gemfile</span>
+    <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">${{ secrets.GITHUB_TOKEN }}</span>
+    <span style="color:#f92672">reporter</span>: <span style="color:#ae81ff">github-pr-review</span>
+    <span style="color:#f92672">fail_on_error</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><p>とりあえずこんな感じの設定で使ってる。基本的に Gemfile の設定を使って、後は何か見つかったら review として飛ばしてくれるようにしている。</p>
+<p>rubocop_flags の <code>-a</code> は要るのかな……。少なくとも eslint の方は <code>--fix</code> するとかえって思ったような挙動にならなかったような……。まいっか。しばらくそのまま運用しよう。</p>
+]]></content>
+        </item>
         
         <item>
             <title>Hugo の build を GitHub Actions でやることにした</title>
