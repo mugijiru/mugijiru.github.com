@@ -3,21 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mugijiru.github.io/categories/</loc>
-    <lastmod>2021-05-29T23:31:00+09:00</lastmod>
+    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/github/</loc>
-    <lastmod>2021-05-29T23:31:00+09:00</lastmod>
+    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/using-actions-in-github/</loc>
+    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/</loc>
+    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/</loc>
+    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/hugo/</loc>
     <lastmod>2021-05-29T23:31:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</loc>
-    <lastmod>2021-05-29T23:31:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/posts/</loc>
-    <lastmod>2021-05-29T23:31:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/</loc>
     <lastmod>2021-05-29T23:31:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/ember-js/</loc>
