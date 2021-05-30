@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - 'content/**/*.md'
+    branches:
+      - 'entry/**'
 
 jobs:
   build:
