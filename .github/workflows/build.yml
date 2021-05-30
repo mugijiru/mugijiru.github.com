@@ -24,14 +24,16 @@ jobs:
 
       - name: Check diff
         run: |
-          ! git diff --exit-code --quiet
+          git diff --exit-code --quiet || echo 'found_update=1' >> $GITHUB_ENV
 
       - name: Setup git config
+        if: env.found_update == 1
         run: |
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Commit & Push
+        if: env.found_update == 1
         run: |
           git add .
           git commit -m "Build Hugo by GitHub Actions"
