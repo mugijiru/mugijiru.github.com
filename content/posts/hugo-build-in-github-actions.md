@@ -13,7 +13,10 @@ draft = false
 のあたりにそれ用の workflow が入って来る予定。
 
 使ってるのは [hugo-setup](https://github.com/marketplace/actions/hugo-setup) というやつ。
-`run: hugo` するだけで build してくれるようで便利そう。成功可否はいつものように Slack 通知するし
+`run: hugo` するだけで build してくれるようで便利そう。
+minify は差分的に微妙な感じするのでとりあえず使わないことにした
+
+成功可否はいつものように Slack 通知するし
 push して放置したら良いのは良さそう。
 
 ま、これで build しないで済むようになったらちょっと楽になりそうで楽しみ。

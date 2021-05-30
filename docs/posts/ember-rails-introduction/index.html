@@ -47,15 +47,10 @@
 
 
 <meta itemprop="name" content="ember-rails アプリケーション保守入門">
-<meta itemprop="description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし">
-<meta itemprop="datePublished" content="2021-05-24T09:02:00+09:00" />
-<meta itemprop="dateModified" content="2021-05-24T09:02:00+09:00" />
+<meta itemprop="description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし"><meta itemprop="datePublished" content="2021-05-24T09:02:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-05-24T09:02:00&#43;09:00" />
 <meta itemprop="wordCount" content="8445">
-
-
-
 <meta itemprop="keywords" content="" />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ember-rails アプリケーション保守入門"/>
 <meta name="twitter:description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし"/>
@@ -70,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-05-24 09:02:00 &#43;0900 JST" />
+    <meta property="article:published_time" content="2021-05-24 09:02:00 &#43;0900 &#43;0900" />
 
 
 
@@ -281,10 +276,10 @@ Tracked Property を使ってなんとかするのが推奨されている。</p
 <p>Ember.js ではコンポーネントを呼び出す時にも
 <code>{{my-component}}</code> みたいに使います。</p>
 <p>上記の書き方はインラインコンポーネントの呼び出し方でブロックコンポーネントは</p>
-<pre><code class="language-hbs" data-lang="hbs">{{#my-block-component}}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs"><span style="color:#75715e">{{</span><span style="color:#a6e22e">#my-block-component</span><span style="color:#75715e">}}</span>
   ...
-{{/my-block-component}}
-</code></pre><p>みたいな感じになります。</p>
+<span style="color:#75715e">{{</span><span style="color:#a6e22e">/my-block-component</span><span style="color:#75715e">}}</span>
+</code></pre></div><p>みたいな感じになります。</p>
 <p>変数を渡す時は</p>
 <p><code>{{my-component hoge=fuga}}</code></p>
 <p>みたいな感じ。
@@ -504,12 +499,12 @@ Vue.js の class の Binding に似ていて</p>
 </code></pre></div><p>みたいな感じで書く。</p>
 <h4 id="template-で直接使う場合">Template で直接使う場合</h4>
 <p>Template から直接アクションを呼びたい時は</p>
-<pre><code class="language-hbs" data-lang="hbs">&lt;button type=&quot;}button&quot; {{action &quot;hoge&quot;}}&gt;
-</code></pre><p>みたいに書くと、そのボタンを押した時に hoge アクションが動く。
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs">&lt;button type=&#34;}button&#34; <span style="color:#75715e">{{</span>action <span style="color:#e6db74">&#34;hoge&#34;</span><span style="color:#75715e">}}</span>&gt;
+</code></pre></div><p>みたいに書くと、そのボタンを押した時に hoge アクションが動く。
 <a href="https://guides.emberjs.com/v2.18.0/components/triggering-changes-with-actions/#toc%5Fdesigning-the-child-component">https://guides.emberjs.com/v2.18.0/components/triggering-changes-with-actions/#toc%5Fdesigning-the-child-component</a></p>
 <h4 id="下位のコンポーネントに渡す場合">下位のコンポーネントに渡す場合</h4>
-<pre><code class="language-hbs" data-lang="hbs">{{child-component foo=(action &quot;hoge&quot;)}}
-</code></pre><p>というように書いて渡すと、child-component では
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs"><span style="color:#75715e">{{</span>child-component <span style="color:#a6e22e">foo</span><span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">(</span>action <span style="color:#e6db74">&#34;hoge&#34;</span><span style="color:#960050;background-color:#1e0010">)</span><span style="color:#75715e">}}</span>
+</code></pre></div><p>というように書いて渡すと、child-component では
 foo というメソッドが定義されていて、その実体は親コンポーネントで定義した hoge アクション、という状態になる</p>
 <p>なので child-component 内のアクションを</p>
 <pre><code class="language-nil" data-lang="nil">actions: {
@@ -553,7 +548,7 @@ didUpdate は初期化時には動かしたくないけど didRender 的に使�
 <h4 id="hook-の使い方">Hook の使い方</h4>
 <p>使い方は2種類あって</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">init</span> () {
-  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_super</span>(...<span style="color:#a6e22e">arguments</span>) <span style="color:#75715e">// 通常の処理をさせておく
+  <span style="color:#66d9ef">this</span>.<span style="color:#ae81ff">_</span><span style="color:#66d9ef">super</span>(...<span style="color:#a6e22e">arguments</span>) <span style="color:#75715e">// 通常の処理をさせておく
 </span><span style="color:#75715e"></span>  <span style="color:#75715e">// ここに特別な処理を書く
 </span><span style="color:#75715e"></span>}
 </code></pre></div><p>というように hook 関数を Override する方法と</p>
@@ -578,15 +573,15 @@ didUpdate は初期化時には動かしたくないけど didRender 的に使�
 <h3 id="block-component">Block Component</h3>
 <p><a href="https://guides.emberjs.com/v2.18.0/components/block-params/">Block Component</a> では</p>
 <p>my-component のテンプレートを</p>
-<pre><code class="language-hbs" data-lang="hbs">&lt;div&gt;
-  {{yield}}
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs">&lt;div&gt;
+  <span style="color:#75715e">{{</span>yield<span style="color:#75715e">}}</span>
   ↑親から来たやつ↑
 &lt;/div&gt;
-</code></pre><p>みたいに書いてる状態で親から</p>
-<pre><code class="language-hbs" data-lang="hbs">{{#my-component}}
+</code></pre></div><p>みたいに書いてる状態で親から</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-hbs" data-lang="hbs"><span style="color:#75715e">{{</span><span style="color:#a6e22e">#my-component</span><span style="color:#75715e">}}</span>
   hogehoge
-{{/my-component}}
-</code></pre><p>みたいに呼び出すと</p>
+<span style="color:#75715e">{{</span><span style="color:#a6e22e">/my-component</span><span style="color:#75715e">}}</span>
+</code></pre></div><p>みたいに呼び出すと</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span>&gt;
   hogehoge
   ↑親から来たやつ↑
@@ -823,7 +818,7 @@ ember-cli-rails に移行して3系にした方が幸せになれそうなので
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年05月24日 09:02
+          2021年05月24日 00:02
         
 
          
@@ -934,6 +929,13 @@ ember-cli-rails に移行して3系にした方が幸せになれそうなので
 
         <div class="pagination__buttons">
           
+            <span class="button previous">
+              <a href="https://mugijiru.github.io/posts/hugo-build-in-github-actions/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Hugo の build を GitHub Actions でやることにした</span>
+              </a>
+            </span>
+          
 
           
             <span class="button next">
@@ -979,7 +981,7 @@ ember-cli-rails に移行して3系にした方が幸せになれそうなので
 
 
 
-<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+<script type="text/javascript" src="/bundle.min.a0f363fdf81cdc5cfacc447a79c33189eb000d090336cd04aac8ee256f423b3133b836c281944c19c75e38d0b0b449f01ce5807e37798b7ac94ac1db51983fc4.js" integrity="sha512-oPNj/fgc3Fz6zER6ecMxiesADQkDNs0EqsjuJW9COzEzuDbCgZRMGcdeONCwtEnwHOWAfjd5i3rJSsHbUZg/xA=="></script>
 
 
 
