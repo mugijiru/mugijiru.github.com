@@ -3,18 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mugijiru.github.io/categories/</loc>
-    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
+    <lastmod>2021-06-10T20:53:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/categories/emacs/</loc>
+    <lastmod>2021-06-10T20:53:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</loc>
+    <lastmod>2021-06-10T20:53:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/</loc>
+    <lastmod>2021-06-10T20:53:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/</loc>
+    <lastmod>2021-06-10T20:53:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/github/</loc>
     <lastmod>2021-05-30T09:50:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/using-actions-in-github/</loc>
-    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/posts/</loc>
-    <lastmod>2021-05-30T09:50:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/</loc>
     <lastmod>2021-05-30T09:50:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/hugo/</loc>
@@ -34,9 +40,6 @@
   </url><url>
     <loc>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</loc>
     <lastmod>2021-05-09T14:35:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/categories/emacs/</loc>
-    <lastmod>2021-04-29T19:03:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/org/</loc>
     <lastmod>2021-04-29T19:03:00+09:00</lastmod>
@@ -100,6 +103,9 @@
   </url><url>
     <loc>https://mugijiru.github.io/about/</loc>
     <lastmod>2020-12-20T11:59:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/set-org-todo-from-ivy/</loc>
+    <lastmod>2020-05-31T01:32:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/tags/</loc>
   </url>

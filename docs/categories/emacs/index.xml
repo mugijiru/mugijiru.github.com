@@ -6,7 +6,16 @@
     <description>Recent content in Emacs on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 29 Apr 2021 19:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Jun 2021 20:53:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>org-todo を ivy で設定できるようにするパート2</title>
+      <link>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</link>
+      <pubDate>Thu, 10 Jun 2021 20:53:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</guid>
+      <description>org-todo を ivy で設定できるようにした という記事で org-todo を ivy で設定できるようにしたつもりだったんですけど、ダメでした。 何がダメだったかというと org-todo-keywords-for-agenda という変数</description>
+    </item>
+    
     <item>
       <title>org-agenda を活用し始めた</title>
       <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
@@ -32,6 +41,15 @@
       
       <guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid>
       <description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description>
+    </item>
+    
+    <item>
+      <title>org-todo を ivy で設定できるようにした</title>
+      <link>https://mugijiru.github.io/posts/set-org-todo-from-ivy/</link>
+      <pubDate>Sun, 31 May 2020 01:32:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/set-org-todo-from-ivy/</guid>
+      <description>posframe っていいですよね。いきなりタイトルと関係なさそうな単語出したけど。まあ ivy-posframe を使ってるので ivy を使うと posframe が使えて便利って話なんだけど。 ところで話</description>
     </item>
     
   </channel>
