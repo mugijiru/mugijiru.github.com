@@ -45,6 +45,54 @@
    :PROPERTIES:
    :EXPORT_HUGO_SECTION: posts
    :END:
+*** DONE org-todo を ivy で設定できるようにした                      :@Emacs:
+    CLOSED: [2020-05-31 日 01:32]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: set-org-todo-from-ivy
+    :END:
+
+    posframe っていいですよね。
+    いきなりタイトルと関係なさそうな単語出したけど。
+    まあ ivy-posframe を使ってるので ivy を使うと posframe が使えて便利って話なんだけど。
+
+    ところで話は若干変わって、
+    org-todo って実行するとウインドウが分割されてバッファが表示されてそこから選ぶ形になるじゃないですか。
+    もしかしたら設定がちゃんとしてたりしたらならないのかもしれませんけど、
+    とりあえず私の環境だとなるんですよ。
+
+    で、それだと何が問題かというと
+    ウインドウ分割される時に元々見ていたバッファがガチャガチャと移動しちゃってつらいんですよ。
+    posframe を使えるとそれが起きなくて便利なんですよ。
+
+    というわけで、org-todo でキーワード選ぶ時にも
+    posframe が使えるといいなって思ったんですよ。
+
+    で、色々調べた結果、自分にはそういうのを提供してくれる設定とか拡張とか見つけられなかったんですよ。
+
+    じゃあ作るしかないじゃん?
+    というわけで、そういう関数作った
+
+    #+begin_src emacs-lisp
+    (defun my/org-todo ()
+      (interactive)
+      (ivy-read "Org todo: "
+                org-todo-keywords-for-agenda
+                :require-match t
+                :sort nil
+                :action (lambda (keyword)
+                          (org-todo keyword))))
+    #+end_src
+
+    org-todo の代わりにこの関数を呼ぶと
+    ivy で TODO のキーワードが設定できる。
+    ivy は ivy-posframe を使ってるから、画面がガチャガチャ動かなくなる。便利。
+
+    この変更に関する Emacs の設定ファイルへの Pull request は
+    https://github.com/mugijiru/.emacs.d/pull/74
+    に置いてるので興味があれば見てもらえると。
+
+    ところで ivy でこういう選択するインターフェース書いたの初めて。
+    とりあえず書いてみたらできたので、また別のやつも ivy を使って書いてみたい。
 *** DONE Hugo 始めました                                              :@雑記:
     CLOSED: [2020-12-20 日 15:22]
     :PROPERTIES:
@@ -4508,3 +4556,68 @@
      rubocop_flags の ~-a~ は要るのかな……。
      少なくとも eslint の方は ~--fix~ するとかえって思ったような挙動にならなかったような……。
      まいっか。しばらくそのまま運用しよう。
+*** DONE org-todo を ivy で設定できるようにするパート2               :@Emacs:
+    CLOSED: [2021-06-10 木 20:53]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: set-org-todo-from-ivy-part2
+    :END:
+
+    [[*org-todo を ivy で設定できるようにした][org-todo を ivy で設定できるようにした]] という記事で
+    org-todo を ivy で設定できるようにしたつもりだったんですけど、ダメでした。
+
+    何がダメだったかというと
+    ~org-todo-keywords-for-agenda~ という変数を使ってるのがダメだった。
+
+    この変数、何かよくわからんタイミングで設定されたりするっぽくて
+    ほとんどの場合で空の値になっていた。
+
+    というわけで、ちょっと例の関数だと使いたい時にその値が空になっていてばかりで
+    正直使い物にならない関数になっていた。死蔵していた。
+
+    まあ俺はそんな半端な状態で放置するような男ではない。
+    嘘です。1年ぐらい放置していました。
+    だけど逆にいうと1年越しでなんとか対応しました。
+    というのが以下の PR になります。
+
+    https://github.com/mugijiru/.emacs.d/pull/231
+
+    PR の description にも書いている通り
+    愚直に org-todo-keywords を加工するように変更している。
+
+    私の設定している org-todo-keywords は現在は
+
+    #+begin_src emacs-lisp
+    ((sequence "TODO" "DOING(!)" "WAIT" "|" "DONE(!)" "SOMEDAY(s)"))
+    #+end_src
+
+    という感じ。
+
+    これを
+
+    #+begin_src emacs-lisp
+    (mapcar (lambda (element)
+              (replace-regexp-in-string "\(.+\)" "" element))
+            (--remove (string= "|" it) (cdar org-todo-keywords)))
+    #+end_src
+
+    のような処理で
+
+    #+begin_src emacs-lisp
+    '("TODO" "DOING" "WAIT" "DONE" "SOMEDAY")
+    #+end_src
+
+    みたいな感じで、キー指定の ~(s)~ や、未完了or完了状態を区切る ~|~ とかを取り除いた文字列のリストにしている。
+
+    org-todo-keywords は本当は
+
+    #+begin_src emacs-lisp
+    (setq org-todo-keywords
+          '((sequence "TODO" "|" "DONE")
+            (sequence "REPORT" "BUG" "KNOWNCAUSE" "|" "FIXED")
+            (sequence "|" "CANCELED")))
+    #+end_src
+
+    みたいに複数のシーケンスを持つことができるけど
+    そういう使い方はしてないので、そういうケースは無視している。
+
+    とりあえずこれでようやく ivy で org-todo を設定できるようになった。ちょっと便利になった。
