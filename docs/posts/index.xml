@@ -5,8 +5,87 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Thu, 10 Jun 2021 20:53:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 13 Jun 2021 15:18:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>ivy を使った自作コマンドなどをテストするようにした</title>
+            <link>https://mugijiru.github.io/posts/testing-my-emacs-command/</link>
+            <pubDate>Sun, 13 Jun 2021 15:18:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/testing-my-emacs-command/</guid>
+            <description>これまで Emacs Lisp のテストコードを書いてなかった。 というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなく</description>
+            <content type="html"><![CDATA[<p>これまで Emacs Lisp のテストコードを書いてなかった。</p>
+<p>というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなくなっても困るのは自分だけ、という状況なのでまあテストしなくてもいいかな、みたいな。</p>
+<p>とは思っているものの、やっぱりテストコード書いてみたいよねってことで設定ファイルに書いている自作の関数やコマンドをテストすることにした。</p>
+<h2 id="自作関数のテスト">自作関数のテスト</h2>
+<p>自作コマンドの内部で使ってる関数のテストを
+<a href="https://github.com/mugijiru/.emacs.d/pull/233">https://github.com/mugijiru/.emacs.d/pull/233</a>
+で書いてみた。</p>
+<p>なぜそんなものをテストしているかというと、リファクタリングしたかったので、ならテスト書いた方がいいよね〜みたいな。</p>
+<p>テストコードは以下のような感じ。前提条件として <code>org-todo-keywords</code> を用意して、関数を実行した時の期待する結果と、実際の結果を
+should マクロを使って合っていることを確認している。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(ert-deftest test:my/org-todo-keyword-strings ()
+  <span style="color:#e6db74">&#34;Test of </span><span style="color:#e6db74">`my/org-todo-keyword-strings&#39;</span><span style="color:#e6db74">.&#34;</span>
+  (setq org-todo-keywords
+        <span style="color:#f92672">&#39;</span>((sequence <span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING(!)&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;DONE(!)&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY(s)&#34;</span>)))
+  (should (<span style="color:#a6e22e">equal</span> <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;DONE&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY&#34;</span>)
+                 (my/org-todo-keyword-strings))))
+</code></pre></div><p>ま、とても簡単な例だと思う。</p>
+<p>ちなみにこの記事や出した PR では setq を使ってるけど、最新のコードでは let を使うようにテストを書き直してある。</p>
+<h2 id="ivy-を使った自作コマンドのテスト">ivy を使った自作コマンドのテスト</h2>
+<p>上に示した PR では
+ivy を使った処理はテストができない(しづらい)と判断しコマンド内部で使ってる関数だけテストしている。</p>
+<p>だけどやっぱり ivy を使ってるコマンド自体もテストしてみたいよねということで以下の PR を作った</p>
+<p><a href="https://github.com/mugijiru/.emacs.d/pull/235">https://github.com/mugijiru/.emacs.d/pull/235</a></p>
+<h3 id="with-simulated-input-の導入">with-simulated-input の導入</h3>
+<p>ivy を使ってるコマンドのテストで難しそうだなと思っていたのが
+ivy の操作部分のシミュレーション。</p>
+<p>なのだけど
+<a href="https://github.com/DarwinAwardWinner/with-simulated-input">https://github.com/DarwinAwardWinner/with-simulated-input</a>
+を見つけて解決した。</p>
+<p>こいつはユーザーの入力を文字列で表現してその通りに操作をしてくれるようなライブラリ。</p>
+<p>第一引数に <code>&quot;hello SPC world RET&quot;</code> みたいに入れたら
+&ldquo;hello world&rdquo; と入力して Enter を叩く、みたいな入力をしてくれる。わかりやすい。</p>
+<p>入力と入力の間に wait を持たせたかったら
+<code>wsi-simulate-idle-time</code> という関数でミリ秒単位で wait も入れられるっぽい。その機能はまだ使ったことないけど便利そう。</p>
+<h3 id="cl-letf-による関数の差し替え">cl-letf による関数の差し替え</h3>
+<p>今回テスト対象にしているコードは内部で org-mode の <code>org-todo</code> 関数を呼んでいる。だけど別に <code>org-todo</code> の機能をテストしたいわけではなく
+ivy を使った絞り込みで適切に値が選択されることを検証したいのである。</p>
+<p>というわけで cl-letf を使って呼んだ先で使われている org-todo を以下のように一時的に差し替える。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(cl-letf (((<span style="color:#a6e22e">symbol-function</span> <span style="color:#e6db74">&#39;org-todo</span>)
+           (lambda (keyword)
+             (setq result keyword))))
+  <span style="color:#75715e">;; ここにテストコードを書く</span>
+  )
+</code></pre></div><p>ちなみにこの着想に到ったのは
+<a href="https://g000001.cddddr.org/3690354344">https://g000001.cddddr.org/3690354344</a>
+の記事を読んだから。</p>
+<p>そう。私もまた壊れた flet が欲しかったのである。</p>
+<p>そして世の中にいい記事があってありがたいね。</p>
+<h3 id="実際のテストコード">実際のテストコード</h3>
+<p>以上で説明したようなやつを使って、以下のようなテストコードになった。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(ert-deftest test:my/org-todo ()
+  <span style="color:#e6db74">&#34;Test of </span><span style="color:#e6db74">`my/org-todo&#39;</span><span style="color:#e6db74">.&#34;</span>
+  (let ((org-todo-keywords <span style="color:#f92672">&#39;</span>((sequence <span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING(!)&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;DONE(!)&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY(s)&#34;</span>)))
+        (result))
+    <span style="color:#75715e">;; org-mode を読まずに済むように org-todo を差し替えてテストしている</span>
+    (cl-letf (((<span style="color:#a6e22e">symbol-function</span> <span style="color:#e6db74">&#39;org-todo</span>)
+               (lambda (keyword)
+                 (setq result keyword))))
+      (with-simulated-input <span style="color:#e6db74">&#34;DOI RET&#34;</span> (my/org-todo))
+      (should (<span style="color:#a6e22e">equal</span> <span style="color:#e6db74">&#34;DOING&#34;</span> result)))))
+</code></pre></div><p><code>my/org-todo</code> を実行したら org-todo のキーワードが ivy に表示されてそこから絞り込んで選択する、ということを期待したテストである。</p>
+<p>今回は &ldquo;DOI&rdquo; まで入力して候補が DOING だけになりそこで Enter を押すとそれが選択されることをテストしている。</p>
+<p>選択された結果は org-todo を差し替えた関数で
+result という変数に束縛しているので、それが &ldquo;DOING&rdquo; という文字列と一致しているかを検証しているだけ。</p>
+<h2 id="最後に">最後に</h2>
+<p>ところで、
+buffer の変更のテストってどうしたらいいんでしょうかね。</p>
+<p>何か適当なバッファを用意して関数を実行した後に
+<code>(buffer-string)</code> と期待値がマッチするかを確認したらいいのかな</p>
+]]></content>
+        </item>
         
         <item>
             <title>org-todo を ivy で設定できるようにするパート2</title>

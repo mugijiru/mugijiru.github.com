@@ -6,7 +6,16 @@
     <description>Recent content in Emacs on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Thu, 10 Jun 2021 20:53:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Jun 2021 15:18:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ivy を使った自作コマンドなどをテストするようにした</title>
+      <link>https://mugijiru.github.io/posts/testing-my-emacs-command/</link>
+      <pubDate>Sun, 13 Jun 2021 15:18:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/testing-my-emacs-command/</guid>
+      <description>これまで Emacs Lisp のテストコードを書いてなかった。 というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなく</description>
+    </item>
+    
     <item>
       <title>org-todo を ivy で設定できるようにするパート2</title>
       <link>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</link>
