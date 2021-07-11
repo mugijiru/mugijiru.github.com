@@ -3,7 +3,7 @@ languageCode   = "ja-JP"
 HasCJKLanguage = true
 title          = "麦汁三昧"
 theme          = "hello-friend-ng"
-paginate       = 10
+paginate       = 20
 publishDir     = "docs"
 
 

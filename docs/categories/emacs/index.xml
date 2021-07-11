@@ -6,7 +6,16 @@
     <description>Recent content in Emacs on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 13 Jun 2021 15:18:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Jul 2021 13:42:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>key-chord を使って Sticky Shift を一部実現した</title>
+      <link>https://mugijiru.github.io/posts/sticky-shift-with-key-chord/</link>
+      <pubDate>Sun, 11 Jul 2021 13:42:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/sticky-shift-with-key-chord/</guid>
+      <description>Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を</description>
+    </item>
+    
     <item>
       <title>ivy を使った自作コマンドなどをテストするようにした</title>
       <link>https://mugijiru.github.io/posts/testing-my-emacs-command/</link>
