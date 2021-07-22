@@ -261,5 +261,14 @@ Web サイトを再構築してみることにした。&lt;/p&gt;</description>
       <description>アクセス情報の収集 当サイトでは Google Analytics によるアクセス情報の収集を行っています。 Google Analytics ではデータの収集のためにお使いのウェブブラウザから Google にアクセス</description>
     </item>
     
+    <item>
+      <title>Projects</title>
+      <link>https://mugijiru.github.io/projects/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://mugijiru.github.io/projects/</guid>
+      <description>Emacs Config Emacs の設定についてのドキュメント Ember rails TODO App Ember.js 関連の検証用プロジェクト。ember-rails から ember-cli-rails に乗り換えて最新の Ember.js にアップグレードしたり</description>
+    </item>
+    
   </channel>
 </rss>
