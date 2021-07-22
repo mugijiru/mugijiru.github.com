@@ -41,6 +41,14 @@
     - GitHub :: [[https://github.com/mugijiru][mugijiru]]
     - 旧Blog :: [[http://mugijiru.seesaa.net][麦汁三昧]]
 
+** Projects
+   :PROPERTIES:
+   :EXPORT_FILE_NAME: projects
+   :END:
+
+   - [[https://mugijiru.github.io/.emacs.d/][Emacs Config]] :: Emacs の設定についてのドキュメント
+   - [[https://github.com/mugijiru/ember-rails-todo-app][Ember rails TODO App]] :: Ember.js 関連の検証用プロジェクト。ember-rails から ember-cli-rails に乗り換えて最新の Ember.js にアップグレードしたりしている
+   - [[https://github.com/mugijiru/ember-components][Ember Components]] :: Ember.js 検証関連プロジェクト。ember-rails と ember-cli-rails の両方で使える Addon を作ったりしている
 ** Privacy Policy
    :PROPERTIES:
    :EXPORT_FILE_NAME: privacy_policy

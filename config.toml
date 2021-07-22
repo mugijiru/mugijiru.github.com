@@ -53,7 +53,12 @@ publishDir     = "docs"
     url = "/profile/"
     weight = 2
   [[menu.main]]
+    identifier = "projects"
+    name = "Projects"
+    url = "/projects/"
+    weight = 3
+  [[menu.main]]
     identifier = "blog"
     name = "Blog"
     url = "/posts/"
-    weight = 3
+    weight = 4
