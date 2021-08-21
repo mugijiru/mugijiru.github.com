@@ -6,7 +6,25 @@
     <description>Recent content in Categories on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 11 Jul 2021 13:42:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Aug 2021 00:50:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ember-js</title>
+      <link>https://mugijiru.github.io/categories/ember-js/</link>
+      <pubDate>Sun, 22 Aug 2021 00:50:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/categories/ember-js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rails</title>
+      <link>https://mugijiru.github.io/categories/rails/</link>
+      <pubDate>Sun, 22 Aug 2021 00:50:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/categories/rails/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Emacs</title>
       <link>https://mugijiru.github.io/categories/emacs/</link>
@@ -31,24 +49,6 @@
       <pubDate>Sat, 29 May 2021 23:31:00 +0900</pubDate>
       
       <guid>https://mugijiru.github.io/categories/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ember-js</title>
-      <link>https://mugijiru.github.io/categories/ember-js/</link>
-      <pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate>
-      
-      <guid>https://mugijiru.github.io/categories/ember-js/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rails</title>
-      <link>https://mugijiru.github.io/categories/rails/</link>
-      <pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate>
-      
-      <guid>https://mugijiru.github.io/categories/rails/</guid>
       <description></description>
     </item>
     

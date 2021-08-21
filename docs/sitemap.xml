@@ -3,18 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mugijiru.github.io/categories/</loc>
-    <lastmod>2021-07-11T13:42:00+09:00</lastmod>
+    <lastmod>2021-08-22T00:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</loc>
+    <lastmod>2021-08-22T00:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/categories/ember-js/</loc>
+    <lastmod>2021-08-22T00:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/</loc>
+    <lastmod>2021-08-22T00:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/categories/rails/</loc>
+    <lastmod>2021-08-22T00:50:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/</loc>
+    <lastmod>2021-08-22T00:50:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/emacs/</loc>
     <lastmod>2021-07-11T13:42:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/sticky-shift-with-key-chord/</loc>
-    <lastmod>2021-07-11T13:42:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/posts/</loc>
-    <lastmod>2021-07-11T13:42:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/</loc>
     <lastmod>2021-07-11T13:42:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/testing-my-emacs-command/</loc>
@@ -35,13 +44,7 @@
     <loc>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</loc>
     <lastmod>2021-05-29T23:31:00+09:00</lastmod>
   </url><url>
-    <loc>https://mugijiru.github.io/categories/ember-js/</loc>
-    <lastmod>2021-05-24T09:02:00+09:00</lastmod>
-  </url><url>
     <loc>https://mugijiru.github.io/posts/ember-rails-introduction/</loc>
-    <lastmod>2021-05-24T09:02:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/categories/rails/</loc>
     <lastmod>2021-05-24T09:02:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</loc>
