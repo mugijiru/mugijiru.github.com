@@ -5,8 +5,60 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 11 Jul 2021 13:42:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 22 Aug 2021 00:50:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした</title>
+            <link>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</link>
+            <pubDate>Sun, 22 Aug 2021 00:50:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</guid>
+            <description>ember-cli-rails なアプリを Rails6 対応にしてみた。が、リリースされている Gem をそのまま使うと DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper, ActionText::TagHelper, and EmberCliRailsAssetsHelper. Being able to do this is deprecated. Autoloading during initialization is going to be an error condition in future versions of Rails. Reloading does not</description>
+            <content type="html"><![CDATA[<p>ember-cli-rails なアプリを Rails6 対応にしてみた。が、リリースされている Gem をそのまま使うと</p>
+<blockquote>
+<p>DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper, ActionText::TagHelper, and EmberCliRailsAssetsHelper.</p>
+<p>Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.</p>
+<p>Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload ActionText::ContentHelper, for example,
+the expected changes won&rsquo;t be reflected in that stale Module object.</p>
+<p>These autoloaded constants have been unloaded.</p>
+<p>Please, check the &ldquo;Autoloading and Reloading Constants&rdquo; guide for solutions.
+(called from &lt;top (required)&gt; at /app/config/environment.rb:5)</p>
+</blockquote>
+<p>という Deprecation Warning が出てつらかった。</p>
+<h2 id="原因">原因</h2>
+<p><a href="https://github.com/thoughtbot/ember-cli-rails/tree/v0.11.0">ember-cli-rails@0.11.0</a> 及びそれが依存している <a href="https://github.com/seanpdoyle/ember-cli-rails-assets/tree/v0.6.2">ember-cli-rails-assets@0.6.2</a> ではまだ Rails6 の Deprecation Warning への対応が入っていなかった。</p>
+<h2 id="解決方法">解決方法</h2>
+<p>よくよく調べると
+ember-cli-rails の方は既にマージされている
+<a href="https://github.com/thoughtbot/ember-cli-rails/pull/587">https://github.com/thoughtbot/ember-cli-rails/pull/587</a>
+で対応がされていて、
+ember-cli-rails-assets の方は
+<a href="https://github.com/seanpdoyle/ember-cli-rails-assets/pull/12">https://github.com/seanpdoyle/ember-cli-rails-assets/pull/12</a>
+に対応ブランチが用意されていた。</p>
+<p>というわけで、
+ember-cli-rails の方は master から
+ember-cli-rails-assets は上のプルリクエストのブランチを使うように
+Gemfile を書き換えるだけで済んだ。</p>
+<p>が、とりあえず master を見るのはいつか知らない間に更新が入りそうで怖いので
+ember-cli-rails は現在の最新の ref を取るようにしている。</p>
+<p>というわけで以下のような書き方になった。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">gem <span style="color:#e6db74">&#39;ember-cli-rails&#39;</span>, <span style="color:#e6db74">github</span>: <span style="color:#e6db74">&#39;thoughtbot/ember-cli-rails&#39;</span>, <span style="color:#e6db74">ref</span>: <span style="color:#e6db74">&#39;1e56a03fb8437f52dfd450454c71cffda2981d66&#39;</span>
+gem <span style="color:#e6db74">&#39;ember-cli-rails-assets&#39;</span>, <span style="color:#e6db74">github</span>: <span style="color:#e6db74">&#39;seanpdoyle/ember-cli-rails-assets&#39;</span>, <span style="color:#e6db74">branch</span>: <span style="color:#e6db74">&#39;rely-on-engine-to-load-helper&#39;</span>
+</code></pre></div><p>ということを ember-cli-rails-app というリポジトリの
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/109">https://github.com/mugijiru/ember-rails-todo-app/pull/109</a>
+で対応した。</p>
+<p>なお Rails6 には
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/106/files">https://github.com/mugijiru/ember-rails-todo-app/pull/106/files</a>
+でアップグレードしている。結果的にはこのプルリクエストでは rails app:update して load_defaults を 6.0 にして関係ない Warning を潰しただけになっていたりする。</p>
+<h2 id="その他">その他</h2>
+<p>ember-cli-rails は
+Ruby 3.0 対応のプルリクエストも含めて結構なプルリクエストや Issue が放置されてるのでこのまま使い続けるのは厳しそうな雰囲気。</p>
+<p>いずれ ember-cli-rails も捨てて ember-cli 単体で動かすようにした方が良さそう</p>
+]]></content>
+        </item>
         
         <item>
             <title>key-chord を使って Sticky Shift を一部実現した</title>

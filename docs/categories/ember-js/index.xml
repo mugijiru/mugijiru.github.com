@@ -6,7 +6,16 @@
     <description>Recent content in Ember-js on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Mon, 24 May 2021 09:02:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Aug 2021 00:50:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした</title>
+      <link>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</link>
+      <pubDate>Sun, 22 Aug 2021 00:50:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</guid>
+      <description>ember-cli-rails なアプリを Rails6 対応にしてみた。が、リリースされている Gem をそのまま使うと DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper, ActionText::TagHelper, and EmberCliRailsAssetsHelper. Being able to do this is deprecated. Autoloading during initialization is going to be an error condition in future versions of Rails. Reloading does not</description>
+    </item>
+    
     <item>
       <title>ember-rails アプリケーション保守入門</title>
       <link>https://mugijiru.github.io/posts/ember-rails-introduction/</link>
