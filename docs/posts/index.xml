@@ -5,8 +5,40 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 22 Aug 2021 00:50:00 +0900</lastBuildDate>
+        <lastBuildDate>Thu, 16 Sep 2021 10:22:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Emacs のロックファイルと Webpack dev server の設定</title>
+            <link>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</link>
+            <pubDate>Thu, 16 Sep 2021 10:22:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</guid>
+            <description>また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。 プライベートで vue-cli とかを使って npm run serve とかしている時にファイルを変更する度に [Error: ENOENT: no</description>
+            <content type="html"><![CDATA[<p>また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。</p>
+<p>プライベートで vue-cli とかを使って
+<code>npm run serve</code> とかしている時にファイルを変更する度に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[Error: ENOENT: no such file or directory, stat &#39;/path/to/src/components/.#HelloWorld.vue&#39;]
+</code></pre></div><p>とか怒られて辛かった。
+Emacs のロックファイルである。</p>
+<p>ロックファイルを生成しないというのもアリかもしれないが正常に保存されれば自動で消えるファイルだしそこに手を入れるよりは、監視対象ファイルを制限した方が良さそう、と判断して調べた。</p>
+<p><code>npm run serve</code> では裏側で webpack-dev-server が動いているようなのでそこで watch 対象からロックファイルを外すべく
+<code>vue.config.js</code> を以下のように設定した。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">configureWebpack</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">devServer</span><span style="color:#f92672">:</span> {
+      <span style="color:#a6e22e">watchOptions</span><span style="color:#f92672">:</span> {
+        <span style="color:#a6e22e">ignored</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;node_modules&#39;</span>, <span style="color:#e6db74">&#39;public&#39;</span>, <span style="color:#e6db74">&#39;**/.#*&#39;</span>],
+      }
+    }
+  }
+}
+</code></pre></div><p>肝は <code>'**/.#*'</code> である。
+Emacs のロックファイルは <code>.#</code> の後にオリジナルのファイル名がくっついてくる形なのでそいつを全部無視する、というだけ。</p>
+<p>これでファイルを変更しても怒られなくなってハッピー。</p>
+<p>ちなみに同じ問題が React の開発の時にも発生するので多分同じような方法で直せる。まだ試してないけど。</p>
+]]></content>
+        </item>
         
         <item>
             <title>ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした</title>

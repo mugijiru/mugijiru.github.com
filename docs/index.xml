@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 22 Aug 2021 00:50:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 16 Sep 2021 10:22:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Emacs のロックファイルと Webpack dev server の設定</title>
+      <link>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</link>
+      <pubDate>Thu, 16 Sep 2021 10:22:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</guid>
+      <description>また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。 プライベートで vue-cli とかを使って npm run serve とかしている時にファイルを変更する度に [Error: ENOENT: no</description>
+    </item>
+    
     <item>
       <title>ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした</title>
       <link>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</link>
