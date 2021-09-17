@@ -5,8 +5,41 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Thu, 16 Sep 2021 10:22:00 +0900</lastBuildDate>
+        <lastBuildDate>Fri, 17 Sep 2021 12:07:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Storybook の SCSS 対応でハマった</title>
+            <link>https://mugijiru.github.io/posts/storybook-with-scss/</link>
+            <pubDate>Fri, 17 Sep 2021 12:07:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/storybook-with-scss/</guid>
+            <description>この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。 それは置いといて、汎</description>
+            <content type="html"><![CDATA[<p>この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。</p>
+<p>それは置いといて、汎用的なコンポーネントライブラリみたいなのを作ってみたくなったので趣味で Storybook を動かしてみている。</p>
+<p>なのでそこで流行りっぽい Storybook で作ってみているのだが素の CSS だと面倒なので SCSS を採用することにした。</p>
+<p>SCSS なのは Brace は欲しかったのと、ライブラリの更新が頻繁なので、更新間隔が空きがちな Stylus より良さそうと思ったから。</p>
+<p>というわけで <code>@storybook/html</code> の <code>6.3.8</code> を入れてるわけだけどそこに scss が使えるようにということで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">npm install --save-dev css-loader sass-loader style-loader
+</code></pre></div><p>とかしたら</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">npm ERR! code ERESOLVE
+npm ERR! ERESOLVE could not resolve
+</code></pre></div><p>などと言われてしまう。</p>
+<p>適当に <code>--legacy-peer-deps</code> で突っ込んでもで突っ込んでも、結局は起動時にエラーになってしまう。</p>
+<p>で、面倒なら真面目に調べると、
+Storybook の内部で使われてる Webpack が 4 系で、最新の sass-loader, css-loader, style-loader だと Webpack 5 でしか動かないのでそこで依存関係が解決できないってことがわかった。
+npm の依存関係のエラー読みにくいでござる。</p>
+<p>というわけで Webpack4 のサポートをしていたバージョンである</p>
+<ul>
+<li>style-loader@2</li>
+<li>css-loader@5</li>
+<li>sass-loader@10</li>
+</ul>
+<p>を入れることで解決した。</p>
+<p>Storybook って Issue が 1300 件ぐらいそのままになってるし、
+Webpack5 対応にもなってなさそうなので、本当に使って大丈夫なのかは心配……。</p>
+]]></content>
+        </item>
         
         <item>
             <title>Emacs のロックファイルと Webpack dev server の設定</title>
