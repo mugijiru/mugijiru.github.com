@@ -5079,7 +5079,7 @@
 
      https://speakerdeck.com/mitsuboshi/google-play-iab-in-app-billing-railsdefalsesabasaidodui-ying-falsesubete
 **** Kaigi on Rails 2021タイムテーブル完全解説
-     [[https://kaigionrails.org/2021/timetable/#day1][Kaigi on Rails 2021]] の各発表のタイムテーブル、
+     [[https://kaigionrails.org/2021/][Kaigi on Rails 2021]] の各発表のタイムテーブル、
      つまりそれぞれの時間でどういう話がされるのかを
      制限時間内に解説してくれていた。[[https://kaigionrails.org/2021/timetable/#day1][タイムテーブルはこちらから]]
 
@@ -5133,7 +5133,7 @@
      先着順で50名まで、そして 2021/09/26 12:00 時点で 8 割以上枠が埋まってるので
      気になる方はお早めに。
 **** スポンサーセッション: DeNA 様
-     [[https://desc-hc.co.jp/service/health_insurance_association][kencom]] というサービスのご紹介と
+     [[https://kencom.jp/][kencom]] というサービスのご紹介と
      2021/09/29 開催イベント [[https://techcon2021.dena.dev/autumn][DeNA TechCon 2021 Autumn]] のご案内。
 
      kencom は会社が加入している健康保健組合等が導入していれば無料で利用できるサービスで

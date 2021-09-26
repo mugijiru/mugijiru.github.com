@@ -30,7 +30,7 @@ TL を見てると Google Play IAB は筋が良さそうみたいな雰囲気を
 
 ## Kaigi on Rails 2021タイムテーブル完全解説 {#kaigi-on-rails-2021タイムテーブル完全解説}
 
-[Kaigi on Rails 2021](https://kaigionrails.org/2021/timetable/#day1) の各発表のタイムテーブル、つまりそれぞれの時間でどういう話がされるのかを制限時間内に解説してくれていた。[タイムテーブルはこちらから](https://kaigionrails.org/2021/timetable/#day1)
+[Kaigi on Rails 2021](https://kaigionrails.org/2021/) の各発表のタイムテーブル、つまりそれぞれの時間でどういう話がされるのかを制限時間内に解説してくれていた。[タイムテーブルはこちらから](https://kaigionrails.org/2021/timetable/#day1)
 
 色々興味深い話がありそうなので私も参加登録しておきました。イエイ。金曜日は有休を取ろうと思います。
 
@@ -78,7 +78,7 @@ graphql-ruby を使って、管理系の画面でお試しかな〜とかは思�
 
 ## スポンサーセッション: DeNA 様 {#スポンサーセッション-dena-様}
 
-[kencom](https://desc-hc.co.jp/service/health%5Finsurance%5Fassociation) というサービスのご紹介と
+[kencom](https://kencom.jp/) というサービスのご紹介と
 2021/09/29 開催イベント [DeNA TechCon 2021 Autumn](https://techcon2021.dena.dev/autumn) のご案内。
 
 kencom は会社が加入している健康保健組合等が導入していれば無料で利用できるサービスで健診データの推移をチェックできたりするみたい。裏側ではそうやって集めたデータを分析したりしているみたい。すごそう。
