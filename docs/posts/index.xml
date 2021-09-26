@@ -5,8 +5,75 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Fri, 17 Sep 2021 12:07:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 26 Sep 2021 13:09:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>銀座Rails#37に参加した</title>
+            <link>https://mugijiru.github.io/posts/ginza-rails-37/</link>
+            <pubDate>Sun, 26 Sep 2021 13:09:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/ginza-rails-37/</guid>
+            <description>ブログ書くまでが勉強会って話もあるのでブログに残しておきます。正直そういうのサボりがちだけどね……。 一昨日の夜にオンライン開催していた 銀座R</description>
+            <content type="html"><![CDATA[<p>ブログ書くまでが勉強会って話もあるのでブログに残しておきます。正直そういうのサボりがちだけどね……。</p>
+<p>一昨日の夜にオンライン開催していた <a href="https://ginza-rails.connpass.com/event/223078/">銀座Rails#37</a> に参加しました。</p>
+<p>今回話されたテーマは</p>
+<ul>
+<li>Google Play IAB(In-App Billing) 〜Railsでのサーバサイド対応のすべて〜</li>
+<li>Kaigi on Rails 2021タイムテーブル完全解説</li>
+<li>Ruby/Railsと遠隔講義：受講者評点がリモートでも伸びた理由</li>
+<li>既存のRESTful なRails プロジェクトに、GraphQLの導入を検討した話</li>
+</ul>
+<p>の4本立てと、リンクアンドモチベーション様及び DeNA 様のスポンサーセッション。</p>
+<h2 id="google-play-iab--in-app-billing--railsでのサーバサイド対応のすべて">Google Play IAB(In-App Billing) 〜Railsでのサーバサイド対応のすべて〜</h2>
+<p>この話は正直私の能力不足で「なんか知らんがすごそうだ」って感じでした。決済周りも Google Play 周りも Android も全然わからん……。</p>
+<p>TL を見てると Google Play IAB は筋が良さそうみたいな雰囲気を感じた。あと、テーブル設計も含めた大分具体的な話もしているのでこのあたりに手を出す人にはとても役立ちそうな雰囲気を感じたので資料をチェックしておくと良さそう</p>
+<p><a href="https://speakerdeck.com/mitsuboshi/google-play-iab-in-app-billing-railsdefalsesabasaidodui-ying-falsesubete">https://speakerdeck.com/mitsuboshi/google-play-iab-in-app-billing-railsdefalsesabasaidodui-ying-falsesubete</a></p>
+<h2 id="kaigi-on-rails-2021タイムテーブル完全解説">Kaigi on Rails 2021タイムテーブル完全解説</h2>
+<p><a href="https://kaigionrails.org/2021/timetable/#day1">Kaigi on Rails 2021</a> の各発表のタイムテーブル、つまりそれぞれの時間でどういう話がされるのかを制限時間内に解説してくれていた。<a href="https://kaigionrails.org/2021/timetable/#day1">タイムテーブルはこちらから</a></p>
+<p>色々興味深い話がありそうなので私も参加登録しておきました。イエイ。金曜日は有休を取ろうと思います。</p>
+<p>その前に業務としての参加を上司に打診しようかな。業務に役立ちそうな内容がたくさんあるのでチーム全員参加してもらいたい。</p>
+<p>参加登録は <a href="https://kaigionrails.doorkeeper.jp/events/127662">https://kaigionrails.doorkeeper.jp/events/127662</a> で受付中。</p>
+<h2 id="ruby-railsと遠隔講義-受講者評点がリモートでも伸びた理由">Ruby/Railsと遠隔講義：受講者評点がリモートでも伸びた理由</h2>
+<p>資料が探せなかったので記憶頼りの記述になるけど講義の地道な改善で評点が上がったというお話でした。情報のインプットはオンデマンドでできるようにして講義では課題を実施してもらうとか。</p>
+<p>Kaigi on Rails 2021 でも yasulab さんの発表があるので関係した話が聞けるかも?
+<a href="https://kaigionrails.org/2021/talks/yasulab/">https://kaigionrails.org/2021/talks/yasulab/</a></p>
+<h2 id="既存のrestful-なrails-プロジェクトに-graphqlの導入を検討した話">既存のRESTful なRails プロジェクトに、GraphQLの導入を検討した話</h2>
+<p>最終的には GraphQL の導入は一旦見送りにしたよという発表でした。今回の発表で、私はこの発表が一番好きでした。</p>
+<p>色々な課題があるのでそれを解決するために GraphQL が良さそうだなということでそれを導入しようとチャレンジして、色々検討した結果、最終的に GraphQL の導入は見送って、ただ解決したい課題は一部解決したよというお話。</p>
+<p>導入に向けて検討していって、課題解決ができないことに気付いて、導入を取り止めるという判断が下されるまでの経緯が描かれていてとても良い発表でした。ちゃんと「導入を見送る」って判断ができてる点もとても良い。</p>
+<p>弊社でも似たような課題を抱えていて GraphQL には興味があるけど……みたいな状態なので導入しなかった理由が知れるのはとても嬉しい。</p>
+<p>そんな嬉しい内容が書かれている <a href="https://speakerdeck.com/hiroyaiizuka/ji-cun-falserestful-na-railspuroziekutonigraphqldao-ru-wojian-tao-sitahua">登壇資料はこちら</a></p>
+<p>ちなみに弊社で導入してないのは、
+Schema 駆動で十分開発がまだ成り立っているからかな。フロントエンドとサーバサイドも担当がキレイに分かれてないし。
+GraphQL に関する知見がないというのもあるけどね。</p>
+<p>GraphQL 導入するなら多分最初は
+graphql-ruby を使って、管理系の画面でお試しかな〜とかは思っているが話が脱線しているのでこの程度で。</p>
+<h2 id="スポンサーセッション-リンクアンドモチベーション様">スポンサーセッション: リンクアンドモチベーション様</h2>
+<p>2021/09/29 19:30 スタートの
+<a href="https://lmi.connpass.com/event/223245/">進化するエンジニアキャリアパスの在り方【クラスメソッド×リンクアンドモチベーション】</a>
+というイベントのご紹介などなど。</p>
+<p>キャリアに悩んでるエンジニア向けイベントですね。先着順で50名まで、そして 2021/09/26 12:00 時点で 8 割以上枠が埋まってるので気になる方はお早めに。</p>
+<h2 id="スポンサーセッション-dena-様">スポンサーセッション: DeNA 様</h2>
+<p><a href="https://desc-hc.co.jp/service/health%5Finsurance%5Fassociation">kencom</a> というサービスのご紹介と
+2021/09/29 開催イベント <a href="https://techcon2021.dena.dev/autumn">DeNA TechCon 2021 Autumn</a> のご案内。</p>
+<p>kencom は会社が加入している健康保健組合等が導入していれば無料で利用できるサービスで健診データの推移をチェックできたりするみたい。裏側ではそうやって集めたデータを分析したりしているみたい。すごそう。</p>
+<p>DeNA TechCon 2021 Autumn は開催日が 2021/09/29 とリンクアンドモチベーション様のイベントと開催日が重なっているけど幸い時間はズレているので両方参加することは可能。</p>
+<p>過去配信が YouTube なので恐らくこのイベントの配信も YouTube なのかな?</p>
+<h2 id="懇親会">懇親会</h2>
+<p>オンライン勉強会の懇親会の雰囲気を味わってみたくて聞いていた。
+Podcast みたいな感覚で聞けるんですね。なるほどって感じでした。</p>
+<p>内容そんなに覚えてないけど、本編でも少し出ていた採用技術と人材採用のお話はあるあるだな〜という感想があった。</p>
+<p>時代遅れの技術を使い続けてると採用で敬遠されるとか、導入している技術が覇権争いに勝てず、それを使って開発できる人が確保できないとか、それが使える数少ない人が辞めれない問題とかありましたね。</p>
+<p>私も「ember-rails アプリを保守できる人がいない」問題対応のため
+<a href="/posts/ember-rails-introduction/">ember-rails アプリケーション保守入門</a> を書いたり、そもそも ember-cli-rails にした方がいいよねってことで
+<a href="/posts/migrate-ember-rails-to-ember-cli-rails/">ember-rails から ember-cli-rails へ</a> を書いたりしていますが、ちょっと状況がマシになっただけで解決はできてない。困ったもんです。</p>
+<h2 id="その他">その他</h2>
+<p>今回から銀座 Rails はシーズン2、つまり運営が新しい方に受け継がれている。
+<a href="https://techracho.bpsinc.jp/morimorihoge/2021%5F09%5F02/111210">https://techracho.bpsinc.jp/morimorihoge/2021%5F09%5F02/111210</a></p>
+<p>引き継いで、準備を頑張っていたのが Tweet でも伺えてそして実際当日とてもスムーズに進行できていた。すごい。トラブルなく配信してくれた運営に感謝……!</p>
+]]></content>
+        </item>
         
         <item>
             <title>Storybook の SCSS 対応でハマった</title>
