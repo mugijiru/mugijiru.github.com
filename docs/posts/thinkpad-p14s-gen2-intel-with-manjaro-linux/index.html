@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2903738-8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2903738-8');
+</script>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux" />
+<meta name="keywords" content="blog,developer,personal" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/" />
+
+
+    <title>
+        
+            ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている :: 麦汁三昧 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.393856bf2c430bb6c01d7af07c6fe966e7cce8073435cfbbc46e590bab7405ef.css">
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/amazon.css">
+    
+
+
+
+
+
+<meta itemprop="name" content="ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている">
+<meta itemprop="description" content="先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux"><meta itemprop="datePublished" content="2021-10-10T19:01:00&#43;09:00" />
+<meta itemprop="dateModified" content="2021-10-10T19:01:00&#43;09:00" />
+<meta itemprop="wordCount" content="7107">
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている"/>
+<meta name="twitter:description" content="先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux"/>
+
+
+
+
+
+    <meta property="article:section" content="Linux" />
+
+
+
+    <meta property="article:published_time" content="2021-10-10 19:01:00 &#43;0900 &#43;0900" />
+
+
+
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2857297565325683" crossorigin="anonymous"></script>
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/mugijiru</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://mugijiru.github.io/about/">About</a></li><li><a href="https://mugijiru.github.io/profile/">Profile</a></li><li><a href="https://mugijiru.github.io/projects/">Projects</a></li><li><a href="https://mugijiru.github.io/posts/">Blog</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        15 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/">ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている</a>
+      </h1>
+
+      
+
+      <div class="post-content">
+        <p>先月、「えいやっ」で
+<a href="https://www.lenovo.com/jp/ja/notebooks/thinkpad/p-series/ThinkPad-P14s-Gen-2-14%E2%80%9D-Intel/p/22WSP14P4S2">Lenovo ThinkPad P14s Gen 2 (第11世代インテル)</a> を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux をちゃんと動かせるか不安だったから。</p>
+<p>で、そのマシンに Manjaro Linux を載せて色々設定している。この記事は、そのあたりでどういう設定を書いているかの備忘録的なそれです。</p>
+<p>だってさ〜、絶対忘れるじゃん。だからある程度書いておこうかなって。そしてその上でまた後で入れ直ししてそれを見ながらセットアップし直そうかなと。そしたら多分その時に見逃していた部分も修正できそうだし。</p>
+<p>というわけでなんか適当につらつらと書いていく。</p>
+<p>ま、Twitter につぶやいていたことを記憶で補完しながら書いている感じだけどね。</p>
+<p>Twitter でのつぶやきだと Twilog で</p>
+<ul>
+<li><a href="https://twilog.org/mugijiru/date-211003">https://twilog.org/mugijiru/date-211003</a></li>
+<li><a href="https://twilog.org/mugijiru/date-211009">https://twilog.org/mugijiru/date-211009</a></li>
+</ul>
+<p>あたりに該当する部分。まだ2日しか触れてないのよな。うん。</p>
+<h2 id="manjaro-linux-のインストール">Manjaro Linux のインストール</h2>
+<p><a href="https://manjaro.org/download/">https://manjaro.org/download/</a> から Xfce 版のやつをダウンロードして
+Windows PC で DVD に iso ファイルを書き込んでそれを使ってセットアップしてた。</p>
+<p>その際に
+<a href="https://www.mimir.yokohama/useful/0023-installing-manjaro.html">https://www.mimir.yokohama/useful/0023-installing-manjaro.html</a>
+を参考にした。まあパーティションどうしたらいいんだっけ以外は特に悩まなかったけど。</p>
+<p>あとは光学ドライブは大昔に購入した外付けのやつなので荷物の奥底から引っ張り出して「うわー USB type B のケーブルはどこだ〜!」「電源アダプタもねえぞー!」とか一人で騒いでた。みんなも機器を仕舞う時はそれに使うケーブルなども一緒に仕舞うようにしような。</p>
+<p>あとパーティションは自動で切ってるけど
+swap 領域はメモリ拡張すると足らないのでなんとかする必要がありそう。</p>
+<h2 id="font-設定">Font 設定</h2>
+<p>デフォルトの Terminal である xfce4-terminal のフォントが何故か文字間が広くて気持ち悪いので Sazanami と IPA フォントを入れた記憶がある。</p>
+<p>history を漁ると</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ pacman -S ttf-sazanami
+$ pacman -S otf-ipafont
+</code></pre></div><p>が出て来たのでとりあえずそうやって入れているっぽい。</p>
+<p>多分 Sazanami を入れてるのは
+<a href="https://applecom.blog.jp/archives/31595846.html">https://applecom.blog.jp/archives/31595846.html</a>
+の影響かな。日本語環境構築したかったから見ていた記憶がある。</p>
+<p>で、その記事でも後から IPA フォントを入れてるからその流れに乗って両方を入れてる感じがある。</p>
+<h3 id="やってないことだけど補足">やってないことだけど補足</h3>
+<p>今 Arch Wiki のフォントのページ
+<a href="https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88#.E6.97.A5.E6.9C.AC.E8.AA.9E">https://wiki.archlinux.jp/index.php/%E3%83%95%E3%82%A9%E3%83%B3%E3%83%88#.E6.97.A5.E6.9C.AC.E8.AA.9E</a>
+を調べてると otf-ipaexfont とか良さそうな雰囲気あるな。</p>
+<p>あとはコーディングする上では ttf-mplus を入れておけばとりあず固定幅で使えそうなので一安心できそう。</p>
+<p>ちなみに普段他の環境では Ricty diminished を使っているのでそこに戻る可能性もあるけど、新しい環境ということで新しいフォントにしてみるのも面白そうなので、どうするかはわからない。</p>
+<h2 id="terminal--xfce4-terminal--の設定">Terminal(xfce4-terminal) の設定</h2>
+<p>上に書いたようにフォントが気に食わなくて別のフォントを入れてその後適当に弄ってたけど、結局 Monospace 16 に戻った上で文字間は悪くない感じになってしまった。</p>
+<p>あれ、これ最初の設定だよね?? なんで文字間の無駄に広いのが直ったの?? ってなってるけどまあ悪くないのでそのままで。</p>
+<p>あとは背景が半透明だったけど個人的には半透明な Terminal は、カッコいいけど後ろ側が気になってしょうがないので</p>
+<ul>
+<li>背景
+<ul>
+<li>指定なし(単色を使用する)</li>
+</ul>
+</li>
+</ul>
+<p>という設定にすることで透明度をゼロにしている。</p>
+<p>あと背景が透けるようにすると処理が重くなるってのもあるよね。</p>
+<h2 id="web-ブラウザ周りの調整">Web ブラウザ周りの調整</h2>
+<p>Manjaro の Xfce 版には標準で Firefox が入っていた。私の普段使いの Web ブラウザも Firefox なので丁度良い。</p>
+<p>まずは言語設定がアメリカ英語だったので日本語に変更。英語設定のまま使い続けられるほど強くないのです。</p>
+<p>次にフォントを IPA Pゴシックを基本的に使うように変更。</p>
+<p>そして Firefox Sync で同期をするといつも使ってるアドオンが入っていい感じ。</p>
+<p>多分それ以上は何もしてないかな。ここは楽だった。</p>
+<p>なおその後アップデートしたら言語設定が吹っ飛んでてまた設定し直すことになった。</p>
+<h2 id="日本語入力--fcitx5-skk">日本語入力(fcitx5-skk)</h2>
+<p>日本語入力周りは最近の Linux では fcitx というのを使うらしいのでそれの中の SKK を使うやつを選択した。</p>
+<p>というわけで
+<a href="http://neko-mac.blogspot.com/2021/06/archlinuxskk.html">http://neko-mac.blogspot.com/2021/06/archlinuxskk.html</a>
+を参考に設定をした。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fcitx5-skk
+</code></pre></div><p>あとは fcitx5-configtool も必要なので入れた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fcitx5-configtool
+</code></pre></div><p>これを別途入れないと設定ツールが起動できないのだが、
+Not Found 的なエラーが出るわけでもなく単に起動できないだけなので何が問題なのか気付きにくかった。別途インストールが必要だったが、それに気付くまで2,3時間溶かした気がする。</p>
+<p>そんでもって fcitx5-configtool を</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fcitx5-configtool
+</code></pre></div><p>で起動して右側の Available Input Method から SKK を探して左側の Current Input Method に入るようにすると
+Ctrl + SPC で日本語を SKK で入力できるようになる。</p>
+<p>さらに StickyShift を愛用しているのでそのあたりの設定もしている。設定ファイルについては先に紹介した記事の内容そのままなので割愛。後で GitHub にも設定ファイルを上げるのでここに書いてなくても困らないはずだし。</p>
+<p>設定ファイルの準備ができたら
+configtool を再度立ち上げて
+Addons タブ内の Input Method ってところの SKK の設定ボタンをクリックし、
+Rule を Default から先程作った StickyShift に切り替える。</p>
+<p>このあたりの手順も先に紹介した記事にある手順そのままだけどまあ人の記事は消えることもあるのでちょっとここにも書かせてもらいました。向こうの方が画像キャプチャもあって親切なんだけどね。</p>
+<p>まあともかくこれで日本語でもググることができるようになった。</p>
+<p>あとはよくわからんけど <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L1-L4">.xprofile</a> に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">export DefaultIMModule=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=&#34;@im=fcitx&#34;
+</code></pre></div><p>とか書いているな。</p>
+<p><a href="https://wiki.archlinux.jp/index.php/Fcitx5#.E3.82.A4.E3.83.B3.E3.83.97.E3.83.83.E3.83.88.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB.E3.81.AE.E7.92.B0.E5.A2.83.E5.A4.89.E6.95.B0.E3.81.AE.E8.A8.AD.E5.AE.9A">ArchWiki の Fcitx5 の記事内にあるインプットメソッドモジュールの環境変数の設定</a>
+での記述を見てると、俺が書いてる場所や内容がちょっと違うのでなんか俺が間違えてるかも。</p>
+<p><a href="https://wiki.archlinux.jp/index.php/Fcitx#.E3.82.A4.E3.83.B3.E3.83.97.E3.83.83.E3.83.88.E3.83.A1.E3.82.BD.E3.83.83.E3.83.89.E3.83.A2.E3.82.B8.E3.83.A5.E3.83.BC.E3.83.AB.E3.81.AE.E7.92.B0.E5.A2.83.E5.A4.89.E6.95.B0.E3.81.AE.E8.A8.AD.E5.AE.9A">ArchWiki の Fcitx の記事内にあるインプットメソッドモジュールの環境変数の設定</a>
+の方の記述に似ているけど、これ <code>Fcitx5</code> じゃなくて <code>Fcitx</code> の記事だから多分古いんだよな……。</p>
+<h2 id="i3wm-の導入">i3wm の導入</h2>
+<p>ちゃんとしたタイル型WMを使いたい、というのが Linux にした理由の1つ。というわけで i3wm を入れることにした。正確には i3-gaps なので fork 版なのだけども。</p>
+<p>実は昔使っていた Awesome にしようかとも思っていたのだけど最終更新が一昨年だったのであまり活発じゃないのかな〜と思って
+i3 にすることにした。</p>
+<p>i3wm を使うならコミュニティで提供されている i3 版をインスコした方が良いのではというのもあるんだけど気付くのが遅かったのと、そっちの設定でミスって起動しなくなった時に Xfce を動かすことでとりあえず乗り切る、みたいなことも考えている。</p>
+<p>でまあそんなわけで i3 周りを入れることにしたので、以下をインストールしてある。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S i3-gaps
+$ sudo pacman -S i3status
+$ sudo pacman -S i3blocks
+$ sudo pacman -S i3lock
+$ sudo pacman -S dmenu
+</code></pre></div><h3 id="i3-gaps">i3-gaps</h3>
+<p>i3 の fork 版で i3 より機能が豊富らしい。違いがどこにあるかはまだ認識してない。</p>
+<p>Mod キーとの組み合わせで色々な操作ができたりして、操作感は Awesome と似ているかな。
+Awesome を使っていたころも Windows キーを Mod キーとして使っていたので。</p>
+<p>設定ファイルである <code>~/.config/i3/config</code> は今度 GitHub に上げておこう。</p>
+<p>変更点は、初期設定だと <code>jkl;</code> を左下上右としていたのが気に食わなかったので
+Vim と同じ hjkl にして、その影響で h が従来の目的では使えなくなったので水平分割、垂直分割をそれぞれ <code>:</code> とか <code>;</code> にしている。けど <code>-</code> <code>|</code> にした方がわかりやすいかもね</p>
+<p>あとはファイル末尾で exec しているあたりが変更点だが、この記事の後の記述でそのあたりについては触れているのでここでは取り上げない。</p>
+<h3 id="i3status">i3status</h3>
+<p>ステータスバーに表示されるやつで、デフォルトはこいつみたい。デフォルト設定だと文字だらけの表示で正直わかりやすくはないかなと思う。一応少しはカスタマイズを試みるつもりだが、すぐ乗り換えそうな気もしている。</p>
+<h3 id="i3blocks">i3blocks</h3>
+<p>なんかあるから入れただけで何も設定してない。
+i3status の代わりに使うと良いらしい。
+i3status のデフォルト表示はあまり気に入ってないのでそのうち使うことになりそう。</p>
+<h3 id="i3lock">i3lock</h3>
+<p>画面ロック機能を提供してくれるやつ。
+xss-lock と一緒に使うものらしくて
+xss-lock を入れてない状態だとエラーを吐いていたので</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S xss-lock
+</code></pre></div><p>としたらロックされるようになった。</p>
+<p>ロック画面は真っ白な画面でそこで適当にキーを叩いたりすると真ん中に丸が出て来るというよくわからない感じ。</p>
+<p>真ん中に丸が出てない状態でパスワードを入力して Enter するとロックが解除されるっぽい。が、わかりづらいのもあって今は指紋認証でロック解除できるようにしてある。その詳細は後程。</p>
+<h3 id="dmenu">dmenu</h3>
+<p>デフォルト設定だと Mod + d で起動するランチャ。画面上部のバーに横並びで候補が表示されてそこから絞り込むことができるがあまり見易くはない。</p>
+<p>あとは解像度を高めにしているから文字が小さくて困ってるけど
+<a href="https://wiki.archlinux.jp/index.php/Dmenu#.E3.83.95.E3.82.A9.E3.83.B3.E3.83.88">https://wiki.archlinux.jp/index.php/Dmenu#.E3.83.95.E3.82.A9.E3.83.B3.E3.83.88</a>
+を見るとそこは変更できそう。</p>
+<p>でも <a href="https://github.com/davatorium/rofi">rofi</a> とかに乗り換える方が良いかもしれない。</p>
+<h3 id="気になるけどやってないこと">気になるけどやってないこと</h3>
+<p>Alt + Tab での切替を Mac でも Windows でもやってるのでどうしても手癖でそれをやってしまう。</p>
+<p>というわけでそれを実現できそうな以下の記事が気になる。
+<a href="https://scrapbox.io/tamago324vim/i3wm%5F%E3%81%A7%5FAlt+Tab%5F%E3%81%A7%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B">https://scrapbox.io/tamago324vim/i3wm%5F%E3%81%A7%5FAlt+Tab%5F%E3%81%A7%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B</a></p>
+<p>が、優先度は低いかなと思って放置中。</p>
+<h2 id="キーバインドの調整">キーバインドの調整</h2>
+<p>とりあえず一旦は CapsLock が a の左隣にあるのが使いにくいしまあそもそもそんなに使わない機能なので</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ setxkbmap -option &#34;ctrl:nocaps&#34;
+</code></pre></div><p>で CapsLock を Ctrl に置き換えている。</p>
+<p>そして <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L6-L7">それを永続化するために .xprofile に書いてる</a> ので起動直後からもう CapsLock は Ctrl になってる。とりあえず最低限これがないとつらい。</p>
+<h3 id="やれてないこと">やれてないこと</h3>
+<p>本当にやりたいのは</p>
+<ol>
+<li>ESC をバッククォートにして、 Shift 押しながらだとチルダが入力される</li>
+<li>CapsLock を Ctrl にする</li>
+<li>左 Ctrl を ESC にする</li>
+</ol>
+<p>だったりする。</p>
+<p>これは今愛用しているキーボード <a href="https://archisite.co.jp/products/mistel/md650l-barocco/">BAROCCO MD650L</a> のキーの都合で通常のキーボードだとファンクションキーが並ぶ行がまるっとなくてチルダがある部分、つまり1の左隣が Esc になっているのが理由で
+Windows, Mac だとそれに合わせてキー配置を上述のようにしているので
+Linux でもそういう配置にしたいなという願望。</p>
+<p>ESC が左 Ctrl の位置だと押したい時にあまりホームポジションから離れずに左手親指で押せるのも便利。</p>
+<h2 id="キーリピートの調整">キーリピートの調整</h2>
+<p>デフォルトだとキーを押しっぱなしにした時にリピート入力が始まるのとそのリピート速度が遅くてイラッとしたので</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xset r rate 200 25
+</code></pre></div><p>としている</p>
+<p>r は repeat, rate は比率設定で
+200 は delay つまりリピート入力が始まるのがどのぐらい押してからかで最後の 25 は1秒間に何回入力されるかの設定。</p>
+<p>なので、キーを押して 0.2 秒経過したら毎秒25回の速度でそのキーが連続入力されるってわけ。</p>
+<p>正直毎秒25回は多過ぎるかもとかは思ってるがまあ使ってる間に調整していけばいいかなと思っている。</p>
+<p>これもまた <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L9-L10">永続化のために .xprofile に書いている</a></p>
+<h2 id="タッチパッドでのカーソル移動の調整">タッチパッドでのカーソル移動の調整</h2>
+<p>デフォルトだとどうもカーソルの移動が遅くて、触りたいところに移動するのが大変だったのでこれも速度を上げている。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xinput set-prop &lt;device_id&gt; &lt;prop_id&gt; 0.5
+</code></pre></div><p>的な感じなのだが永続化はしてなさそう……。あとでやらなきゃ。</p>
+<p>ちなみに今は Accel Speed は 0.7 にしている。細かい所にカーソル合わせるのが大変なので難しい。</p>
+<h2 id="解像度の固定">解像度の固定</h2>
+<p>ひとまずマシン単体で使う場合に最適化しつつ最低限、いつも使う外部ディスプレイに繋いでる場合にも配置だけはいい感じになるように
+<a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L12-L13">.xprofile に以下のように書いている</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+</code></pre></div><p>eDP-1 がノートPC自体のディスプレイなのでそいつの解像度を指定しつつ
+DP-2 という外部ディスプレイの右側に配置されるように指定している。</p>
+<p>DP-2 なのは単にコネクタ的にたまたまそうなってるだけの可能性も高いが。</p>
+<p>そうそう。
+P14s Gen 2 は USB Type-C のポートが複数あってそこに HDMI ポートもある USB Type-C の USB ハブを繋いでも使えるので仕事用の Macbook Pro で使ってるハブがそのまま使えて便利。</p>
+<h3 id="autorandor">autorandor</h3>
+<p><a href="https://github.com/phillipberndt/autorandr">autorandr</a> というのもあってなんか解像度設定を保存したりできるっぽいやつがある。</p>
+<p><a href="https://tech.buty4649.net/entry/2018/12/19/224128">https://tech.buty4649.net/entry/2018/12/19/224128</a> の記事を見るとまだつらそうだけどちゃんと試してみる価値はありそう。</p>
+<h2 id="指紋認証でログイン-ロック解除-sudo-に対応できるようにした">指紋認証でログイン、ロック解除、sudo に対応できるようにした</h2>
+<p>i3lock でのロック解除画面は「本当にちゃんとキー入力できてるんだっけ？」って不安になったりするし、セットアップ中は sudo を多用するけど、その度にパスワード入れるのもだるいし、っていうかパスワード入力なんて今時じゃないな〜ってことで指紋認証でそのあたりができるようにした。</p>
+<p>P14s Gen 2 で搭載されている指紋認証機器は fprintd のサポートに含まれているのでまあ普通にやればできたという感じ。</p>
+<p>普通にというのは Arch Wiki に書かれてるのを見ながら設定したらできた。
+<a href="https://wiki.archlinux.jp/index.php/Fprint">https://wiki.archlinux.jp/index.php/Fprint</a></p>
+<h3 id="指紋認証機器が使えるかの確認">指紋認証機器が使えるかの確認</h3>
+<p>まず</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ lsusb
+</code></pre></div><p>で指紋認証のやつを探して、
+<a href="https://fprint.freedesktop.org/supported-devices.html">https://fprint.freedesktop.org/supported-devices.html</a>
+の中の USB ID と一致する機器があるか調べたら運良く含まれていて
+Synaptics Sensors という Driver が使われるようだった</p>
+<h3 id="fprintd-のインストール">fprintd のインストール</h3>
+<p>というわけでほぼ間違いなく使えるなということで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fprintd
+</code></pre></div><p>ここで <code>fprintd</code> ではなくグループとして定義されている <code>fprint</code> を入れようとすると一瞬入りそうな気配になるんだけどこのグループには互いに競合するパッケージが含まれてるから無理やでみたいになるので注意。</p>
+<h3 id="認証エージェントを動かす">認証エージェントを動かす。</h3>
+<p>fprintd が入れられたので「じゃあ指紋登録しましょっか」ってことで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fprintd-enroll
+</code></pre></div><p>するとなんか知らんが</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">EnrollStart failed: GDBus.Error:net.reactivated.Fprint.Error.PermissionDenied: Not Authorized: net.reactivated.fprint.device.enroll
+</code></pre></div><p>と怒られる。</p>
+<p>調べてるとなんか認証エージェントを動かす必要があるとか書いていた認証エージェントとはなんぞやとなりつつも
+<a href="https://wiki.archlinux.jp/index.php/Polkit#.E8.AA.8D.E8.A8.BC.E3.82.A8.E3.83.BC.E3.82.B8.E3.82.A7.E3.83.B3.E3.83.88">https://wiki.archlinux.jp/index.php/Polkit#.E8.AA.8D.E8.A8.BC.E3.82.A8.E3.83.BC.E3.82.B8.E3.82.A7.E3.83.B3.E3.83.88</a>
+とかを見て「ははーん polkit とかいうのが名前に入ってるやつが必要なんだな」と察して</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ pacman -Ss polkit
+</code></pre></div><p>した時に polkit-gnome がインストール済になっていた。ついでにいうと polkit-qt5 もインストール済だったけど、とりあえず gnome の方でいいやということでそれについてくる agent を自動起動するように i3 の config で</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &amp;
+</code></pre></div><p>とか書いた。</p>
+<h3 id="指紋登録">指紋登録</h3>
+<p>認証エージェントも動いたので再度 <code>fprintd-enroll</code> をすると</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Using device /net/reactivated/Fprint/Device/0
+Enrolling right-index-finger finger.
+</code></pre></div><p>と Terminal に表示された上でポップアッププロンプトが出て来てパスワード入力が求められるので素直にパスワードを入れると。</p>
+<p>すると今度はポップアッププロンプトは消えて</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Enroll result: enroll-stage-passed
+</code></pre></div><p>とか表示されて、何やら待ってる雰囲気になるので指紋センサーの上に指を乗せたら、同じ行がまた表示されたのでそんじゃあまた指を乗せてってのを数度繰り返すと</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Enroll result: enroll-completed
+</code></pre></div><p>と表示されて、指紋登録が完了する。</p>
+<h3 id="指紋認証の動作確認">指紋認証の動作確認</h3>
+<p>指紋の登録は完了したので fprint-verify で登録したやつが使えるよねって確認を取る。スキャンした指を乗せるとちゃんと認証できたみたいな雰囲気になる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fprintd-verify mugijiru
+Using device /net/reactivated/Fprint/Device/0
+Listing enrolled fingers:
+- #0: right-index-finger
+Verify result: verify-match (done)
+</code></pre></div><h3 id="pam-dot-d-の設定変更">pam.d の設定変更</h3>
+<p>その後は <a href="https://wiki.archlinux.jp/index.php/Fprint#.E3.83.AD.E3.82.B0.E3.82.A4.E3.83.B3.E8.A8.AD.E5.AE.9A">Arch Wiki のログイン設定の説明</a> に従い
+<code>/etc/pam.d/system-local-login</code> の auth とか書かれている行の上に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">auth      sufficient pam_fprintd.so
+</code></pre></div><p>を追加したり同じく <code>/etc/pam.d/</code> にある i3lock, lightdm, sudo の各ファイルに同じものを仕込んだ。</p>
+<p>以上で sudo の時もロック画面の解除の時もログインする時も指紋センサーに指を置けば OK となった。便利。</p>
+<p>ログイン画面は認証 OK になったらパスワード入力欄が非表示になるので、その状態で Enter を叩くか「ログイン」ボタンをクリックする必要があるけどね。まあ起動する WM を選択可能だからそういう手順が必要なんだろう。</p>
+<h2 id="ssh-鍵の生成及び-github-への登録">ssh 鍵の生成及び GitHub への登録</h2>
+<p>各設定ファイルを GitHub に登録しているのでそこにアクセスしたいよねということで
+Manjaro Linux で鍵を生成して GitHub に登録しておいた。</p>
+<p>ここらあたりはまあわざわざ細かく書かなくても、再セットアップの時にそんなに僕は困らないだろうなということで、記述はこんなもんにしておく。書いておいたら忘れないよね、ぐらいな感覚。</p>
+<p>ファイル名を指定して鍵を作ったのでそれが次の hub コマンド周りに影響がある気はする。</p>
+<h2 id="hub-コマンドの設定">hub コマンドの設定</h2>
+<p>これも pacman でインスコできたのでそれを使ってる。今時は gh コマンドって気もするが hub コマンドの方が慣れていて……すみません。</p>
+<p>で、 hub コマンドを入れて適当なところで <code>hub clone dotfiles</code> とかするとユーザー名とパスワードを聞かれて、それを入力すると自動でパーソナルアクセストークンを生成してきてそれを使うように設定されるはずなんだけど、なぜか Not Found しか言わなくて困った。</p>
+<p>最終的には PAT を自分で GitHub に作ってさらに自分で <code>~/.config/hub</code> という設定ファイルを生成して</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">---
+github.com:
+- protocol: https
+  user: mugijiru
+  oauth_token: MY_PERSONAL_ACCESS_TOKEN
+</code></pre></div><p>みたいな感じで MY_PERSONAL_ACCESS_TOKEN のところに先程生成した PAT を突っ込んでおいたら
+<code>hub clone</code> が成功するようになった。</p>
+<p>というわけで設定ファイルを拾ってきたりできるようになってハッピーになった。</p>
+<h2 id="ssh-agent-の自動起動">ssh-agent の自動起動</h2>
+<p>設定ファイルを GitHub に上げたりできるようになったのはいいんだけど鍵を作る時にパスフレーズも入れたので
+push したり pull したりする度にそれを入力するのがだるいんですわ。</p>
+<p>ってことで ssh-agent を使うことにした。</p>
+<p>で、どうやら systemd さんに <code>--user</code> オプションを渡すことでユーザー権限でそういうものを動かすことができるらしい。便利な世の中じゃ。</p>
+<p>というわけで
+<a href="https://wiki.archlinux.jp/index.php/SSH%5F%E9%8D%B5#systemd%5F.E3.83.A6.E3.83.BC.E3.82.B6.E3.83.BC.E3.81.A7%5Fssh-agent%5F.E3.82.92.E8.B5.B7.E5.8B.95">https://wiki.archlinux.jp/index.php/SSH%5F%E9%8D%B5#systemd%5F.E3.83.A6.E3.83.BC.E3.82.B6.E3.83.BC.E3.81.A7%5Fssh-agent%5F.E3.82.92.E8.B5.B7.E5.8B.95</a>
+に従い <code>~/.config/systemd/user/ssh-agent.service</code> に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[Unit]
+Description=SSH key agent
+
+[Service]
+Type=forking
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target
+</code></pre></div><p>という内容のファイルを置いて</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ systemctl --user enable ssh-agent
+</code></pre></div><p>とかすることでログイン時に ssh-agent が動くようにした。</p>
+<p>さらに
+<a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.zshrc#L157-L160">https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.zshrc#L157-L160</a>
+に書いてるように .zshrc に末尾に</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"># use ssh agent with systemd
+if [ -e &#34;$XDG_RUNTIME_DIR/ssh-agent.socket&#34; ]; then
+  export SSH_AUTH_SOCK=&#34;$XDG_RUNTIME_DIR/ssh-agent.socket&#34;
+fi
+</code></pre></div><p>と書くことで自動起動した ssh-agent に繋がるようになった。
+<a href="https://github.com/mugijiru/dotfiles/pull/11">https://github.com/mugijiru/dotfiles/pull/11</a></p>
+<p>その状態で</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ssh-add hoge_key
+</code></pre></div><p>みたいにすることで鍵を登録できるのでそのセッションでは ssh 鍵のパスフレーズを入力しないで済むようになって便利になった。</p>
+<h2 id="zsh-の設定">zsh の設定</h2>
+<p>mugijiru/dotfiles を clone してきてあるので</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ln -s /path/to/dotfiles/.zshrc ~/.zshrc
+</code></pre></div><p>するだけで OK</p>
+<h2 id="fzf-の設定">fzf の設定</h2>
+<p>最近 fzf を使いだすようになったので
+Manjaro でもそれを使いたいということで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fzf
+</code></pre></div><p>でインストール。</p>
+<p>さらに dotfiles に <code>.fzf.zsh</code> も置いてるので</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ln -s /path/to/dotfiles/.fzf.zsh ~/.fzf.zsh
+</code></pre></div><p>したら OK</p>
+<p>まあ本当はセットアップの時はその記述がちょっと環境と合ってなくて
+<code>/usr/share</code> にファイルがある場合はそれを読むように変更している。
+<a href="https://github.com/mugijiru/dotfiles/pull/8">https://github.com/mugijiru/dotfiles/pull/8</a></p>
+<p>まあもうこの調整を push してあるので次回はハマらないはずだ。</p>
+<h2 id="その他">その他</h2>
+<ul>
+<li>w3m はあると便利なのでとりあえず入れている</li>
+<li>tmux も入れておいた
+<ul>
+<li>tmuxinator は入れてないし tmux の設定ファイルも反映してない</li>
+</ul>
+</li>
+</ul>
+<h2 id="対応できてないこと">対応できてないこと</h2>
+<p>と、それなりに時間をかけていくつか設定してきたけどまだまだやれてないことはある。</p>
+<p>以下はぱっと思い付く、やりたいけどやれてないこと。</p>
+<ul>
+<li>ログイン画面の解像度変更はうまくいってない
+<ul>
+<li>解像度が高過ぎて文字が米粒みたいでちょっと困ってる。</li>
+</ul>
+</li>
+<li>音が出ないっぽい
+<ul>
+<li>まあ音なんかそんなに必要じゃないので後回しにしている。</li>
+<li>Xfce に戻したら鳴りそうな気もしている</li>
+</ul>
+</li>
+<li>Emacs 周りの調整
+<ul>
+<li>大変そうなので後回し中</li>
+</ul>
+</li>
+<li>起動する Terminal 差し替え
+<ul>
+<li>今はまだ xfce4-terminal を動かしているが urxvt にした方が軽くて良さそうだなと思っている</li>
+</ul>
+</li>
+</ul>
+<p>ここにリストアップした以外にも文章中にもそういうのが書かれてるしぱっとは思い付いてない何かもありそうなのでまだまだ設定には時間がかかりそう。楽しいねえ。</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+
+        <span class="tag"><a href="https://mugijiru.github.io/categories/linux/">Linux</a></span>
+        
+    </p>
+
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        7107 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2021年10月10日 10:01
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b&amp;caption=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b&amp;canonicalUrl=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b&amp;body=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f&amp;media=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f;description=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f&amp;title=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b&amp;summary=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b&amp;source=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f&amp;resubmit=true&amp;title=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f;title=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b%20https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f&amp;t=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=ThinkPad%20P14s%20Gen%202%20%28%e7%ac%ac11%e4%b8%96%e4%bb%a3%e3%82%a4%e3%83%b3%e3%83%86%e3%83%ab%29%20%e3%81%ab%20Manjaro%20Linux%20%e3%82%92%e5%85%a5%e3%82%8c%e3%81%a6%e3%81%bf%e3%81%a6%e3%81%84%e3%82%8b&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fthinkpad-p14s-gen2-intel-with-manjaro-linux%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h"></span>
+          <hr />
+        </div>
+
+        <div class="pagination__buttons">
+          
+
+          
+            <span class="button next">
+              <a href="https://mugijiru.github.io/posts/ginza-rails-37/">
+                <span class="button__text">銀座Rails#37に参加した</span>
+                <span class="button__icon">→</span>
+              </a>
+            </span>
+          
+        </div>
+      </div>
+    
+
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2021</span>
+            
+            <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+          </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span><a href="/privacy_policy">Privacy Policy</a></span>
+          </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.a0f363fdf81cdc5cfacc447a79c33189eb000d090336cd04aac8ee256f423b3133b836c281944c19c75e38d0b0b449f01ce5807e37798b7ac94ac1db51983fc4.js" integrity="sha512-oPNj/fgc3Fz6zER6ecMxiesADQkDNs0EqsjuJW9COzEzuDbCgZRMGcdeONCwtEnwHOWAfjd5i3rJSsHbUZg/xA=="></script>
+
+
+
+    </body>
+</html>
