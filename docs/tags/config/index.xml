@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>config on 麦汁三昧</title>
+    <link>https://mugijiru.github.io/tags/config/</link>
+    <description>Recent content in config on 麦汁三昧</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 10 Oct 2021 19:01:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/tags/config/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている</title>
+      <link>https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/</link>
+      <pubDate>Sun, 10 Oct 2021 19:01:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/</guid>
+      <description>先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux</description>
+    </item>
+    
+  </channel>
+</rss>

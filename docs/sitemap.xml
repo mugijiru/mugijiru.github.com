@@ -5,10 +5,22 @@
     <loc>https://mugijiru.github.io/categories/</loc>
     <lastmod>2021-10-10T19:01:00+09:00</lastmod>
   </url><url>
+    <loc>https://mugijiru.github.io/tags/config/</loc>
+    <lastmod>2021-10-10T19:01:00+09:00</lastmod>
+  </url><url>
     <loc>https://mugijiru.github.io/categories/linux/</loc>
     <lastmod>2021-10-10T19:01:00+09:00</lastmod>
   </url><url>
+    <loc>https://mugijiru.github.io/tags/manjaro/</loc>
+    <lastmod>2021-10-10T19:01:00+09:00</lastmod>
+  </url><url>
     <loc>https://mugijiru.github.io/posts/</loc>
+    <lastmod>2021-10-10T19:01:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/tags/skk/</loc>
+    <lastmod>2021-10-10T19:01:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/tags/</loc>
     <lastmod>2021-10-10T19:01:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/</loc>
@@ -137,7 +149,5 @@
     <loc>https://mugijiru.github.io/privacy_policy/</loc>
   </url><url>
     <loc>https://mugijiru.github.io/projects/</loc>
-  </url><url>
-    <loc>https://mugijiru.github.io/tags/</loc>
   </url>
 </urlset>
