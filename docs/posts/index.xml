@@ -5,8 +5,33 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Wed, 24 Nov 2021 14:01:00 +0900</lastBuildDate>
+        <lastBuildDate>Wed, 24 Nov 2021 15:58:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Manjrao Linux にペンタブレット(XP-PEN Star G640S)を設定した</title>
+            <link>https://mugijiru.github.io/posts/xp-pen-star-g640s-with-manjaro/</link>
+            <pubDate>Wed, 24 Nov 2021 15:58:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/xp-pen-star-g640s-with-manjaro/</guid>
+            <description>今年の前半ぐらいに購入しておいて放置していた XP-PEN の Star G640S を Manjaro 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。 まず最初は単に接続して</description>
+            <content type="html"><![CDATA[<p>今年の前半ぐらいに購入しておいて放置していた
+XP-PEN の Star G640S を
+Manjaro 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。</p>
+<p>まず最初は単に接続して使えるかを試したら、とりあえず動いた。</p>
+<p>そんでもって、設定を変更したいな〜と思ったら
+<a href="https://www.xp-pen.jp/download-166.html">公式にドライバがある</a>し、
+<a href="https://aur.archlinux.org/packages/xp-pen-tablet">AUR にはそれにパッチを当てたやつ</a>が転がっていた</p>
+<p>というわけで</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">yay -S xp-pen-tablet
+</code></pre></div><p>したらそれが入って来た。</p>
+<p>その上で <code>pentablet</code> というのを rofi から起動すると
+XP PEN の設定ソフトが起動したのでそれを使って適当に設定したらその通りに動いて良かった。具体的には、配置の関係上、上下さかさまで使うように設定した。
+USB ケーブルの位置がね……。</p>
+<p>他にも <a href="https://krita.org/jp/">Krita</a> ってソフトで試したんだけど、筆圧もちゃんと検知するみたいだしこれは良さそう。とはいえ絵を描いたりはしないので、筆圧は実は要らないんだけども。</p>
+<p>まあ普通に使えて良かったので今後使うかもしれない。うん。</p>
+]]></content>
+        </item>
         
         <item>
             <title>Manjaro Linux のディスプレイ周りの設定を弄った</title>
