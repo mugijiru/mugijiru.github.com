@@ -5874,3 +5874,37 @@
     望んだ通りの設定に自動で切り替わるようになった(切り替わりは今記事を書きながら試した)
 
     というわけで、切り離した時に表示調整を自分でする必要がなくなった。便利。
+*** DONE Manjrao Linux にペンタブレット(XP-PEN Star G640S)を設定した :@Linux:Manjaro:config:pentablet:
+    CLOSED: [2021-11-24 水 15:58]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: xp-pen-star-g640s-with-manjaro
+    :END:
+    今年の前半ぐらいに購入しておいて放置していた
+    XP-PEN の Star G640S を
+    Manjaro 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。
+
+    まず最初は単に接続して使えるかを試したら、とりあえず動いた。
+
+    そんでもって、設定を変更したいな〜と思ったら
+    [[https://www.xp-pen.jp/download-166.html][公式にドライバがある]]し、
+    [[https://aur.archlinux.org/packages/xp-pen-tablet][AUR にはそれにパッチを当てたやつ]]が転がっていた
+
+    というわけで
+
+    #+begin_src sh
+    yay -S xp-pen-tablet
+    #+end_src
+
+    したらそれが入って来た。
+
+    その上で ~pentablet~ というのを rofi から起動すると
+    XP PEN の設定ソフトが起動したので
+    それを使って適当に設定したらその通りに動いて良かった。
+    具体的には、配置の関係上、上下さかさまで使うように設定した。
+    USB ケーブルの位置がね……。
+
+    他にも [[https://krita.org/jp/][Krita]] ってソフトで試したんだけど、
+    筆圧もちゃんと検知するみたいだしこれは良さそう。
+    とはいえ絵を描いたりはしないので、筆圧は実は要らないんだけども。
+
+    まあ普通に使えて良かったので今後使うかもしれない。うん。
