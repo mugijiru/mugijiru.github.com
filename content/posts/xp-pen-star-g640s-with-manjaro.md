@@ -1,5 +1,5 @@
 +++
-title = "Manjrao Linux にペンタブレット(XP-PEN Star G640S)を設定した"
+title = "Manjaro Linux にペンタブレット(XP-PEN Star G640S)を設定した"
 date = 2021-11-24T15:58:00+09:00
 tags = ["Manjaro", "config", "pentablet"]
 categories = ["Linux"]
@@ -8,7 +8,7 @@ draft = false
 
 今年の前半ぐらいに購入しておいて放置していた
 XP-PEN の Star G640S を
-Manjaro 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。
+Manjaro Linux 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。
 
 まず最初は単に接続して使えるかを試したら、とりあえず動いた。
 

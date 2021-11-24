@@ -5874,14 +5874,14 @@
     望んだ通りの設定に自動で切り替わるようになった(切り替わりは今記事を書きながら試した)
 
     というわけで、切り離した時に表示調整を自分でする必要がなくなった。便利。
-*** DONE Manjrao Linux にペンタブレット(XP-PEN Star G640S)を設定した :@Linux:Manjaro:config:pentablet:
+*** DONE Manjaro Linux にペンタブレット(XP-PEN Star G640S)を設定した :@Linux:Manjaro:config:pentablet:
     CLOSED: [2021-11-24 水 15:58]
     :PROPERTIES:
     :EXPORT_FILE_NAME: xp-pen-star-g640s-with-manjaro
     :END:
     今年の前半ぐらいに購入しておいて放置していた
     XP-PEN の Star G640S を
-    Manjaro 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。
+    Manjaro Linux 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。
 
     まず最初は単に接続して使えるかを試したら、とりあえず動いた。
 
