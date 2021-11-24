@@ -5812,7 +5812,7 @@
 
     家には外部ディスプレイが存在するけど
     まあ必ずいつも繋いでるわけでもないので、
-    両方の状態に対応できるよういんしたいよねって思ってた。
+    両方の状態に対応できるようにしたいよねって思ってた。
 
     それをするには [[https://www.x.org/wiki/Projects/XRandR/][XRandR]] と
     それの設定を保存したりするのに [[https://github.com/phillipberndt/autorandr][autorandr]] を使えばいいというのがわかった。

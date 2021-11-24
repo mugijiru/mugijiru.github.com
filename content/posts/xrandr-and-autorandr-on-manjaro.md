@@ -8,7 +8,7 @@ draft = false
 
 Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。
 
-家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の状態に対応できるよういんしたいよねって思ってた。
+家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の状態に対応できるようにしたいよねって思ってた。
 
 それをするには [XRandR](https://www.x.org/wiki/Projects/XRandR/) とそれの設定を保存したりするのに [autorandr](https://github.com/phillipberndt/autorandr) を使えばいいというのがわかった。ありがとう [Arch Wiki](https://wiki.archlinux.jp/index.php/Xrandr)。今確認していると autorandr ではなくて [xlayoutdisplay](https://github.com/alex-courtis/xlayoutdisplay) とやらでも良さそうだがね……。
 

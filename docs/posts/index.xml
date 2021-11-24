@@ -16,7 +16,7 @@
             <guid>https://mugijiru.github.io/posts/xrandr-and-autorandr-on-manjaro/</guid>
             <description>Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。 家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の</description>
             <content type="html"><![CDATA[<p>Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。</p>
-<p>家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の状態に対応できるよういんしたいよねって思ってた。</p>
+<p>家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の状態に対応できるようにしたいよねって思ってた。</p>
 <p>それをするには <a href="https://www.x.org/wiki/Projects/XRandR/">XRandR</a> とそれの設定を保存したりするのに <a href="https://github.com/phillipberndt/autorandr">autorandr</a> を使えばいいというのがわかった。ありがとう <a href="https://wiki.archlinux.jp/index.php/Xrandr">Arch Wiki</a>。今確認していると autorandr ではなくて <a href="https://github.com/alex-courtis/xlayoutdisplay">xlayoutdisplay</a> とやらでも良さそうだがね……。</p>
 <p>まあそれはさておき、ひとまずはディスプレイに繋いでる状態をなんとかしたかったので最初は</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
