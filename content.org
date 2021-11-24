@@ -5168,7 +5168,7 @@
      引き継いで、準備を頑張っていたのが Tweet でも伺えて
      そして実際当日とてもスムーズに進行できていた。すごい。
      トラブルなく配信してくれた運営に感謝……!
-*** DONE ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている :@Linux:
+*** DONE ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている :@Linux:Manjaro:config:skk:
     CLOSED: [2021-10-10 日 19:01]
     :PROPERTIES:
     :EXPORT_FILE_NAME: thinkpad-p14s-gen2-intel-with-manjaro-linux
