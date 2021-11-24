@@ -5,6 +5,34 @@
     <link>https://mugijiru.github.io/tags/</link>
     <description>Recent content in Tags on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>ja-JP</language><atom:link href="https://mugijiru.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>ja-JP</language>
+    <lastBuildDate>Sun, 10 Oct 2021 19:01:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>config</title>
+      <link>https://mugijiru.github.io/tags/config/</link>
+      <pubDate>Sun, 10 Oct 2021 19:01:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/tags/config/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Manjaro</title>
+      <link>https://mugijiru.github.io/tags/manjaro/</link>
+      <pubDate>Sun, 10 Oct 2021 19:01:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/tags/manjaro/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>skk</title>
+      <link>https://mugijiru.github.io/tags/skk/</link>
+      <pubDate>Sun, 10 Oct 2021 19:01:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/tags/skk/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

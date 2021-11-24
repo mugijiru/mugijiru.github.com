@@ -1,6 +1,7 @@
 +++
 title = "ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている"
 date = 2021-10-10T19:01:00+09:00
+tags = ["Manjaro", "config", "skk"]
 categories = ["Linux"]
 draft = false
 +++
