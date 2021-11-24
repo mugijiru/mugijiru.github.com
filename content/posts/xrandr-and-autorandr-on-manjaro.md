@@ -1,5 +1,5 @@
 +++
-title = "ディスプレイ周りの設定を弄った"
+title = "Manjaro Linux のディスプレイ周りの設定を弄った"
 tags = ["Manjaro", "config", "display"]
 categories = ["Linux"]
 draft = true
