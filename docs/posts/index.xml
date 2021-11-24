@@ -5,8 +5,44 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 10 Oct 2021 19:01:00 +0900</lastBuildDate>
+        <lastBuildDate>Wed, 24 Nov 2021 14:01:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Manjaro Linux のディスプレイ周りの設定を弄った</title>
+            <link>https://mugijiru.github.io/posts/xrandr-and-autorandr-on-manjaro/</link>
+            <pubDate>Wed, 24 Nov 2021 14:01:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/xrandr-and-autorandr-on-manjaro/</guid>
+            <description>Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。 家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の</description>
+            <content type="html"><![CDATA[<p>Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。</p>
+<p>家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の状態に対応できるよういんしたいよねって思ってた。</p>
+<p>それをするには <a href="https://www.x.org/wiki/Projects/XRandR/">XRandR</a> とそれの設定を保存したりするのに <a href="https://github.com/phillipberndt/autorandr">autorandr</a> を使えばいいというのがわかった。ありがとう <a href="https://wiki.archlinux.jp/index.php/Xrandr">Arch Wiki</a>。今確認していると autorandr ではなくて <a href="https://github.com/alex-courtis/xlayoutdisplay">xlayoutdisplay</a> とやらでも良さそうだがね……。</p>
+<p>まあそれはさておき、ひとまずはディスプレイに繋いでる状態をなんとかしたかったので最初は</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+</code></pre></div><p>というコードを .xprofile に書いていた。
+eDP-1 がノート PC のディスプレイで DP-2 が外部接続しているディスプレイである。つまり eDP-1 は 2880x1620 の解像度で出力し
+DP-2 の右側に配置する、といった感じである。</p>
+<p>DP-2 自体の設定はどこかにいったが、まあ解像度を弄ってるぐらいなのでとりあえずヨシ。</p>
+<p>とりあえずこれにより、ディスプレイを繋いでる状態は良かったんだけどもディスプレイを切り離した時に、仮想デスクトップ2が切り離した方に表示されてるような認識をされていたので困ってしまった。</p>
+<p>調べたところ</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xrandr --output eDP-1 --mode 2880x1620 --output DP-2 --off
+</code></pre></div><p>を実行することで DP-2 つまり外部ディスプレイをオフにできることがわかった。</p>
+<p>というわけで、手動でコマンドを叩く前提にはなるが一旦解決はした。</p>
+<p>そしてこれらそれぞれの状態を autorandr で保存するためまずは繋いでる状態で</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">autorandr --save docked
+</code></pre></div><p>として保存し、切り離して先のコマンドを実行し、ノートのディスプレイだけを使える状態にした上で</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">autorandr --save mobile
+</code></pre></div><p>と実行することで、それぞれの状態を</p>
+<ul>
+<li>docked</li>
+<li>mobile</li>
+</ul>
+<p>として記録しておいた。</p>
+<p>これにより、ディスプレイを繋いだり外したりした時に望んだ通りの設定に自動で切り替わるようになった(切り替わりは今記事を書きながら試した)</p>
+<p>というわけで、切り離した時に表示調整を自分でする必要がなくなった。便利。</p>
+]]></content>
+        </item>
         
         <item>
             <title>ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている</title>
