@@ -5802,7 +5802,8 @@
      ここにリストアップした以外にも文章中にもそういうのが書かれてるし
      ぱっとは思い付いてない何かもありそうなので
      まだまだ設定には時間がかかりそう。楽しいねえ。
-*** TODO Manjaro Linux のディスプレイ周りの設定を弄った :@Linux:Manjaro:config:display:
+*** DONE Manjaro Linux のディスプレイ周りの設定を弄った :@Linux:Manjaro:config:display:
+    CLOSED: [2021-11-24 水 14:01]
     :PROPERTIES:
     :EXPORT_FILE_NAME: xrandr-and-autorandr-on-manjaro
     :END:

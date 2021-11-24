@@ -1,8 +1,9 @@
 +++
 title = "Manjaro Linux のディスプレイ周りの設定を弄った"
+date = 2021-11-24T14:01:00+09:00
 tags = ["Manjaro", "config", "display"]
 categories = ["Linux"]
-draft = true
+draft = false
 +++
 
 Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。
