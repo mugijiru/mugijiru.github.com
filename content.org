@@ -5802,3 +5802,74 @@
      ここにリストアップした以外にも文章中にもそういうのが書かれてるし
      ぱっとは思い付いてない何かもありそうなので
      まだまだ設定には時間がかかりそう。楽しいねえ。
+*** TODO Manjaro Linux のディスプレイ周りの設定を弄った :@Linux:Manjaro:config:display:
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: xrandr-and-autorandr-on-manjaro
+    :END:
+    Manjaro Linux の設定を弄ってる系の記事です。
+    まあまだ2記事目だけど。
+
+    家には外部ディスプレイが存在するけど
+    まあ必ずいつも繋いでるわけでもないので、
+    両方の状態に対応できるよういんしたいよねって思ってた。
+
+    それをするには [[https://www.x.org/wiki/Projects/XRandR/][XRandR]] と
+    それの設定を保存したりするのに [[https://github.com/phillipberndt/autorandr][autorandr]] を使えばいいというのがわかった。
+    ありがとう [[https://wiki.archlinux.jp/index.php/Xrandr][Arch Wiki]]。
+    今確認していると autorandr ではなくて [[https://github.com/alex-courtis/xlayoutdisplay][xlayoutdisplay]] とやらでも良さそうだがね……。
+
+    まあそれはさておき、
+    ひとまずはディスプレイに繋いでる状態をなんとかしたかったので
+    最初は
+
+    #+begin_src sh
+    xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+    #+end_src
+
+    というコードを .xprofile に書いていた。
+    eDP-1 がノート PC のディスプレイで DP-2 が外部接続しているディスプレイである。
+    つまり eDP-1 は 2880x1620 の解像度で出力し
+    DP-2 の右側に配置する、といった感じである。
+
+    DP-2 自体の設定はどこかにいったが、まあ解像度を弄ってるぐらいなのでとりあえずヨシ。
+
+    とりあえずこれにより、ディスプレイを繋いでる状態は良かったんだけども
+    ディスプレイを切り離した時に、
+    仮想デスクトップ2が切り離した方に表示されてるような認識をされていたので
+    困ってしまった。
+
+    調べたところ
+
+    #+begin_src sh
+    xrandr --output eDP-1 --mode 2880x1620 --output DP-2 --off
+    #+end_src
+
+    を実行することで DP-2 つまり外部ディスプレイをオフにできることがわかった。
+
+    というわけで、手動でコマンドを叩く前提にはなるが一旦解決はした。
+
+    そしてこれらそれぞれの状態を autorandr で保存するため
+    まずは繋いでる状態で
+
+    #+begin_src sh
+    autorandr --save docked
+    #+end_src
+
+    として保存し、
+    切り離して先のコマンドを実行し、ノートのディスプレイだけを使える状態にした上で
+
+    #+begin_src sh
+    autorandr --save mobile
+    #+end_src
+
+    と実行することで、それぞれの状態を
+
+    - docked
+    - mobile
+
+    として記録しておいた。
+
+    これにより、ディスプレイを繋いだり外したりした時に
+    望んだ通りの設定に自動で切り替わるようになった(切り替わりは今記事を書きながら試した)
+
+    というわけで、切り離した時に表示調整を自分でする必要がなくなった。便利。
