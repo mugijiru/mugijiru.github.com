@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="Ember.js の共通コンポーネントの NPM への分離">
-<meta itemprop="description" content="相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ"><meta itemprop="datePublished" content="2021-03-24T13:04:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-03-24T13:04:00&#43;09:00" />
+<meta itemprop="description" content="相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ"><meta itemprop="datePublished" content="2021-03-24T13:04:00+09:00" />
+<meta itemprop="dateModified" content="2021-03-24T13:04:00+09:00" />
 <meta itemprop="wordCount" content="1805">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-03-24 13:04:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-03-24 13:04:00 &#43;0900 JST" />
 
 
 
@@ -176,9 +176,9 @@ Ember.js のアドオンという形で設置していました。</p>
 <h3 id="github-packages-の-npm-package-の公開">GitHub Packages の NPM Package の公開</h3>
 <p>まず <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#publishing-a-package">パッケージを公開する</a> に従って以下の変更をしている。</p>
 <p>パッケージ名を <code>@mugijiru/ember-components</code> にしたり、</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;@mugijiru/ember-components&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;@mugijiru/ember-components&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
 </code></pre></div><p>publishConfig の registry に GitHub Packages の URL を入れることでそこで公開できるようにしている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;publishConfig&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;publishConfig&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
   <span style="color:#f92672">&#34;access&#34;</span>: <span style="color:#e6db74">&#34;restricted&#34;</span>,
   <span style="color:#f92672">&#34;registry&#34;</span>: <span style="color:#e6db74">&#34;https://npm.pkg.github.com&#34;</span>
 }<span style="color:#960050;background-color:#1e0010">,</span>
@@ -188,7 +188,7 @@ Ember.js のアドオンという形で設置していました。</p>
 <p>今は公開リポジトリにしているから public でもいい気もするけど、実装当時はより業務でやりそうな雰囲気にしたかったので、非公開リポジトリかつ限定的な公開で進めていたので、このようになっている。</p>
 <p>さらに、今後 GitHub Packages に複数パッケージ公開するかもしれないので
 <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#publishing-multiple-packages-to-the-same-repository">同じリポジトリへの複数パッケージの公開</a> に従って registory を指定したりしている</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;repository&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;git://github.com/mugijiru/ember-components.git&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;repository&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;git://github.com/mugijiru/ember-components.git&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
 </code></pre></div><p>その上で
 <a href="https://github.com/mugijiru/ember-components/blob/main/.github/workflows/release.yml">https://github.com/mugijiru/ember-components/blob/main/.github/workflows/release.yml</a>
 のようなワークフローを用意すると
@@ -205,20 +205,20 @@ package.json の devDependencies に入れていた
 <code>&quot;my-components&quot;: &quot;link:../my-components&quot;</code> を削除している。</p>
 <p>今思ったけどこれ devDependencies だと多分 production 環境だと動かなかったな。まあ 2.18 なので公開する気がゼロだったからすっかり気付かなかったんだけど。</p>
 <p>まあそれは置いといて公開したパッケージを入れるため dependencies に以下のように記述する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;dependencies&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;dependencies&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
   <span style="color:#f92672">&#34;@mugijiru/ember-components&#34;</span>: <span style="color:#e6db74">&#34;^0.0.1&#34;</span>
 }<span style="color:#960050;background-color:#1e0010">,</span>
 </code></pre></div><p>あとはプライベートなパッケージを入れられるように
 <code>RAILS_ROOT/ember/todo-app/.npmrc</code> に以下のような設定を入れている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">@mugijiru:registry=https://npm.pkg.github.com
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">@mugijiru:registry=https://npm.pkg.github.com
 </code></pre></div><p>この設定は <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#installing-a-package">パッケージをインストールする</a> の通りだとなんかうまく動かなかったので
 <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages#installing-packages-from-other-organizations">他のOrganizationからのパッケージのインストール</a> のやり方を採用している。あとでまた検証した方がいいかもなあ。。。</p>
 <p>それと <a href="https://docs.github.com/ja/packages/guides/configuring-npm-for-use-with-github-packages">GitHub Packages への認証を行う</a> に従って</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">//npm.pkg.github.com/:_authToken=${NPM_TOKEN}
 </code></pre></div><p>としている。
 NPM_TOKEN には GitHub のパーソナルアクセストークンが入るので環境変数にしている。</p>
 <p>なので GitHub Actions で CI を回す際のパッケージのインストール時に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">env</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">env</span>:
   <span style="color:#f92672">NPM_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.NPM_AUTH_TOKEN }}</span>
 </code></pre></div><p>みたいに環境変数に PAT を入れてあげる必要あり。</p>
 <p>他には、これまた公開したパッケージを使う上で本質的ではないんだけど、移植した際に <code>my-button</code> から <code>mg-button</code> みたいに全部
@@ -264,7 +264,7 @@ ember-cli-rails で使えるようになりますよっと。正直 NPM とか�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年03月24日 04:04
+          2021年03月24日 13:04
         
 
          

@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="org-agenda を活用し始めた">
-<meta itemprop="description" content="昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ"><meta itemprop="datePublished" content="2021-04-29T19:03:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-04-29T19:03:00&#43;09:00" />
+<meta itemprop="description" content="昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ"><meta itemprop="datePublished" content="2021-04-29T19:03:00+09:00" />
+<meta itemprop="dateModified" content="2021-04-29T19:03:00+09:00" />
 <meta itemprop="wordCount" content="1953">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-04-29 19:03:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-04-29 19:03:00 &#43;0900 JST" />
 
 
 
@@ -154,7 +154,7 @@ org-clock を使い始めたり org-pomodoro を導入したり org-habits を�
 <p>まず、平日朝イチでやっておきたい習慣タスクに対して
 <code>Weekday</code> と <code>Start</code> の2つのタグを振ってるか、
 <code>Daily</code> というタグを振ってるのでそれを表示できるやつを以下のように仕込んでる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;hs&#34;</span> <span style="color:#e6db74">&#34;Weekday Start&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;hs&#34;</span> <span style="color:#e6db74">&#34;Weekday Start&#34;</span>
  ((tags <span style="color:#e6db74">&#34;Weekday&amp;Start|Daily&#34;</span>
         ((org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
                                     (:name <span style="color:#e6db74">&#34;今日の作業&#34;</span> :scheduled today)
@@ -169,7 +169,7 @@ org-clock を使い始めたり org-pomodoro を導入したり org-habits を�
 <p><code>(:discard (:anything t))</code> は、そこまでの条件にマッチしなかったやつを全部無視するような設定。これがないと <code>Other items</code> という形で全部並んでしまって邪魔になる。</p>
 <p>最初の絞り込みで綺麗に絞り込めると良いかもしれないが、そこまで高度な機能は org-mode には備わってなさそう。それか、そういう高度な機能を見つけて使いこなせる能力を俺が有してないか。</p>
 <p>まあそれはともかく、上の感じでタスクを登録していると以下のように表示される。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Headlines with TAGS match: Weekday&amp;Start|Daily
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Headlines with TAGS match: Weekday&amp;Start|Daily
 
  予定が過ぎてる作業
   next-actions:TODO 排便                                                      :Weekday:Start:
@@ -179,7 +179,7 @@ org-clock を使い始めたり org-pomodoro を導入したり org-habits を�
 </code></pre></div><p>実際のやつはもっと色々あるというか、そもそもわざわざ排便を org-mode で管理はしてないのであくまでサンプルとして2つ置いてるだけだとご認識ください。</p>
 <p>同じノリでその日の締め作業も取れるように設定している。</p>
 <p>また、日中使うための設定も用意していて、こっちは結構複雑。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;d&#34;</span> <span style="color:#e6db74">&#34;Today&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;d&#34;</span> <span style="color:#e6db74">&#34;Today&#34;</span>
  ((agenda <span style="color:#e6db74">&#34;会議など&#34;</span>
           ((org-agenda-span <span style="color:#e6db74">&#39;day</span>)
            (org-agenda-files my/org-agenda-calendar-files)))
@@ -221,7 +221,7 @@ org-clock を使い始めたり org-pomodoro を導入したり org-habits を�
 <p>とりあえず現在は next-actions.org に、直近やるつもりの作業を詰めていて
 projecs.org に、直近ではないけどやることリストを並べてるって感じ。スプリントバックログとプロダクトバックログみたいな扱いのつもりですね。あとは別途 org-gcal で同期している Google Calendar から取得した予定用のファイルもあったりする。</p>
 <p>そうやっていくつかあるファイルからいい感じになるようにということで設定しているのが先程のコードでそれで org-agenda のバッファを生成すると以下のような雰囲気のやつになる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"> 会議など
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"> 会議など
  11:00-12:00 すごい会議
  15:00-18:00 長い会議
 ------------------------------
@@ -283,7 +283,7 @@ projecs.org に、直近ではないけどやることリストを並べてる�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年04月29日 10:03
+          2021年04月29日 19:03
         
 
          

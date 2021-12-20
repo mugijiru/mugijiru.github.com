@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="古い ember-rails App で一部ファイルを ES6 Module 化">
-<meta itemprop="description" content="これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部"><meta itemprop="datePublished" content="2021-02-21T22:41:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-02-21T22:41:00&#43;09:00" />
+<meta itemprop="description" content="これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部"><meta itemprop="datePublished" content="2021-02-21T22:41:00+09:00" />
+<meta itemprop="dateModified" content="2021-02-21T22:41:00+09:00" />
 <meta itemprop="wordCount" content="877">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-02-21 22:41:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-02-21 22:41:00 &#43;0900 JST" />
 
 
 
@@ -161,14 +161,14 @@ Ember.js Application の Namespace に放り込めばいいだけ。</p>
 <h3 id="example">Example</h3>
 <p>まずはコンポーネントなどを
 <code>app/assets/javascripts/ember-app/components/foo.module.es6</code> ってファイル名で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Ember</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Ember</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember&#39;</span>;
 
 <span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({});
 </code></pre></div><p>のように書いておく。拡張子が <code>.module.es6</code> というのがポイントで、そうしておくと
 <a href="https://github.com/tricknotes/ember-es6%5Ftemplate">ember-es6_template</a> という Gem が自動的に ES6 の module として判定してくれるようになっている
 <a href="https://github.com/tricknotes/ember-es6%5Ftemplate/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6%5Ftemplate/sprockets.rb#L10">https://github.com/tricknotes/ember-es6%5Ftemplate/blob/c1c7b8d23be7669a0aa6c5f9c71b916a3799f9a6/lib/ember/es6%5Ftemplate/sprockets.rb#L10</a></p>
 <p>そして <code>app/assets/javascripts/ember-app/application.js.es6</code> の末尾にでも</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">FooComponent</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-app/components/foo&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">FooComponent</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-app/components/foo&#39;</span>;
 
 <span style="color:#a6e22e">EmberApp</span>.<span style="color:#a6e22e">FooComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">FooComponent</span>;
 </code></pre></div><p>のように書いたら、一応 module 形式で書けるし、それを window.EmberApp で用意した Ember.js Application で使えるって感じ。</p>
@@ -176,7 +176,7 @@ Ember.js Application の Namespace に放り込めばいいだけ。</p>
 <p>だるいよね。なので import 処理は
 <code>app/assets/javascripts/ember-app/import-modules.js.es6.erb</code>
 という erb template でも分離して</p>
-<pre><code class="language-erb" data-lang="erb">&lt;% module_dir = Rails.root.join('app/assets/javascripts/ember-app/modules') %&gt;
+<pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;% module_dir = Rails.root.join('app/assets/javascripts/ember-app/modules') %&gt;
 &lt;% Dir.each_child(module_dir) do |dir| %&gt;
   &lt;% next unless FileTest.directory?(&quot;#{module_dir}/#{dir}&quot;) %&gt;
   &lt;% Dir.glob('*.module.es6', base: &quot;#{module_dir}/#{dir}&quot;) do |module_file| %&gt;
@@ -234,7 +234,7 @@ Model は対応できてないけど、ま、Model は移行してないので�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年02月21日 13:41
+          2021年02月21日 22:41
         
 
          

@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="Storybook の SCSS 対応でハマった">
-<meta itemprop="description" content="この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。 それは置いといて、汎"><meta itemprop="datePublished" content="2021-09-17T12:07:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-09-17T12:07:00&#43;09:00" />
+<meta itemprop="description" content="この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。 それは置いといて、汎"><meta itemprop="datePublished" content="2021-09-17T12:07:00+09:00" />
+<meta itemprop="dateModified" content="2021-09-17T12:07:00+09:00" />
 <meta itemprop="wordCount" content="509">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-09-17 12:07:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-09-17 12:07:00 &#43;0900 JST" />
 
 
 
@@ -149,9 +149,9 @@
 <p>なのでそこで流行りっぽい Storybook で作ってみているのだが素の CSS だと面倒なので SCSS を採用することにした。</p>
 <p>SCSS なのは Brace は欲しかったのと、ライブラリの更新が頻繁なので、更新間隔が空きがちな Stylus より良さそうと思ったから。</p>
 <p>というわけで <code>@storybook/html</code> の <code>6.3.8</code> を入れてるわけだけどそこに scss が使えるようにということで</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">npm install --save-dev css-loader sass-loader style-loader
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">npm install --save-dev css-loader sass-loader style-loader
 </code></pre></div><p>とかしたら</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">npm ERR! code ERESOLVE
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">npm ERR! code ERESOLVE
 npm ERR! ERESOLVE could not resolve
 </code></pre></div><p>などと言われてしまう。</p>
 <p>適当に <code>--legacy-peer-deps</code> で突っ込んでもで突っ込んでも、結局は起動時にエラーになってしまう。</p>
@@ -203,7 +203,7 @@ Webpack5 対応にもなってなさそうなので、本当に使って大丈�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年09月17日 03:07
+          2021年09月17日 12:07
         
 
          

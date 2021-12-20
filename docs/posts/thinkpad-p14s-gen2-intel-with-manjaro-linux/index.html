@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている">
-<meta itemprop="description" content="先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux"><meta itemprop="datePublished" content="2021-10-10T19:01:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-10-10T19:01:00&#43;09:00" />
+<meta itemprop="description" content="先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux"><meta itemprop="datePublished" content="2021-10-10T19:01:00+09:00" />
+<meta itemprop="dateModified" content="2021-10-10T19:01:00+09:00" />
 <meta itemprop="wordCount" content="7107">
 <meta itemprop="keywords" content="Manjaro,config,skk," />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-10-10 19:01:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-10-10 19:01:00 &#43;0900 JST" />
 
 
 
@@ -168,7 +168,7 @@ swap 領域はメモリ拡張すると足らないのでなんとかする必要
 <h2 id="font-設定">Font 設定</h2>
 <p>デフォルトの Terminal である xfce4-terminal のフォントが何故か文字間が広くて気持ち悪いので Sazanami と IPA フォントを入れた記憶がある。</p>
 <p>history を漁ると</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ pacman -S ttf-sazanami
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ pacman -S ttf-sazanami
 $ pacman -S otf-ipafont
 </code></pre></div><p>が出て来たのでとりあえずそうやって入れているっぽい。</p>
 <p>多分 Sazanami を入れてるのは
@@ -206,13 +206,13 @@ $ pacman -S otf-ipafont
 <p>というわけで
 <a href="http://neko-mac.blogspot.com/2021/06/archlinuxskk.html">http://neko-mac.blogspot.com/2021/06/archlinuxskk.html</a>
 を参考に設定をした。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fcitx5-skk
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fcitx5-skk
 </code></pre></div><p>あとは fcitx5-configtool も必要なので入れた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fcitx5-configtool
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fcitx5-configtool
 </code></pre></div><p>これを別途入れないと設定ツールが起動できないのだが、
 Not Found 的なエラーが出るわけでもなく単に起動できないだけなので何が問題なのか気付きにくかった。別途インストールが必要だったが、それに気付くまで2,3時間溶かした気がする。</p>
 <p>そんでもって fcitx5-configtool を</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fcitx5-configtool
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fcitx5-configtool
 </code></pre></div><p>で起動して右側の Available Input Method から SKK を探して左側の Current Input Method に入るようにすると
 Ctrl + SPC で日本語を SKK で入力できるようになる。</p>
 <p>さらに StickyShift を愛用しているのでそのあたりの設定もしている。設定ファイルについては先に紹介した記事の内容そのままなので割愛。後で GitHub にも設定ファイルを上げるのでここに書いてなくても困らないはずだし。</p>
@@ -223,7 +223,7 @@ Rule を Default から先程作った StickyShift に切り替える。</p>
 <p>このあたりの手順も先に紹介した記事にある手順そのままだけどまあ人の記事は消えることもあるのでちょっとここにも書かせてもらいました。向こうの方が画像キャプチャもあって親切なんだけどね。</p>
 <p>まあともかくこれで日本語でもググることができるようになった。</p>
 <p>あとはよくわからんけど <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L1-L4">.xprofile</a> に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">export DefaultIMModule=fcitx
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">export DefaultIMModule=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=&#34;@im=fcitx&#34;
@@ -238,7 +238,7 @@ export XMODIFIERS=&#34;@im=fcitx&#34;
 i3 にすることにした。</p>
 <p>i3wm を使うならコミュニティで提供されている i3 版をインスコした方が良いのではというのもあるんだけど気付くのが遅かったのと、そっちの設定でミスって起動しなくなった時に Xfce を動かすことでとりあえず乗り切る、みたいなことも考えている。</p>
 <p>でまあそんなわけで i3 周りを入れることにしたので、以下をインストールしてある。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S i3-gaps
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S i3-gaps
 $ sudo pacman -S i3status
 $ sudo pacman -S i3blocks
 $ sudo pacman -S i3lock
@@ -261,7 +261,7 @@ i3status のデフォルト表示はあまり気に入ってないのでその�
 <p>画面ロック機能を提供してくれるやつ。
 xss-lock と一緒に使うものらしくて
 xss-lock を入れてない状態だとエラーを吐いていたので</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S xss-lock
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S xss-lock
 </code></pre></div><p>としたらロックされるようになった。</p>
 <p>ロック画面は真っ白な画面でそこで適当にキーを叩いたりすると真ん中に丸が出て来るというよくわからない感じ。</p>
 <p>真ん中に丸が出てない状態でパスワードを入力して Enter するとロックが解除されるっぽい。が、わかりづらいのもあって今は指紋認証でロック解除できるようにしてある。その詳細は後程。</p>
@@ -278,7 +278,7 @@ xss-lock を入れてない状態だとエラーを吐いていたので</p>
 <p>が、優先度は低いかなと思って放置中。</p>
 <h2 id="キーバインドの調整">キーバインドの調整</h2>
 <p>とりあえず一旦は CapsLock が a の左隣にあるのが使いにくいしまあそもそもそんなに使わない機能なので</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ setxkbmap -option &#34;ctrl:nocaps&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ setxkbmap -option &#34;ctrl:nocaps&#34;
 </code></pre></div><p>で CapsLock を Ctrl に置き換えている。</p>
 <p>そして <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L6-L7">それを永続化するために .xprofile に書いてる</a> ので起動直後からもう CapsLock は Ctrl になってる。とりあえず最低限これがないとつらい。</p>
 <h3 id="やれてないこと">やれてないこと</h3>
@@ -295,7 +295,7 @@ Linux でもそういう配置にしたいなという願望。</p>
 <p>ESC が左 Ctrl の位置だと押したい時にあまりホームポジションから離れずに左手親指で押せるのも便利。</p>
 <h2 id="キーリピートの調整">キーリピートの調整</h2>
 <p>デフォルトだとキーを押しっぱなしにした時にリピート入力が始まるのとそのリピート速度が遅くてイラッとしたので</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xset r rate 200 25
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xset r rate 200 25
 </code></pre></div><p>としている</p>
 <p>r は repeat, rate は比率設定で
 200 は delay つまりリピート入力が始まるのがどのぐらい押してからかで最後の 25 は1秒間に何回入力されるかの設定。</p>
@@ -304,13 +304,13 @@ Linux でもそういう配置にしたいなという願望。</p>
 <p>これもまた <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L9-L10">永続化のために .xprofile に書いている</a></p>
 <h2 id="タッチパッドでのカーソル移動の調整">タッチパッドでのカーソル移動の調整</h2>
 <p>デフォルトだとどうもカーソルの移動が遅くて、触りたいところに移動するのが大変だったのでこれも速度を上げている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xinput set-prop &lt;device_id&gt; &lt;prop_id&gt; 0.5
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xinput set-prop &lt;device_id&gt; &lt;prop_id&gt; 0.5
 </code></pre></div><p>的な感じなのだが永続化はしてなさそう……。あとでやらなきゃ。</p>
 <p>ちなみに今は Accel Speed は 0.7 にしている。細かい所にカーソル合わせるのが大変なので難しい。</p>
 <h2 id="解像度の固定">解像度の固定</h2>
 <p>ひとまずマシン単体で使う場合に最適化しつつ最低限、いつも使う外部ディスプレイに繋いでる場合にも配置だけはいい感じになるように
 <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.xprofile#L12-L13">.xprofile に以下のように書いている</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
 </code></pre></div><p>eDP-1 がノートPC自体のディスプレイなのでそいつの解像度を指定しつつ
 DP-2 という外部ディスプレイの右側に配置されるように指定している。</p>
 <p>DP-2 なのは単にコネクタ的にたまたまそうなってるだけの可能性も高いが。</p>
@@ -326,41 +326,41 @@ P14s Gen 2 は USB Type-C のポートが複数あってそこに HDMI ポート
 <a href="https://wiki.archlinux.jp/index.php/Fprint">https://wiki.archlinux.jp/index.php/Fprint</a></p>
 <h3 id="指紋認証機器が使えるかの確認">指紋認証機器が使えるかの確認</h3>
 <p>まず</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ lsusb
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ lsusb
 </code></pre></div><p>で指紋認証のやつを探して、
 <a href="https://fprint.freedesktop.org/supported-devices.html">https://fprint.freedesktop.org/supported-devices.html</a>
 の中の USB ID と一致する機器があるか調べたら運良く含まれていて
 Synaptics Sensors という Driver が使われるようだった</p>
 <h3 id="fprintd-のインストール">fprintd のインストール</h3>
 <p>というわけでほぼ間違いなく使えるなということで</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fprintd
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fprintd
 </code></pre></div><p>ここで <code>fprintd</code> ではなくグループとして定義されている <code>fprint</code> を入れようとすると一瞬入りそうな気配になるんだけどこのグループには互いに競合するパッケージが含まれてるから無理やでみたいになるので注意。</p>
 <h3 id="認証エージェントを動かす">認証エージェントを動かす。</h3>
 <p>fprintd が入れられたので「じゃあ指紋登録しましょっか」ってことで</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fprintd-enroll
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fprintd-enroll
 </code></pre></div><p>するとなんか知らんが</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">EnrollStart failed: GDBus.Error:net.reactivated.Fprint.Error.PermissionDenied: Not Authorized: net.reactivated.fprint.device.enroll
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">EnrollStart failed: GDBus.Error:net.reactivated.Fprint.Error.PermissionDenied: Not Authorized: net.reactivated.fprint.device.enroll
 </code></pre></div><p>と怒られる。</p>
 <p>調べてるとなんか認証エージェントを動かす必要があるとか書いていた認証エージェントとはなんぞやとなりつつも
 <a href="https://wiki.archlinux.jp/index.php/Polkit#.E8.AA.8D.E8.A8.BC.E3.82.A8.E3.83.BC.E3.82.B8.E3.82.A7.E3.83.B3.E3.83.88">https://wiki.archlinux.jp/index.php/Polkit#.E8.AA.8D.E8.A8.BC.E3.82.A8.E3.83.BC.E3.82.B8.E3.82.A7.E3.83.B3.E3.83.88</a>
 とかを見て「ははーん polkit とかいうのが名前に入ってるやつが必要なんだな」と察して</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ pacman -Ss polkit
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ pacman -Ss polkit
 </code></pre></div><p>した時に polkit-gnome がインストール済になっていた。ついでにいうと polkit-qt5 もインストール済だったけど、とりあえず gnome の方でいいやということでそれについてくる agent を自動起動するように i3 の config で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &amp;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &amp;
 </code></pre></div><p>とか書いた。</p>
 <h3 id="指紋登録">指紋登録</h3>
 <p>認証エージェントも動いたので再度 <code>fprintd-enroll</code> をすると</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Using device /net/reactivated/Fprint/Device/0
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Using device /net/reactivated/Fprint/Device/0
 Enrolling right-index-finger finger.
 </code></pre></div><p>と Terminal に表示された上でポップアッププロンプトが出て来てパスワード入力が求められるので素直にパスワードを入れると。</p>
 <p>すると今度はポップアッププロンプトは消えて</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Enroll result: enroll-stage-passed
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Enroll result: enroll-stage-passed
 </code></pre></div><p>とか表示されて、何やら待ってる雰囲気になるので指紋センサーの上に指を乗せたら、同じ行がまた表示されたのでそんじゃあまた指を乗せてってのを数度繰り返すと</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Enroll result: enroll-completed
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Enroll result: enroll-completed
 </code></pre></div><p>と表示されて、指紋登録が完了する。</p>
 <h3 id="指紋認証の動作確認">指紋認証の動作確認</h3>
 <p>指紋の登録は完了したので fprint-verify で登録したやつが使えるよねって確認を取る。スキャンした指を乗せるとちゃんと認証できたみたいな雰囲気になる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fprintd-verify mugijiru
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ fprintd-verify mugijiru
 Using device /net/reactivated/Fprint/Device/0
 Listing enrolled fingers:
 - #0: right-index-finger
@@ -368,7 +368,7 @@ Verify result: verify-match (done)
 </code></pre></div><h3 id="pam-dot-d-の設定変更">pam.d の設定変更</h3>
 <p>その後は <a href="https://wiki.archlinux.jp/index.php/Fprint#.E3.83.AD.E3.82.B0.E3.82.A4.E3.83.B3.E8.A8.AD.E5.AE.9A">Arch Wiki のログイン設定の説明</a> に従い
 <code>/etc/pam.d/system-local-login</code> の auth とか書かれている行の上に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">auth      sufficient pam_fprintd.so
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">auth      sufficient pam_fprintd.so
 </code></pre></div><p>を追加したり同じく <code>/etc/pam.d/</code> にある i3lock, lightdm, sudo の各ファイルに同じものを仕込んだ。</p>
 <p>以上で sudo の時もロック画面の解除の時もログインする時も指紋センサーに指を置けば OK となった。便利。</p>
 <p>ログイン画面は認証 OK になったらパスワード入力欄が非表示になるので、その状態で Enter を叩くか「ログイン」ボタンをクリックする必要があるけどね。まあ起動する WM を選択可能だからそういう手順が必要なんだろう。</p>
@@ -381,7 +381,7 @@ Manjaro Linux で鍵を生成して GitHub に登録しておいた。</p>
 <p>これも pacman でインスコできたのでそれを使ってる。今時は gh コマンドって気もするが hub コマンドの方が慣れていて……すみません。</p>
 <p>で、 hub コマンドを入れて適当なところで <code>hub clone dotfiles</code> とかするとユーザー名とパスワードを聞かれて、それを入力すると自動でパーソナルアクセストークンを生成してきてそれを使うように設定されるはずなんだけど、なぜか Not Found しか言わなくて困った。</p>
 <p>最終的には PAT を自分で GitHub に作ってさらに自分で <code>~/.config/hub</code> という設定ファイルを生成して</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">---
 github.com:
 - protocol: https
   user: mugijiru
@@ -397,7 +397,7 @@ push したり pull したりする度にそれを入力するのがだるいん
 <p>というわけで
 <a href="https://wiki.archlinux.jp/index.php/SSH%5F%E9%8D%B5#systemd%5F.E3.83.A6.E3.83.BC.E3.82.B6.E3.83.BC.E3.81.A7%5Fssh-agent%5F.E3.82.92.E8.B5.B7.E5.8B.95">https://wiki.archlinux.jp/index.php/SSH%5F%E9%8D%B5#systemd%5F.E3.83.A6.E3.83.BC.E3.82.B6.E3.83.BC.E3.81.A7%5Fssh-agent%5F.E3.82.92.E8.B5.B7.E5.8B.95</a>
 に従い <code>~/.config/systemd/user/ssh-agent.service</code> に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[Unit]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[Unit]
 Description=SSH key agent
 
 [Service]
@@ -408,31 +408,31 @@ ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
 [Install]
 WantedBy=default.target
 </code></pre></div><p>という内容のファイルを置いて</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ systemctl --user enable ssh-agent
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ systemctl --user enable ssh-agent
 </code></pre></div><p>とかすることでログイン時に ssh-agent が動くようにした。</p>
 <p>さらに
 <a href="https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.zshrc#L157-L160">https://github.com/mugijiru/dotfiles/blob/ead701cd58dc2596d8fb883641a1d793ccddd3ed/.zshrc#L157-L160</a>
 に書いてるように .zshrc に末尾に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"># use ssh agent with systemd
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"># use ssh agent with systemd
 if [ -e &#34;$XDG_RUNTIME_DIR/ssh-agent.socket&#34; ]; then
   export SSH_AUTH_SOCK=&#34;$XDG_RUNTIME_DIR/ssh-agent.socket&#34;
 fi
 </code></pre></div><p>と書くことで自動起動した ssh-agent に繋がるようになった。
 <a href="https://github.com/mugijiru/dotfiles/pull/11">https://github.com/mugijiru/dotfiles/pull/11</a></p>
 <p>その状態で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ssh-add hoge_key
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ssh-add hoge_key
 </code></pre></div><p>みたいにすることで鍵を登録できるのでそのセッションでは ssh 鍵のパスフレーズを入力しないで済むようになって便利になった。</p>
 <h2 id="zsh-の設定">zsh の設定</h2>
 <p>mugijiru/dotfiles を clone してきてあるので</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ln -s /path/to/dotfiles/.zshrc ~/.zshrc
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ln -s /path/to/dotfiles/.zshrc ~/.zshrc
 </code></pre></div><p>するだけで OK</p>
 <h2 id="fzf-の設定">fzf の設定</h2>
 <p>最近 fzf を使いだすようになったので
 Manjaro でもそれを使いたいということで</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fzf
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ sudo pacman -S fzf
 </code></pre></div><p>でインストール。</p>
 <p>さらに dotfiles に <code>.fzf.zsh</code> も置いてるので</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ln -s /path/to/dotfiles/.fzf.zsh ~/.fzf.zsh
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ ln -s /path/to/dotfiles/.fzf.zsh ~/.fzf.zsh
 </code></pre></div><p>したら OK</p>
 <p>まあ本当はセットアップの時はその記述がちょっと環境と合ってなくて
 <code>/usr/share</code> にファイルがある場合はそれを読むように変更している。
@@ -519,7 +519,7 @@ Manjaro でもそれを使いたいということで</p>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年10月10日 10:01
+          2021年10月10日 19:01
         
 
          

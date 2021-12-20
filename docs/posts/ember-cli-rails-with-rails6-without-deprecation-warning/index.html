@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした">
-<meta itemprop="description" content="ember-cli-rails なアプリを Rails6 対応にしてみた。が、リリースされている Gem をそのまま使うと DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper, ActionText::TagHelper, and EmberCliRailsAssetsHelper. Being able to do this is deprecated. Autoloading during initialization is going to be an error condition in future versions of Rails. Reloading does not"><meta itemprop="datePublished" content="2021-08-22T00:50:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-08-22T00:50:00&#43;09:00" />
+<meta itemprop="description" content="ember-cli-rails なアプリを Rails6 対応にしてみた。が、リリースされている Gem をそのまま使うと DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper, ActionText::TagHelper, and EmberCliRailsAssetsHelper. Being able to do this is deprecated. Autoloading during initialization is going to be an error condition in future versions of Rails. Reloading does not"><meta itemprop="datePublished" content="2021-08-22T00:50:00+09:00" />
+<meta itemprop="dateModified" content="2021-08-22T00:50:00+09:00" />
 <meta itemprop="wordCount" content="545">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-08-22 00:50:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-08-22 00:50:00 &#43;0900 JST" />
 
 
 
@@ -176,7 +176,7 @@ Gemfile を書き換えるだけで済んだ。</p>
 <p>が、とりあえず master を見るのはいつか知らない間に更新が入りそうで怖いので
 ember-cli-rails は現在の最新の ref を取るようにしている。</p>
 <p>というわけで以下のような書き方になった。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">gem <span style="color:#e6db74">&#39;ember-cli-rails&#39;</span>, <span style="color:#e6db74">github</span>: <span style="color:#e6db74">&#39;thoughtbot/ember-cli-rails&#39;</span>, <span style="color:#e6db74">ref</span>: <span style="color:#e6db74">&#39;1e56a03fb8437f52dfd450454c71cffda2981d66&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">gem <span style="color:#e6db74">&#39;ember-cli-rails&#39;</span>, <span style="color:#e6db74">github</span>: <span style="color:#e6db74">&#39;thoughtbot/ember-cli-rails&#39;</span>, <span style="color:#e6db74">ref</span>: <span style="color:#e6db74">&#39;1e56a03fb8437f52dfd450454c71cffda2981d66&#39;</span>
 gem <span style="color:#e6db74">&#39;ember-cli-rails-assets&#39;</span>, <span style="color:#e6db74">github</span>: <span style="color:#e6db74">&#39;seanpdoyle/ember-cli-rails-assets&#39;</span>, <span style="color:#e6db74">branch</span>: <span style="color:#e6db74">&#39;rely-on-engine-to-load-helper&#39;</span>
 </code></pre></div><p>ということを ember-cli-rails-app というリポジトリの
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/109">https://github.com/mugijiru/ember-rails-todo-app/pull/109</a>
@@ -225,7 +225,7 @@ Ruby 3.0 対応のプルリクエストも含めて結構なプルリクエス�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年08月21日 15:50
+          2021年08月22日 00:50
         
 
          
