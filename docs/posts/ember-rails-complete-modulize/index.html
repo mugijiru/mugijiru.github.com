@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="古い ember-rails App で ES6 Module 化を完了した">
-<meta itemprop="description" content="#10 サブフォルダのファイルを全て module に移行した #11 残りのファイルも module 化した でやってることで全てだけど 前回の記事 でやってた内容を完了まで持って行った"><meta itemprop="datePublished" content="2021-02-23T20:45:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-02-23T20:45:00&#43;09:00" />
+<meta itemprop="description" content="#10 サブフォルダのファイルを全て module に移行した #11 残りのファイルも module 化した でやってることで全てだけど 前回の記事 でやってた内容を完了まで持って行った"><meta itemprop="datePublished" content="2021-02-23T20:45:00+09:00" />
+<meta itemprop="dateModified" content="2021-02-23T20:45:00+09:00" />
 <meta itemprop="wordCount" content="1605">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-02-23 20:45:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-02-23 20:45:00 &#43;0900 JST" />
 
 
 
@@ -157,7 +157,7 @@
 <p>これは基本的に単純で、ほぼ前回の記事でやってることを全部のフォルダに適用しただけ。</p>
 <p>Model だけ命名規則が他と違うので
 import 関連の処理をそこだけ分岐している</p>
-<pre><code class="language-erb" data-lang="erb">&lt;% if dir == 'models' %&gt;
+<pre tabindex="0"><code class="language-erb" data-lang="erb">&lt;% if dir == 'models' %&gt;
   &lt;% klass_name = module_name.underscore.camelize %&gt;
 &lt;% else %&gt;
   &lt;% klass_name = &quot;#{module_name.underscore.camelize}#{dir.underscore.singularize.camelize}&quot; %&gt;
@@ -250,7 +250,7 @@ require_self するより前ならどこでも良さそうな気はする。</p>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年02月23日 11:45
+          2021年02月23日 20:45
         
 
          

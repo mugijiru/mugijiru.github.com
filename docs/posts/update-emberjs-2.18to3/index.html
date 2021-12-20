@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート">
-<meta itemprop="description" content="前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと"><meta itemprop="datePublished" content="2021-04-04T15:38:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-04-04T15:38:00&#43;09:00" />
+<meta itemprop="description" content="前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと"><meta itemprop="datePublished" content="2021-04-04T15:38:00+09:00" />
+<meta itemprop="dateModified" content="2021-04-04T15:38:00+09:00" />
 <meta itemprop="wordCount" content="2677">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-04-04 15:38:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-04-04 15:38:00 &#43;0900 JST" />
 
 
 
@@ -160,26 +160,26 @@
 のコミットでやっていることですね。</p>
 <p>まずは Dockerfile で入れている ember-cli を 2.18 から 3.4 にする。
 3.4 系の最終バージョンは 3.4.4 なのでそれを指定している。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli@3.4.4<span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><h2 id="ember-cli-update-の導入">ember-cli-update の導入</h2>
 <p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/ded293ff2f686081549d0019e500facb5c2aaa3d">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/ded293ff2f686081549d0019e500facb5c2aaa3d</a>
 のコミットでやってることですね。</p>
 <p>Ember.js をアップデートする際には ember-cli-update を使うのが王道っぽいのでそれも Dockerfile でインストールしておく。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli-update</span><span style="color:#960050;background-color:#1e0010">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli-update</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli-update<span style="color:#960050;background-color:#1e0010">
 </span></code></pre></div><p>また、こいつは今後も 3 系で更新していくにあたり必要と思われるので
 ember-cli よりも先に入れておくことにする。</p>
 <h2 id="bundle-and-and-yarn">bundle &amp;&amp; yarn</h2>
 <p>Dockerfile を更新したので bundle install と yarn install を実行しておく。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bundle
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; yarn&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bundle
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; yarn&#34;
 </code></pre></div><p>NPM_TOKEN という環境変数を使ってるのは
 ember-components という自作の NPM パッケージを使うために
 <a href="https://github.com/mugijiru/ember-rails-todo-app/blob/7916518d766145fc0b8d9978efbfb08d6937f813/ember/todo-app/.npmrc">.npmrc</a> で GitHub Packages を使うような設定をしているため。</p>
 <h2 id="ember-cli-update-bootstrap-の実行">ember-cli-update bootstrap の実行</h2>
 <p><a href="https://github.com/ember-cli/ember-cli-update/wiki/Getting-Started">https://github.com/ember-cli/ember-cli-update/wiki/Getting-Started</a> に書かれているように</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update bootstrap&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update bootstrap&#34;
 </code></pre></div><p>を実行することで config/ember-cli-update.json が生成される。
 ember-cli-update は実行時にこのファイルを見て色々処理をする様子。</p>
 <p>雰囲気的には Addon もこれを使って更新できそうだが、ちょっとまだ調べてない。</p>
@@ -187,13 +187,13 @@ ember-cli-update は実行時にこのファイルを見て色々処理をする
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/35177e82eac6a9d490c49348ec8e50b31828bb10">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/35177e82eac6a9d490c49348ec8e50b31828bb10</a></p>
 <h2 id="ember-cli-update-で-3-dot-4-dot-4-に更新">ember-cli-update で 3.4.4 に更新</h2>
 <p>いよいよアップデート作業である。とりあえず 3.4.4 に上げたいので以下のコマンドを叩く。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --to 3.4.4&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --to 3.4.4&#34;
 </code></pre></div><p>すると</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Blueprint updates have been found. Which one would you like to update?
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Blueprint updates have been found. Which one would you like to update?
 &gt; app, current: 2.18.2, latest: 3.25.3
 </code></pre></div><p>というように質問される。恐らく Addon も ember-cli-update で管理できるようにしていたら他の選択肢も出て来るんだろうが、とりあえず今回は app を更新したいだけなので何も考えずに Enter を叩く。</p>
 <p>すると、以下のように何やらファイルが生成されたようなログが出て来る。しかも2回も生成されてる雰囲気。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">installing app
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">installing app
   create .editorconfig
   create .ember-cli
   create .eslintrc.js
@@ -267,7 +267,7 @@ installing app
   create tests/unit/.gitkeep
   create vendor/.gitkeep
 </code></pre></div><p>で、実行後に Ember アプリのディレクトリで <code>git status</code> を叩くと以下のような感じ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Changes to be committed:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Changes to be committed:
   (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
         new file:   .eslintignore
         modified:   .eslintrc.js
@@ -297,13 +297,13 @@ Unmerged paths:
 <p><a href="https://cli.emberjs.com/release/basic-use/upgrading/#updatingyourcodeautomatically">https://cli.emberjs.com/release/basic-use/upgrading/#updatingyourcodeautomatically</a></p>
 <p>に書かれてるように <code>ember-cli-update</code> では
 <code>--run-codemods</code> オプションで実行することで古い記述を自動的に新しい書き方に直してくれるという便利機能があるので、それを実行する。後で理由を記載するが、ここでもまた NPM_TOKEN が必要になる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --run-codemods&#34;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --run-codemods&#34;
 </code></pre></div><p>するとまた</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Which blueprint would you like to run codemods for?
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Which blueprint would you like to run codemods for?
 &gt; ember-cli
 </code></pre></div><p>というように1つしかない選択肢を出される。これもまた Addon を ember-cli-update で更新管理できるようにしていたら選択肢が増えるんだろう、という推測をしてそのまま Enter を叩く。</p>
 <p>すると、今度は以下のようにいくつかの選択肢が出て来る。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? These codemods apply to your project. Select which ones to run. (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? These codemods apply to your project. Select which ones to run. (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)
 ❯◯ ember-modules-codemod
  ◯ ember-qunit-codemod
  ◯ ember-test-helpers-codemod
@@ -327,7 +327,7 @@ Unmerged paths:
 </dl>
 <p>例えばここで
 ember-modules-codemod だけ選択して Enter すると何かよくわからないが NPM Package を Fetch しにいき、それが終わるとコードの自動補正が実行される。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Running codemod ember-modules-codemod
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Running codemod ember-modules-codemod
 Running command 1 of 1
 Skipping path addon which does not exist.
 Skipping path addon-test-support which does not exist.
@@ -354,7 +354,7 @@ Finished running command 1 of 1
 Finished running codemod ember-modules-codemod
 </code></pre></div><p>これで何が変更されているかというと
 <code>git diff --cached</code> の一部を表示するとこんな感じ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">diff --git a/ember/todo-app/app/components/todo-item.js b/ember/todo-app/app/components/todo-item.js
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">diff --git a/ember/todo-app/app/components/todo-item.js b/ember/todo-app/app/components/todo-item.js
 index bc28c83..a803fc5 100644
 --- a/ember/todo-app/app/components/todo-item.js
 +++ b/ember/todo-app/app/components/todo-item.js
@@ -445,7 +445,7 @@ ember-bootstrap あたりの Addon を ember-cli-update で管理できるよう
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年04月04日 06:38
+          2021年04月04日 15:38
         
 
          

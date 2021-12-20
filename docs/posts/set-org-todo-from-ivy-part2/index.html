@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="org-todo を ivy で設定できるようにするパート2">
-<meta itemprop="description" content="org-todo を ivy で設定できるようにした という記事で org-todo を ivy で設定できるようにしたつもりだったんですけど、ダメでした。 何がダメだったかというと org-todo-keywords-for-agenda という変数"><meta itemprop="datePublished" content="2021-06-10T20:53:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-06-10T20:53:00&#43;09:00" />
+<meta itemprop="description" content="org-todo を ivy で設定できるようにした という記事で org-todo を ivy で設定できるようにしたつもりだったんですけど、ダメでした。 何がダメだったかというと org-todo-keywords-for-agenda という変数"><meta itemprop="datePublished" content="2021-06-10T20:53:00+09:00" />
+<meta itemprop="dateModified" content="2021-06-10T20:53:00+09:00" />
 <meta itemprop="wordCount" content="528">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-06-10 20:53:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-06-10 20:53:00 &#43;0900 JST" />
 
 
 
@@ -154,17 +154,17 @@ org-todo を ivy で設定できるようにしたつもりだったんですけ
 <p><a href="https://github.com/mugijiru/.emacs.d/pull/231">https://github.com/mugijiru/.emacs.d/pull/231</a></p>
 <p>PR の description にも書いている通り愚直に org-todo-keywords を加工するように変更している。</p>
 <p>私の設定している org-todo-keywords は現在は</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">((sequence <span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING(!)&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;DONE(!)&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY(s)&#34;</span>))
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">((sequence <span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING(!)&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;DONE(!)&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY(s)&#34;</span>))
 </code></pre></div><p>という感じ。</p>
 <p>これを</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#a6e22e">mapcar</span> (lambda (element)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#a6e22e">mapcar</span> (lambda (element)
           (replace-regexp-in-string <span style="color:#e6db74">&#34;\(.+\)&#34;</span> <span style="color:#e6db74">&#34;&#34;</span> element))
         (--remove (string= <span style="color:#e6db74">&#34;|&#34;</span> it) (cdar org-todo-keywords)))
 </code></pre></div><p>のような処理で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;DONE&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;DONE&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY&#34;</span>)
 </code></pre></div><p>みたいな感じで、キー指定の <code>(s)</code> や、未完了or完了状態を区切る <code>|</code> とかを取り除いた文字列のリストにしている。</p>
 <p>org-todo-keywords は本当は</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(setq org-todo-keywords
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(setq org-todo-keywords
       <span style="color:#f92672">&#39;</span>((sequence <span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;DONE&#34;</span>)
         (sequence <span style="color:#e6db74">&#34;REPORT&#34;</span> <span style="color:#e6db74">&#34;BUG&#34;</span> <span style="color:#e6db74">&#34;KNOWNCAUSE&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;FIXED&#34;</span>)
         (sequence <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;CANCELED&#34;</span>)))
@@ -206,7 +206,7 @@ org-todo を ivy で設定できるようにしたつもりだったんですけ
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年06月10日 11:53
+          2021年06月10日 20:53
         
 
          

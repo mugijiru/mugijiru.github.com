@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="ember-rails でコンポーネントを共通ライブラリとして切り出す">
-<meta itemprop="description" content="ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ"><meta itemprop="datePublished" content="2021-02-28T10:45:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-02-28T10:45:00&#43;09:00" />
+<meta itemprop="description" content="ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ"><meta itemprop="datePublished" content="2021-02-28T10:45:00+09:00" />
+<meta itemprop="dateModified" content="2021-02-28T10:45:00+09:00" />
 <meta itemprop="wordCount" content="2082">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-02-28 10:45:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-02-28 10:45:00 &#43;0900 JST" />
 
 
 
@@ -165,7 +165,7 @@ Resolver には <code>component:ember-libs/button</code> として解釈する�
 GlobalsResolver は <code>EmberLibs.ButtonComponent</code> として解釈するようになっている。つまり EmberLibs という名前空間の ButtonComponent を探しに行くようになっている。</p>
 <h3 id="名前空間の定義">名前空間の定義</h3>
 <p>というわけで、まずは <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-e1803bb0635866bc90975a1321dbfa6d20be59e76ec3d7b80c8acc4656f8af9fR6">ember-libs/ember-libs.js.es6</a> に書いてるように</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window.<span style="color:#a6e22e">EmberLibs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Namespace</span>.<span style="color:#a6e22e">create</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window.<span style="color:#a6e22e">EmberLibs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Namespace</span>.<span style="color:#a6e22e">create</span>()
 </code></pre></div><p>と書くことで
 EmberLibs という名前空間を定義してやる。</p>
 <p>一応 <code>ember-libs/ember-libs.js.es6</code> では require の順番として
@@ -173,7 +173,7 @@ ember はそこで定義している実装を使うので先に require して�
 require_self をしている。</p>
 <h3 id="共通コンポーネントの記述">共通コンポーネントの記述</h3>
 <p>各コンポーネントはその名前空間の下に入るように書けばいい。例えば <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-9f9be147342dc470d8f0cba8a06a55a210550e01b22502bd6e0aff0d029ae38cR1">ember-libs/components/button.js.es6</a> に書いてるように</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
 </code></pre></div><p>というように書いてやれば動く。</p>
 <h3 id="config-dot-handlerbars-dot-templates-root-の設定">config.handlerbars.templates_root の設定</h3>
 <p>templates を ember-libs/templates に入れるので
@@ -181,17 +181,17 @@ Rails 側の設定で <code>config.handlebars.templates_root</code> に <code>em
 ember-rails の設定例に従っていれば <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-c1fd91cb1911a0512578b99f657554526f3e1421decdb9e908712beab57e10f9R34">config/application.rb</a> に設定があるはず。</p>
 <h3 id="利用側の設定">利用側の設定</h3>
 <p>あとは <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-2cb7f9d0c761533d0e2b01e0b7e6f4a34529c7b52f9a13c7493b2629251bccd8R9">todo-app/application.js.es6</a> に書いてるようにこの共通コンポーネントを使いたいアプリ側で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//= require ember-libs/ember-libs
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//= require ember-libs/ember-libs
 </span></code></pre></div><p>としてやるだけでさくっと使えるようになる。</p>
 <h3 id="他の-type-について">他の type について</h3>
 <p>試してないけど mixin や service ぐらいなら同じノリでいけるんじゃないかなと思ってる。
 model もいけそう。名前空間が変わるだけだし、その呼び出しも難しくないし、大体なんとかなりそう。</p>
 <h3 id="余談-名前空間を分けない場合">余談: 名前空間を分けない場合</h3>
 <p>上のようなやりかたをしているのは、名前空間を分けたいってのが先だったので、各アプリで名前空間を分ける必要がなければ、全部のアプリで</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window <span style="color:#a6e22e">App</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Application</span>.<span style="color:#a6e22e">create</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window <span style="color:#a6e22e">App</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Application</span>.<span style="color:#a6e22e">create</span>()
 </code></pre></div><p>とかしちゃって</p>
 <p><code>ember-libs/components/button.js.es6</code> では普通に書く場合と同じように</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">App</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">App</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
 </code></pre></div><p>みたいにしておいて require したら <code>{{button}}</code> で使える。個人的には、名前空間が混ざるとどっちかが上書きされたりしそうで怖くて嫌だけど。</p>
 <h2 id="es6-module-対応版の場合">ES6 Module 対応版の場合</h2>
 <p>最初に答えを出すと
@@ -203,11 +203,11 @@ model もいけそう。名前空間が変わるだけだし、その呼び出�
 <p>なのだけど今回はそんなところを探しに行って欲しくないので、
 regsiter を Ember.js で自動的に解決して対応してもらうのではなく
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/12/files#diff-029812c538a995224fcf19bfa24f65558246c054aea77c95ec1f4a404b4f5256R1">ember-libs/ember-libs.module.es6</a> に書いているように、自前で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>()
 </code></pre></div><p>して対応することにした。</p>
 <h3 id="コンポーネントの-register">コンポーネントの register</h3>
 <p>基本的には以下のように書いておけば Button コンポーネントは動くようになる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Button</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/button&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Button</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/button&#39;</span>;
 
 <span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;component:ember-libs/button&#39;</span>, <span style="color:#a6e22e">Button</span>);
 </code></pre></div><p>が、コンポーネントが増えていった際に全部そうやって書くのはアホらしい。というわけで、自動的に解決するようにした。</p>
@@ -224,7 +224,7 @@ ember-rails の設定例に従っていれば <a href="https://github.com/mugiji
 <h3 id="利用側の設定">利用側の設定</h3>
 <p>アプリ側では <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/12/files#diff-97468a821d4c12c1b223617fba29257a5b1e00553a1b8e8f403ee99864756ebaR4">initializers/resolve-common-libs に書いている</a> ように
 initializer で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">registerAll</span>()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">registerAll</span>()
 </code></pre></div><p>を叩くだけでいい感じに使えるようになる。</p>
 <h3 id="他の-type-について">他の type について</h3>
 <p>試してないけど、component でやってみた所感。</p>
@@ -277,7 +277,7 @@ ES6 Module 対応版への移行がまだでも躊躇せずライブラリを分
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年02月28日 01:45
+          2021年02月28日 10:45
         
 
          

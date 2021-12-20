@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="ivy を使った自作コマンドなどをテストするようにした">
-<meta itemprop="description" content="これまで Emacs Lisp のテストコードを書いてなかった。 というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなく"><meta itemprop="datePublished" content="2021-06-13T15:18:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-06-13T15:18:00&#43;09:00" />
+<meta itemprop="description" content="これまで Emacs Lisp のテストコードを書いてなかった。 というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなく"><meta itemprop="datePublished" content="2021-06-13T15:18:00+09:00" />
+<meta itemprop="dateModified" content="2021-06-13T15:18:00+09:00" />
 <meta itemprop="wordCount" content="1342">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-06-13 15:18:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-06-13 15:18:00 &#43;0900 JST" />
 
 
 
@@ -154,7 +154,7 @@
 <p>なぜそんなものをテストしているかというと、リファクタリングしたかったので、ならテスト書いた方がいいよね〜みたいな。</p>
 <p>テストコードは以下のような感じ。前提条件として <code>org-todo-keywords</code> を用意して、関数を実行した時の期待する結果と、実際の結果を
 should マクロを使って合っていることを確認している。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(ert-deftest test:my/org-todo-keyword-strings ()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(ert-deftest test:my/org-todo-keyword-strings ()
   <span style="color:#e6db74">&#34;Test of </span><span style="color:#e6db74">`my/org-todo-keyword-strings&#39;</span><span style="color:#e6db74">.&#34;</span>
   (setq org-todo-keywords
         <span style="color:#f92672">&#39;</span>((sequence <span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING(!)&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;DONE(!)&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY(s)&#34;</span>)))
@@ -182,7 +182,7 @@ ivy の操作部分のシミュレーション。</p>
 <p>今回テスト対象にしているコードは内部で org-mode の <code>org-todo</code> 関数を呼んでいる。だけど別に <code>org-todo</code> の機能をテストしたいわけではなく
 ivy を使った絞り込みで適切に値が選択されることを検証したいのである。</p>
 <p>というわけで cl-letf を使って呼んだ先で使われている org-todo を以下のように一時的に差し替える。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(cl-letf (((<span style="color:#a6e22e">symbol-function</span> <span style="color:#e6db74">&#39;org-todo</span>)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(cl-letf (((<span style="color:#a6e22e">symbol-function</span> <span style="color:#e6db74">&#39;org-todo</span>)
            (lambda (keyword)
              (setq result keyword))))
   <span style="color:#75715e">;; ここにテストコードを書く</span>
@@ -194,7 +194,7 @@ ivy を使った絞り込みで適切に値が選択されることを検証し�
 <p>そして世の中にいい記事があってありがたいね。</p>
 <h3 id="実際のテストコード">実際のテストコード</h3>
 <p>以上で説明したようなやつを使って、以下のようなテストコードになった。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(ert-deftest test:my/org-todo ()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(ert-deftest test:my/org-todo ()
   <span style="color:#e6db74">&#34;Test of </span><span style="color:#e6db74">`my/org-todo&#39;</span><span style="color:#e6db74">.&#34;</span>
   (let ((org-todo-keywords <span style="color:#f92672">&#39;</span>((sequence <span style="color:#e6db74">&#34;TODO&#34;</span> <span style="color:#e6db74">&#34;DOING(!)&#34;</span> <span style="color:#e6db74">&#34;WAIT&#34;</span> <span style="color:#e6db74">&#34;|&#34;</span> <span style="color:#e6db74">&#34;DONE(!)&#34;</span> <span style="color:#e6db74">&#34;SOMEDAY(s)&#34;</span>)))
         (result))
@@ -249,7 +249,7 @@ buffer の変更のテストってどうしたらいいんでしょうかね。<
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年06月13日 06:18
+          2021年06月13日 15:18
         
 
          

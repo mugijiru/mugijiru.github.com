@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="Manjaro Linux のディスプレイ周りの設定を弄った">
-<meta itemprop="description" content="Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。 家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の"><meta itemprop="datePublished" content="2021-11-24T14:01:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-11-24T14:01:00&#43;09:00" />
+<meta itemprop="description" content="Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。 家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の"><meta itemprop="datePublished" content="2021-11-24T14:01:00+09:00" />
+<meta itemprop="dateModified" content="2021-11-24T14:01:00+09:00" />
 <meta itemprop="wordCount" content="740">
 <meta itemprop="keywords" content="Manjaro,config,display," />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-11-24 14:01:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-11-24 14:01:00 &#43;0900 JST" />
 
 
 
@@ -148,20 +148,20 @@
 <p>家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の状態に対応できるようにしたいよねって思ってた。</p>
 <p>それをするには <a href="https://www.x.org/wiki/Projects/XRandR/">XRandR</a> とそれの設定を保存したりするのに <a href="https://github.com/phillipberndt/autorandr">autorandr</a> を使えばいいというのがわかった。ありがとう <a href="https://wiki.archlinux.jp/index.php/Xrandr">Arch Wiki</a>。今確認していると autorandr ではなくて <a href="https://github.com/alex-courtis/xlayoutdisplay">xlayoutdisplay</a> とやらでも良さそうだがね……。</p>
 <p>まあそれはさておき、ひとまずはディスプレイに繋いでる状態をなんとかしたかったので最初は</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xrandr --output eDP-1 --mode 2880x1620 --right-of DP-2
 </code></pre></div><p>というコードを .xprofile に書いていた。
 eDP-1 がノート PC のディスプレイで DP-2 が外部接続しているディスプレイである。つまり eDP-1 は 2880x1620 の解像度で出力し
 DP-2 の右側に配置する、といった感じである。</p>
 <p>DP-2 自体の設定はどこかにいったが、まあ解像度を弄ってるぐらいなのでとりあえずヨシ。</p>
 <p>とりあえずこれにより、ディスプレイを繋いでる状態は良かったんだけどもディスプレイを切り離した時に、仮想デスクトップ2が切り離した方に表示されてるような認識をされていたので困ってしまった。</p>
 <p>調べたところ</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xrandr --output eDP-1 --mode 2880x1620 --output DP-2 --off
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">xrandr --output eDP-1 --mode 2880x1620 --output DP-2 --off
 </code></pre></div><p>を実行することで DP-2 つまり外部ディスプレイをオフにできることがわかった。</p>
 <p>というわけで、手動でコマンドを叩く前提にはなるが一旦解決はした。</p>
 <p>そしてこれらそれぞれの状態を autorandr で保存するためまずは繋いでる状態で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">autorandr --save docked
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">autorandr --save docked
 </code></pre></div><p>として保存し、切り離して先のコマンドを実行し、ノートのディスプレイだけを使える状態にした上で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">autorandr --save mobile
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">autorandr --save mobile
 </code></pre></div><p>と実行することで、それぞれの状態を</p>
 <ul>
 <li>docked</li>
@@ -215,7 +215,7 @@ DP-2 の右側に配置する、といった感じである。</p>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年11月24日 05:01
+          2021年11月24日 14:01
         
 
          

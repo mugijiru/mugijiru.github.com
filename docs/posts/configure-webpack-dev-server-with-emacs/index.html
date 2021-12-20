@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="Emacs のロックファイルと Webpack dev server の設定">
-<meta itemprop="description" content="また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。 プライベートで vue-cli とかを使って npm run serve とかしている時にファイルを変更する度に [Error: ENOENT: no"><meta itemprop="datePublished" content="2021-09-16T10:22:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-09-16T10:22:00&#43;09:00" />
+<meta itemprop="description" content="また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。 プライベートで vue-cli とかを使って npm run serve とかしている時にファイルを変更する度に [Error: ENOENT: no"><meta itemprop="datePublished" content="2021-09-16T10:22:00+09:00" />
+<meta itemprop="dateModified" content="2021-09-16T10:22:00+09:00" />
 <meta itemprop="wordCount" content="393">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-09-16 10:22:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-09-16 10:22:00 &#43;0900 JST" />
 
 
 
@@ -147,13 +147,13 @@
         <p>また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。</p>
 <p>プライベートで vue-cli とかを使って
 <code>npm run serve</code> とかしている時にファイルを変更する度に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[Error: ENOENT: no such file or directory, stat &#39;/path/to/src/components/.#HelloWorld.vue&#39;]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">[Error: ENOENT: no such file or directory, stat &#39;/path/to/src/components/.#HelloWorld.vue&#39;]
 </code></pre></div><p>とか怒られて辛かった。
 Emacs のロックファイルである。</p>
 <p>ロックファイルを生成しないというのもアリかもしれないが正常に保存されれば自動で消えるファイルだしそこに手を入れるよりは、監視対象ファイルを制限した方が良さそう、と判断して調べた。</p>
 <p><code>npm run serve</code> では裏側で webpack-dev-server が動いているようなのでそこで watch 対象からロックファイルを外すべく
 <code>vue.config.js</code> を以下のように設定した。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
   <span style="color:#a6e22e">configureWebpack</span><span style="color:#f92672">:</span> {
     <span style="color:#a6e22e">devServer</span><span style="color:#f92672">:</span> {
       <span style="color:#a6e22e">watchOptions</span><span style="color:#f92672">:</span> {
@@ -202,7 +202,7 @@ Emacs のロックファイルは <code>.#</code> の後にオリジナルのフ
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年09月16日 01:22
+          2021年09月16日 10:22
         
 
          

@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="GitHub Actions で使ってる Action 達">
-<meta itemprop="description" content="個人リポジトリでは CI などを GitHub Actions に任せている。で、誰かが作ってくれた色々な Action に助けられている。 というわけでそれらを、より多く助けられてるなって"><meta itemprop="datePublished" content="2021-05-30T09:50:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-05-30T09:50:00&#43;09:00" />
+<meta itemprop="description" content="個人リポジトリでは CI などを GitHub Actions に任せている。で、誰かが作ってくれた色々な Action に助けられている。 というわけでそれらを、より多く助けられてるなって"><meta itemprop="datePublished" content="2021-05-30T09:50:00+09:00" />
+<meta itemprop="dateModified" content="2021-05-30T09:50:00+09:00" />
 <meta itemprop="wordCount" content="1446">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-05-30 09:50:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-05-30 09:50:00 &#43;0900 JST" />
 
 
 
@@ -152,17 +152,17 @@
 <p>多分 GitHub Actions を使ってる人ならみんな使ってる。だって普通チェックアウトするもんね。使うよね。</p>
 <p>今のところ自分は単純に checkout するのにしか使ってないが何気にオプションが多い。それらの使い方もしっかり書かれていて良い。</p>
 <p>普通に使う分には</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
   <span style="color:#f92672">with</span>:
     <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">${{ github.head_ref }}</span>
     <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
 </code></pre></div><p>だけで良い。これで checkout される。楽。</p>
 <p>自分の場合は submodule が必要だった際に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">with</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">with</span>:
   <span style="color:#f92672">submodules</span>: <span style="color:#66d9ef">true</span>
 </code></pre></div><p>としてみたり、
 pull_request で動かしたいけど、その hash ではなく branch をチェックアウトしたい時に</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">with</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">with</span>:
   <span style="color:#f92672">ref</span>: <span style="color:#ae81ff">${{ github.head_ref }}</span>
 </code></pre></div><p>としたりなどしてた。</p>
 <h2 id="lazy-actions-slatify">lazy-actions/slatify</h2>
@@ -171,7 +171,7 @@ pull_request で動かしたいけど、その hash ではなく branch をチ�
 CI 終了後に成功/失敗を通知するのに使っている。</p>
 <p>Slack の方に Incoming Webhook を用意してそこを使ってメッセージを飛ばせるようにするやつ。</p>
 <p>自分の場合はこんな感じで、成功失敗に関わらず通知を飛ばしていて、ただ失敗の場合は here mention が飛ぶようにしている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Notify slack build result</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Notify slack build result</span>
   <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">lazy-actions/slatify@master</span>
   <span style="color:#f92672">if</span>: <span style="color:#ae81ff">always()</span>
   <span style="color:#f92672">with</span>:
@@ -193,7 +193,7 @@ ember-rails-todo-app とかでまだその設定を残している。変更し�
 <p>多数のバージョンをサポートしているしリポジトリに .ruby-version ファイルがあればそれを見てくれる。</p>
 <p>Bundler 周りも cache 使ったりとかをいい感じにしてくれてとても便利。</p>
 <p>というわけで今のところ自分は以下の感じで間に合ってる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use ruby</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use ruby</span>
   <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ruby/setup-ruby@v1</span>
   <span style="color:#f92672">with</span>:
     <span style="color:#f92672">bundler-cache</span>: <span style="color:#66d9ef">true</span>
@@ -204,13 +204,13 @@ Rails で Capybara でテストする時ですね。</p>
 <p>chromedriver のセットアップなので Capybara 使う時はこれでいいんじゃないかなって思ってる。
 <a href="https://github.com/mugijiru/ember-rails-todo-app/blob/a98a66ae799eb60f16569c16165d3c456d041e76/spec/support/capybara.rb#L3-L14">rspec 側でも色々書く必要があるのでだるい</a> けど、まあ Chromedriver だからなのかな。</p>
 <p>とりあえず workflow 側ではこんな程度でしか使ってない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">use-chromedriver</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">use-chromedriver</span>
   <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">nanasess/setup-chromedriver@master</span>
 </code></pre></div><p>他のプロジェクトだとテストどうやってるのかな。今度調べてみたいね。</p>
 <h2 id="actions-setup-node">actions/setup-node</h2>
 <p><a href="https://github.com/marketplace/actions/setup-node-js-environment">https://github.com/marketplace/actions/setup-node-js-environment</a></p>
 <p>Node.js をセットアップしてくれる。自分は以下のような単純な使い方しかしてないけど、何度もお世話になっている。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use Node.js</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Use Node.js</span>
   <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v1</span>
   <span style="color:#f92672">with</span>:
     <span style="color:#f92672">node-version</span>: <span style="color:#ae81ff">14.</span><span style="color:#ae81ff">x</span>
@@ -223,11 +223,11 @@ Rails で Capybara でテストする時ですね。</p>
 action-eslint だとうまく動かせなかったので
 reviewdog/action-setup で reviewdog のセットアップだけして自前でコマンドを叩く方法を選択している。</p>
 <p>というわけで</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">reviewdog/action-setup@v1</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">reviewdog/action-setup@v1</span>
   <span style="color:#f92672">with</span>:
     <span style="color:#f92672">reviewdog_version</span>: <span style="color:#ae81ff">latest</span>
 </code></pre></div><p>でとりあえず使えるようにして</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run reviewdog</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run reviewdog</span>
   <span style="color:#f92672">env</span>:
     <span style="color:#f92672">REVIEWDOG_GITHUB_API_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.GITHUB_TOKEN }}</span>
     <span style="color:#f92672">NPM_TOKEN</span>: <span style="color:#ae81ff">${{ secrets.NPM_AUTH_TOKEN }}</span>
@@ -240,7 +240,7 @@ reviewdog/action-setup で reviewdog のセットアップだけして自前で�
 <p>最近入れてみた。設定にもよるけど、Rubocop で引っ掛かったところについて
 PR のチェックリスト的なやつで教えてくれたり、コメントを入れてくれたりする。
 Rubocop 先生に怒られたかったので便利。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rubocop</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rubocop</span>
   <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">reviewdog/action-rubocop@v1</span>
   <span style="color:#f92672">with</span>:
     <span style="color:#f92672">rubocop_version</span>: <span style="color:#ae81ff">gemfile</span>
@@ -287,7 +287,7 @@ Rubocop 先生に怒られたかったので便利。</p>
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年05月30日 00:50
+          2021年05月30日 09:50
         
 
          

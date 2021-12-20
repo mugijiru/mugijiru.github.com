@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="ember-rails でユーザー情報を Rails から inject">
-<meta itemprop="description" content="フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し"><meta itemprop="datePublished" content="2021-02-28T13:10:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-02-28T13:10:00&#43;09:00" />
+<meta itemprop="description" content="フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し"><meta itemprop="datePublished" content="2021-02-28T13:10:00+09:00" />
+<meta itemprop="dateModified" content="2021-02-28T13:10:00+09:00" />
 <meta itemprop="wordCount" content="1022">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -65,7 +65,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-02-28 13:10:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-02-28 13:10:00 &#43;0900 JST" />
 
 
 
@@ -156,19 +156,19 @@ API 経由でデータ渡すよりも表示用の HTML 経由で直接データ�
 Haml 内に JavaScript を埋め込んで Ember に渡すというちょっと乱暴なことができる。</p>
 <p>今回は email を todo-items テンプレート内で表示したかったので
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/16/files#diff-69c2e4b0a6040f2873e963c79265340fd97c099e1ea1a7fbf579902259126e3fR1">Ember.js の呼び出し元の haml</a> 内で</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#f92672">:</span><span style="color:#a6e22e">javascript</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#f92672">:</span><span style="color:#a6e22e">javascript</span>
   <span style="color:#a6e22e">TodoApp</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;session:current-user&#39;</span>, <span style="color:#a6e22e">Ember</span>.Object.<span style="color:#a6e22e">extend</span>({ <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#{current_user.email}&#39;</span> }));
   <span style="color:#a6e22e">TodoApp</span>.<span style="color:#a6e22e">inject</span>(<span style="color:#e6db74">&#39;controller:todo-items&#39;</span>, <span style="color:#e6db74">&#39;current-user&#39;</span>, <span style="color:#e6db74">&#39;session:current-user&#39;</span>);
 </code></pre></div><p>と書いてみた。</p>
 <p>以下にもう少し詳細に書いてみる。</p>
 <h3 id="ユーザー情報の登録">ユーザー情報の登録</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">TodoApp</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;session:current-user&#39;</span>, <span style="color:#a6e22e">Ember</span>.Object.<span style="color:#a6e22e">extend</span>({ <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#{current_user.email}&#39;</span> }));
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">TodoApp</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;session:current-user&#39;</span>, <span style="color:#a6e22e">Ember</span>.Object.<span style="color:#a6e22e">extend</span>({ <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;#{current_user.email}&#39;</span> }));
 </code></pre></div><p>という記述で JavaScript の中に Haml での Ruby のコード呼び出し機能を用いて
 email を EmberObject を継承したクラスにぶち込んでいる。</p>
 <p>正直 <code>:javascript</code> で書いて Ruby のコードを呼び出すのは結構乱暴だとは思うけどできちゃうのでやっちゃった。</p>
 <h3 id="コントローラへの-inject">コントローラへの inject</h3>
 <p>アプリケーションに <code>session:current-user</code> として登録できたので、後はもう</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">TodoApp</span>.<span style="color:#a6e22e">inject</span>(<span style="color:#e6db74">&#39;controller:todo-items&#39;</span>, <span style="color:#e6db74">&#39;current-user&#39;</span>, <span style="color:#e6db74">&#39;session:current-user&#39;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">TodoApp</span>.<span style="color:#a6e22e">inject</span>(<span style="color:#e6db74">&#39;controller:todo-items&#39;</span>, <span style="color:#e6db74">&#39;current-user&#39;</span>, <span style="color:#e6db74">&#39;session:current-user&#39;</span>);
 </code></pre></div><p>として controller に inject することができる。</p>
 <h3 id="template-での表示">template での表示</h3>
 <p>inject された controller の template で <code>{{current-user.email}}</code> と記述するだけでそのユーザーのメアドが表示される。以上。</p>
@@ -181,20 +181,20 @@ Haml で JavaScript を書いて埋め込むなんて荒技はできない。</p
 data 属性に情報を埋めておいてそれを initializer で取得して使えばいいだけである。</p>
 <h3 id="haml-へのデータ埋め込み">Haml へのデータ埋め込み</h3>
 <p>Haml の方では</p>
-<pre><code class="language-haml" data-lang="haml">#todo-app{ data: { email: current_user.email } }
+<pre tabindex="0"><code class="language-haml" data-lang="haml">#todo-app{ data: { email: current_user.email } }
 </code></pre><p>こんな感じにデータを埋めておく。それを Ember.js の initializer で取得して処理してあげれば良い。</p>
 <h3 id="initializer-でのデータの取得">initializer でのデータの取得</h3>
 <p>まずはデータを</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">currentUser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.Object.<span style="color:#a6e22e">extend</span>({
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">currentUser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.Object.<span style="color:#a6e22e">extend</span>({
   <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">rootElement</span>).<span style="color:#a6e22e">dataset</span>.<span style="color:#a6e22e">email</span>
 });
 </code></pre></div><p>という感じで取得して適当な変数に放り込んでおく。ま、大体普通の JavaScript なので何も難しいことはない。</p>
 <h3 id="アプリケーションへの登録">アプリケーションへの登録</h3>
 <p>上で取得したデータをアプリケーションから見れるように登録してあげる必要があるので以下のように <code>application.register()</code> でデータを登録する。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;session:current-user&#39;</span>, <span style="color:#a6e22e">currentUser</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;session:current-user&#39;</span>, <span style="color:#a6e22e">currentUser</span>);
 </code></pre></div><h3 id="controller-への-inject">controller への inject</h3>
 <p>上に書いた感じで application に登録してしまえば、後は旧来版と同じように</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">inject</span>(<span style="color:#e6db74">&#39;controller:todo-items&#39;</span>, <span style="color:#e6db74">&#39;current-user&#39;</span>, <span style="color:#e6db74">&#39;session:current-user&#39;</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">inject</span>(<span style="color:#e6db74">&#39;controller:todo-items&#39;</span>, <span style="color:#e6db74">&#39;current-user&#39;</span>, <span style="color:#e6db74">&#39;session:current-user&#39;</span>);
 </code></pre></div><p>という感じで設定できる。</p>
 <h3 id="template-での表示">template での表示</h3>
 <p>あとは旧来版と同じく
@@ -240,7 +240,7 @@ ember-rails から ember-cli-rails とかに乗り換えてもそのまま使え
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年02月28日 04:10
+          2021年02月28日 13:10
         
 
          

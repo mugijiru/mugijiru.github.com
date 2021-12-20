@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="key-chord を使って Sticky Shift を一部実現した">
-<meta itemprop="description" content="Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を"><meta itemprop="datePublished" content="2021-07-11T13:42:00&#43;09:00" />
-<meta itemprop="dateModified" content="2021-07-11T13:42:00&#43;09:00" />
+<meta itemprop="description" content="Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を"><meta itemprop="datePublished" content="2021-07-11T13:42:00+09:00" />
+<meta itemprop="dateModified" content="2021-07-11T13:42:00+09:00" />
 <meta itemprop="wordCount" content="1313">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-07-11 13:42:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-07-11 13:42:00 &#43;0900 JST" />
 
 
 
@@ -155,7 +155,7 @@
 <h3 id="セミコロン-plus-アルファベットで対応する大文字を出力">セミコロン + アルファベットで対応する大文字を出力</h3>
 <p>プログラムを書いているとやれ camelCase だの PascalCase だのでちょくちょくと大文字を入力する機会多いですよね。</p>
 <p>というわけで、例えば <code>;a</code> と素早く入力したら <code>A</code> が出力されるようにしてみたというのが以下のコードになります。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#a6e22e">mapc</span> (lambda (key)
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#a6e22e">mapc</span> (lambda (key)
         (key-chord-define-global (<span style="color:#a6e22e">concat</span> <span style="color:#e6db74">&#34;;&#34;</span> (<span style="color:#a6e22e">char-to-string</span> key)) (<span style="color:#a6e22e">char-to-string</span> (<span style="color:#a6e22e">-</span> key <span style="color:#ae81ff">32</span>))))
       (number-sequence <span style="color:#e6db74">?a</span> <span style="color:#e6db74">?z</span>))
 </code></pre></div><p><code>number=sequence</code> で a から z までのシーケンスを作成して
@@ -165,7 +165,7 @@
 <h3 id="セミコロン2回でシフトキーが押された状態にする">セミコロン2回でシフトキーが押された状態にする</h3>
 <p>上に書いたように Hydra とか magit とかでいい感じに動かすためにはまだ足りてない。</p>
 <p>が、それをいい感じに解決する方法をまだ知らないので以下の実装により <code>;;</code> と入力することで、シフトキーが押されてる状態を実現している。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(key-chord-define-global <span style="color:#e6db74">&#34;;;&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(key-chord-define-global <span style="color:#e6db74">&#34;;;&#34;</span>
                          <span style="color:#e6db74">&#39;event-apply-shift-modifier</span>)
 
 (key-chord-define key-translation-map
@@ -224,7 +224,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年07月11日 04:42
+          2021年07月11日 13:42
         
 
          

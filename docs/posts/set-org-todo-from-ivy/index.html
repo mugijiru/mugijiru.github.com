@@ -47,8 +47,8 @@
 
 
 <meta itemprop="name" content="org-todo を ivy で設定できるようにした">
-<meta itemprop="description" content="posframe っていいですよね。いきなりタイトルと関係なさそうな単語出したけど。まあ ivy-posframe を使ってるので ivy を使うと posframe が使えて便利って話なんだけど。 ところで話"><meta itemprop="datePublished" content="2020-05-31T01:32:00&#43;09:00" />
-<meta itemprop="dateModified" content="2020-05-31T01:32:00&#43;09:00" />
+<meta itemprop="description" content="posframe っていいですよね。いきなりタイトルと関係なさそうな単語出したけど。まあ ivy-posframe を使ってるので ivy を使うと posframe が使えて便利って話なんだけど。 ところで話"><meta itemprop="datePublished" content="2020-05-31T01:32:00+09:00" />
+<meta itemprop="dateModified" content="2020-05-31T01:32:00+09:00" />
 <meta itemprop="wordCount" content="570">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
@@ -63,7 +63,7 @@
 
 
 
-    <meta property="article:published_time" content="2020-05-31 01:32:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2020-05-31 01:32:00 &#43;0900 JST" />
 
 
 
@@ -154,7 +154,7 @@ posframe が使えるといいなって思ったんですよ。</p>
 <p>で、色々調べた結果、自分にはそういうのを提供してくれる設定とか拡張とか見つけられなかったんですよ。</p>
 <p>じゃあ作るしかないじゃん?
 というわけで、そういう関数作った</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(defun my/org-todo ()
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(defun my/org-todo ()
   (interactive)
   (ivy-read <span style="color:#e6db74">&#34;Org todo: &#34;</span>
             org-todo-keywords-for-agenda
@@ -205,7 +205,7 @@ ivy は ivy-posframe を使ってるから、画面がガチャガチャ動か�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2020年05月30日 16:32
+          2020年05月31日 01:32
         
 
          
