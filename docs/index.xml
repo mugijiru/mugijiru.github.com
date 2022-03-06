@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 30 Nov 2021 19:28:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Mar 2022 23:36:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>el-get-lock の情報を使ってパッケージの更新確認ができるようにした</title>
+      <link>https://mugijiru.github.io/posts/check-updates-emacs-packages-with-el-get-lock/</link>
+      <pubDate>Sun, 06 Mar 2022 23:36:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/check-updates-emacs-packages-with-el-get-lock/</guid>
+      <description>変なこだわりがあったり時代の波に乗れてなかったりで use-package を使わずに el-get を使い続けている麦汁です。 このところは el-get-lock で今入れているバージョンがわかるよう</description>
+    </item>
+    
     <item>
       <title>退職しました</title>
       <link>https://mugijiru.github.io/posts/retirement-2021/</link>
