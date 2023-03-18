@@ -207,7 +207,7 @@ Vue.js の props, data, computed, watch, methods あたりと比較しながら�
 </span></code></pre></div><p>のような書き方になります。正直だるい。</p>
 <p>で、上で「Vue.js でいう data にあたるもの」と書いたが、
 Vue.js でいう props と data 的な区別は特にないので、外から簡単に書き換えられる値でもある。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>3系では</p>
@@ -240,7 +240,7 @@ Vue.js だと</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">computed</span>.<span style="color:#a6e22e">sum</span>(<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>)
 </code></pre></div><p>とか書けるのでそれは便利かもしれない。
 <a href="https://api.emberjs.com/ember/2.18/modules/@ember%2Fobject#functions-computed">https://api.emberjs.com/ember/2.18/modules/@ember%2Fobject#functions-computed</a></p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>3系では</p>
@@ -261,7 +261,7 @@ Tracked Property と Getter を使って</p>
   <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;&#34;hoge&#34; is changed!&#39;</span>)
 })
 </code></pre></div><p>みたいな感じで使う。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>3系では</p>
@@ -430,7 +430,7 @@ Promise の解決結果を Model とする挙動のおかげで</p>
   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">findAll</span>(<span style="color:#e6db74">&#39;posts&#39;</span>)
 }
 </code></pre></div><p>とした場合に Controller などでは <code>this.get('model')</code> で <code>posts</code> が取得できるようになっている。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>複数の model</p>
@@ -659,7 +659,7 @@ id が 1 の User を探しに行く。</p>
   }]
 }
 </code></pre><p>みたいなのを受け取ると users と posts をそれぞれ複数レコード登録してくれる。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>注意</p>
@@ -977,7 +977,7 @@ ember-cli-rails に移行して3系にした方が幸せになれそうなので
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2022</span>
+            <span>&copy; 2023</span>
             
             <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
         </div>

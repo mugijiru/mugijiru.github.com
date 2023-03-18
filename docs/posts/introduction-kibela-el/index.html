@@ -15,16 +15,16 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を" />
+<meta name="description" content="最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの" />
 <meta name="keywords" content="blog,developer,personal" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
-<link rel="canonical" href="https://mugijiru.github.io/posts/sticky-shift-with-key-chord/" />
+<link rel="canonical" href="https://mugijiru.github.io/posts/introduction-kibela-el/" />
 
 
     <title>
         
-            key-chord を使って Sticky Shift を一部実現した :: 麦汁三昧 
+            Emacs で動く Kibela クライアントを作ってる :: 麦汁三昧 
         
     </title>
 
@@ -50,14 +50,14 @@
 
 
 
-<meta itemprop="name" content="key-chord を使って Sticky Shift を一部実現した">
-<meta itemprop="description" content="Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を"><meta itemprop="datePublished" content="2021-07-11T13:42:00+09:00" />
-<meta itemprop="dateModified" content="2021-07-11T13:42:00+09:00" />
-<meta itemprop="wordCount" content="1313">
+<meta itemprop="name" content="Emacs で動く Kibela クライアントを作ってる">
+<meta itemprop="description" content="最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの"><meta itemprop="datePublished" content="2023-03-18T15:58:00+09:00" />
+<meta itemprop="dateModified" content="2023-03-18T15:58:00+09:00" />
+<meta itemprop="wordCount" content="1060">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="key-chord を使って Sticky Shift を一部実現した"/>
-<meta name="twitter:description" content="Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を"/>
+<meta name="twitter:title" content="Emacs で動く Kibela クライアントを作ってる"/>
+<meta name="twitter:description" content="最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの"/>
 
 
 
@@ -65,9 +65,11 @@
 
     <meta property="article:section" content="Emacs" />
 
+    <meta property="article:section" content="Kibela" />
 
 
-    <meta property="article:published_time" content="2021-07-11 13:42:00 &#43;0900 &#43;0900" />
+
+    <meta property="article:published_time" content="2023-03-18 15:58:00 &#43;0900 &#43;0900" />
 
 
 
@@ -142,56 +144,104 @@
 
     <article>
       <h1 class="post-title">
-        <a href="https://mugijiru.github.io/posts/sticky-shift-with-key-chord/">key-chord を使って Sticky Shift を一部実現した</a>
+        <a href="https://mugijiru.github.io/posts/introduction-kibela-el/">Emacs で動く Kibela クライアントを作ってる</a>
       </h1>
 
       
 
       <div class="post-content">
-        <p>Emacs 使っていると左手小指を酷使しますよね。</p>
-<p>まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応をされていると思います。</p>
-<p>私もそんな中の一人で、最近もうシフトキーを押したくないなあという気持ちになって来ました。</p>
-<p>というわけで key-chord を使って Sticky Shift を一部実現して少しだけシフトキーを押さなくても済むような状態を作ってみました。</p>
-<p>とりあえず以下の文章を読むのが面倒だったら
-<a href="https://github.com/mugijiru/.emacs.d/pull/324/files#diff-9fab5d4bac36f504628abcc3cea5b2a1092d96f7bd2286944d5b822c6821bb3a">https://github.com/mugijiru/.emacs.d/pull/324/files#diff-9fab5d4bac36f504628abcc3cea5b2a1092d96f7bd2286944d5b822c6821bb3a</a>
-にコードがあるのでそっちを見てもらえればと。</p>
-<h2 id="実現したこと">実現したこと</h2>
-<h3 id="セミコロン-plus-アルファベットで対応する大文字を出力">セミコロン + アルファベットで対応する大文字を出力</h3>
-<p>プログラムを書いているとやれ camelCase だの PascalCase だのでちょくちょくと大文字を入力する機会多いですよね。</p>
-<p>というわけで、例えば <code>;a</code> と素早く入力したら <code>A</code> が出力されるようにしてみたというのが以下のコードになります。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#a6e22e">mapc</span> (lambda (key)
-        (key-chord-define-global (<span style="color:#a6e22e">concat</span> <span style="color:#e6db74">&#34;;&#34;</span> (<span style="color:#a6e22e">char-to-string</span> key)) (<span style="color:#a6e22e">char-to-string</span> (<span style="color:#a6e22e">-</span> key <span style="color:#ae81ff">32</span>))))
-      (number-sequence <span style="color:#e6db74">?a</span> <span style="color:#e6db74">?z</span>))
-</code></pre></div><p><code>number=sequence</code> で a から z までのシーケンスを作成して
-<code>;</code> との組み合わせを key-chord に食わせて対応するアルファベットの大文字を渡しているというシンプルな構成。</p>
-<p><code>key-chord-define-global</code> などは第二引数に文字列を与えるとそれをそのまま <code>define-key</code> の第三引数に渡すのであたかもそれが入力されたかのような振舞をするのでそれを利用している。</p>
-<p>といいつつ Hydra とか magit の上でそれをやってもうまくいかないのでキーボード入力とは少し違う様子。</p>
-<h3 id="セミコロン2回でシフトキーが押された状態にする">セミコロン2回でシフトキーが押された状態にする</h3>
-<p>上に書いたように Hydra とか magit とかでいい感じに動かすためにはまだ足りてない。</p>
-<p>が、それをいい感じに解決する方法をまだ知らないので以下の実装により <code>;;</code> と入力することで、シフトキーが押されてる状態を実現している。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(key-chord-define-global <span style="color:#e6db74">&#34;;;&#34;</span>
-                         <span style="color:#e6db74">&#39;event-apply-shift-modifier</span>)
-
-(key-chord-define key-translation-map
-                  <span style="color:#e6db74">&#34;;;&#34;</span>
-                  <span style="color:#e6db74">&#39;event-apply-shift-modifier</span>)
-</code></pre></div><p>多分本当はこんな感じで2回似たような事を書かなくてもいいやり方があるんだろうけど今のところこれで動くから良しとしている。</p>
-<p>ここで使っている <code>event-apply-shift-modifier</code> という関数がシフトを入力している状態にしてくれるやつで、類似品に <code>event-apply-control-modifier</code> など、修飾キー系は全部用意されている。</p>
-<p>これらの <code>event-apply-*-modifier</code> 系の関数は <code>C-x @ S</code> などと叩くと呼ばれたりするので
-iTerm とかの中で Emacs を動かしている勢が無理やり修飾キー入力を実現したりするために何やら設定するのにも使っているが今回のように sticky 的な機能を実現するのに便利なやつだったりします。
-<a href="https://github.com/martialboniou/emacs-revival/blob/master/sticky-control.el">sticky-control</a> でも使われているしね。</p>
-<h2 id="今後対応していきたいこと">今後対応していきたいこと</h2>
-<h3 id="セミコロン-plus-数字キーや記号キーの対応">セミコロン + 数字キーや記号キーの対応</h3>
-<p>今回はとりあえずアルファベットだけ Sticky Shift に対応しているがやはり記号系のキーとか数字系のキーも対応できてないと
-Shift を押す機会を減らせないので今後はそのあたりも対応していきたい。</p>
-<p>なお rubikitch 氏の <a href="https://www.emacswiki.org/emacs/sticky.el">sticky.el</a> では実現できていそうなので似たようなことをすれば良さそう。</p>
-<h3 id="セミコロン-plus-アルファベットでその文字を入力したことにしたい">セミコロン + アルファベットでその文字を入力したことにしたい</h3>
-<p>今回の実装では「セミコロン+アルファベット」で **大文字をバッファに出力** できるように対応しているが
-**大文字を入力したこと** にはできてない。</p>
-<p>この2つの何が違うかというと前者しか実現できてない現状だと例えば magit を操作している時に <code>P</code> の代わりに <code>;p</code> を入力した場合には
-<code>Quit transient!</code> と表示されるだけで Pull の操作ができない状態である。</p>
-<p><code>;;</code> で <code>event-apply-shift-modifier</code> しているので、
-<code>;;p</code> とすれば Pull の操作もできるのだがやはりできる限り簡単なキー入力でやりたいことを実現できるようになりたい。</p>
+        <p>最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる</p>
+<h2 id="kibela-とは">Kibela とは</h2>
+<p><a href="https://kibe.la/">Kibela</a> は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの一種。</p>
+<p>記事を書く時は Markdown エディタで書くこともできるしリッチテキストエディタで書くこともできるので
+Markdown に不慣れな方も Markdown で書きたい人も同じ記事をそれぞれが好きなエディタで編集することができるあたり便利。</p>
+<p>無料で使えるコミュニティプランもあるので個人でも気軽に試せるのも便利。</p>
+<p>そして <a href="https://support.kibe.la/hc/ja/articles/360035089312-Kibela%E3%81%AEWeb-API%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">API が公開されている</a> ので、自分でクライアントも作れるわけですよ。</p>
+<h2 id="emacs-で動く-kibela-クライアント-kibela-dot-el">Emacs で動く Kibela クライアント kibela.el</h2>
+<p><a href="https://github.com/mugijiru/emacs-kibela">kibela.el</a> は Emacs 上で動く Kibela クライアントです。
+Kibela を普段使ってるので、それを Emacs から触れると便利だなあと思って作っています。</p>
+<p>上述の通り Kibela は API を公開しているのでそれを利用しています。</p>
+<h3 id="機能">機能</h3>
+<p>今の kibela.el は以下の機能を備えています。使い方は README に書いているはず</p>
+<ul>
+<li>デフォルトグループの記事一覧表示
+<ul>
+<li>40件毎の表示します。</li>
+<li><code>&lt;</code>, <code>&gt;</code> でのページ送りに対応</li>
+</ul>
+</li>
+<li>記事の新規作成
+<ul>
+<li>記事テンプレートから作成することもできます。</li>
+<li>投稿先の変更機能は未実装です</li>
+</ul>
+</li>
+<li>記事の閲覧・編集
+<ul>
+<li>記事一覧から閲覧画面へ遷移し、閲覧画面から編集モードに遷移できます。</li>
+<li>閲覧画面で <code>C-c C-c C-o</code> と入力することで記事をブラウザで開くこともできます。
+<ul>
+<li>kibela.el ではできないこともブラウザで開いたら操作できる、という逃げ。</li>
+</ul>
+</li>
+<li>こちらも投稿先の変更機能は未実装です</li>
+</ul>
+</li>
+<li>チームの切り替え</li>
+</ul>
+<h3 id="動画キャプチャ">動画キャプチャ</h3>
+<p>ivy を入れている環境なので補完には ivy が使われていますが、実際に動いている様子を撮影しました。</p>
+<h4 id="テンプレートからの記事の投稿">テンプレートからの記事の投稿</h4>
+<div class="org-youtube"><iframe width="600" height="337" src="https://www.youtube.com/embed/_FaUlP1rHMw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<h4 id="記事一覧から閲覧-編集">記事一覧から閲覧・編集</h4>
+<div class="org-youtube"><iframe width="600" height="337" src="https://www.youtube.com/embed/BNsHa4peUmY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<h3 id="今後やりたいこと">今後やりたいこと</h3>
+<p>自分が普段使う上で「これができると Emacs 上でいつもの作業が済んで楽だな〜」ということから作っていくつもりです。</p>
+<p>今ぱっと思い付くのはこのあたりかな</p>
+<ul>
+<li>いいね! の表示/投稿
+<ul>
+<li>これができると新しい記事を適当に眺めてリアクションしていくことができて便利</li>
+</ul>
+</li>
+<li>グループ一覧の表示とデフォルトグループ以外の記事一覧表示
+<ul>
+<li>これができると各グループの記事を追えて便利</li>
+</ul>
+</li>
+<li>通知の表示
+<ul>
+<li>メンション飛ばされているのとかも Emacs から確認できると便利そうなので</li>
+</ul>
+</li>
+<li>検索
+<ul>
+<li>古い記事は記事一覧からは流石に探せないので</li>
+</ul>
+</li>
+<li>埋め込み画像の表示
+<ul>
+<li>対応が面倒なので後回しにしていますが表示したい</li>
+<li>動画についてはあまり考えてない</li>
+</ul>
+</li>
+<li>フォルダツリー
+<ul>
+<li>あったらフォルダから記事を絞り込むことができて便利かも</li>
+</ul>
+</li>
+<li>絵文字の表示や補完
+<ul>
+<li>あると記事書く時に使えて便利。まあなくてもさほど困らないけど</li>
+</ul>
+</li>
+<li>下書き保存・編集
+<ul>
+<li>あったら便利。なくてもまあいいけど</li>
+</ul>
+</li>
+</ul>
+<p>ま、飽きるまでやるつもり。すぐ飽きそうな気もするけど。</p>
 
       </div>
     </article>
@@ -205,6 +255,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
 
         <span class="tag"><a href="https://mugijiru.github.io/categories/emacs/">Emacs</a></span>
+        <span class="tag"><a href="https://mugijiru.github.io/categories/kibela/">Kibela</a></span>
         
     </p>
 
@@ -217,7 +268,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        1313 Words
+        1060 Words
       </p>
 
       <p>
@@ -228,7 +279,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年07月11日 04:42
+          2023年03月18日 06:58
         
 
         
@@ -239,7 +290,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
       <hr />
       <div class="sharing-buttons">
         
-<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
   <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
     </div>
@@ -247,7 +298,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
   <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
       <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
@@ -256,7 +307,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f&amp;caption=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f&amp;canonicalUrl=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b&amp;caption=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b&amp;canonicalUrl=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
   <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
     <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
@@ -265,7 +316,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="mailto:?subject=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f&amp;body=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+<a class="resp-sharing-button__link" href="mailto:?subject=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b&amp;body=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
   <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
     </div>
@@ -273,7 +324,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f&amp;media=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f;description=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f&amp;media=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f;description=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
   <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
     </div>
@@ -281,7 +332,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f&amp;title=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f&amp;summary=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f&amp;source=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f&amp;title=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b&amp;summary=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b&amp;source=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
   <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
     </div>
@@ -289,7 +340,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f&amp;resubmit=true&amp;title=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f&amp;resubmit=true&amp;title=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
   <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
     </div>
@@ -297,7 +348,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f;title=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f;title=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on xing">
   <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
     </div>
@@ -305,7 +356,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="whatsapp://send?text=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f%20https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+<a class="resp-sharing-button__link" href="whatsapp://send?text=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b%20https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
   <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </div>
@@ -313,7 +364,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f&amp;t=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f&amp;t=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
   <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
     </div>
@@ -321,7 +372,7 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 </a>
 
 
-<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=key-chord%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%20Sticky%20Shift%20%e3%82%92%e4%b8%80%e9%83%a8%e5%ae%9f%e7%8f%be%e3%81%97%e3%81%9f&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fsticky-shift-with-key-chord%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=Emacs%20%e3%81%a7%e5%8b%95%e3%81%8f%20Kibela%20%e3%82%af%e3%83%a9%e3%82%a4%e3%82%a2%e3%83%b3%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%82%8b&amp;url=https%3a%2f%2fmugijiru.github.io%2fposts%2fintroduction-kibela-el%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
   <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
     </div>
@@ -339,18 +390,11 @@ Shift を押す機会を減らせないので今後はそのあたりも対応�
 
         <div class="pagination__buttons">
           
-            <span class="button previous">
-              <a href="https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/">
-                <span class="button__icon">←</span>
-                <span class="button__text">ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした</span>
-              </a>
-            </span>
-          
 
           
             <span class="button next">
-              <a href="https://mugijiru.github.io/posts/testing-my-emacs-command/">
-                <span class="button__text">ivy を使った自作コマンドなどをテストするようにした</span>
+              <a href="https://mugijiru.github.io/posts/release-ivy-kibela/">
+                <span class="button__text">Kibela の記事を検索できる Ivy 拡張を作った</span>
                 <span class="button__icon">→</span>
               </a>
             </span>

@@ -3,18 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://mugijiru.github.io/categories/</loc>
-    <lastmod>2022-08-29T09:53:00+09:00</lastmod>
+    <lastmod>2023-03-18T15:58:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/emacs/</loc>
-    <lastmod>2022-08-29T09:53:00+09:00</lastmod>
+    <lastmod>2023-03-18T15:58:00+09:00</lastmod>
   </url><url>
-    <loc>https://mugijiru.github.io/posts/release-ivy-kibela/</loc>
-    <lastmod>2022-08-29T09:53:00+09:00</lastmod>
+    <loc>https://mugijiru.github.io/posts/introduction-kibela-el/</loc>
+    <lastmod>2023-03-18T15:58:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/categories/kibela/</loc>
+    <lastmod>2023-03-18T15:58:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/</loc>
-    <lastmod>2022-08-29T09:53:00+09:00</lastmod>
+    <lastmod>2023-03-18T15:58:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/</loc>
+    <lastmod>2023-03-18T15:58:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/release-ivy-kibela/</loc>
     <lastmod>2022-08-29T09:53:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/check-updates-emacs-packages-with-el-get-lock/</loc>
