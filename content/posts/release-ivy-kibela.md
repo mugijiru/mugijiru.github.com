@@ -1,7 +1,7 @@
 +++
 title = "Kibela の記事を検索できる Ivy 拡張を作った"
 date = 2022-08-29T09:53:00+09:00
-categories = ["Emacs"]
+categories = ["Emacs", "Kibela"]
 draft = false
 +++
 

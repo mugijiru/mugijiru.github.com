@@ -5,8 +5,110 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Mon, 29 Aug 2022 09:53:00 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 18 Mar 2023 15:58:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Emacs で動く Kibela クライアントを作ってる</title>
+            <link>https://mugijiru.github.io/posts/introduction-kibela-el/</link>
+            <pubDate>Sat, 18 Mar 2023 15:58:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/introduction-kibela-el/</guid>
+            <description>最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの</description>
+            <content type="html"><![CDATA[<p>最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる</p>
+<h2 id="kibela-とは">Kibela とは</h2>
+<p><a href="https://kibe.la/">Kibela</a> は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの一種。</p>
+<p>記事を書く時は Markdown エディタで書くこともできるしリッチテキストエディタで書くこともできるので
+Markdown に不慣れな方も Markdown で書きたい人も同じ記事をそれぞれが好きなエディタで編集することができるあたり便利。</p>
+<p>無料で使えるコミュニティプランもあるので個人でも気軽に試せるのも便利。</p>
+<p>そして <a href="https://support.kibe.la/hc/ja/articles/360035089312-Kibela%E3%81%AEWeb-API%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">API が公開されている</a> ので、自分でクライアントも作れるわけですよ。</p>
+<h2 id="emacs-で動く-kibela-クライアント-kibela-dot-el">Emacs で動く Kibela クライアント kibela.el</h2>
+<p><a href="https://github.com/mugijiru/emacs-kibela">kibela.el</a> は Emacs 上で動く Kibela クライアントです。
+Kibela を普段使ってるので、それを Emacs から触れると便利だなあと思って作っています。</p>
+<p>上述の通り Kibela は API を公開しているのでそれを利用しています。</p>
+<h3 id="機能">機能</h3>
+<p>今の kibela.el は以下の機能を備えています。使い方は README に書いているはず</p>
+<ul>
+<li>デフォルトグループの記事一覧表示
+<ul>
+<li>40件毎の表示します。</li>
+<li><code>&lt;</code>, <code>&gt;</code> でのページ送りに対応</li>
+</ul>
+</li>
+<li>記事の新規作成
+<ul>
+<li>記事テンプレートから作成することもできます。</li>
+<li>投稿先の変更機能は未実装です</li>
+</ul>
+</li>
+<li>記事の閲覧・編集
+<ul>
+<li>記事一覧から閲覧画面へ遷移し、閲覧画面から編集モードに遷移できます。</li>
+<li>閲覧画面で <code>C-c C-c C-o</code> と入力することで記事をブラウザで開くこともできます。
+<ul>
+<li>kibela.el ではできないこともブラウザで開いたら操作できる、という逃げ。</li>
+</ul>
+</li>
+<li>こちらも投稿先の変更機能は未実装です</li>
+</ul>
+</li>
+<li>チームの切り替え</li>
+</ul>
+<h3 id="動画キャプチャ">動画キャプチャ</h3>
+<p>ivy を入れている環境なので補完には ivy が使われていますが、実際に動いている様子を撮影しました。</p>
+<h4 id="テンプレートからの記事の投稿">テンプレートからの記事の投稿</h4>
+<div class="org-youtube"><iframe width="600" height="337" src="https://www.youtube.com/embed/_FaUlP1rHMw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<h4 id="記事一覧から閲覧-編集">記事一覧から閲覧・編集</h4>
+<div class="org-youtube"><iframe width="600" height="337" src="https://www.youtube.com/embed/BNsHa4peUmY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+<h3 id="今後やりたいこと">今後やりたいこと</h3>
+<p>自分が普段使う上で「これができると Emacs 上でいつもの作業が済んで楽だな〜」ということから作っていくつもりです。</p>
+<p>今ぱっと思い付くのはこのあたりかな</p>
+<ul>
+<li>いいね! の表示/投稿
+<ul>
+<li>これができると新しい記事を適当に眺めてリアクションしていくことができて便利</li>
+</ul>
+</li>
+<li>グループ一覧の表示とデフォルトグループ以外の記事一覧表示
+<ul>
+<li>これができると各グループの記事を追えて便利</li>
+</ul>
+</li>
+<li>通知の表示
+<ul>
+<li>メンション飛ばされているのとかも Emacs から確認できると便利そうなので</li>
+</ul>
+</li>
+<li>検索
+<ul>
+<li>古い記事は記事一覧からは流石に探せないので</li>
+</ul>
+</li>
+<li>埋め込み画像の表示
+<ul>
+<li>対応が面倒なので後回しにしていますが表示したい</li>
+<li>動画についてはあまり考えてない</li>
+</ul>
+</li>
+<li>フォルダツリー
+<ul>
+<li>あったらフォルダから記事を絞り込むことができて便利かも</li>
+</ul>
+</li>
+<li>絵文字の表示や補完
+<ul>
+<li>あると記事書く時に使えて便利。まあなくてもさほど困らないけど</li>
+</ul>
+</li>
+<li>下書き保存・編集
+<ul>
+<li>あったら便利。なくてもまあいいけど</li>
+</ul>
+</li>
+</ul>
+<p>ま、飽きるまでやるつもり。すぐ飽きそうな気もするけど。</p>
+]]></content>
+        </item>
         
         <item>
             <title>Kibela の記事を検索できる Ivy 拡張を作った</title>
@@ -1147,7 +1249,7 @@ Vue.js の props, data, computed, watch, methods あたりと比較しながら�
 </span></code></pre></div><p>のような書き方になります。正直だるい。</p>
 <p>で、上で「Vue.js でいう data にあたるもの」と書いたが、
 Vue.js でいう props と data 的な区別は特にないので、外から簡単に書き換えられる値でもある。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>3系では</p>
@@ -1180,7 +1282,7 @@ Vue.js だと</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">computed</span>.<span style="color:#a6e22e">sum</span>(<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>)
 </code></pre></div><p>とか書けるのでそれは便利かもしれない。
 <a href="https://api.emberjs.com/ember/2.18/modules/@ember%2Fobject#functions-computed">https://api.emberjs.com/ember/2.18/modules/@ember%2Fobject#functions-computed</a></p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>3系では</p>
@@ -1201,7 +1303,7 @@ Tracked Property と Getter を使って</p>
   <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;&#34;hoge&#34; is changed!&#39;</span>)
 })
 </code></pre></div><p>みたいな感じで使う。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>3系では</p>
@@ -1370,7 +1472,7 @@ Promise の解決結果を Model とする挙動のおかげで</p>
   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">findAll</span>(<span style="color:#e6db74">&#39;posts&#39;</span>)
 }
 </code></pre></div><p>とした場合に Controller などでは <code>this.get('model')</code> で <code>posts</code> が取得できるようになっている。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>複数の model</p>
@@ -1599,7 +1701,7 @@ id が 1 の User を探しに行く。</p>
   }]
 }
 </code></pre><p>みたいなのを受け取ると users と posts をそれぞれ複数レコード登録してくれる。</p>
-<!-- raw HTML omitted -->
+<!--list-separator-->
 <ul>
 <li>
 <p>注意</p>
