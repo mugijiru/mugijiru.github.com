@@ -6,6 +6,8 @@ theme          = "hello-friend-ng"
 paginate       = 20
 publishDir     = "docs"
 
+[markup.goldmark.renderer]
+    unsafe = true
 
 [params]
     author = "麦汁"
