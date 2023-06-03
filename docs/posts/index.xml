@@ -5,8 +5,52 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sat, 18 Mar 2023 15:58:00 +0900</lastBuildDate>
+        <lastBuildDate>Sat, 03 Jun 2023 11:47:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>少し構成が複雑なアプリの Code Coverage を Code Climate で表示する</title>
+            <link>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</link>
+            <pubDate>Sat, 03 Jun 2023 11:47:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</guid>
+            <description>https://github.com/mugijiru/ember-rails-todo-app のカバレッジを取るためにやったことです。 書いたコードは https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98 にあるので、それだけ見れば十分かとは思うけど、それで済ませるのも寂しいので少しテキ</description>
+            <content type="html"><![CDATA[<p><a href="https://github.com/mugijiru/ember-rails-todo-app">https://github.com/mugijiru/ember-rails-todo-app</a> のカバレッジを取るためにやったことです。</p>
+<p>書いたコードは
+<a href="https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98">https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98</a>
+にあるので、それだけ見れば十分かとは思うけど、それで済ませるのも寂しいので少しテキストも書いておきます。</p>
+<h2 id="アプリの構成">アプリの構成</h2>
+<p>単一の Rails アプリケーション上で複数の Ember.js アプリケーションを動かせるようにするために
+Ember.js のアプリケーションは ember/todo-app という位置に作成しています。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">RAILS_ROOT
+├── ember/todo-app
+│    ├── package.json
+│    └── yarn.lock
+└── spec
+</code></pre></div><p>そのためテストを実行するディレクトリが異なるという状況です。</p>
+<p>rspec の方は</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ rspec spec
+</code></pre></div><p>で済むけど Ember.js のテストは</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ cd ember/todo-app &amp;&amp; yarn test
+</code></pre></div><p>しないといけないみたいな。</p>
+<h2 id="複数テストスイートのカバレッジを取る">複数テストスイートのカバレッジを取る</h2>
+<p>今回は上記のように若干構成が複雑なので手を入れていますが、どちらも同じ階層でテストを実行できるのであれば
+<a href="https://docs.codeclimate.com/docs/configuring-test-coverage#multiple-test-suites">https://docs.codeclimate.com/docs/configuring-test-coverage#multiple-test-suites</a>
+に書いていることをやれば問題ないはずです。</p>
+<p>なのですが今回は若干構成が複雑なため、そのままではダメでした。いい感じに統合してくれなかった。</p>
+<p>じゃあどうしたかというと</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Format ember test result</span>
+  <span style="color:#f92672">run</span>: <span style="color:#ae81ff">cd ember/todo-app &amp;&amp; ../../cc-test-reporter format-coverage -o ../../tmp/cc.ember.json --add-prefix ember/todo-app</span>
+</code></pre></div><p>という感じで、深い階層にある Ember.js 側のカバレッジのフォーマットを取得する時にちょっと調整している。</p>
+<p>まず <code>cd ember/todo-app</code> で Ember.js アプリケーションの階層に移動して、
+<code>cc-test-reporter format-coverage</code> を実行する際に
+<code>-o</code> オプションを使って後で扱いやすい出力先を指定して
+<code>--add-prefix</code> で移動先である <code>ember/todo-app</code> を指定している。</p>
+<p>この <code>--add-prefix</code> は Code Climate の公式ドキュメントにある <a href="https://docs.codeclimate.com/docs/configuring-test-coverage#list-of-subcommands">List of subcommands</a> という項目には載ってないんですよね。。。あと <code>--debug</code> もそこには載ってないけど使えるみたい
+<a href="https://github.com/codeclimate/test-reporter/blob/master/man/cc-test-reporter.1.md">https://github.com/codeclimate/test-reporter/blob/master/man/cc-test-reporter.1.md</a></p>
+<p>それはともかく、そんな感じで format 時の出力を調整したら後段の sum-coverage の際に良い感じにまとめてくれるようになる。</p>
+]]></content>
+        </item>
         
         <item>
             <title>Emacs で動く Kibela クライアントを作ってる</title>
