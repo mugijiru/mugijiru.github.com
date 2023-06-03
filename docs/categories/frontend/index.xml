@@ -6,7 +6,16 @@
     <description>Recent content in Frontend on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Fri, 17 Sep 2021 12:07:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Jun 2023 11:47:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/frontend/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>少し構成が複雑なアプリの Code Coverage を Code Climate で表示する</title>
+      <link>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</link>
+      <pubDate>Sat, 03 Jun 2023 11:47:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</guid>
+      <description>https://github.com/mugijiru/ember-rails-todo-app のカバレッジを取るためにやったことです。 書いたコードは https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98 にあるので、それだけ見れば十分かとは思うけど、それで済ませるのも寂しいので少しテキ</description>
+    </item>
+    
     <item>
       <title>Storybook の SCSS 対応でハマった</title>
       <link>https://mugijiru.github.io/posts/storybook-with-scss/</link>
