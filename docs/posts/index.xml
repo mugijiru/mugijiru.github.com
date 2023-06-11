@@ -5,8 +5,62 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sat, 03 Jun 2023 11:47:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 11 Jun 2023 15:02:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Ember.js の Integration test で Cannot read properties of undefined (reading &#39;Symbol(TAG_COMPUTE)&#39;) と怒られる時は this が漏れている</title>
+            <link>https://mugijiru.github.io/posts/cannot-read-property-of-undefined-on-ember-test/</link>
+            <pubDate>Sun, 11 Jun 2023 15:02:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/cannot-read-property-of-undefined-on-ember-test/</guid>
+            <description>https://github.com/glimmerjs/glimmer-vm/issues/1369 の通りなのですが、ちょっとハマったので備忘録に。 ダメなコード例 module(&amp;#34;Integration | Component | Hoge&amp;#34;, function (hooks) { setupRenderingTest(hooks) test(&amp;#34;renders&amp;#34;, function (assert) { const item = store.peekRecord(&amp;#39;todo-item&amp;#39;, 1) this.item = item // ここの引数がダメ await render(hbs(`&amp;lt;HogeComponent @item={{item}}&amp;gt;`)) }) } 修正版</description>
+            <content type="html"><![CDATA[<p><a href="https://github.com/glimmerjs/glimmer-vm/issues/1369">https://github.com/glimmerjs/glimmer-vm/issues/1369</a> の通りなのですが、ちょっとハマったので備忘録に。</p>
+<h2 id="ダメなコード例">ダメなコード例</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">module</span>(<span style="color:#e6db74">&#34;Integration | Component | Hoge&#34;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">hooks</span>) {
+  <span style="color:#a6e22e">setupRenderingTest</span>(<span style="color:#a6e22e">hooks</span>)
+
+  <span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#34;renders&#34;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">assert</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">peekRecord</span>(<span style="color:#e6db74">&#39;todo-item&#39;</span>, <span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>
+
+    <span style="color:#75715e">// ここの引数がダメ
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">hbs</span>(<span style="color:#e6db74">`&lt;HogeComponent @item={{item}}&gt;`</span>))
+  })
+}
+</code></pre></div><h2 id="修正版">修正版</h2>
+<p>一度 this に詰めてそれを参照させる必要があった</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">module</span>(<span style="color:#e6db74">&#34;Integration | Component | Hoge&#34;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">hooks</span>) {
+  <span style="color:#a6e22e">setupRenderingTest</span>(<span style="color:#a6e22e">hooks</span>)
+
+  <span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#34;renders&#34;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">assert</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">peekRecord</span>(<span style="color:#e6db74">&#39;todo-item&#39;</span>, <span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>
+
+    <span style="color:#75715e">// this.item を渡す
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">hbs</span>(<span style="color:#e6db74">`&lt;HogeComponent @item={{this.item}}&gt;`</span>))
+  })
+}
+</code></pre></div><h2 id="おまけ">おまけ</h2>
+<p>これを TypeScript でやる場合は <a href="https://docs.ember-cli-typescript.com/ember/testing#the-testcontext">https://docs.ember-cli-typescript.com/ember/testing#the-testcontext</a> に書かれているように
+Context の interface を用意したりする必要がある</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Context</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">TestContext</span> {
+  <span style="color:#a6e22e">item</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">TodoItemModel</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span>;
+}
+
+<span style="color:#a6e22e">module</span>(<span style="color:#e6db74">&#34;Integration | Component | Hoge&#34;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">hooks</span>) {
+  <span style="color:#a6e22e">setupRenderingTest</span>(<span style="color:#a6e22e">hooks</span>)
+
+  <span style="color:#75715e">// this: Context が必要
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#34;renders&#34;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">assert</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">peekRecord</span>(<span style="color:#e6db74">&#39;todo-item&#39;</span>, <span style="color:#ae81ff">1</span>)
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>
+
+    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">hbs</span>(<span style="color:#e6db74">`&lt;HogeComponent @item={{this.item}}&gt;`</span>))
+  })
+}
+</code></pre></div>]]></content>
+        </item>
         
         <item>
             <title>少し構成が複雑なアプリの Code Coverage を Code Climate で表示する</title>
