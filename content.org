@@ -6393,3 +6393,63 @@
 
      それはともかく、そんな感じで format 時の出力を調整したら
      後段の sum-coverage の際に良い感じにまとめてくれるようになる。
+
+*** DONE Ember.js の Integration test で ~Cannot read properties of undefined (reading 'Symbol(TAG_COMPUTE)')~ と怒られる時は this が漏れている
+    CLOSED: [2023-06-11 日 15:02]
+    :PROPERTIES:
+    :EXPORT_FILE_NAME: cannot-read-property-of-undefined-on-ember-test
+    :END:
+    https://github.com/glimmerjs/glimmer-vm/issues/1369 の通りなのですが、ちょっとハマったので備忘録に。
+
+**** ダメなコード例
+     #+begin_src js
+       module("Integration | Component | Hoge", function (hooks) {
+         setupRenderingTest(hooks)
+
+         test("renders", function (assert) {
+           const item = store.peekRecord('todo-item', 1)
+           this.item = item
+
+           // ここの引数がダメ
+           await render(hbs(`<HogeComponent @item={{item}}>`))
+         })
+       }
+     #+end_src
+
+**** 修正版
+     一度 this に詰めてそれを参照させる必要があった
+
+     #+begin_src js
+       module("Integration | Component | Hoge", function (hooks) {
+         setupRenderingTest(hooks)
+
+         test("renders", function (assert) {
+           const item = store.peekRecord('todo-item', 1)
+           this.item = item
+
+           // this.item を渡す
+           await render(hbs(`<HogeComponent @item={{this.item}}>`))
+         })
+       }
+     #+end_src
+**** おまけ
+     これを TypeScript でやる場合は https://docs.ember-cli-typescript.com/ember/testing#the-testcontext に書かれているように
+     Context の interface を用意したりする必要がある
+
+     #+begin_src js
+       interface Context extends TestContext {
+         item: TodoItemModel | null;
+       }
+
+       module("Integration | Component | Hoge", function (hooks) {
+         setupRenderingTest(hooks)
+
+         // this: Context が必要
+         test("renders", function (this: Context, assert) {
+           const item = store.peekRecord('todo-item', 1)
+           this.item = item
+
+           await render(hbs(`<HogeComponent @item={{this.item}}>`))
+         })
+       }
+     #+end_src
