@@ -2,22 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://mugijiru.github.io/posts/cannot-read-property-of-undefined-on-ember-test/</loc>
+    <lastmod>2023-06-11T15:02:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/posts/</loc>
+    <lastmod>2023-06-11T15:02:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/</loc>
+    <lastmod>2023-06-11T15:02:00+09:00</lastmod>
+  </url><url>
     <loc>https://mugijiru.github.io/categories/</loc>
     <lastmod>2023-06-03T11:47:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/frontend/</loc>
     <lastmod>2023-06-03T11:47:00+09:00</lastmod>
   </url><url>
-    <loc>https://mugijiru.github.io/posts/</loc>
-    <lastmod>2023-06-03T11:47:00+09:00</lastmod>
-  </url><url>
     <loc>https://mugijiru.github.io/categories/rails/</loc>
     <lastmod>2023-06-03T11:47:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</loc>
-    <lastmod>2023-06-03T11:47:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/</loc>
     <lastmod>2023-06-03T11:47:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/emacs/</loc>
