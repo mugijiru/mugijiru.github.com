@@ -4,8 +4,10 @@ on:
   push:
     paths:
       - 'content/**/*.md'
+      - '.github/workflows/build.yml'
     branches:
       - 'entry/**'
+      - 'bump-hugo/**'
 
 jobs:
   build:
