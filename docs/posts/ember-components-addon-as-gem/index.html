@@ -35,7 +35,7 @@
 
 
 
-<link rel="stylesheet" href="/main.393856bf2c430bb6c01d7af07c6fe966e7cce8073435cfbbc46e590bab7405ef.css">
+<link rel="stylesheet" href="/main.b78c3be9451dc4ca61ca377f3dc2cf2e6345a44c2bae46216a322ef366daa399.css">
 
 
     
@@ -47,13 +47,19 @@
     
 
 
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
 
 
 <meta itemprop="name" content="自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した">
 <meta itemprop="description" content="前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で"><meta itemprop="datePublished" content="2021-03-26T01:49:00+09:00" />
 <meta itemprop="dateModified" content="2021-03-26T01:49:00+09:00" />
-<meta itemprop="wordCount" content="3455">
+<meta itemprop="wordCount" content="3456">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した"/>
@@ -81,7 +87,10 @@
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -89,7 +98,8 @@
     <div class="logo">
         
             <span class="logo__mark">></span>
-            <span class="logo__text">$ cd /home/mugijiru</span>
+            <span class="logo__text ">
+                $ cd /home/mugijiru</span>
             <span class="logo__cursor" style=
                   "
                    
@@ -103,7 +113,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://mugijiru.github.io/about/">About</a></li><li><a href="https://mugijiru.github.io/profile/">Profile</a></li><li><a href="https://mugijiru.github.io/projects/">Projects</a></li><li><a href="https://mugijiru.github.io/posts/">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about/">About</a></li><li><a href="/profile/">Profile</a></li><li><a href="/projects/">Projects</a></li><li><a href="/posts/">Blog</a></li>
     </ul>
 </nav>
 
@@ -114,13 +124,6 @@
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
         </span>
     </span>
 </header>
@@ -162,18 +165,18 @@ ember-rails で1つの Rails アプリケーションの上に複数の Ember.js
 <p>Gem にして ember-rails でも使えるようにするために色々やりました。こんなにやらないといけないのかってぐらいやった気がします。。。</p>
 <h3 id="component-の書き方を古い方式に戻した">Component の書き方を古い方式に戻した</h3>
 <p>ember-rails だとどうも</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Component</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@ember/component&#39;</span>
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({})
-</code></pre></div><p>という書き方だと読み込んでくれないようなので全部以下のように書き換えている。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Ember</span> <span style="color:#a6e22e">from</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">ember</span>
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({})
-</code></pre></div><p>で、この変更を加えると eslint に怒られるので新しい記述を要求する eslint のルールをオフにしてあげる必要がある。悲しい。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> {
-  <span style="color:#e6db74">&#39;ember/new-module-imports&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;off&#39;</span>
-},
-</code></pre></div><h3 id="components-を-ember-rails-で読み込めるようにする">components を ember-rails で読み込めるようにする</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Component</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@ember/component&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({})
+</span></span></code></pre></div><p>という書き方だと読み込んでくれないようなので全部以下のように書き換えている。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Ember</span> <span style="color:#a6e22e">from</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">ember</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>({})
+</span></span></code></pre></div><p>で、この変更を加えると eslint に怒られるので新しい記述を要求する eslint のルールをオフにしてあげる必要がある。悲しい。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;ember/new-module-imports&#39;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;off&#39;</span>
+</span></span><span style="display:flex;"><span>},
+</span></span></code></pre></div><h3 id="components-を-ember-rails-で読み込めるようにする">components を ember-rails で読み込めるようにする</h3>
 <p>ember-libs というフォルダに共通コンポーネントとして分割した時も同じようなことをしたんだけど
 ember-rails に components を読み込ませるためのコードをこのリポジトリに用意してある。</p>
 <p><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/lib/ember/components/templates/ember-components.js">lib/ember/components/templates/ember-components.js</a></p>
@@ -194,12 +197,12 @@ requirejs で読み込まれてるファイルを調べて component を見つ�
 <p>addon 以下に入っていても Rails 的には通常読み込めないので
 <code>vendor/assets/javascripts</code> 以下にファイルをコピーしてあげている。あと上の手順で作った ember-rails に読み込ませるためのコードもコピーしている。</p>
 <p><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L14-L18">https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L14-L18</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;vendor/assets/javascripts/ember-components&#39;</span>
-<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>mkdir_p(path)
-<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp(<span style="color:#e6db74">&#39;lib/ember/components/templates/ember-components.js&#39;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">.module.es6&#34;</span>)
-<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp_r(<span style="color:#e6db74">&#39;addon/templates&#39;</span>, path)
-<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp_r(<span style="color:#e6db74">&#39;addon/components&#39;</span>, path)
-</code></pre></div><p>多分 <code>app/assets/javascripts</code> 以下でもいいんだろう。というかそっちの方が良さそうな気もするけど、
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;vendor/assets/javascripts/ember-components&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>mkdir_p(path)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp(<span style="color:#e6db74">&#39;lib/ember/components/templates/ember-components.js&#39;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">.module.es6&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp_r(<span style="color:#e6db74">&#39;addon/templates&#39;</span>, path)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>cp_r(<span style="color:#e6db74">&#39;addon/components&#39;</span>, path)
+</span></span></code></pre></div><p>多分 <code>app/assets/javascripts</code> 以下でもいいんだろう。というかそっちの方が良さそうな気もするけど、
 <code>app</code> は Ember.js 側で使っているので、それと混ざると嫌だなということで避けている。</p>
 <h4 id="addon-用の記述削除-and-拡張子の変更">addon 用の記述削除 &amp; 拡張子の変更</h4>
 <p>component に関しては addon での component 作成のお作法に従い
@@ -209,22 +212,22 @@ hbs を import できない問題が発生するのでそれらの行を強制�
 <p>また、それと同時に ember-rails で ES6 module として読み込めるように拡張子を <code>.module.es6</code> にしている。</p>
 <p>方法としては、ファイルを <code>.js</code> から <code>.module.es6</code> にコピーしつつ不要な行を消してそれが済んだら <code>.js</code> ファイルを消すという手法を取ってる。結構、無理やり感がある。</p>
 <p><a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L19-L33">https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/Rakefile#L19-L33</a></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/*.js&#34;</span><span style="color:#f92672">].</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>file_path<span style="color:#f92672">|</span>
-  <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(file_path, <span style="color:#e6db74">&#39;r&#39;</span>)
-  basename <span style="color:#f92672">=</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>basename(file_path, <span style="color:#e6db74">&#39;.js&#39;</span>)
-  <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/</span><span style="color:#e6db74">#{</span>basename<span style="color:#e6db74">}</span><span style="color:#e6db74">.module.es6&#34;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>write_f<span style="color:#f92672">|</span>
-    <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(file_path, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>read_f<span style="color:#f92672">|</span>
-      read_f<span style="color:#f92672">.</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>line<span style="color:#f92672">|</span>
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> line <span style="color:#f92672">=~</span> <span style="color:#e6db74">/^\s*import layout/</span>
-        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> line <span style="color:#f92672">=~</span> <span style="color:#e6db74">/^\s*layout,/</span>
-
-        write_f<span style="color:#f92672">.</span>puts line
-      <span style="color:#66d9ef">end</span>
-    <span style="color:#66d9ef">end</span>
-  <span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">end</span>
-<span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>rm(<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/*.js&#34;</span>))
-</code></pre></div><h3 id="rails-engine-化">Rails Engine 化</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/*.js&#34;</span><span style="color:#f92672">].</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>file_path<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(file_path, <span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>  basename <span style="color:#f92672">=</span> <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>basename(file_path, <span style="color:#e6db74">&#39;.js&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/</span><span style="color:#e6db74">#{</span>basename<span style="color:#e6db74">}</span><span style="color:#e6db74">.module.es6&#34;</span>, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>write_f<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>open(file_path, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>read_f<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>      read_f<span style="color:#f92672">.</span>each <span style="color:#66d9ef">do</span> <span style="color:#f92672">|</span>line<span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> line <span style="color:#f92672">=~</span> <span style="color:#e6db74">/^\s*import layout/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">if</span> line <span style="color:#f92672">=~</span> <span style="color:#e6db74">/^\s*layout,/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        write_f<span style="color:#f92672">.</span>puts line
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FileUtils</span><span style="color:#f92672">.</span>rm(<span style="color:#66d9ef">Dir</span><span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">#{</span>path<span style="color:#e6db74">}</span><span style="color:#e6db74">/components/*.js&#34;</span>))
+</span></span></code></pre></div><h3 id="rails-engine-化">Rails Engine 化</h3>
 <p>Rails Engine として組み込んで使えるように
 <code>lib</code> 以下にちょろちょろコードを書いている。</p>
 <ul>
@@ -234,29 +237,29 @@ hbs を import できない問題が発生するのでそれらの行を強制�
 </ul>
 <p>ほとんど「Rails Engine のお作法」ってだけのコードだけど上に書いたファイルをコピーしたりする時の
 PATH を取得するための便利メソッドとして以下を生やしている。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">.</span><span style="color:#a6e22e">root</span>
-  <span style="color:#66d9ef">Pathname</span>(__FILE__)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;../../..&#39;</span>)
-<span style="color:#66d9ef">end</span>
-</code></pre></div><h3 id="gemspec-修正">gemspec 修正</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">.</span><span style="color:#a6e22e">root</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">Pathname</span>(__FILE__)<span style="color:#f92672">.</span>join(<span style="color:#e6db74">&#39;../../..&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="gemspec-修正">gemspec 修正</h3>
 <p>Gem として GitHub Packages に登録するので当然 .gemspec ファイルを用意している。
 <a href="https://github.com/mugijiru/ember-components/blob/bfbcda1c31a8bdf0efcb6aeaa0fb15efaccc5a7a/ember-components.gemspec">ember-components.gemspec</a></p>
 <p>一応 GitHub Packages に出すためのお作法として</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;allowed_push_host&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://rubygems.pkg.github.com&#34;</span>
-</code></pre></div><p>というように push できるホストをしていしたり</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;github_repo&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ssh://github.com/mugijiru/ember-components.git&#34;</span>
-spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;git_repo&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ssh://github.com/mugijiru/ember-components.git&#34;</span>
-</code></pre></div><p>というようにリポジトリを指定していたりする。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;allowed_push_host&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://rubygems.pkg.github.com&#34;</span>
+</span></span></code></pre></div><p>というように push できるホストをしていしたり</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;github_repo&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ssh://github.com/mugijiru/ember-components.git&#34;</span>
+</span></span><span style="display:flex;"><span>spec<span style="color:#f92672">.</span>metadata<span style="color:#f92672">[</span><span style="color:#e6db74">&#34;git_repo&#34;</span><span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ssh://github.com/mugijiru/ember-components.git&#34;</span>
+</span></span></code></pre></div><p>というようにリポジトリを指定していたりする。</p>
 <p><a href="https://docs.github.com/ja/packages/guides/configuring-rubygems-for-use-with-github-packages#publishing-multiple-packages-to-the-same-repository">同じリポジトリへの複数パッケージ公開</a> の記述を読む限り
 github_repo だけ指定あれば良さそうな気もするが
 git_repo があっても特に害もないだろうということでとりあえず入れている。</p>
 <p>あとは gem に含めたいファイルとして</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">spec<span style="color:#f92672">.</span>files <span style="color:#f92672">=</span> <span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span>
-  <span style="color:#e6db74">&#39;lib/**/*&#39;</span>,
-  <span style="color:#e6db74">&#39;vendor/**/*&#39;</span>,
-  <span style="color:#e6db74">&#39;README.md&#39;</span>,
-  <span style="color:#e6db74">&#39;LICENSE.md&#39;</span>
-<span style="color:#f92672">]</span>
-</code></pre></div><p>としている。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>spec<span style="color:#f92672">.</span>files <span style="color:#f92672">=</span> <span style="color:#66d9ef">Dir</span><span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;lib/**/*&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;vendor/**/*&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;README.md&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;LICENSE.md&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>としている。
 lib 以下は Rails Engine として組込むために必要だし
 vendor 以下には ember-rails で読み込める形に変換したファイルがあるので
 gem に含める必要がある。</p>
@@ -266,10 +269,10 @@ Tag を打ってそれからリリースを作ったら Gem が登録される�
 GitHub Actions を設定している。</p>
 <h4 id="gem-の-build">Gem の build</h4>
 <p>publish する前に以下のようにして Rake Task を実行している。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build gem</span>
-  <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">    </span>    <span style="color:#ae81ff">bundle exec rake clean_assets generate_assets build</span>
-</code></pre></div><p>clean_assets は説明してなかったけど <code>vendor/assets/javascripts</code> 以下を真っ新にするだけの処理。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build gem</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    bundle exec rake clean_assets generate_assets build</span>    
+</span></span></code></pre></div><p>clean_assets は説明してなかったけど <code>vendor/assets/javascripts</code> 以下を真っ新にするだけの処理。</p>
 <p>で、generate_assets が
 <a href="#addon-%E4%BB%A5%E4%B8%8B%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92-vendor-assets-%E4%BB%A5%E4%B8%8B%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC-%E5%A4%89%E6%9B%B4%E3%81%99%E3%82%8B-raketask-%E4%BD%9C%E6%88%90">addon 以下のファイルを vendor/assets 以下にコピー、変更する Raketask 作成</a>
 のあたりで書いた、コピーしたり中身を弄ったりしている処理。</p>
@@ -277,20 +280,20 @@ GitHub Actions を設定している。</p>
 gemspec の記述に従って gem ファイルを生成する処理。これを実行する pkg 以下に <code>ember-components-x.y.z.gem</code> みたいなファイルが作られる。</p>
 <h4 id="publish">Publish</h4>
 <p>上の手順で gem はできたので、あとはそれを GitHub Packages に登録するだけである。そのための step が以下。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Publish to RubyGems</span>
-  <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">    mkdir -p $HOME/.gem
-</span><span style="color:#e6db74">    touch $HOME/.gem/credentials
-</span><span style="color:#e6db74">    chmod 0600 $HOME/.gem/credentials
-</span><span style="color:#e6db74">    printf -- &#34;---\n:github: Bearer ${{ secrets.GITHUB_TOKEN }}\n&#34; &gt; $HOME/.gem/credentials
-</span><span style="color:#e6db74">    gem push --key github --host https://rubygems.pkg.github.com/mugijiru pkg/*.gem</span>    
-</code></pre></div><p>まずは <a href="https://docs.github.com/en/packages/guides/configuring-rubygems-for-use-with-github-packages#authenticating-with-a-personal-access-token">Authenticating with a personal access token</a> の手順に従って
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Publish to RubyGems</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    mkdir -p $HOME/.gem
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    touch $HOME/.gem/credentials
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    chmod 0600 $HOME/.gem/credentials
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    printf -- &#34;---\n:github: Bearer ${{ secrets.GITHUB_TOKEN }}\n&#34; &gt; $HOME/.gem/credentials
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    gem push --key github --host https://rubygems.pkg.github.com/mugijiru pkg/*.gem</span>    
+</span></span></code></pre></div><p>まずは <a href="https://docs.github.com/en/packages/guides/configuring-rubygems-for-use-with-github-packages#authenticating-with-a-personal-access-token">Authenticating with a personal access token</a> の手順に従って
 <code>~.gem/credentials</code> に
 <code>github: Bearer ${{ secrets.GITHUB_TOKEN }}</code>
 の記述が入るようにしている。</p>
 <p>それをすると GitHub Packages の認証が通るようになるので</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">gem push --key github --host https://rubygems.pkg.github.com/mugijiru pkg/*.gem
-</code></pre></div><p>を実行することで Gem として登録ができる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>gem push --key github --host https://rubygems.pkg.github.com/mugijiru pkg/*.gem
+</span></span></code></pre></div><p>を実行することで Gem として登録ができる。</p>
 <h2 id="ember-rails-アプリケーションから-gem-化した-addon-の読み込んで利用する">ember-rails アプリケーションから Gem 化した Addon の読み込んで利用する</h2>
 <p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/51">https://github.com/mugijiru/ember-rails-todo-app/pull/51</a>
 の PR でやっていることである。</p>
@@ -298,47 +301,47 @@ gemspec の記述に従って gem ファイルを生成する処理。これを�
 <h3 id="gem-を-bundle-install-できるようにする">Gem を bundle install できるようにする</h3>
 <p>まずは bundle install で組込めないと何も始まらないので
 Gemfile に以下を追加する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">source <span style="color:#e6db74">&#34;https://rubygems.pkg.github.com/mugijiru&#34;</span> <span style="color:#66d9ef">do</span>
-  gem <span style="color:#e6db74">&#34;ember-components&#34;</span>
-<span style="color:#66d9ef">end</span>
-</code></pre></div><p>さらに手元のマシンで以下のコマンドを実行して、
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>source <span style="color:#e6db74">&#34;https://rubygems.pkg.github.com/mugijiru&#34;</span> <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#e6db74">&#34;ember-components&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>さらに手元のマシンで以下のコマンドを実行して、
 bundle install の際に GitHub Packages への認証が通るようにする。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ bundle config --local https://rubygems.pkg.github.com/mugijiru mugijiru:XXXXXX
-</code></pre></div><p><code>XXXXXX</code> には Gem をインストールできるパーソナルアクセストークンを設定すること。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ bundle config --local https://rubygems.pkg.github.com/mugijiru mugijiru:XXXXXX
+</span></span></code></pre></div><p><code>XXXXXX</code> には Gem をインストールできるパーソナルアクセストークンを設定すること。</p>
 <p>こうしておけば</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ bundle install
-</code></pre></div><p>で無事に自作 Gem の ember-components がインストールできる</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ bundle install
+</span></span></code></pre></div><p>で無事に自作 Gem の ember-components がインストールできる</p>
 <p>Docker を使ってる場合は以下のようにして
 Docker 内で bundle config が設定された状態で <code>bundle</code> を実行する必要あり</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;bundle config --local https://rubygems.pkg.github.com/mugijiru mugijiru:XXXXXX &amp;&amp; bundle&#34;
-</code></pre></div><h3 id="templates-root-への登録">templates_root への登録</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ docker-compose run rails bash -c &#34;bundle config --local https://rubygems.pkg.github.com/mugijiru mugijiru:XXXXXX &amp;&amp; bundle&#34;
+</span></span></code></pre></div><h3 id="templates-root-への登録">templates_root への登録</h3>
 <p>ember-rails は Rails 側で templates_root を設定してあげる必要がある。</p>
 <p>というわけで config/application.rb で
 <code>ember-components/templates</code> が templates_root として認識されるように記述する。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">config<span style="color:#f92672">.</span>handlebars<span style="color:#f92672">.</span>templates_root <span style="color:#f92672">=</span> <span style="color:#e6db74">%w[todo-app/templates ember-components/templates]</span>
-</code></pre></div><h3 id="sprockets-で-ember-rails-を読み込む">sprockets で ember-rails を読み込む</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>config<span style="color:#f92672">.</span>handlebars<span style="color:#f92672">.</span>templates_root <span style="color:#f92672">=</span> <span style="color:#e6db74">%w[todo-app/templates ember-components/templates]</span>
+</span></span></code></pre></div><h3 id="sprockets-で-ember-rails-を読み込む">sprockets で ember-rails を読み込む</h3>
 <p>Gem として読み込めるようになったので
 Sprockets で以下のようにして require してあげると
 Gem の <code>vendor/assets/javascrips/ember-components</code> に生成したファイルが
 ember-rails アプリ側で認識されるようになる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//= require ember-components
-</span></code></pre></div><h3 id="ember-dot-js-に-component-を-register-する">Ember.js に component を register する</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">//= require ember-components
+</span></span></span></code></pre></div><h3 id="ember-dot-js-に-component-を-register-する">Ember.js に component を register する</h3>
 <p>require するだけだと Ember.js ではまだ使えないので
 Gem 内の Componentを登録する必要がある。</p>
 <p>が、基本的な処理は
 <a href="#components-%E3%82%92-ember-rails-%E3%81%A7%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%81%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B">components を ember-rails で読み込めるようにする</a> のところで書いたので、
 ember-rails 側では initializers に以下のような内容のファイルを置けば良い。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">EmberComponents</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-components&#39;</span>;
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">initialize</span>(<span style="color:#a6e22e">application</span>) {
-  <span style="color:#a6e22e">EmberComponents</span>.<span style="color:#a6e22e">registerAll</span>(<span style="color:#a6e22e">application</span>);
-}
-
-<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
-  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;register-ember-components&#39;</span>,
-  <span style="color:#a6e22e">initialize</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">initialize</span>
-};
-</code></pre></div><p>実質的にやってることは
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">EmberComponents</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-components&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">initialize</span>(<span style="color:#a6e22e">application</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">EmberComponents</span>.<span style="color:#a6e22e">registerAll</span>(<span style="color:#a6e22e">application</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;register-ember-components&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">initialize</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">initialize</span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>実質的にやってることは
 Gem 内のスクリプトに定義している registerAll メソッドを叩いているだけ。</p>
 <p>本当はこういう処理すらなしに使えるのがベストだけどそこまでうまくやる方法は見つけられず……。</p>
 <h3 id="利用箇所の修正">利用箇所の修正</h3>
@@ -348,27 +351,27 @@ Gem 内のスクリプトに定義している registerAll メソッドを叩い
 <h3 id="github-actions-の修正">GitHub Actions の修正</h3>
 <h4 id="setup-ruby-で-ember-components-を-bundle-install-できるようにする">setup-ruby で ember-components を bundle install できるようにする</h4>
 <p>GitHub Actions の CI でも bundle install をしているのでそこでもインストールが正常に行われるようにしてあげないといけない。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ruby/setup-ruby@v1</span>
-  <span style="color:#f92672">env</span>:
-    <span style="color:#f92672">BUNDLE_HTTPS://RUBYGEMS__PKG__GITHUB__COM/MUGIJIRU/</span>: <span style="color:#e6db74">&#34;mugijiru:${{ secrets.NPM_AUTH_TOKEN }}&#34;</span>
-  <span style="color:#f92672">with</span>:
-    <span style="color:#f92672">bundler-cache</span>: <span style="color:#66d9ef">true</span>
-</code></pre></div><p>のように <code>bundle config</code> で設定したのと同じようなものを
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>- <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ruby/setup-ruby@v1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">env</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">BUNDLE_HTTPS://RUBYGEMS__PKG__GITHUB__COM/MUGIJIRU/</span>: <span style="color:#e6db74">&#34;mugijiru:${{ secrets.NPM_AUTH_TOKEN }}&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">bundler-cache</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>のように <code>bundle config</code> で設定したのと同じようなものを
 env で設定してあげるとインストールができる。</p>
 <p>NPM_AUTH_TOKEN なのは、NPM Package にした時に使ったやつが丁度いいスコープを持っていたから流用しちゃった。てへぺろっ。</p>
 <h4 id="assets-precompile">assets:precompile</h4>
 <p>Gem の作りが悪いのか、
 rspec を流す前に</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ bin/rails assets:precompile
-</code></pre></div><p>を流さないと component の template がテスト環境でで読まれない。というわけで GitHub Actions で rspec を実行する前にその手順を挟んでいる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ bin/rails assets:precompile
+</span></span></code></pre></div><p>を流さないと component の template がテスト環境でで読まれない。というわけで GitHub Actions で rspec を実行する前にその手順を挟んでいる。</p>
 <p><a href="https://github.com/mugijiru/ember-rails-todo-app/blob/4acafe0fd741fd24dc4e6bc69d98df5cbb68ef0e/.github/workflows/ci.yml#L32">https://github.com/mugijiru/ember-rails-todo-app/blob/4acafe0fd741fd24dc4e6bc69d98df5cbb68ef0e/.github/workflows/ci.yml#L32</a></p>
 <p>ちなみにこれは手元で rspec を流す時も同じなのでちゃんと手元のマシンでも precompile してあげましょう。だるい。</p>
 <h3 id="旧共通ライブラリの削除">旧共通ライブラリの削除</h3>
 <p><code>app/assets/javascripts/ember-libs</code> に配置していたファイルは不要なのでさっくりと</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ rm -rf app/assets/javascripts/ember-libs
-</code></pre></div><p>して</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//= require_tree ../ember-libs
-</span></code></pre></div><p>としている行が残っていればそれも削除すること。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ rm -rf app/assets/javascripts/ember-libs
+</span></span></code></pre></div><p>して</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">//= require_tree ../ember-libs
+</span></span></span></code></pre></div><p>としている行が残っていればそれも削除すること。</p>
 <p><code>config/application.rb</code> で templates_root として
 <code>ember-libs/templates</code> を追加している場合はそれも削除しておくこと。まあこれは残っててもエラーにならないけどね。</p>
 <h2 id="旧スタイルの-ember-rails-アプリケーションでも-gem-化-addon-を利用する">旧スタイルの ember-rails アプリケーションでも Gem 化 Addon を利用する</h2>
@@ -378,9 +381,9 @@ rspec を流す前に</p>
 <p>変わってる点は、registerAll の呼び出し方ぐらいで
 TodoApp という Ember.js アプリケーションが入ってる変数がグローバル空間に収まっているので
 application.js.es6 の方で直接以下のように書いている。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">EmberComponents</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-components&#39;</span>;
-<span style="color:#a6e22e">EmberComponents</span>.<span style="color:#a6e22e">registerAll</span>(<span style="color:#a6e22e">TodoApp</span>);
-</code></pre></div><p>他は module 化しているパターンと一緒なので割愛。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">EmberComponents</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-components&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">EmberComponents</span>.<span style="color:#a6e22e">registerAll</span>(<span style="color:#a6e22e">TodoApp</span>);
+</span></span></code></pre></div><p>他は module 化しているパターンと一緒なので割愛。</p>
 <h2 id="最後に">最後に</h2>
 <p>という手順で
 NPM Package にした Ember.js Addon を若干無理やりながらも ember-rails で使えるようにすることができました。</p>
@@ -413,7 +416,7 @@ Component をサブフォルダに分割していたりするともうちょっ�
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        3455 Words
+        3456 Words
       </p>
 
       <p>
@@ -580,15 +583,17 @@ Component をサブフォルダに分割していたりするともうちょっ�
         <div class="footer__content">
             <span>&copy; 2023</span>
             
+            
             <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
         </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-          </div>
+          <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
             <span><a href="/privacy_policy">Privacy Policy</a></span>
@@ -603,8 +608,7 @@ Component をサブフォルダに分割していたりするともうちょっ�
 
 
 
-
-<script type="text/javascript" src="/bundle.min.a0f363fdf81cdc5cfacc447a79c33189eb000d090336cd04aac8ee256f423b3133b836c281944c19c75e38d0b0b449f01ce5807e37798b7ac94ac1db51983fc4.js" integrity="sha512-oPNj/fgc3Fz6zER6ecMxiesADQkDNs0EqsjuJW9COzEzuDbCgZRMGcdeONCwtEnwHOWAfjd5i3rJSsHbUZg/xA=="></script>
+<script type="text/javascript" src="/bundle.min.205d491810c28f95aa953fae884e1c27abe13fdf93ec63b882d0036b248d4a6282eb2d134e4e7225c6ad6e86db87b08488a361ca4a7383d01fcff43f3d57b9c3.js" integrity="sha512-IF1JGBDCj5WqlT&#43;uiE4cJ6vhP9&#43;T7GO4gtADaySNSmKC6y0TTk5yJcatbobbh7CEiKNhykpzg9Afz/Q/PVe5ww=="></script>
 
 
 

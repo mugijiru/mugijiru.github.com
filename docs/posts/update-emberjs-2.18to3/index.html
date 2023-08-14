@@ -35,7 +35,7 @@
 
 
 
-<link rel="stylesheet" href="/main.393856bf2c430bb6c01d7af07c6fe966e7cce8073435cfbbc46e590bab7405ef.css">
+<link rel="stylesheet" href="/main.b78c3be9451dc4ca61ca377f3dc2cf2e6345a44c2bae46216a322ef366daa399.css">
 
 
     
@@ -47,13 +47,19 @@
     
 
 
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
 
 
 <meta itemprop="name" content="ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート">
 <meta itemprop="description" content="前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと"><meta itemprop="datePublished" content="2021-04-04T15:38:00+09:00" />
 <meta itemprop="dateModified" content="2021-04-04T15:38:00+09:00" />
-<meta itemprop="wordCount" content="2677">
+<meta itemprop="wordCount" content="2665">
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート"/>
@@ -81,7 +87,10 @@
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -89,7 +98,8 @@
     <div class="logo">
         
             <span class="logo__mark">></span>
-            <span class="logo__text">$ cd /home/mugijiru</span>
+            <span class="logo__text ">
+                $ cd /home/mugijiru</span>
             <span class="logo__cursor" style=
                   "
                    
@@ -103,7 +113,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://mugijiru.github.io/about/">About</a></li><li><a href="https://mugijiru.github.io/profile/">Profile</a></li><li><a href="https://mugijiru.github.io/projects/">Projects</a></li><li><a href="https://mugijiru.github.io/posts/">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about/">About</a></li><li><a href="/profile/">Profile</a></li><li><a href="/projects/">Projects</a></li><li><a href="/posts/">Blog</a></li>
     </ul>
 </nav>
 
@@ -114,13 +124,6 @@
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
         </span>
     </span>
 </header>
@@ -164,135 +167,135 @@
 のコミットでやっていることですね。</p>
 <p>まずは Dockerfile で入れている ember-cli を 2.18 から 3.4 にする。
 3.4 系の最終バージョンは 3.4.4 なのでそれを指定している。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli@3.4.4<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><h2 id="ember-cli-update-の導入">ember-cli-update の導入</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># install ember-cli</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli@3.4.4<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h2 id="ember-cli-update-の導入">ember-cli-update の導入</h2>
 <p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/ded293ff2f686081549d0019e500facb5c2aaa3d">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/ded293ff2f686081549d0019e500facb5c2aaa3d</a>
 のコミットでやってることですね。</p>
 <p>Ember.js をアップデートする際には ember-cli-update を使うのが王道っぽいのでそれも Dockerfile でインストールしておく。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#75715e"># install ember-cli-update</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli-update<span style="color:#960050;background-color:#1e0010">
-</span></code></pre></div><p>また、こいつは今後も 3 系で更新していくにあたり必要と思われるので
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># install ember-cli-update</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> yarn global add ember-cli-update<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>また、こいつは今後も 3 系で更新していくにあたり必要と思われるので
 ember-cli よりも先に入れておくことにする。</p>
 <h2 id="bundle-and-and-yarn">bundle &amp;&amp; yarn</h2>
 <p>Dockerfile を更新したので bundle install と yarn install を実行しておく。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bundle
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; yarn&#34;
-</code></pre></div><p>NPM_TOKEN という環境変数を使ってるのは
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ docker-compose run rails bundle
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; yarn&#34;
+</span></span></code></pre></div><p>NPM_TOKEN という環境変数を使ってるのは
 ember-components という自作の NPM パッケージを使うために
 <a href="https://github.com/mugijiru/ember-rails-todo-app/blob/7916518d766145fc0b8d9978efbfb08d6937f813/ember/todo-app/.npmrc">.npmrc</a> で GitHub Packages を使うような設定をしているため。</p>
 <h2 id="ember-cli-update-bootstrap-の実行">ember-cli-update bootstrap の実行</h2>
 <p><a href="https://github.com/ember-cli/ember-cli-update/wiki/Getting-Started">https://github.com/ember-cli/ember-cli-update/wiki/Getting-Started</a> に書かれているように</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update bootstrap&#34;
-</code></pre></div><p>を実行することで config/ember-cli-update.json が生成される。
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update bootstrap&#34;
+</span></span></code></pre></div><p>を実行することで config/ember-cli-update.json が生成される。
 ember-cli-update は実行時にこのファイルを見て色々処理をする様子。</p>
 <p>雰囲気的には Addon もこれを使って更新できそうだが、ちょっとまだ調べてない。</p>
 <p>とりあえずこの実行結果をコミットしたのが以下。
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/35177e82eac6a9d490c49348ec8e50b31828bb10">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/35177e82eac6a9d490c49348ec8e50b31828bb10</a></p>
 <h2 id="ember-cli-update-で-3-dot-4-dot-4-に更新">ember-cli-update で 3.4.4 に更新</h2>
 <p>いよいよアップデート作業である。とりあえず 3.4.4 に上げたいので以下のコマンドを叩く。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">% docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --to 3.4.4&#34;
-</code></pre></div><p>すると</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Blueprint updates have been found. Which one would you like to update?
-&gt; app, current: 2.18.2, latest: 3.25.3
-</code></pre></div><p>というように質問される。恐らく Addon も ember-cli-update で管理できるようにしていたら他の選択肢も出て来るんだろうが、とりあえず今回は app を更新したいだけなので何も考えずに Enter を叩く。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>% docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --to 3.4.4&#34;
+</span></span></code></pre></div><p>すると</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>? Blueprint updates have been found. Which one would you like to update?
+</span></span><span style="display:flex;"><span>&gt; app, current: 2.18.2, latest: 3.25.3
+</span></span></code></pre></div><p>というように質問される。恐らく Addon も ember-cli-update で管理できるようにしていたら他の選択肢も出て来るんだろうが、とりあえず今回は app を更新したいだけなので何も考えずに Enter を叩く。</p>
 <p>すると、以下のように何やらファイルが生成されたようなログが出て来る。しかも2回も生成されてる雰囲気。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">installing app
-  create .editorconfig
-  create .ember-cli
-  create .eslintrc.js
-  create .travis.yml
-  create .watchmanconfig
-  create README.md
-  create app/app.js
-  create app/components/.gitkeep
-  create app/controllers/.gitkeep
-  create app/helpers/.gitkeep
-  create app/index.html
-  create app/models/.gitkeep
-  create app/resolver.js
-  create app/router.js
-  create app/routes/.gitkeep
-  create app/styles/app.css
-  create app/templates/application.hbs
-  create app/templates/components/.gitkeep
-  create config/environment.js
-  create config/targets.js
-  create ember-cli-build.js
-  create .gitignore
-  create package.json
-  create public/robots.txt
-  create testem.js
-  create tests/helpers/destroy-app.js
-  create tests/helpers/module-for-acceptance.js
-  create tests/helpers/start-app.js
-  create tests/index.html
-  create tests/integration/.gitkeep
-  create tests/test-helper.js
-  create tests/unit/.gitkeep
-  create vendor/.gitkeep
-WARNING:
-WARNING: The &#39;package.json&#39; file for the addon at /usr/local/share/.config/yarn/global/node_modules/ember-cli/lib/tasks/server/middleware/tests-server
-WARNING:   specifies a missing dependency &#39;exists-sync&#39;
-WARNING: Node v14.16.0 is not tested against Ember CLI on your platform. We recommend that you use the most-recent &#34;Active LTS&#34; version of Node.js. See https://git.io/v7S5n for details.
-installing app
-  create .editorconfig
-  create .ember-cli
-  create .eslintignore
-  create .eslintrc.js
-  create .template-lintrc.js
-  create .travis.yml
-  create .watchmanconfig
-  create README.md
-  create app/app.js
-  create app/components/.gitkeep
-  create app/controllers/.gitkeep
-  create app/helpers/.gitkeep
-  create app/index.html
-  create app/models/.gitkeep
-  create app/resolver.js
-  create app/router.js
-  create app/routes/.gitkeep
-  create app/styles/app.css
-  create app/templates/application.hbs
-  create app/templates/components/.gitkeep
-  create config/environment.js
-  create config/optional-features.json
-  create config/targets.js
-  create ember-cli-build.js
-  create .gitignore
-  create package.json
-  create public/robots.txt
-  create testem.js
-  create tests/helpers/.gitkeep
-  create tests/index.html
-  create tests/integration/.gitkeep
-  create tests/test-helper.js
-  create tests/unit/.gitkeep
-  create vendor/.gitkeep
-</code></pre></div><p>で、実行後に Ember アプリのディレクトリで <code>git status</code> を叩くと以下のような感じ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Changes to be committed:
-  (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
-        new file:   .eslintignore
-        modified:   .eslintrc.js
-        modified:   .gitignore
-        new file:   .template-lintrc.js
-        modified:   README.md
-        modified:   config/ember-cli-update.json
-        new file:   config/optional-features.json
-        modified:   config/targets.js
-        modified:   package.json
-        modified:   testem.js
-        new file:   tests/helpers/.gitkeep
-        deleted:    tests/helpers/destroy-app.js
-        deleted:    tests/helpers/module-for-acceptance.js
-        deleted:    tests/helpers/start-app.js
-
-Unmerged paths:
-  (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
-  (use &#34;git add/rm &lt;file&gt;...&#34; as appropriate to mark resolution)
-        deleted by us:   .travis.yml
-</code></pre></div><p>.travis.yml は「どうせ使わねーだろ」ってことで自分で消してあるので改めて <code>git rm .travis.yml</code> すれば良い。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>installing app
+</span></span><span style="display:flex;"><span>  create .editorconfig
+</span></span><span style="display:flex;"><span>  create .ember-cli
+</span></span><span style="display:flex;"><span>  create .eslintrc.js
+</span></span><span style="display:flex;"><span>  create .travis.yml
+</span></span><span style="display:flex;"><span>  create .watchmanconfig
+</span></span><span style="display:flex;"><span>  create README.md
+</span></span><span style="display:flex;"><span>  create app/app.js
+</span></span><span style="display:flex;"><span>  create app/components/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/controllers/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/helpers/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/index.html
+</span></span><span style="display:flex;"><span>  create app/models/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/resolver.js
+</span></span><span style="display:flex;"><span>  create app/router.js
+</span></span><span style="display:flex;"><span>  create app/routes/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/styles/app.css
+</span></span><span style="display:flex;"><span>  create app/templates/application.hbs
+</span></span><span style="display:flex;"><span>  create app/templates/components/.gitkeep
+</span></span><span style="display:flex;"><span>  create config/environment.js
+</span></span><span style="display:flex;"><span>  create config/targets.js
+</span></span><span style="display:flex;"><span>  create ember-cli-build.js
+</span></span><span style="display:flex;"><span>  create .gitignore
+</span></span><span style="display:flex;"><span>  create package.json
+</span></span><span style="display:flex;"><span>  create public/robots.txt
+</span></span><span style="display:flex;"><span>  create testem.js
+</span></span><span style="display:flex;"><span>  create tests/helpers/destroy-app.js
+</span></span><span style="display:flex;"><span>  create tests/helpers/module-for-acceptance.js
+</span></span><span style="display:flex;"><span>  create tests/helpers/start-app.js
+</span></span><span style="display:flex;"><span>  create tests/index.html
+</span></span><span style="display:flex;"><span>  create tests/integration/.gitkeep
+</span></span><span style="display:flex;"><span>  create tests/test-helper.js
+</span></span><span style="display:flex;"><span>  create tests/unit/.gitkeep
+</span></span><span style="display:flex;"><span>  create vendor/.gitkeep
+</span></span><span style="display:flex;"><span>WARNING:
+</span></span><span style="display:flex;"><span>WARNING: The &#39;package.json&#39; file for the addon at /usr/local/share/.config/yarn/global/node_modules/ember-cli/lib/tasks/server/middleware/tests-server
+</span></span><span style="display:flex;"><span>WARNING:   specifies a missing dependency &#39;exists-sync&#39;
+</span></span><span style="display:flex;"><span>WARNING: Node v14.16.0 is not tested against Ember CLI on your platform. We recommend that you use the most-recent &#34;Active LTS&#34; version of Node.js. See https://git.io/v7S5n for details.
+</span></span><span style="display:flex;"><span>installing app
+</span></span><span style="display:flex;"><span>  create .editorconfig
+</span></span><span style="display:flex;"><span>  create .ember-cli
+</span></span><span style="display:flex;"><span>  create .eslintignore
+</span></span><span style="display:flex;"><span>  create .eslintrc.js
+</span></span><span style="display:flex;"><span>  create .template-lintrc.js
+</span></span><span style="display:flex;"><span>  create .travis.yml
+</span></span><span style="display:flex;"><span>  create .watchmanconfig
+</span></span><span style="display:flex;"><span>  create README.md
+</span></span><span style="display:flex;"><span>  create app/app.js
+</span></span><span style="display:flex;"><span>  create app/components/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/controllers/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/helpers/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/index.html
+</span></span><span style="display:flex;"><span>  create app/models/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/resolver.js
+</span></span><span style="display:flex;"><span>  create app/router.js
+</span></span><span style="display:flex;"><span>  create app/routes/.gitkeep
+</span></span><span style="display:flex;"><span>  create app/styles/app.css
+</span></span><span style="display:flex;"><span>  create app/templates/application.hbs
+</span></span><span style="display:flex;"><span>  create app/templates/components/.gitkeep
+</span></span><span style="display:flex;"><span>  create config/environment.js
+</span></span><span style="display:flex;"><span>  create config/optional-features.json
+</span></span><span style="display:flex;"><span>  create config/targets.js
+</span></span><span style="display:flex;"><span>  create ember-cli-build.js
+</span></span><span style="display:flex;"><span>  create .gitignore
+</span></span><span style="display:flex;"><span>  create package.json
+</span></span><span style="display:flex;"><span>  create public/robots.txt
+</span></span><span style="display:flex;"><span>  create testem.js
+</span></span><span style="display:flex;"><span>  create tests/helpers/.gitkeep
+</span></span><span style="display:flex;"><span>  create tests/index.html
+</span></span><span style="display:flex;"><span>  create tests/integration/.gitkeep
+</span></span><span style="display:flex;"><span>  create tests/test-helper.js
+</span></span><span style="display:flex;"><span>  create tests/unit/.gitkeep
+</span></span><span style="display:flex;"><span>  create vendor/.gitkeep
+</span></span></code></pre></div><p>で、実行後に Ember アプリのディレクトリで <code>git status</code> を叩くと以下のような感じ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Changes to be committed:
+</span></span><span style="display:flex;"><span>  (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
+</span></span><span style="display:flex;"><span>        new file:   .eslintignore
+</span></span><span style="display:flex;"><span>        modified:   .eslintrc.js
+</span></span><span style="display:flex;"><span>        modified:   .gitignore
+</span></span><span style="display:flex;"><span>        new file:   .template-lintrc.js
+</span></span><span style="display:flex;"><span>        modified:   README.md
+</span></span><span style="display:flex;"><span>        modified:   config/ember-cli-update.json
+</span></span><span style="display:flex;"><span>        new file:   config/optional-features.json
+</span></span><span style="display:flex;"><span>        modified:   config/targets.js
+</span></span><span style="display:flex;"><span>        modified:   package.json
+</span></span><span style="display:flex;"><span>        modified:   testem.js
+</span></span><span style="display:flex;"><span>        new file:   tests/helpers/.gitkeep
+</span></span><span style="display:flex;"><span>        deleted:    tests/helpers/destroy-app.js
+</span></span><span style="display:flex;"><span>        deleted:    tests/helpers/module-for-acceptance.js
+</span></span><span style="display:flex;"><span>        deleted:    tests/helpers/start-app.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Unmerged paths:
+</span></span><span style="display:flex;"><span>  (use &#34;git restore --staged &lt;file&gt;...&#34; to unstage)
+</span></span><span style="display:flex;"><span>  (use &#34;git add/rm &lt;file&gt;...&#34; as appropriate to mark resolution)
+</span></span><span style="display:flex;"><span>        deleted by us:   .travis.yml
+</span></span></code></pre></div><p>.travis.yml は「どうせ使わねーだろ」ってことで自分で消してあるので改めて <code>git rm .travis.yml</code> すれば良い。</p>
 <p>それ以外の変更点も、ざっと眺めた感じは、きっといい感じに 3 系に対応してくれてそうなので気にせずコミットする。適当である。</p>
 <p>この実行結果のコミットは
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/c78deca904a43aa5587cf1489cabd90461469c31">https://github.com/mugijiru/ember-rails-todo-app/pull/61/commits/c78deca904a43aa5587cf1489cabd90461469c31</a>
@@ -301,20 +304,20 @@ Unmerged paths:
 <p><a href="https://cli.emberjs.com/release/basic-use/upgrading/#updatingyourcodeautomatically">https://cli.emberjs.com/release/basic-use/upgrading/#updatingyourcodeautomatically</a></p>
 <p>に書かれてるように <code>ember-cli-update</code> では
 <code>--run-codemods</code> オプションで実行することで古い記述を自動的に新しい書き方に直してくれるという便利機能があるので、それを実行する。後で理由を記載するが、ここでもまた NPM_TOKEN が必要になる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --run-codemods&#34;
-</code></pre></div><p>するとまた</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? Which blueprint would you like to run codemods for?
-&gt; ember-cli
-</code></pre></div><p>というように1つしかない選択肢を出される。これもまた Addon を ember-cli-update で更新管理できるようにしていたら選択肢が増えるんだろう、という推測をしてそのまま Enter を叩く。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ docker-compose run rails bash -c &#34;export NPM_TOKEN=XXXXXXXXXX &amp;&amp; cd ember/todo-app &amp;&amp; ember-cli-update --run-codemods&#34;
+</span></span></code></pre></div><p>するとまた</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>? Which blueprint would you like to run codemods for?
+</span></span><span style="display:flex;"><span>&gt; ember-cli
+</span></span></code></pre></div><p>というように1つしかない選択肢を出される。これもまた Addon を ember-cli-update で更新管理できるようにしていたら選択肢が増えるんだろう、という推測をしてそのまま Enter を叩く。</p>
 <p>すると、今度は以下のようにいくつかの選択肢が出て来る。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">? These codemods apply to your project. Select which ones to run. (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)
-❯◯ ember-modules-codemod
- ◯ ember-qunit-codemod
- ◯ ember-test-helpers-codemod
- ◯ es5-getter-ember-codemod
- ◯ notify-property-change
- ◯ qunit-dom-codemod
-</code></pre></div><p>それぞれ何をしてくれるかというと、多分大体以下の感じ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>? These codemods apply to your project. Select which ones to run. (Press &lt;space&gt; to select, &lt;a&gt; to toggle all, &lt;i&gt; to invert selection)
+</span></span><span style="display:flex;"><span>❯◯ ember-modules-codemod
+</span></span><span style="display:flex;"><span> ◯ ember-qunit-codemod
+</span></span><span style="display:flex;"><span> ◯ ember-test-helpers-codemod
+</span></span><span style="display:flex;"><span> ◯ es5-getter-ember-codemod
+</span></span><span style="display:flex;"><span> ◯ notify-property-change
+</span></span><span style="display:flex;"><span> ◯ qunit-dom-codemod
+</span></span></code></pre></div><p>それぞれ何をしてくれるかというと、多分大体以下の感じ。</p>
 <dl>
 <dt><a href="https://github.com/ember-codemods/ember-modules-codemod">ember-modules-codemod</a></dt>
 <dd><code>import Ember from 'ember'</code> という古い記述を <code>import Component from '@ember/component'</code> とかに修正するやつ</dd>
@@ -331,55 +334,55 @@ Unmerged paths:
 </dl>
 <p>例えばここで
 ember-modules-codemod だけ選択して Enter すると何かよくわからないが NPM Package を Fetch しにいき、それが終わるとコードの自動補正が実行される。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Running codemod ember-modules-codemod
-Running command 1 of 1
-Skipping path addon which does not exist.
-Skipping path addon-test-support which does not exist.
-Skipping path test-support which does not exist.
-Skipping path lib which does not exist.
-Processing 11 files...
-Spawning 7 workers...
-Sending 2 files to free worker...
-Sending 2 files to free worker...
-Sending 2 files to free worker...
-Sending 2 files to free worker...
-Sending 2 files to free worker...
-Sending 1 files to free worker...
-All done.
-Results:
-0 errors
-6 unmodified
-0 skipped
-5 ok
-Time elapsed: 1.785seconds
-
-Done! All uses of the Ember global have been updated.
-Finished running command 1 of 1
-Finished running codemod ember-modules-codemod
-</code></pre></div><p>これで何が変更されているかというと
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Running codemod ember-modules-codemod
+</span></span><span style="display:flex;"><span>Running command 1 of 1
+</span></span><span style="display:flex;"><span>Skipping path addon which does not exist.
+</span></span><span style="display:flex;"><span>Skipping path addon-test-support which does not exist.
+</span></span><span style="display:flex;"><span>Skipping path test-support which does not exist.
+</span></span><span style="display:flex;"><span>Skipping path lib which does not exist.
+</span></span><span style="display:flex;"><span>Processing 11 files...
+</span></span><span style="display:flex;"><span>Spawning 7 workers...
+</span></span><span style="display:flex;"><span>Sending 2 files to free worker...
+</span></span><span style="display:flex;"><span>Sending 2 files to free worker...
+</span></span><span style="display:flex;"><span>Sending 2 files to free worker...
+</span></span><span style="display:flex;"><span>Sending 2 files to free worker...
+</span></span><span style="display:flex;"><span>Sending 2 files to free worker...
+</span></span><span style="display:flex;"><span>Sending 1 files to free worker...
+</span></span><span style="display:flex;"><span>All done.
+</span></span><span style="display:flex;"><span>Results:
+</span></span><span style="display:flex;"><span>0 errors
+</span></span><span style="display:flex;"><span>6 unmodified
+</span></span><span style="display:flex;"><span>0 skipped
+</span></span><span style="display:flex;"><span>5 ok
+</span></span><span style="display:flex;"><span>Time elapsed: 1.785seconds
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Done! All uses of the Ember global have been updated.
+</span></span><span style="display:flex;"><span>Finished running command 1 of 1
+</span></span><span style="display:flex;"><span>Finished running codemod ember-modules-codemod
+</span></span></code></pre></div><p>これで何が変更されているかというと
 <code>git diff --cached</code> の一部を表示するとこんな感じ。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">diff --git a/ember/todo-app/app/components/todo-item.js b/ember/todo-app/app/components/todo-item.js
-index bc28c83..a803fc5 100644
---- a/ember/todo-app/app/components/todo-item.js
-+++ b/ember/todo-app/app/components/todo-item.js
-@@ -1,12 +1,14 @@
--import Ember from &#39;ember&#39;;
-+import { later } from &#39;@ember/runloop&#39;;
-+import { computed } from &#39;@ember/object&#39;;
-+import Component from &#39;@ember/component&#39;;
-
--export default Ember.Component.extend({
-+export default Component.extend({
-   tagName: &#39;li&#39;,
-   classNames: [&#39;p-todo-item&#39;],
-   classNameBindings: [&#39;isCompleted:p-todo-item__completed&#39;],
-
-   item: null,
--  isCompleted: Ember.computed(&#39;item.isCompleted&#39;, function () {
-+  isCompleted: computed(&#39;item.isCompleted&#39;, function () {
-     return this.get(&#39;item.isCompleted&#39;);
-   }),
-</code></pre></div><p><code>import Ember from 'ember'</code> という記述はもう古いので個別に <code>import Component from '@ember/component'</code> とするような記述に変更されている感じ。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>diff --git a/ember/todo-app/app/components/todo-item.js b/ember/todo-app/app/components/todo-item.js
+</span></span><span style="display:flex;"><span>index bc28c83..a803fc5 100644
+</span></span><span style="display:flex;"><span>--- a/ember/todo-app/app/components/todo-item.js
+</span></span><span style="display:flex;"><span>+++ b/ember/todo-app/app/components/todo-item.js
+</span></span><span style="display:flex;"><span>@@ -1,12 +1,14 @@
+</span></span><span style="display:flex;"><span>-import Ember from &#39;ember&#39;;
+</span></span><span style="display:flex;"><span>+import { later } from &#39;@ember/runloop&#39;;
+</span></span><span style="display:flex;"><span>+import { computed } from &#39;@ember/object&#39;;
+</span></span><span style="display:flex;"><span>+import Component from &#39;@ember/component&#39;;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-export default Ember.Component.extend({
+</span></span><span style="display:flex;"><span>+export default Component.extend({
+</span></span><span style="display:flex;"><span>   tagName: &#39;li&#39;,
+</span></span><span style="display:flex;"><span>   classNames: [&#39;p-todo-item&#39;],
+</span></span><span style="display:flex;"><span>   classNameBindings: [&#39;isCompleted:p-todo-item__completed&#39;],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   item: null,
+</span></span><span style="display:flex;"><span>-  isCompleted: Ember.computed(&#39;item.isCompleted&#39;, function () {
+</span></span><span style="display:flex;"><span>+  isCompleted: computed(&#39;item.isCompleted&#39;, function () {
+</span></span><span style="display:flex;"><span>     return this.get(&#39;item.isCompleted&#39;);
+</span></span><span style="display:flex;"><span>   }),
+</span></span></code></pre></div><p><code>import Ember from 'ember'</code> という記述はもう古いので個別に <code>import Component from '@ember/component'</code> とするような記述に変更されている感じ。</p>
 <p>いい感じにコードを変更してくれることがわかったので、同じ調子で ember-qunit-codemods なども適用していく。</p>
 <p>すると <code>ember-test-helpers-codemod</code> でエラーになったりするけどそもそもこのプロジェクトでは Ember.js に対する qunit でのテストをまだ書いてないので多分それが原因で単にファイルがないだけとかなので軽く無視する。</p>
 <p>という感じで実際に適用して変更があったのが</p>
@@ -438,7 +441,7 @@ ember-bootstrap あたりの Addon を ember-cli-update で管理できるよう
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        2677 Words
+        2665 Words
       </p>
 
       <p>
@@ -605,15 +608,17 @@ ember-bootstrap あたりの Addon を ember-cli-update で管理できるよう
         <div class="footer__content">
             <span>&copy; 2023</span>
             
+            
             <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
         </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-          </div>
+          <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
             <span><a href="/privacy_policy">Privacy Policy</a></span>
@@ -628,8 +633,7 @@ ember-bootstrap あたりの Addon を ember-cli-update で管理できるよう
 
 
 
-
-<script type="text/javascript" src="/bundle.min.a0f363fdf81cdc5cfacc447a79c33189eb000d090336cd04aac8ee256f423b3133b836c281944c19c75e38d0b0b449f01ce5807e37798b7ac94ac1db51983fc4.js" integrity="sha512-oPNj/fgc3Fz6zER6ecMxiesADQkDNs0EqsjuJW9COzEzuDbCgZRMGcdeONCwtEnwHOWAfjd5i3rJSsHbUZg/xA=="></script>
+<script type="text/javascript" src="/bundle.min.205d491810c28f95aa953fae884e1c27abe13fdf93ec63b882d0036b248d4a6282eb2d134e4e7225c6ad6e86db87b08488a361ca4a7383d01fcff43f3d57b9c3.js" integrity="sha512-IF1JGBDCj5WqlT&#43;uiE4cJ6vhP9&#43;T7GO4gtADaySNSmKC6y0TTk5yJcatbobbh7CEiKNhykpzg9Afz/Q/PVe5ww=="></script>
 
 
 
