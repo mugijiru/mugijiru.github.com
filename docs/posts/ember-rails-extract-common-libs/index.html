@@ -35,7 +35,7 @@
 
 
 
-<link rel="stylesheet" href="/main.393856bf2c430bb6c01d7af07c6fe966e7cce8073435cfbbc46e590bab7405ef.css">
+<link rel="stylesheet" href="/main.b78c3be9451dc4ca61ca377f3dc2cf2e6345a44c2bae46216a322ef366daa399.css">
 
 
     
@@ -47,7 +47,13 @@
     
 
 
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
 
 
 <meta itemprop="name" content="ember-rails でコンポーネントを共通ライブラリとして切り出す">
@@ -81,7 +87,10 @@
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -89,7 +98,8 @@
     <div class="logo">
         
             <span class="logo__mark">></span>
-            <span class="logo__text">$ cd /home/mugijiru</span>
+            <span class="logo__text ">
+                $ cd /home/mugijiru</span>
             <span class="logo__cursor" style=
                   "
                    
@@ -103,7 +113,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://mugijiru.github.io/about/">About</a></li><li><a href="https://mugijiru.github.io/profile/">Profile</a></li><li><a href="https://mugijiru.github.io/projects/">Projects</a></li><li><a href="https://mugijiru.github.io/posts/">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about/">About</a></li><li><a href="/profile/">Profile</a></li><li><a href="/projects/">Projects</a></li><li><a href="/posts/">Blog</a></li>
     </ul>
 </nav>
 
@@ -114,13 +124,11 @@
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
         </span>
     </span>
 </header>
@@ -169,34 +177,34 @@ Resolver には <code>component:ember-libs/button</code> として解釈する�
 GlobalsResolver は <code>EmberLibs.ButtonComponent</code> として解釈するようになっている。つまり EmberLibs という名前空間の ButtonComponent を探しに行くようになっている。</p>
 <h3 id="名前空間の定義">名前空間の定義</h3>
 <p>というわけで、まずは <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-e1803bb0635866bc90975a1321dbfa6d20be59e76ec3d7b80c8acc4656f8af9fR6">ember-libs/ember-libs.js.es6</a> に書いてるように</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window.<span style="color:#a6e22e">EmberLibs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Namespace</span>.<span style="color:#a6e22e">create</span>()
-</code></pre></div><p>と書くことで
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>window.<span style="color:#a6e22e">EmberLibs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Namespace</span>.<span style="color:#a6e22e">create</span>()
+</span></span></code></pre></div><p>と書くことで
 EmberLibs という名前空間を定義してやる。</p>
 <p>一応 <code>ember-libs/ember-libs.js.es6</code> では require の順番として
 ember はそこで定義している実装を使うので先に require してそのファイルで定義している名前空間を components で使うので components を require するより前に
 require_self をしている。</p>
 <h3 id="共通コンポーネントの記述">共通コンポーネントの記述</h3>
 <p>各コンポーネントはその名前空間の下に入るように書けばいい。例えば <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-9f9be147342dc470d8f0cba8a06a55a210550e01b22502bd6e0aff0d029ae38cR1">ember-libs/components/button.js.es6</a> に書いてるように</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
-</code></pre></div><p>というように書いてやれば動く。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
+</span></span></code></pre></div><p>というように書いてやれば動く。</p>
 <h3 id="config-dot-handlerbars-dot-templates-root-の設定">config.handlerbars.templates_root の設定</h3>
 <p>templates を ember-libs/templates に入れるので
 Rails 側の設定で <code>config.handlebars.templates_root</code> に <code>ember-libs/templates</code> を追加するのを忘れずに。
 ember-rails の設定例に従っていれば <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-c1fd91cb1911a0512578b99f657554526f3e1421decdb9e908712beab57e10f9R34">config/application.rb</a> に設定があるはず。</p>
 <h3 id="利用側の設定">利用側の設定</h3>
 <p>あとは <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/13/files#diff-2cb7f9d0c761533d0e2b01e0b7e6f4a34529c7b52f9a13c7493b2629251bccd8R9">todo-app/application.js.es6</a> に書いてるようにこの共通コンポーネントを使いたいアプリ側で</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//= require ember-libs/ember-libs
-</span></code></pre></div><p>としてやるだけでさくっと使えるようになる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">//= require ember-libs/ember-libs
+</span></span></span></code></pre></div><p>としてやるだけでさくっと使えるようになる。</p>
 <h3 id="他の-type-について">他の type について</h3>
 <p>試してないけど mixin や service ぐらいなら同じノリでいけるんじゃないかなと思ってる。
 model もいけそう。名前空間が変わるだけだし、その呼び出しも難しくないし、大体なんとかなりそう。</p>
 <h3 id="余談-名前空間を分けない場合">余談: 名前空間を分けない場合</h3>
 <p>上のようなやりかたをしているのは、名前空間を分けたいってのが先だったので、各アプリで名前空間を分ける必要がなければ、全部のアプリで</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">window <span style="color:#a6e22e">App</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Application</span>.<span style="color:#a6e22e">create</span>()
-</code></pre></div><p>とかしちゃって</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>window <span style="color:#a6e22e">App</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Application</span>.<span style="color:#a6e22e">create</span>()
+</span></span></code></pre></div><p>とかしちゃって</p>
 <p><code>ember-libs/components/button.js.es6</code> では普通に書く場合と同じように</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">App</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
-</code></pre></div><p>みたいにしておいて require したら <code>{{button}}</code> で使える。個人的には、名前空間が混ざるとどっちかが上書きされたりしそうで怖くて嫌だけど。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">App</span>.<span style="color:#a6e22e">ButtonComponent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Ember</span>.<span style="color:#a6e22e">Component</span>.<span style="color:#a6e22e">extend</span>()
+</span></span></code></pre></div><p>みたいにしておいて require したら <code>{{button}}</code> で使える。個人的には、名前空間が混ざるとどっちかが上書きされたりしそうで怖くて嫌だけど。</p>
 <h2 id="es6-module-対応版の場合">ES6 Module 対応版の場合</h2>
 <p>最初に答えを出すと
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/12">https://github.com/mugijiru/ember-rails-todo-app/pull/12</a>
@@ -207,14 +215,14 @@ model もいけそう。名前空間が変わるだけだし、その呼び出�
 <p>なのだけど今回はそんなところを探しに行って欲しくないので、
 regsiter を Ember.js で自動的に解決して対応してもらうのではなく
 <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/12/files#diff-029812c538a995224fcf19bfa24f65558246c054aea77c95ec1f4a404b4f5256R1">ember-libs/ember-libs.module.es6</a> に書いているように、自前で</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>()
-</code></pre></div><p>して対応することにした。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>()
+</span></span></code></pre></div><p>して対応することにした。</p>
 <h3 id="コンポーネントの-register">コンポーネントの register</h3>
 <p>基本的には以下のように書いておけば Button コンポーネントは動くようになる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Button</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/button&#39;</span>;
-
-<span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;component:ember-libs/button&#39;</span>, <span style="color:#a6e22e">Button</span>);
-</code></pre></div><p>が、コンポーネントが増えていった際に全部そうやって書くのはアホらしい。というわけで、自動的に解決するようにした。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Button</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./components/button&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">application</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;component:ember-libs/button&#39;</span>, <span style="color:#a6e22e">Button</span>);
+</span></span></code></pre></div><p>が、コンポーネントが増えていった際に全部そうやって書くのはアホらしい。というわけで、自動的に解決するようにした。</p>
 <h3 id="コンポーネントの-auto-register">コンポーネントの auto register</h3>
 <p>ES6 Module 対応して import している場合に ember-rails では実際はどんな形に transpile されるかというとどうやら requirejs の機能で読み込んだりしているらしい。</p>
 <p>で export されているファイルは <code>requirejs.entries</code> に含まれているのでそこから必要なものを探し出して
@@ -228,8 +236,8 @@ ember-rails の設定例に従っていれば <a href="https://github.com/mugiji
 <h3 id="利用側の設定">利用側の設定</h3>
 <p>アプリ側では <a href="https://github.com/mugijiru/ember-rails-todo-app/pull/12/files#diff-97468a821d4c12c1b223617fba29257a5b1e00553a1b8e8f403ee99864756ebaR4">initializers/resolve-common-libs に書いている</a> ように
 initializer で</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">registerAll</span>()
-</code></pre></div><p>を叩くだけでいい感じに使えるようになる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">EmberLibs</span>.<span style="color:#a6e22e">registerAll</span>()
+</span></span></code></pre></div><p>を叩くだけでいい感じに使えるようになる。</p>
 <h3 id="他の-type-について">他の type について</h3>
 <p>試してないけど、component でやってみた所感。</p>
 <p>mixin はどうせ明示的に import して使うので関係なさそう。
@@ -437,15 +445,17 @@ ES6 Module 対応版への移行がまだでも躊躇せずライブラリを分
         <div class="footer__content">
             <span>&copy; 2023</span>
             
+            
             <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
         </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-          </div>
+          <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
             <span><a href="/privacy_policy">Privacy Policy</a></span>
@@ -460,8 +470,7 @@ ES6 Module 対応版への移行がまだでも躊躇せずライブラリを分
 
 
 
-
-<script type="text/javascript" src="/bundle.min.a0f363fdf81cdc5cfacc447a79c33189eb000d090336cd04aac8ee256f423b3133b836c281944c19c75e38d0b0b449f01ce5807e37798b7ac94ac1db51983fc4.js" integrity="sha512-oPNj/fgc3Fz6zER6ecMxiesADQkDNs0EqsjuJW9COzEzuDbCgZRMGcdeONCwtEnwHOWAfjd5i3rJSsHbUZg/xA=="></script>
+<script type="text/javascript" src="/bundle.min.205d491810c28f95aa953fae884e1c27abe13fdf93ec63b882d0036b248d4a6282eb2d134e4e7225c6ad6e86db87b08488a361ca4a7383d01fcff43f3d57b9c3.js" integrity="sha512-IF1JGBDCj5WqlT&#43;uiE4cJ6vhP9&#43;T7GO4gtADaySNSmKC6y0TTk5yJcatbobbh7CEiKNhykpzg9Afz/Q/PVe5ww=="></script>
 
 
 

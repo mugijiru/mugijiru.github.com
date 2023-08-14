@@ -23,6 +23,7 @@ publishDir     = "docs"
 
     disableReadOtherPosts = false
     enableSharingButtons  = true
+    enableThemeToggle     = true
 
     homeSubtitle = "麦汁さんの個人サイト"
 
@@ -34,6 +35,7 @@ publishDir     = "docs"
 
   [params.logo]
     logoText = "$ cd /home/mugijiru"
+
   # Social icons
   [[params.social]]
     name = "twitter"
@@ -43,6 +45,10 @@ publishDir     = "docs"
     name = "github"
     url  = "https://github.com/mugijiru"
 
+  [params.footer]
+    rss = true
+    lowerText = ["Powered by <a href=\"http://gohugo.io\">Hugo</a>",
+                 "Made with &#10084; by <a href=\"https://github.com/rhazdon\">Djordje Atlialp</a>"]
 [menu]
   [[menu.main]]
     identifier = "about"

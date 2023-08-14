@@ -4,8 +4,11 @@ on:
   push:
     paths:
       - 'content/**/*.md'
+      - 'config.toml'
+      - '.github/workflows/build.yml'
     branches:
       - 'entry/**'
+      - 'bump-hugo/**'
 
 jobs:
   build:
@@ -18,7 +21,8 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.89.4'
+          hugo-version: 'latest'
+          extended: true
 
       - name: Build
         run: hugo

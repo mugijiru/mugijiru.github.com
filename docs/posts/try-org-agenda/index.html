@@ -35,7 +35,7 @@
 
 
 
-<link rel="stylesheet" href="/main.393856bf2c430bb6c01d7af07c6fe966e7cce8073435cfbbc46e590bab7405ef.css">
+<link rel="stylesheet" href="/main.b78c3be9451dc4ca61ca377f3dc2cf2e6345a44c2bae46216a322ef366daa399.css">
 
 
     
@@ -47,7 +47,13 @@
     
 
 
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
 
 
 <meta itemprop="name" content="org-agenda を活用し始めた">
@@ -81,7 +87,10 @@
 
     </head>
 
-    <body class="dark-theme">
+    
+        <body>
+    
+    
         <div class="container">
             <header class="header">
     <span class="header__inner">
@@ -89,7 +98,8 @@
     <div class="logo">
         
             <span class="logo__mark">></span>
-            <span class="logo__text">$ cd /home/mugijiru</span>
+            <span class="logo__text ">
+                $ cd /home/mugijiru</span>
             <span class="logo__cursor" style=
                   "
                    
@@ -103,7 +113,7 @@
         <span class="header__right">
             
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="https://mugijiru.github.io/about/">About</a></li><li><a href="https://mugijiru.github.io/profile/">Profile</a></li><li><a href="https://mugijiru.github.io/projects/">Projects</a></li><li><a href="https://mugijiru.github.io/posts/">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about/">About</a></li><li><a href="/profile/">Profile</a></li><li><a href="/projects/">Projects</a></li><li><a href="/posts/">Blog</a></li>
     </ul>
 </nav>
 
@@ -114,13 +124,11 @@
                     </svg>
                 </span>
             
-
-            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
-  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
-  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
-</svg>
-</span>
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
         </span>
     </span>
 </header>
@@ -158,12 +166,12 @@ org-clock を使い始めたり org-pomodoro を導入したり org-habits を�
 <p>まず、平日朝イチでやっておきたい習慣タスクに対して
 <code>Weekday</code> と <code>Start</code> の2つのタグを振ってるか、
 <code>Daily</code> というタグを振ってるのでそれを表示できるやつを以下のように仕込んでる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;hs&#34;</span> <span style="color:#e6db74">&#34;Weekday Start&#34;</span>
- ((tags <span style="color:#e6db74">&#34;Weekday&amp;Start|Daily&#34;</span>
-        ((org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
-                                    (:name <span style="color:#e6db74">&#34;今日の作業&#34;</span> :scheduled today)
-                                    (:discard (:anything <span style="color:#66d9ef">t</span>))))))))
-</code></pre></div><p><a href="https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L89-L93">https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L89-L93</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#e6db74">&#34;hs&#34;</span> <span style="color:#e6db74">&#34;Weekday Start&#34;</span>
+</span></span><span style="display:flex;"><span> ((tags <span style="color:#e6db74">&#34;Weekday&amp;Start|Daily&#34;</span>
+</span></span><span style="display:flex;"><span>        ((org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
+</span></span><span style="display:flex;"><span>                                    (:name <span style="color:#e6db74">&#34;今日の作業&#34;</span> :scheduled today)
+</span></span><span style="display:flex;"><span>                                    (:discard (:anything <span style="color:#66d9ef">t</span>))))))))
+</span></span></code></pre></div><p><a href="https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L89-L93">https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L89-L93</a></p>
 <p>麦汁さんのやりたいことを実現するには、デフォルトの org-agenda だとなんか機能が足りないっぽかったのでそれを補うために <a href="https://github.com/alphapapa/org-super-agenda">org-super-agenda</a> も使っている。</p>
 <p>とりあえず上の例の2行目でタグによる絞り込みをしているがこれは org-mode の標準機能を使っていて
 <a href="https://orgmode.org/manual/Storing-searches.html#Storing-searches">https://orgmode.org/manual/Storing-searches.html#Storing-searches</a>
@@ -173,78 +181,78 @@ org-clock を使い始めたり org-pomodoro を導入したり org-habits を�
 <p><code>(:discard (:anything t))</code> は、そこまでの条件にマッチしなかったやつを全部無視するような設定。これがないと <code>Other items</code> という形で全部並んでしまって邪魔になる。</p>
 <p>最初の絞り込みで綺麗に絞り込めると良いかもしれないが、そこまで高度な機能は org-mode には備わってなさそう。それか、そういう高度な機能を見つけて使いこなせる能力を俺が有してないか。</p>
 <p>まあそれはともかく、上の感じでタスクを登録していると以下のように表示される。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Headlines with TAGS match: Weekday&amp;Start|Daily
-
- 予定が過ぎてる作業
-  next-actions:TODO 排便                                                      :Weekday:Start:
-
- 今日の作業
-  next-actions:TODO 体重・体脂肪率計測                                                 :Daily:
-</code></pre></div><p>実際のやつはもっと色々あるというか、そもそもわざわざ排便を org-mode で管理はしてないのであくまでサンプルとして2つ置いてるだけだとご認識ください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Headlines with TAGS match: Weekday&amp;Start|Daily
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 予定が過ぎてる作業
+</span></span><span style="display:flex;"><span>  next-actions:TODO 排便                                                      :Weekday:Start:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 今日の作業
+</span></span><span style="display:flex;"><span>  next-actions:TODO 体重・体脂肪率計測                                                 :Daily:
+</span></span></code></pre></div><p>実際のやつはもっと色々あるというか、そもそもわざわざ排便を org-mode で管理はしてないのであくまでサンプルとして2つ置いてるだけだとご認識ください。</p>
 <p>同じノリでその日の締め作業も取れるように設定している。</p>
 <p>また、日中使うための設定も用意していて、こっちは結構複雑。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-emacs-lisp" data-lang="emacs-lisp">(<span style="color:#e6db74">&#34;d&#34;</span> <span style="color:#e6db74">&#34;Today&#34;</span>
- ((agenda <span style="color:#e6db74">&#34;会議など&#34;</span>
-          ((org-agenda-span <span style="color:#e6db74">&#39;day</span>)
-           (org-agenda-files my/org-agenda-calendar-files)))
-  (tags-todo <span style="color:#e6db74">&#34;-Weekday-Daily-Holiday-Weekly-Weekend&#34;</span>
-             ((org-agenda-prefix-format <span style="color:#e6db74">&#34; &#34;</span>)
-              (org-agenda-overriding-header <span style="color:#e6db74">&#34;今日の作業&#34;</span>)
-              (org-habit-show-habits <span style="color:#66d9ef">nil</span>)
-              (org-agenda-span <span style="color:#e6db74">&#39;day</span>)
-              (org-agenda-todo-keyword-format <span style="color:#e6db74">&#34;-&#34;</span>)
-              (org-overriding-columns-format <span style="color:#e6db74">&#34;%25ITEM %TODO&#34;</span>)
-              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/next-actions.org&#34;</span>))
-              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;仕掛かり中&#34;</span> :todo <span style="color:#e6db74">&#34;DOING&#34;</span>)
-                                         (:name <span style="color:#e6db74">&#34;TODO&#34;</span> :todo <span style="color:#e6db74">&#34;TODO&#34;</span>)
-                                         (:name <span style="color:#e6db74">&#34;待ち&#34;</span> :todo <span style="color:#e6db74">&#34;WAIT&#34;</span>)
-                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))
-  (alltodo <span style="color:#e6db74">&#34;&#34;</span>
-             ((org-agenda-prefix-format <span style="color:#e6db74">&#34; &#34;</span>)
-              (org-agenda-overriding-header <span style="color:#e6db74">&#34;予定作業&#34;</span>)
-              (org-habit-show-habits <span style="color:#66d9ef">nil</span>)
-              (org-agenda-span <span style="color:#e6db74">&#39;day</span>)
-              (org-agenda-todo-keyword-format <span style="color:#e6db74">&#34;-&#34;</span>)
-              (org-overriding-columns-format <span style="color:#e6db74">&#34;%25ITEM %TODO&#34;</span>)
-              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/projects.org&#34;</span>))
-              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;〆切が過ぎてる作業&#34;</span> :deadline past)
-                                         (:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
-                                         (:name <span style="color:#e6db74">&#34;今日〆切の作業&#34;</span> :deadline today)
-                                         (:name <span style="color:#e6db74">&#34;今日予定の作業&#34;</span> :scheduled today)
-                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))
-  (tags-todo <span style="color:#e6db74">&#34;Weekday|Daily|Weekly&#34;</span>
-             ((org-agenda-overriding-header <span style="color:#e6db74">&#34;習慣&#34;</span>)
-              (org-habit-show-habits <span style="color:#66d9ef">t</span>)
-              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/next-actions.org&#34;</span>))
-              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
-                                         (:name <span style="color:#e6db74">&#34;今日予定&#34;</span> :scheduled today)
-                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))))
-</code></pre></div><p><a href="https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L109-L144">https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L109-L144</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(<span style="color:#e6db74">&#34;d&#34;</span> <span style="color:#e6db74">&#34;Today&#34;</span>
+</span></span><span style="display:flex;"><span> ((agenda <span style="color:#e6db74">&#34;会議など&#34;</span>
+</span></span><span style="display:flex;"><span>          ((org-agenda-span <span style="color:#e6db74">&#39;day</span>)
+</span></span><span style="display:flex;"><span>           (org-agenda-files my/org-agenda-calendar-files)))
+</span></span><span style="display:flex;"><span>  (tags-todo <span style="color:#e6db74">&#34;-Weekday-Daily-Holiday-Weekly-Weekend&#34;</span>
+</span></span><span style="display:flex;"><span>             ((org-agenda-prefix-format <span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-overriding-header <span style="color:#e6db74">&#34;今日の作業&#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-habit-show-habits <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-span <span style="color:#e6db74">&#39;day</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-todo-keyword-format <span style="color:#e6db74">&#34;-&#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-overriding-columns-format <span style="color:#e6db74">&#34;%25ITEM %TODO&#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/next-actions.org&#34;</span>))
+</span></span><span style="display:flex;"><span>              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;仕掛かり中&#34;</span> :todo <span style="color:#e6db74">&#34;DOING&#34;</span>)
+</span></span><span style="display:flex;"><span>                                         (:name <span style="color:#e6db74">&#34;TODO&#34;</span> :todo <span style="color:#e6db74">&#34;TODO&#34;</span>)
+</span></span><span style="display:flex;"><span>                                         (:name <span style="color:#e6db74">&#34;待ち&#34;</span> :todo <span style="color:#e6db74">&#34;WAIT&#34;</span>)
+</span></span><span style="display:flex;"><span>                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))
+</span></span><span style="display:flex;"><span>  (alltodo <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>             ((org-agenda-prefix-format <span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-overriding-header <span style="color:#e6db74">&#34;予定作業&#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-habit-show-habits <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-span <span style="color:#e6db74">&#39;day</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-todo-keyword-format <span style="color:#e6db74">&#34;-&#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-overriding-columns-format <span style="color:#e6db74">&#34;%25ITEM %TODO&#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/projects.org&#34;</span>))
+</span></span><span style="display:flex;"><span>              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;〆切が過ぎてる作業&#34;</span> :deadline past)
+</span></span><span style="display:flex;"><span>                                         (:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
+</span></span><span style="display:flex;"><span>                                         (:name <span style="color:#e6db74">&#34;今日〆切の作業&#34;</span> :deadline today)
+</span></span><span style="display:flex;"><span>                                         (:name <span style="color:#e6db74">&#34;今日予定の作業&#34;</span> :scheduled today)
+</span></span><span style="display:flex;"><span>                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))
+</span></span><span style="display:flex;"><span>  (tags-todo <span style="color:#e6db74">&#34;Weekday|Daily|Weekly&#34;</span>
+</span></span><span style="display:flex;"><span>             ((org-agenda-overriding-header <span style="color:#e6db74">&#34;習慣&#34;</span>)
+</span></span><span style="display:flex;"><span>              (org-habit-show-habits <span style="color:#66d9ef">t</span>)
+</span></span><span style="display:flex;"><span>              (org-agenda-files <span style="color:#f92672">&#39;</span>(<span style="color:#e6db74">&#34;~/Documents/org/tasks/next-actions.org&#34;</span>))
+</span></span><span style="display:flex;"><span>              (org-super-agenda-groups <span style="color:#f92672">&#39;</span>((:name <span style="color:#e6db74">&#34;予定が過ぎてる作業&#34;</span> :scheduled past)
+</span></span><span style="display:flex;"><span>                                         (:name <span style="color:#e6db74">&#34;今日予定&#34;</span> :scheduled today)
+</span></span><span style="display:flex;"><span>                                         (:discard (:anything <span style="color:#66d9ef">t</span>))))))))
+</span></span></code></pre></div><p><a href="https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L109-L144">https://github.com/mugijiru/.emacs.d/blob/a523566f2be993655f74ebf20afc4da444019f5e/inits/60-org.el#L109-L144</a></p>
 <p>通常なら Agenda for current week or day ってのが標準で用意されてるのでそれを使えばいいかなって思うんだけど
 1 view でいい感じにカテゴライズされていて取得できるってのが欲しかったんですよね。で、それをやろうと思うとやはり org-super-agenda が必要そうだったって感じ。</p>
 <p>とりあえず現在は next-actions.org に、直近やるつもりの作業を詰めていて
 projecs.org に、直近ではないけどやることリストを並べてるって感じ。スプリントバックログとプロダクトバックログみたいな扱いのつもりですね。あとは別途 org-gcal で同期している Google Calendar から取得した予定用のファイルもあったりする。</p>
 <p>そうやっていくつかあるファイルからいい感じになるようにということで設定しているのが先程のコードでそれで org-agenda のバッファを生成すると以下のような雰囲気のやつになる。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text"> 会議など
- 11:00-12:00 すごい会議
- 15:00-18:00 長い会議
-------------------------------
-今日の作業
- 仕掛かり中
- - 藁人形の作成
- 待ち
- - 五寸釘発注の稟議
-
-予定作業
- 〆切が過ぎてる作業
- - 五寸釘の発注
-
-習慣
- 予定が過ぎてる作業
- - 排便
- 今日予定
- - 体重・体脂肪率計測
-</code></pre></div><p>もちろん、内容はサンプル用に適当にでっち上げたやつです。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span> 会議など
+</span></span><span style="display:flex;"><span> 11:00-12:00 すごい会議
+</span></span><span style="display:flex;"><span> 15:00-18:00 長い会議
+</span></span><span style="display:flex;"><span>------------------------------
+</span></span><span style="display:flex;"><span>今日の作業
+</span></span><span style="display:flex;"><span> 仕掛かり中
+</span></span><span style="display:flex;"><span> - 藁人形の作成
+</span></span><span style="display:flex;"><span> 待ち
+</span></span><span style="display:flex;"><span> - 五寸釘発注の稟議
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>予定作業
+</span></span><span style="display:flex;"><span> 〆切が過ぎてる作業
+</span></span><span style="display:flex;"><span> - 五寸釘の発注
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>習慣
+</span></span><span style="display:flex;"><span> 予定が過ぎてる作業
+</span></span><span style="display:flex;"><span> - 排便
+</span></span><span style="display:flex;"><span> 今日予定
+</span></span><span style="display:flex;"><span> - 体重・体脂肪率計測
+</span></span></code></pre></div><p>もちろん、内容はサンプル用に適当にでっち上げたやつです。</p>
 <p>本当はタグも表示されてしまうけど、それはあまり要らないかなと思ってるので、それはなんとか非表示にしたいなあと願ってる。
 <code>org-overriding-columns-format</code> を弄っても今のところいい感じにならなくて悲しい。</p>
 <p>あと、今の設定と使い方だと「あと数日で着手しないといけないタスク」とかそういうやつはわからないので、それもなんとかしたい。</p>
@@ -443,15 +451,17 @@ projecs.org に、直近ではないけどやることリストを並べてる�
         <div class="footer__content">
             <span>&copy; 2023</span>
             
+            
             <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
         </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
-            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
-            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
-          </div>
+          <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
     </div>
+    
     <div class="footer__inner">
         <div class="footer__content">
             <span><a href="/privacy_policy">Privacy Policy</a></span>
@@ -466,8 +476,7 @@ projecs.org に、直近ではないけどやることリストを並べてる�
 
 
 
-
-<script type="text/javascript" src="/bundle.min.a0f363fdf81cdc5cfacc447a79c33189eb000d090336cd04aac8ee256f423b3133b836c281944c19c75e38d0b0b449f01ce5807e37798b7ac94ac1db51983fc4.js" integrity="sha512-oPNj/fgc3Fz6zER6ecMxiesADQkDNs0EqsjuJW9COzEzuDbCgZRMGcdeONCwtEnwHOWAfjd5i3rJSsHbUZg/xA=="></script>
+<script type="text/javascript" src="/bundle.min.205d491810c28f95aa953fae884e1c27abe13fdf93ec63b882d0036b248d4a6282eb2d134e4e7225c6ad6e86db87b08488a361ca4a7383d01fcff43f3d57b9c3.js" integrity="sha512-IF1JGBDCj5WqlT&#43;uiE4cJ6vhP9&#43;T7GO4gtADaySNSmKC6y0TTk5yJcatbobbh7CEiKNhykpzg9Afz/Q/PVe5ww=="></script>
 
 
 
