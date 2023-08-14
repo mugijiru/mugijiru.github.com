@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'content/**/*.md'
+      - 'config.toml'
       - '.github/workflows/build.yml'
     branches:
       - 'entry/**'

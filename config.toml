@@ -23,6 +23,7 @@ publishDir     = "docs"
 
     disableReadOtherPosts = false
     enableSharingButtons  = true
+    enableThemeToggle     = true
 
     homeSubtitle = "麦汁さんの個人サイト"
 
