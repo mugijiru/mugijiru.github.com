@@ -6,7 +6,16 @@
     <description>Recent content on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 11 Jun 2023 15:02:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Aug 2023 23:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>org-mode の Custom Agenda Views の抽出条件を少し調整した</title>
+      <link>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</link>
+      <pubDate>Tue, 15 Aug 2023 23:03:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</guid>
+      <description>しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。 Heading Level でのフィルタリング TODO タスクの中に更</description>
+    </item>
+    
     <item>
       <title>Ember.js の Integration test で Cannot read properties of undefined (reading &#39;Symbol(TAG_COMPUTE)&#39;) と怒られる時は this が漏れている</title>
       <link>https://mugijiru.github.io/posts/cannot-read-property-of-undefined-on-ember-test/</link>

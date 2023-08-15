@@ -5,8 +5,60 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 11 Jun 2023 15:02:00 +0900</lastBuildDate>
+        <lastBuildDate>Tue, 15 Aug 2023 23:03:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>org-mode の Custom Agenda Views の抽出条件を少し調整した</title>
+            <link>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</link>
+            <pubDate>Tue, 15 Aug 2023 23:03:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</guid>
+            <description>しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。 Heading Level でのフィルタリング TODO タスクの中に更</description>
+            <content type="html"><![CDATA[<p>しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。</p>
+<h2 id="heading-level-でのフィルタリング">Heading Level でのフィルタリング</h2>
+<p>TODO タスクの中に更に TODO でサブタスクを生やしていると
+agenda 表示をした時にそのサブタスクも全部表示されてうんざりしていたのが最近ようやく解決できた。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(tags-todo <span style="color:#e6db74">&#34;LEVEL=2&#34;</span> <span style="color:#f92672">...</span>)
+</span></span></code></pre></div><p>みたいに <code>LEVEL=?</code> みたいに記述したらレベル2の TODO だけが抽出できる。</p>
+<p>具体的には
+<a href="https://github.com/mugijiru/.emacs.d/pull/2618">https://github.com/mugijiru/.emacs.d/pull/2618</a>
+とかでやっている。</p>
+<p><code>tags-todo</code> だけじゃなく <code>tags</code> でも絞り込みはできる。
+<a href="https://github.com/mugijiru/.emacs.d/pull/2657">https://github.com/mugijiru/.emacs.d/pull/2657</a> でやってるから間違いないはず。</p>
+<h2 id="優先度でのフィルタリング">優先度でのフィルタリング</h2>
+<p>org-mode の TODO は優先度が付与できる。
+<a href="https://orgmode.org/manual/Priorities.html">https://orgmode.org/manual/Priorities.html</a></p>
+<p>なので、優先的にやりたいタスクだけとりあえず抽出したかった。</p>
+<p>まあ上の Heading Level でのフィルタリングと大体一緒で</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(tags-todo <span style="color:#e6db74">&#34;PRIORITY=\&#34;A\&#34;&#34;</span> <span style="color:#f92672">...</span>)
+</span></span></code></pre></div><p>とか指定したら OK</p>
+<p>具体的には
+<a href="https://github.com/mugijiru/.emacs.d/pull/2631">https://github.com/mugijiru/.emacs.d/pull/2631</a>
+でその設定を突っ込んでみている</p>
+<h2 id="直近1週間以内の-todo-の抽出">直近1週間以内の TODO の抽出</h2>
+<p>これは <a href="https://github.com/alphapapa/org-super-agenda">org-super-agenda</a> を使って対応している。</p>
+<p>各タスクに schedule を設定しておいて
+<code>org-super-agenda-groups</code> で「7日後より前」「今日より後」の2つの条件を and で繋ぐと良い。</p>
+<p>以下のコードは自分の設定ファイルを見ながら書いたやつだけど、多分次の感じで動く</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(all-todo <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>          (org-super-agenda-groups
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">&#39;</span>((:name
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#34;今後1週間の作業&#34;</span>
+</span></span><span style="display:flex;"><span>              :and
+</span></span><span style="display:flex;"><span>              (:scheduled (before
+</span></span><span style="display:flex;"><span>                           <span style="color:#f92672">,</span>(<span style="color:#a6e22e">format-time-string</span>
+</span></span><span style="display:flex;"><span>                             <span style="color:#e6db74">&#34;%Y-%m-%d&#34;</span>
+</span></span><span style="display:flex;"><span>                             (<span style="color:#a6e22e">time-add</span> (<span style="color:#a6e22e">current-time</span>)
+</span></span><span style="display:flex;"><span>                                       (days-to-time <span style="color:#ae81ff">7</span>))))
+</span></span><span style="display:flex;"><span>                          :scheduled (after
+</span></span><span style="display:flex;"><span>                                      <span style="color:#f92672">,</span>(<span style="color:#a6e22e">format-time-string</span>
+</span></span><span style="display:flex;"><span>                                        <span style="color:#e6db74">&#34;%Y-%m-%d&#34;</span>
+</span></span><span style="display:flex;"><span>                                        (<span style="color:#a6e22e">current-time</span>))))))))
+</span></span></code></pre></div><p>具体的に動くようにしているコードは以下
+<a href="https://github.com/mugijiru/.emacs.d/pull/2617">https://github.com/mugijiru/.emacs.d/pull/2617</a></p>
+]]></content>
+        </item>
         
         <item>
             <title>Ember.js の Integration test で Cannot read properties of undefined (reading &#39;Symbol(TAG_COMPUTE)&#39;) と怒られる時は this が漏れている</title>
