@@ -6,7 +6,16 @@
     <description>Recent content in Ember-js on 麦汁三昧</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 22 Aug 2021 00:50:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Aug 2023 22:44:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/ember-js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ember.js のテストでサーバリクエストの Mock する</title>
+      <link>https://mugijiru.github.io/posts/ember-testing-with-mocks/</link>
+      <pubDate>Wed, 16 Aug 2023 22:44:00 +0900</pubDate>
+      
+      <guid>https://mugijiru.github.io/posts/ember-testing-with-mocks/</guid>
+      <description>Ember.js のテストを書こうとすると Model を扱う時にリクエストを飛ばしちゃうのでそれを回避するのをいくつか試したので記事にしてみる といいつつ2ヶ月ぐらい前</description>
+    </item>
+    
     <item>
       <title>ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした</title>
       <link>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</link>

@@ -5,8 +5,156 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Tue, 15 Aug 2023 23:03:00 +0900</lastBuildDate>
+        <lastBuildDate>Wed, 16 Aug 2023 22:44:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Ember.js のテストでサーバリクエストの Mock する</title>
+            <link>https://mugijiru.github.io/posts/ember-testing-with-mocks/</link>
+            <pubDate>Wed, 16 Aug 2023 22:44:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/ember-testing-with-mocks/</guid>
+            <description>Ember.js のテストを書こうとすると Model を扱う時にリクエストを飛ばしちゃうのでそれを回避するのをいくつか試したので記事にしてみる といいつつ2ヶ月ぐらい前</description>
+            <content type="html"><![CDATA[<p>Ember.js のテストを書こうとすると Model を扱う時にリクエストを飛ばしちゃうのでそれを回避するのをいくつか試したので記事にしてみる</p>
+<p>といいつつ2ヶ月ぐらい前に書こうとしていた記事なので実は細かいところは適当に書いているけど、まあほぼ自分用のつもりで書いているので細かいことは気にしない。</p>
+<h2 id="sinon">sinon</h2>
+<p>JS で mock といえば <a href="https://sinonjs.org/">sinon</a> って勝手に思ってるぐらいには有名な mock ライブラリ。</p>
+<p>API へのリクエストを mock するわけじゃないけど、
+API にリクエストを飛ばす関数を mock 化できるやつ。</p>
+<h3 id="セットアップ">セットアップ</h3>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/blob/97f62e8dc820c6b960c1e2167697528fb16d6f70/ember/todo-app/tests/test-helper.js">tests/test-helper.js</a> で <a href="https://github.com/elwayman02/ember-sinon-qunit">ember-sinon-qunit</a> を使ってセットアップしている。</p>
+<p>具体的なセットアップの処理は</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">start</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-qunit&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">setupSinon</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;ember-sinon-qunit&#39;</span>
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setupSinon</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">start</span>()
+</span></span></code></pre></div><p>って感じ。まあ実際のコードの方では他のライブラリを使ったりもするためごにゃごにゃやってるけど。</p>
+<h3 id="使用例">使用例</h3>
+<p>実際に使ってる箇所は以下のコンポーネントのテストは以下。</p>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/blob/97f62e8dc820c6b960c1e2167697528fb16d6f70/ember/todo-app/tests/integration/components/todo-item-test.ts#L279-L282">https://github.com/mugijiru/ember-rails-todo-app/blob/97f62e8dc820c6b960c1e2167697528fb16d6f70/ember/todo-app/tests/integration/components/todo-item-test.ts#L279-L282</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mockedItem</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">mock</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">ok</span>(<span style="color:#a6e22e">mockedItem</span>.<span style="color:#a6e22e">expects</span>(<span style="color:#e6db74">&#39;destroyRecord&#39;</span>).<span style="color:#a6e22e">once</span>().<span style="color:#a6e22e">returns</span>(<span style="color:#66d9ef">true</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">click</span>(<span style="color:#a6e22e">deleteButton</span>)
+</span></span></code></pre></div><p><code>this.item</code> が <a href="https://github.com/mugijiru/ember-rails-todo-app/tree/97f62e8dc820c6b960c1e2167697528fb16d6f70/ember/todo-app/app/models">app/models/todo-item.ts</a> で用意した Ember.js の model なのだけど、こいつを削除する処理は DELETE リクエストを飛ばしちゃうので mock に差し替えちゃって削除ボタンを押した時に DELETE リクエストが飛ばないようにしている。</p>
+<p>メソッドの差し替えをしているので、そのメソッドの中で他に何か処理をしていてもそれも実行されなくなっちゃうからあんまり積極的にこの手口は使いたくない。便利だけどね</p>
+<h2 id="msw">msw</h2>
+<p><a href="https://mswjs.io/">msw</a> は API リクエストを受け付ける mock サーバを立てたりするやつ。</p>
+<p>sinon みたいに関数を差し替えるのではなく、
+API のリクエスト先をこいつに差し替えていい感じのデータを返させるように使うので関数自体の動きはそのまま利用できて嬉しいやつ。</p>
+<h3 id="セットアップ">セットアップ</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>$ npx msw init public
+</span></span></code></pre></div><p>とか実行して public ディレクトリに mockServiceWorker.js を生成していたっぽい。
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/311/commits/cff01d35dc12768e93fbb0cb719da39a016c0a90">https://github.com/mugijiru/ember-rails-todo-app/pull/311/commits/cff01d35dc12768e93fbb0cb719da39a016c0a90</a></p>
+<h3 id="使用例">使用例</h3>
+<p>具体的には以下で使っている。
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/311/files#diff-86d5570179e37a3d9080bb91efc9f33e337bb94cc115b36eca8f6300a22712ca">https://github.com/mugijiru/ember-rails-todo-app/pull/311/files#diff-86d5570179e37a3d9080bb91efc9f33e337bb94cc115b36eca8f6300a22712ca</a></p>
+<p>上のコードから適当に最低限こうしたら良さそう、というのを抜き出すと以下のような感じ。</p>
+<p>まず最低限以下のものを import する必要がある。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">setupWorker</span>, <span style="color:#a6e22e">rest</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;msw&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">TestContext</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@ember/test-helpers&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">setupTest</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;todo-app/tests/helpers&#39;</span>
+</span></span></code></pre></div><p>msw 関係は、まあ msw を使うので当然として、
+<code>TestContext</code> はテストファイル内で <code>this.worker</code> という変数を使うにあたって必要になる型定義のために入れている。まあ TypeScript じゃなかったら不要。あと <code>setupTest</code> は Ember.js のテストを書く上ではいつも必要なやつ。</p>
+<p>次に各テストで使う Context の interface を定義する</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Context</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">TestContext</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">worker</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ReturnType</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">setupWorker</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>TypeScript で書いている場合はテスト内で <code>this.worker</code> として msw の worker を取れるようにするためにテスト中のコンテキストの型定義で worker に <code>ReturnType&lt;typeof setupWorker&gt;</code> を指定してあげる必要がある。めんどいけど。</p>
+<p>そして module 内の各テストで this.worker で msw の worker にアクセスできるように
+before でセットアップする。
+beforeEach じゃないので、module に入った時の一発目だけ実行されるのでずっと使い回される。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">hooks</span>.<span style="color:#a6e22e">before</span>(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Context</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">worker</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">setupWorker</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">start</span>({ <span style="color:#a6e22e">onUnhandledRequest</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;error&#39;</span>, <span style="color:#a6e22e">quiet</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> })
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>before で用意したやつは after で後始末もしてあげる</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">hooks</span>.<span style="color:#a6e22e">after</span>(<span style="color:#66d9ef">function</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Context</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">stop</span>()
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>また各テスト間で依存が生まれると困るので、それぞれのテストが終わった時に影響を残さないように reset してあげることも大事</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">hooks</span>.<span style="color:#a6e22e">afterEach</span>(<span style="color:#66d9ef">function</span> (<span style="color:#66d9ef">this</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Context</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">resetHandlers</span>()
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>そしてテスト本体では <code>this.worker.use()</code> を使ってリクエスト先とその結果を設定する。</p>
+<p>以下は <code>/api/v1/todo_items/1</code> にリクエストする場合の mock の書き方の例。このあたりの検証をしている <a href="https://github.com/mugijiru/ember-rails-todo-app">ember-rails-todo-app</a> では <a href="https://jsonapi.org/">JSON:API</a> を採用しているのでレスポンス形式もその形になっているが、各自の利用中の REST API に合わせれば良い。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">use</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rest</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#34;/api/v1/todo_items/1&#34;</span>, (<span style="color:#a6e22e">_req</span>, <span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">ctx</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#39;Content-Type&#39;</span>, <span style="color:#e6db74">&#39;application/vnd.api+json&#39;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">json</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> (
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;todo-item&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;item 1&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">is_completed</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">created_at</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2021-01-01T00:00:00.000Z&#39;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">updated_at</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2021-01-01T00:00:00.000Z&#39;</span>,
+</span></span><span style="display:flex;"><span>          },
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>      })
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>レスポンスそのものを指定できるので自由度は高いけど、まあ面倒なのである程度共通化してどこでも同じようなものが使えるようにした方が良いはず。</p>
+<p>まあ <a href="https://github.com/visiblevc/ember-msw">https://github.com/visiblevc/ember-msw</a> ではそのあたりもやってくれる雰囲気があるけどこいつ自体が更新されてないので自分は採用していない</p>
+<h2 id="ember-cli-mirage">ember-cli-mirage</h2>
+<p><a href="https://www.ember-cli-mirage.com/">ember-cli-mirage</a> は一応 Ember.js のテストでリクエストを mock する定番のやつっぽい。</p>
+<p><a href="https://github.com/mugijiru/ember-rails-todo-app/pull/312">https://github.com/mugijiru/ember-rails-todo-app/pull/312</a>
+で試したけど、
+TypeScript 対応もされてないしメンテもされてないみたい。また RSpec の実行時にもこちらが動いてしまっていてそれを調整するのも面倒だったので採用を諦めた。</p>
+<p>設定さえしておけば</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/todo_items&#39;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;todo-item&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;item 1&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">is_completed</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">created_at</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2021-01-01T00:00:00.000Z&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">updated_at</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2021-01-01T00:00:00.000Z&#39;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;todo-item&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">attributes</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;item 2&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">is_completed</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">created_at</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2021-01-01T00:00:00.000Z&#39;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">updated_at</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2021-01-01T00:00:00.000Z&#39;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><p>という感じにリクエストに対して何が返って来るのか書くだけで良いのは便利なんだけどね〜。まあ msw も似たような感じで使えるので、無視で良さそう。</p>
+<h2 id="未検証--openapi-plus-prism">(未検証) OpenAPI + Prism</h2>
+<p>msw や ember-cli-mirage ではコード内でレスポンスを記述するので、実際の API とはズレる可能性がある。</p>
+<p>ところでこの検証をしている <a href="https://github.com/mugijiru/ember-rails-todo-app">ember-rails-todo-app</a> では
+OpenAPI で API を定義しているのでその定義を使って Mock Server を立てられる <a href="https://meta.stoplight.io/docs/prism/674b27b261c3c-prism-overview">Prism</a> を使ったら
+API の変更時にそれを検知できるテストにできそうだな〜なんて思ってる。今度気が向いたら試したい</p>
+<h2 id="番外-リクエストせずに-store-にデータを登録">番外: リクエストせずに store にデータを登録</h2>
+<p>Ember.js は store にデータが入っていたらリクエストを飛ばさずにそっちからデータを引っ張り出してくるのでデータの参照だけで良いなら予め store に突っ込んでおくだけで良かったりする</p>
+<p>具体的には
+<a href="https://github.com/mugijiru/ember-rails-todo-app/pull/311/files#diff-97b466284d9e4c831442301b25e7f3d5fe60b49d2af4b12a8591c866559a7424">https://github.com/mugijiru/ember-rails-todo-app/pull/311/files#diff-97b466284d9e4c831442301b25e7f3d5fe60b49d2af4b12a8591c866559a7424</a>
+あたりでやっていて <code>store.createRecord</code> で store にデータを作成すればそこからデータを取ってくれる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">store</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">owner</span>.<span style="color:#a6e22e">lookup</span>(<span style="color:#e6db74">&#39;service:store&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">record</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">store</span>.<span style="color:#a6e22e">createRecord</span>(<span style="color:#e6db74">&#39;todo-item&#39;</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;new&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">isCompleted</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">serializedRecord</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">any</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">record</span>.<span style="color:#a6e22e">serialize</span>() <span style="color:#75715e">// eslint-disable-line @typescript-eslint/no-explicit-any
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">attributeNames</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">serializedRecord</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">attributes</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">assert</span>.<span style="color:#a6e22e">ok</span>(<span style="color:#a6e22e">attributeNames</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#39;is_completed&#39;</span>))
+</span></span></code></pre></div><p>サーバのことを無視して単体での動作を確認したい時には良いかも</p>
+]]></content>
+        </item>
         
         <item>
             <title>org-mode の Custom Agenda Views の抽出条件を少し調整した</title>
