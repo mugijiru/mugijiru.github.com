@@ -4,26 +4,23 @@
     <title>Kibela on 麦汁三昧</title>
     <link>https://mugijiru.github.io/categories/kibela/</link>
     <description>Recent content in Kibela on 麦汁三昧</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sat, 18 Mar 2023 15:58:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/kibela/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Mar 2023 15:58:00 +0900</lastBuildDate>
+    <atom:link href="https://mugijiru.github.io/categories/kibela/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs で動く Kibela クライアントを作ってる</title>
       <link>https://mugijiru.github.io/posts/introduction-kibela-el/</link>
       <pubDate>Sat, 18 Mar 2023 15:58:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/introduction-kibela-el/</guid>
       <description>最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの</description>
     </item>
-    
     <item>
       <title>Kibela の記事を検索できる Ivy 拡張を作った</title>
       <link>https://mugijiru.github.io/posts/release-ivy-kibela/</link>
       <pubDate>Mon, 29 Aug 2022 09:53:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/release-ivy-kibela/</guid>
       <description>Emacs の ivy を使って Kibela の記事を検索できる拡張 ivy-kibela を作りました。 まあ自分用に作っただけなので Melpa にも登録してなかったりと、ちゃんとしてない部分は色々あり</description>
     </item>
-    
   </channel>
 </rss>

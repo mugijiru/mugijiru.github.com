@@ -5,8 +5,64 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Wed, 16 Aug 2023 22:44:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 16 Jun 2024 11:55:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>プロジェクト固有の Hydra を使う</title>
+            <link>https://mugijiru.github.io/posts/use-project-specific-hydra/</link>
+            <pubDate>Sun, 16 Jun 2024 11:55:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/use-project-specific-hydra/</guid>
+            <description>普段 Rails のプロジェクトを触っているのでそれ用に projectile-rails のコマンドを叩けるようにするために projectile-rails 用の Hydra を定義している のですが Rails 以外のプロジェクトもあるし Rails</description>
+            <content type="html"><![CDATA[<p>普段 Rails のプロジェクトを触っているのでそれ用に projectile-rails のコマンドを叩けるようにするために
+<a href="https://mugijiru.github.io/.emacs.d/programming/rails/#%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89">projectile-rails 用の Hydra を定義</a>している</p>
+<p>のですが Rails 以外のプロジェクトもあるし
+Rails のプロジェクトでもここで定義しているのとは違う形のプロジェクトを触ることもあるのでプロジェクト毎に固有の Hydra が欲しいなって思ってちょっと対応してみた。</p>
+<h2 id="プロジェクトの-dot-dir-locals-dot-el">プロジェクトの .dir-locals.el</h2>
+<p>Emacs ではフォルダ毎の固有設定を <code>.dir-locals.el</code> に設定できる。その仕組みを使うことでプロジェクト固有の Hydra を定義することができる。</p>
+<p>具体的な設定方法を書くと、前提として <code>foo-project</code> という Ruby のプロジェクトが
+<code>/path/to/foo-project</code> という PATH に入っているとする。</p>
+<p>そこで <code>/path/to/foo-project/.dir-locals.el</code> に以下のような感じにそのプロジェクトの記述を入れておく。</p>
+<p>※ 私は <a href="https://github.com/jerrypnz/major-mode-hydra.el#pretty-hydra">pretty-hydra</a> が好きなのでそれを使って定義しているけど、それを使っていない場合は <code>defhydra</code> を使って同様に定義できる</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>((<span style="color:#66d9ef">nil</span> <span style="color:#f92672">.</span> ((<span style="color:#a6e22e">eval</span> <span style="color:#f92672">.</span> (pretty-hydra-define foo-project-hydra (:separator <span style="color:#e6db74">&#34;-&#34;</span> :color blue :foreign-keys <span style="color:#a6e22e">warn</span> :title <span style="color:#e6db74">&#34;foo-project&#34;</span> :quit-key <span style="color:#e6db74">&#34;q&#34;</span>)
+</span></span><span style="display:flex;"><span>                   (<span style="color:#e6db74">&#34;Find&#34;</span>
+</span></span><span style="display:flex;"><span>                    ((<span style="color:#e6db74">&#34;l&#34;</span> (my/projectile-find-file-in-dir <span style="color:#e6db74">&#34;lib&#34;</span>) <span style="color:#e6db74">&#34;lib&#34;</span>)
+</span></span><span style="display:flex;"><span>                     (<span style="color:#e6db74">&#34;s&#34;</span> (my/projectile-find-file-in-dir <span style="color:#e6db74">&#34;spec/lib&#34;</span>) <span style="color:#e6db74">&#34;spec&#34;</span>))
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;Jump&#34;</span>
+</span></span><span style="display:flex;"><span>                    ((<span style="color:#e6db74">&#34;g&#34;</span> my/projectile-goto-gemfile <span style="color:#e6db74">&#34;Gemfile&#34;</span>)
+</span></span><span style="display:flex;"><span>                     (<span style="color:#e6db74">&#34;d&#34;</span> my/projectile-goto-dockerfile <span style="color:#e6db74">&#34;Dockerfile&#34;</span>)
+</span></span><span style="display:flex;"><span>                     (<span style="color:#e6db74">&#34;c&#34;</span> my/projectile-goto-circleci-config <span style="color:#e6db74">&#34;CircleCI&#34;</span>)
+</span></span><span style="display:flex;"><span>                     (<span style="color:#e6db74">&#34;r&#34;</span> my/projectile-goto-rubocop-config <span style="color:#e6db74">&#34;Rubocop&#34;</span>))))))))
+</span></span></code></pre></div><p>こうするとプロジェクト固有の Hydra を用意できる。プロジェクト毎に同様に定義していけば、それぞれのプロジェクト毎の特別な事情を入れ込んだ Hydra を用意できるので便利。</p>
+<h2 id="プロジェクト固有の-hydra-を呼び出すコマンドの定義">プロジェクト固有の Hydra を呼び出すコマンドの定義</h2>
+<p>しかしこれだけだと手で <code>M-x foo-project-hydra/body</code> を叩くハメになって面倒。定義した Hydra の名前も覚えておく必要があるし。</p>
+<p>というわけでプロジェクト固有の Hydra を呼び出すためのコマンドを用意する。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>(defun my/project-hydra ()
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Call the project specific hydra.&#34;</span>
+</span></span><span style="display:flex;"><span>  (interactive)
+</span></span><span style="display:flex;"><span>  (let* ((project-path (<span style="color:#a6e22e">directory-file-name</span> (projectile-acquire-root)))
+</span></span><span style="display:flex;"><span>         (project-dir-name (file-name-base project-path))
+</span></span><span style="display:flex;"><span>         (hydra-body (<span style="color:#a6e22e">intern</span> (<span style="color:#a6e22e">concat</span> project-dir-name <span style="color:#e6db74">&#34;-hydra/body&#34;</span>))))
+</span></span><span style="display:flex;"><span>    (cond
+</span></span><span style="display:flex;"><span>     ((<span style="color:#a6e22e">fboundp</span> hydra-body)
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">funcall</span> hydra-body))
+</span></span><span style="display:flex;"><span>     (<span style="color:#66d9ef">t</span>
+</span></span><span style="display:flex;"><span>      (<span style="color:#a6e22e">user-error</span> <span style="color:#e6db74">&#34;project hydra is not defined on %s.&#34;</span> project-dir-name)))))
+</span></span></code></pre></div><p>ここではそのプロジェクトのフォルダ名から Hydra を呼び出すコマンド名を組み立ててそのコマンドが定義されていたら実行する、という挙動をする。</p>
+<p>なので <code>foo-project</code> のファイルを編集している時にこれを叩けば <code>foo-project-hydra/body</code> が呼び出されるし
+<code>bar-project</code> のファイルを編集している時にこれを叩けば <code>bar-project-hydra/body</code> が呼び出される。どのプロジェクトにいる時も <code>(my/project-hydra)</code> を実行すればそのプロジェクト用の Hydra が動くようになる。</p>
+<h2 id="他にやりたいこと">他にやりたいこと</h2>
+<p>今の状態だといくつか問題がある。</p>
+<p>プロジェクト固有の Hydra にはそのプロジェクトに必要なものを全て入れておきたいが
+Ruby のプロジェクトなら共通する項目もあるので、それらも各プロジェクト固有の Hydra に定義するのは面倒。</p>
+<p>かといって共通で使う Hydra とプロジェクト固有の Hydra とで分離されているのも面倒。</p>
+<p>というわけで、共通で使う Hydra をベースに、それを継承するとかマージするとかで新しい Hydra を定義できるようにしたい。</p>
+<p>そうするとプロジェクト固有の Hydra を定義する手間が省けるし
+1つのプロジェクトを使うのに複数の Hydra を使うという非効率も解消できる。</p>
+<p>ま、このあたりは宿題ということで。</p>
+]]></content>
+        </item>
         
         <item>
             <title>Ember.js のテストでサーバリクエストの Mock する</title>
@@ -4004,7 +4060,7 @@ Model は対応できてないけど、ま、Model は移行してないので�
             <description>この間の記事 で書いたように ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。 先週時点では「テストとかなくてもいいから動けばいいだ</description>
             <content type="html"><![CDATA[<p><a href="/posts/ember-rails-in-2021/">この間の記事</a> で書いたように
 ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。</p>
-<figure><img src="/ox-hugo/screenshot-ember-rails-todo-app.png"/>
+<figure><img src="/ox-hugo/screenshot-ember-rails-todo-app.png">
 </figure>
 
 <p>先週時点では「テストとかなくてもいいから動けばいいだろ」って気持ちだったけどなんとなーくテストを追加したくなったりあんまり慣れてない docker-compose 対応してみたりしていたのと平日はこのプログラムに触れてなかったので、結構日が空いてしまった。</p>
