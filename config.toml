@@ -5,6 +5,7 @@ title          = "麦汁三昧"
 theme          = "hello-friend-ng"
 paginate       = 20
 publishDir     = "docs"
+timeZone       = "Asia/Tokyo"
 
 [markup.goldmark.renderer]
     unsafe = true
