@@ -4,116 +4,100 @@
     <title>Emacs on 麦汁三昧</title>
     <link>https://mugijiru.github.io/categories/emacs/</link>
     <description>Recent content in Emacs on 麦汁三昧</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 15 Aug 2023 23:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jun 2024 11:55:00 +0900</lastBuildDate>
+    <atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>プロジェクト固有の Hydra を使う</title>
+      <link>https://mugijiru.github.io/posts/use-project-specific-hydra/</link>
+      <pubDate>Sun, 16 Jun 2024 11:55:00 +0900</pubDate>
+      <guid>https://mugijiru.github.io/posts/use-project-specific-hydra/</guid>
+      <description>普段 Rails のプロジェクトを触っているのでそれ用に projectile-rails のコマンドを叩けるようにするために projectile-rails 用の Hydra を定義している のですが Rails 以外のプロジェクトもあるし Rails</description>
+    </item>
     <item>
       <title>org-mode の Custom Agenda Views の抽出条件を少し調整した</title>
       <link>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</link>
       <pubDate>Tue, 15 Aug 2023 23:03:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</guid>
       <description>しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。 Heading Level でのフィルタリング TODO タスクの中に更</description>
     </item>
-    
     <item>
       <title>Emacs で動く Kibela クライアントを作ってる</title>
       <link>https://mugijiru.github.io/posts/introduction-kibela-el/</link>
       <pubDate>Sat, 18 Mar 2023 15:58:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/introduction-kibela-el/</guid>
       <description>最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの</description>
     </item>
-    
     <item>
       <title>Kibela の記事を検索できる Ivy 拡張を作った</title>
       <link>https://mugijiru.github.io/posts/release-ivy-kibela/</link>
       <pubDate>Mon, 29 Aug 2022 09:53:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/release-ivy-kibela/</guid>
       <description>Emacs の ivy を使って Kibela の記事を検索できる拡張 ivy-kibela を作りました。 まあ自分用に作っただけなので Melpa にも登録してなかったりと、ちゃんとしてない部分は色々あり</description>
     </item>
-    
     <item>
       <title>el-get-lock の情報を使ってパッケージの更新確認ができるようにした</title>
       <link>https://mugijiru.github.io/posts/check-updates-emacs-packages-with-el-get-lock/</link>
       <pubDate>Sun, 06 Mar 2022 23:36:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/check-updates-emacs-packages-with-el-get-lock/</guid>
       <description>変なこだわりがあったり時代の波に乗れてなかったりで use-package を使わずに el-get を使い続けている麦汁です。 このところは el-get-lock で今入れているバージョンがわかるよう</description>
     </item>
-    
     <item>
       <title>Emacs のロックファイルと Webpack dev server の設定</title>
       <link>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</link>
       <pubDate>Thu, 16 Sep 2021 10:22:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</guid>
       <description>また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。 プライベートで vue-cli とかを使って npm run serve とかしている時にファイルを変更する度に [Error: ENOENT: no</description>
     </item>
-    
     <item>
       <title>key-chord を使って Sticky Shift を一部実現した</title>
       <link>https://mugijiru.github.io/posts/sticky-shift-with-key-chord/</link>
       <pubDate>Sun, 11 Jul 2021 13:42:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/sticky-shift-with-key-chord/</guid>
       <description>Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を</description>
     </item>
-    
     <item>
       <title>ivy を使った自作コマンドなどをテストするようにした</title>
       <link>https://mugijiru.github.io/posts/testing-my-emacs-command/</link>
       <pubDate>Sun, 13 Jun 2021 15:18:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/testing-my-emacs-command/</guid>
       <description>これまで Emacs Lisp のテストコードを書いてなかった。 というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなく</description>
     </item>
-    
     <item>
       <title>org-todo を ivy で設定できるようにするパート2</title>
       <link>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</link>
       <pubDate>Thu, 10 Jun 2021 20:53:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</guid>
       <description>org-todo を ivy で設定できるようにした という記事で org-todo を ivy で設定できるようにしたつもりだったんですけど、ダメでした。 何がダメだったかというと org-todo-keywords-for-agenda という変数</description>
     </item>
-    
     <item>
       <title>org-agenda を活用し始めた</title>
       <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
       <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
       <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
     </item>
-    
     <item>
       <title>最近 org-pomodoro 使ってないことに気付いた</title>
       <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
       <pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid>
       <description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description>
     </item>
-    
     <item>
       <title>browse-at-remote を導入した</title>
       <link>https://mugijiru.github.io/posts/add-browse-at-remote/</link>
       <pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid>
       <description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description>
     </item>
-    
     <item>
       <title>org-todo を ivy で設定できるようにした</title>
       <link>https://mugijiru.github.io/posts/set-org-todo-from-ivy/</link>
       <pubDate>Sun, 31 May 2020 01:32:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/set-org-todo-from-ivy/</guid>
       <description>posframe っていいですよね。いきなりタイトルと関係なさそうな単語出したけど。まあ ivy-posframe を使ってるので ivy を使うと posframe が使えて便利って話なんだけど。 ところで話</description>
     </item>
-    
   </channel>
 </rss>

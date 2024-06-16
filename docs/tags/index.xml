@@ -4,53 +4,44 @@
     <title>Tags on 麦汁三昧</title>
     <link>https://mugijiru.github.io/tags/</link>
     <description>Recent content in Tags on 麦汁三昧</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 24 Nov 2021 15:58:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Nov 2021 15:58:00 +0900</lastBuildDate>
+    <atom:link href="https://mugijiru.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>config</title>
+      <title>Config</title>
       <link>https://mugijiru.github.io/tags/config/</link>
-      <pubDate>Wed, 24 Nov 2021 15:58:00 +0900</pubDate>
-      
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mugijiru.github.io/tags/config/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Manjaro</title>
       <link>https://mugijiru.github.io/tags/manjaro/</link>
-      <pubDate>Wed, 24 Nov 2021 15:58:00 +0900</pubDate>
-      
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mugijiru.github.io/tags/manjaro/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>pentablet</title>
+      <title>Pentablet</title>
       <link>https://mugijiru.github.io/tags/pentablet/</link>
-      <pubDate>Wed, 24 Nov 2021 15:58:00 +0900</pubDate>
-      
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mugijiru.github.io/tags/pentablet/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>display</title>
+      <title>Display</title>
       <link>https://mugijiru.github.io/tags/display/</link>
-      <pubDate>Wed, 24 Nov 2021 14:01:00 +0900</pubDate>
-      
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mugijiru.github.io/tags/display/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>skk</title>
+      <title>Skk</title>
       <link>https://mugijiru.github.io/tags/skk/</link>
-      <pubDate>Sun, 10 Oct 2021 19:01:00 +0900</pubDate>
-      
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mugijiru.github.io/tags/skk/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

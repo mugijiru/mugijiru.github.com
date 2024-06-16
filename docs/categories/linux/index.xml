@@ -4,35 +4,30 @@
     <title>Linux on 麦汁三昧</title>
     <link>https://mugijiru.github.io/categories/linux/</link>
     <description>Recent content in Linux on 麦汁三昧</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 24 Nov 2021 15:58:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Nov 2021 15:58:00 +0900</lastBuildDate>
+    <atom:link href="https://mugijiru.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Manjaro Linux にペンタブレット(XP-PEN Star G640S)を設定した</title>
       <link>https://mugijiru.github.io/posts/xp-pen-star-g640s-with-manjaro/</link>
       <pubDate>Wed, 24 Nov 2021 15:58:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/xp-pen-star-g640s-with-manjaro/</guid>
       <description>今年の前半ぐらいに購入しておいて放置していた XP-PEN の Star G640S を Manjaro Linux 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。 まず最初は単に接続し</description>
     </item>
-    
     <item>
       <title>Manjaro Linux のディスプレイ周りの設定を弄った</title>
       <link>https://mugijiru.github.io/posts/xrandr-and-autorandr-on-manjaro/</link>
       <pubDate>Wed, 24 Nov 2021 14:01:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/xrandr-and-autorandr-on-manjaro/</guid>
       <description>Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。 家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の</description>
     </item>
-    
     <item>
       <title>ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている</title>
       <link>https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/</link>
       <pubDate>Sun, 10 Oct 2021 19:01:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/</guid>
       <description>先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux</description>
     </item>
-    
   </channel>
 </rss>

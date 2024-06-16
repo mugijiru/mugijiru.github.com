@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>org on 麦汁三昧</title>
+    <title>Org on 麦汁三昧</title>
     <link>https://mugijiru.github.io/categories/org/</link>
-    <description>Recent content in org on 麦汁三昧</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Org on 麦汁三昧</description>
+    <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Tue, 15 Aug 2023 23:03:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Aug 2023 23:03:00 +0900</lastBuildDate>
+    <atom:link href="https://mugijiru.github.io/categories/org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>org-mode の Custom Agenda Views の抽出条件を少し調整した</title>
       <link>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</link>
       <pubDate>Tue, 15 Aug 2023 23:03:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</guid>
       <description>しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。 Heading Level でのフィルタリング TODO タスクの中に更</description>
     </item>
-    
     <item>
       <title>org-agenda を活用し始めた</title>
       <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
       <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
       <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
     </item>
-    
   </channel>
 </rss>

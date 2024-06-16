@@ -4,26 +4,23 @@
     <title>GitHub on 麦汁三昧</title>
     <link>https://mugijiru.github.io/categories/github/</link>
     <description>Recent content in GitHub on 麦汁三昧</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 30 May 2021 09:50:00 +0900</lastBuildDate><atom:link href="https://mugijiru.github.io/categories/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 May 2021 09:50:00 +0900</lastBuildDate>
+    <atom:link href="https://mugijiru.github.io/categories/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>GitHub Actions で使ってる Action 達</title>
       <link>https://mugijiru.github.io/posts/using-actions-in-github/</link>
       <pubDate>Sun, 30 May 2021 09:50:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/using-actions-in-github/</guid>
       <description>個人リポジトリでは CI などを GitHub Actions に任せている。で、誰かが作ってくれた色々な Action に助けられている。 というわけでそれらを、より多く助けられてるなって</description>
     </item>
-    
     <item>
       <title>Hugo の build を GitHub Actions でやることにした</title>
       <link>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</link>
       <pubDate>Sat, 29 May 2021 23:31:00 +0900</pubDate>
-      
       <guid>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</guid>
       <description>このサイトを構築するにあたりいつも手元で Hugo を build して push していたけどもまあだるいし、そろそろ GitHub Actions にも慣れて来たし探したら既に Action が提供されていたの</description>
     </item>
-    
   </channel>
 </rss>
