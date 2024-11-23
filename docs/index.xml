@@ -13,266 +13,266 @@
       <link>https://mugijiru.github.io/posts/use-project-specific-hydra/</link>
       <pubDate>Sun, 16 Jun 2024 11:55:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/use-project-specific-hydra/</guid>
-      <description>普段 Rails のプロジェクトを触っているのでそれ用に projectile-rails のコマンドを叩けるようにするために projectile-rails 用の Hydra を定義している のですが Rails 以外のプロジェクトもあるし Rails</description>
+      <description>&lt;p&gt;普段 Rails のプロジェクトを触っているのでそれ用に projectile-rails のコマンドを叩けるようにするために&#xA;&lt;a href=&#34;https://mugijiru.github.io/.emacs.d/programming/rails/#%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89&#34;&gt;projectile-rails 用の Hydra を定義&lt;/a&gt;している&lt;/p&gt;&#xA;&lt;p&gt;のですが Rails 以外のプロジェクトもあるし&#xA;Rails のプロジェクトでもここで定義しているのとは違う形のプロジェクトを触ることもあるのでプロジェクト毎に固有の Hydra が欲しいなって思ってちょっと対応してみた。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ember.js のテストでサーバリクエストの Mock する</title>
       <link>https://mugijiru.github.io/posts/ember-testing-with-mocks/</link>
       <pubDate>Wed, 16 Aug 2023 22:44:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-testing-with-mocks/</guid>
-      <description>Ember.js のテストを書こうとすると Model を扱う時にリクエストを飛ばしちゃうのでそれを回避するのをいくつか試したので記事にしてみる といいつつ2ヶ月ぐらい前</description>
+      <description>&lt;p&gt;Ember.js のテストを書こうとすると Model を扱う時にリクエストを飛ばしちゃうのでそれを回避するのをいくつか試したので記事にしてみる&lt;/p&gt;&#xA;&lt;p&gt;といいつつ2ヶ月ぐらい前に書こうとしていた記事なので実は細かいところは適当に書いているけど、まあほぼ自分用のつもりで書いているので細かいことは気にしない。&lt;/p&gt;</description>
     </item>
     <item>
       <title>org-mode の Custom Agenda Views の抽出条件を少し調整した</title>
       <link>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</link>
       <pubDate>Tue, 15 Aug 2023 23:03:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</guid>
-      <description>しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。 Heading Level でのフィルタリング TODO タスクの中に更</description>
+      <description>&lt;p&gt;しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。&lt;/p&gt;&#xA;&lt;h2 id=&#34;heading-level-でのフィルタリング&#34;&gt;Heading Level でのフィルタリング&lt;/h2&gt;&#xA;&lt;p&gt;TODO タスクの中に更に TODO でサブタスクを生やしていると&#xA;agenda 表示をした時にそのサブタスクも全部表示されてうんざりしていたのが最近ようやく解決できた。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ember.js の Integration test で Cannot read properties of undefined (reading &#39;Symbol(TAG_COMPUTE)&#39;) と怒られる時は this が漏れている</title>
       <link>https://mugijiru.github.io/posts/cannot-read-property-of-undefined-on-ember-test/</link>
       <pubDate>Sun, 11 Jun 2023 15:02:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/cannot-read-property-of-undefined-on-ember-test/</guid>
-      <description>https://github.com/glimmerjs/glimmer-vm/issues/1369 の通りなのですが、ちょっとハマったので備忘録に。 ダメなコード例 module(&amp;#34;Integration | Component | Hoge&amp;#34;, function (hooks) { setupRenderingTest(hooks) test(&amp;#34;renders&amp;#34;, function (assert) { const item = store.peekRecord(&amp;#39;todo-item&amp;#39;, 1) this.item = item // ここの引数がダメ await render(hbs(`&amp;lt;HogeComponent @item={{item}}&amp;gt;`)) }) } 修正版</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/glimmerjs/glimmer-vm/issues/1369&#34;&gt;https://github.com/glimmerjs/glimmer-vm/issues/1369&lt;/a&gt; の通りなのですが、ちょっとハマったので備忘録に。&lt;/p&gt;&#xA;&lt;h2 id=&#34;ダメなコード例&#34;&gt;ダメなコード例&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Integration | Component | Hoge&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;hooks&lt;/span&gt;) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;setupRenderingTest&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;hooks&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;test&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;renders&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;assert&lt;/span&gt;) {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;item&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;store&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;peekRecord&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;todo-item&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;item&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;item&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// ここの引数がダメ&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;render&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;hbs&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;`&amp;lt;HogeComponent @item={{item}}&amp;gt;`&lt;/span&gt;))&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  })&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;修正版&#34;&gt;修正版&lt;/h2&gt;&#xA;&lt;p&gt;一度 this に詰めてそれを参照させる必要があった&lt;/p&gt;</description>
     </item>
     <item>
       <title>少し構成が複雑なアプリの Code Coverage を Code Climate で表示する</title>
       <link>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</link>
       <pubDate>Sat, 03 Jun 2023 11:47:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</guid>
-      <description>https://github.com/mugijiru/ember-rails-todo-app のカバレッジを取るためにやったことです。 書いたコードは https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98 にあるので、それだけ見れば十分かとは思うけど、それで済ませるのも寂しいので少しテキ</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app&#34;&gt;https://github.com/mugijiru/ember-rails-todo-app&lt;/a&gt; のカバレッジを取るためにやったことです。&lt;/p&gt;&#xA;&lt;p&gt;書いたコードは&#xA;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98&#34;&gt;https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98&lt;/a&gt;&#xA;にあるので、それだけ見れば十分かとは思うけど、それで済ませるのも寂しいので少しテキストも書いておきます。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Emacs で動く Kibela クライアントを作ってる</title>
       <link>https://mugijiru.github.io/posts/introduction-kibela-el/</link>
       <pubDate>Sat, 18 Mar 2023 15:58:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/introduction-kibela-el/</guid>
-      <description>最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの</description>
+      <description>&lt;p&gt;最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる&lt;/p&gt;&#xA;&lt;h2 id=&#34;kibela-とは&#34;&gt;Kibela とは&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kibe.la/&#34;&gt;Kibela&lt;/a&gt; は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの一種。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kibela の記事を検索できる Ivy 拡張を作った</title>
       <link>https://mugijiru.github.io/posts/release-ivy-kibela/</link>
       <pubDate>Mon, 29 Aug 2022 09:53:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/release-ivy-kibela/</guid>
-      <description>Emacs の ivy を使って Kibela の記事を検索できる拡張 ivy-kibela を作りました。 まあ自分用に作っただけなので Melpa にも登録してなかったりと、ちゃんとしてない部分は色々あり</description>
+      <description>&lt;p&gt;Emacs の &lt;a href=&#34;https://github.com/abo-abo/swiper&#34;&gt;ivy&lt;/a&gt; を使って &lt;a href=&#34;https://kibe.la/&#34;&gt;Kibela&lt;/a&gt; の記事を検索できる拡張 &lt;a href=&#34;https://github.com/mugijiru/ivy-kibela&#34;&gt;ivy-kibela&lt;/a&gt; を作りました。&lt;/p&gt;&#xA;&lt;p&gt;まあ自分用に作っただけなので Melpa にも登録してなかったりと、ちゃんとしてない部分は色々ありますが。&lt;/p&gt;&#xA;&lt;h2 id=&#34;作った理由&#34;&gt;作った理由&lt;/h2&gt;&#xA;&lt;p&gt;現職では情報共有ツールとして Kibela を使っています。そして Kibela の記事を探したい時ってのは大体 Emacs でプログラムを書いている時なので&#xA;Emacs 内からさくっと検索できると便利だな〜と思って作りました。&lt;/p&gt;</description>
     </item>
     <item>
       <title>el-get-lock の情報を使ってパッケージの更新確認ができるようにした</title>
       <link>https://mugijiru.github.io/posts/check-updates-emacs-packages-with-el-get-lock/</link>
       <pubDate>Sun, 06 Mar 2022 23:36:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/check-updates-emacs-packages-with-el-get-lock/</guid>
-      <description>変なこだわりがあったり時代の波に乗れてなかったりで use-package を使わずに el-get を使い続けている麦汁です。 このところは el-get-lock で今入れているバージョンがわかるよう</description>
+      <description>&lt;p&gt;変なこだわりがあったり時代の波に乗れてなかったりで&#xA;use-package を使わずに el-get を使い続けている麦汁です。&lt;/p&gt;&#xA;&lt;p&gt;このところは &lt;a href=&#34;https://github.com/tarao/el-get-lock&#34;&gt;el-get-lock&lt;/a&gt; で今入れているバージョンがわかるようにしつつ定期的に el-get-update-all 的なことをしていました。そこもまあ非同期でまとめて更新処理がかかると変なことになるので適当なスクリプト組んでたけども。&lt;/p&gt;</description>
     </item>
     <item>
       <title>退職しました</title>
       <link>https://mugijiru.github.io/posts/retirement-2021/</link>
       <pubDate>Tue, 30 Nov 2021 19:28:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/retirement-2021/</guid>
-      <description>約5年前、沖縄から出て来て東京の会社に就職しましたが、今年で退職することにしました。 最終出社は11月で、12月いっぱいは有休消化なので一ヶ月</description>
+      <description>&lt;p&gt;約5年前、沖縄から出て来て東京の会社に就職しましたが、今年で退職することにしました。&lt;/p&gt;&#xA;&lt;p&gt;最終出社は11月で、12月いっぱいは有休消化なので一ヶ月まるまる休みになります。一ヶ月ずっと休みなので、ちゃんと社会復帰ができるか若干心配ではあります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Manjaro Linux にペンタブレット(XP-PEN Star G640S)を設定した</title>
       <link>https://mugijiru.github.io/posts/xp-pen-star-g640s-with-manjaro/</link>
       <pubDate>Wed, 24 Nov 2021 15:58:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/xp-pen-star-g640s-with-manjaro/</guid>
-      <description>今年の前半ぐらいに購入しておいて放置していた XP-PEN の Star G640S を Manjaro Linux 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。 まず最初は単に接続し</description>
+      <description>&lt;p&gt;今年の前半ぐらいに購入しておいて放置していた&#xA;XP-PEN の Star G640S を&#xA;Manjaro Linux 環境で使えるか試してみたらとりあえずあっさり動いたというメモ。&lt;/p&gt;&#xA;&lt;p&gt;まず最初は単に接続して使えるかを試したら、とりあえず動いた。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Manjaro Linux のディスプレイ周りの設定を弄った</title>
       <link>https://mugijiru.github.io/posts/xrandr-and-autorandr-on-manjaro/</link>
       <pubDate>Wed, 24 Nov 2021 14:01:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/xrandr-and-autorandr-on-manjaro/</guid>
-      <description>Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。 家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の</description>
+      <description>&lt;p&gt;Manjaro Linux の設定を弄ってる系の記事です。まあまだ2記事目だけど。&lt;/p&gt;&#xA;&lt;p&gt;家には外部ディスプレイが存在するけどまあ必ずいつも繋いでるわけでもないので、両方の状態に対応できるようにしたいよねって思ってた。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ThinkPad P14s Gen 2 (第11世代インテル) に Manjaro Linux を入れてみている</title>
       <link>https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/</link>
       <pubDate>Sun, 10 Oct 2021 19:01:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/thinkpad-p14s-gen2-intel-with-manjaro-linux/</guid>
-      <description>先月、「えいやっ」で Lenovo ThinkPad P14s Gen 2 (第11世代インテル) を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux</description>
+      <description>&lt;p&gt;先月、「えいやっ」で&#xA;&lt;a href=&#34;https://www.lenovo.com/jp/ja/notebooks/thinkpad/p-series/ThinkPad-P14s-Gen-2-14%E2%80%9D-Intel/p/22WSP14P4S2&#34;&gt;Lenovo ThinkPad P14s Gen 2 (第11世代インテル)&lt;/a&gt; を購入した。詳細は面倒だから省くけどそれなりの構成にしている。なお AMD 版にしなかったのは Linux をちゃんと動かせるか不安だったから。&lt;/p&gt;</description>
     </item>
     <item>
       <title>銀座Rails#37に参加した</title>
       <link>https://mugijiru.github.io/posts/ginza-rails-37/</link>
       <pubDate>Sun, 26 Sep 2021 13:09:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ginza-rails-37/</guid>
-      <description>ブログ書くまでが勉強会って話もあるのでブログに残しておきます。正直そういうのサボりがちだけどね……。 一昨日の夜にオンライン開催していた 銀座R</description>
+      <description>&lt;p&gt;ブログ書くまでが勉強会って話もあるのでブログに残しておきます。正直そういうのサボりがちだけどね……。&lt;/p&gt;&#xA;&lt;p&gt;一昨日の夜にオンライン開催していた &lt;a href=&#34;https://ginza-rails.connpass.com/event/223078/&#34;&gt;銀座Rails#37&lt;/a&gt; に参加しました。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Storybook の SCSS 対応でハマった</title>
       <link>https://mugijiru.github.io/posts/storybook-with-scss/</link>
       <pubDate>Fri, 17 Sep 2021 12:07:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/storybook-with-scss/</guid>
-      <description>この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。 それは置いといて、汎</description>
+      <description>&lt;p&gt;この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。&lt;/p&gt;&#xA;&lt;p&gt;それは置いといて、汎用的なコンポーネントライブラリみたいなのを作ってみたくなったので趣味で Storybook を動かしてみている。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Emacs のロックファイルと Webpack dev server の設定</title>
       <link>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</link>
       <pubDate>Thu, 16 Sep 2021 10:22:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/configure-webpack-dev-server-with-emacs/</guid>
-      <description>また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。 プライベートで vue-cli とかを使って npm run serve とかしている時にファイルを変更する度に [Error: ENOENT: no</description>
+      <description>&lt;p&gt;また同じ罠を踏んだ時に同じ対応ができるようにということでメモ。&lt;/p&gt;&#xA;&lt;p&gt;プライベートで vue-cli とかを使って&#xA;&lt;code&gt;npm run serve&lt;/code&gt; とかしている時にファイルを変更する度に&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[Error: ENOENT: no such file or directory, stat &amp;#39;/path/to/src/components/.#HelloWorld.vue&amp;#39;]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;とか怒られて辛かった。&#xA;Emacs のロックファイルである。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-cli-rails アプリで Rails6 の Deprecation Warning が出ないようにした</title>
       <link>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</link>
       <pubDate>Sun, 22 Aug 2021 00:50:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-cli-rails-with-rails6-without-deprecation-warning/</guid>
-      <description>ember-cli-rails なアプリを Rails6 対応にしてみた。が、リリースされている Gem をそのまま使うと DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper, ActionText::TagHelper, and EmberCliRailsAssetsHelper. Being able to do this is deprecated. Autoloading during initialization is going to be an error condition in future versions of Rails. Reloading does not</description>
+      <description>&lt;p&gt;ember-cli-rails なアプリを Rails6 対応にしてみた。が、リリースされている Gem をそのまま使うと&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper, ActionText::TagHelper, and EmberCliRailsAssetsHelper.&lt;/p&gt;&#xA;&lt;p&gt;Being able to do this is deprecated. Autoloading during initialization is going&#xA;to be an error condition in future versions of Rails.&lt;/p&gt;&#xA;&lt;p&gt;Reloading does not reboot the application, and therefore code executed during&#xA;initialization does not run again. So, if you reload ActionText::ContentHelper, for example,&#xA;the expected changes won&amp;rsquo;t be reflected in that stale Module object.&lt;/p&gt;</description>
     </item>
     <item>
       <title>key-chord を使って Sticky Shift を一部実現した</title>
       <link>https://mugijiru.github.io/posts/sticky-shift-with-key-chord/</link>
       <pubDate>Sun, 11 Jul 2021 13:42:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/sticky-shift-with-key-chord/</guid>
-      <description>Emacs 使っていると左手小指を酷使しますよね。 まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応を</description>
+      <description>&lt;p&gt;Emacs 使っていると左手小指を酷使しますよね。&lt;/p&gt;&#xA;&lt;p&gt;まあそれはみんな分かり切ってるので、それぞれが色々な工夫で、左手小指を必要以上に使わないような対応をされていると思います。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ivy を使った自作コマンドなどをテストするようにした</title>
       <link>https://mugijiru.github.io/posts/testing-my-emacs-command/</link>
       <pubDate>Sun, 13 Jun 2021 15:18:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/testing-my-emacs-command/</guid>
-      <description>これまで Emacs Lisp のテストコードを書いてなかった。 というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなく</description>
+      <description>&lt;p&gt;これまで Emacs Lisp のテストコードを書いてなかった。&lt;/p&gt;&#xA;&lt;p&gt;というのも、自分は特にパッケージを作ってるわけでもなく、設定ファイルを弄ってるだけなので動かなくなっても困るのは自分だけ、という状況なのでまあテストしなくてもいいかな、みたいな。&lt;/p&gt;</description>
     </item>
     <item>
       <title>org-todo を ivy で設定できるようにするパート2</title>
       <link>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</link>
       <pubDate>Thu, 10 Jun 2021 20:53:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/set-org-todo-from-ivy-part2/</guid>
-      <description>org-todo を ivy で設定できるようにした という記事で org-todo を ivy で設定できるようにしたつもりだったんですけど、ダメでした。 何がダメだったかというと org-todo-keywords-for-agenda という変数</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://mugijiru.github.io/posts/set-org-todo-from-ivy/&#34;&gt;org-todo を ivy で設定できるようにした&lt;/a&gt; という記事で&#xA;org-todo を ivy で設定できるようにしたつもりだったんですけど、ダメでした。&lt;/p&gt;&#xA;&lt;p&gt;何がダメだったかというと&#xA;&lt;code&gt;org-todo-keywords-for-agenda&lt;/code&gt; という変数を使ってるのがダメだった。&lt;/p&gt;</description>
     </item>
     <item>
       <title>GitHub Actions で使ってる Action 達</title>
       <link>https://mugijiru.github.io/posts/using-actions-in-github/</link>
       <pubDate>Sun, 30 May 2021 09:50:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/using-actions-in-github/</guid>
-      <description>個人リポジトリでは CI などを GitHub Actions に任せている。で、誰かが作ってくれた色々な Action に助けられている。 というわけでそれらを、より多く助けられてるなって</description>
+      <description>&lt;p&gt;個人リポジトリでは CI などを GitHub Actions に任せている。で、誰かが作ってくれた色々な Action に助けられている。&lt;/p&gt;&#xA;&lt;p&gt;というわけでそれらを、より多く助けられてるなってやつから紹介してみようと思う。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hugo の build を GitHub Actions でやることにした</title>
       <link>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</link>
       <pubDate>Sat, 29 May 2021 23:31:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</guid>
-      <description>このサイトを構築するにあたりいつも手元で Hugo を build して push していたけどもまあだるいし、そろそろ GitHub Actions にも慣れて来たし探したら既に Action が提供されていたの</description>
+      <description>&lt;p&gt;このサイトを構築するにあたりいつも手元で Hugo を build して push していたけどもまあだるいし、そろそろ GitHub Actions にも慣れて来たし探したら既に Action が提供されていたのでそれを使って build を自動化しました。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-rails アプリケーション保守入門</title>
       <link>https://mugijiru.github.io/posts/ember-rails-introduction/</link>
       <pubDate>Mon, 24 May 2021 09:02:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-rails-introduction/</guid>
-      <description>ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし</description>
+      <description>&lt;p&gt;ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にしちゃうぞ、というエントリです。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ember.js@3.4 から最新の 3.26 に上げた</title>
       <link>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</link>
       <pubDate>Sun, 09 May 2021 14:35:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/update-emberjs-3_4-to-latest/</guid>
-      <description>いつも Ember.js ネタを書く時に使ってる https://github.com/mugijiru/ember-rails-todo-app のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。 そこへの対応のために https://github.com/mugijiru/ember-components の addon の方も</description>
+      <description>&lt;p&gt;いつも Ember.js ネタを書く時に使ってる&#xA;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app&#34;&gt;https://github.com/mugijiru/ember-rails-todo-app&lt;/a&gt;&#xA;のリポジトリですが、ゴールデンウィークで Ember.js の最新版への対応を完了させました。&lt;/p&gt;&#xA;&lt;p&gt;そこへの対応のために &lt;a href=&#34;https://github.com/mugijiru/ember-components&#34;&gt;https://github.com/mugijiru/ember-components&lt;/a&gt; の addon の方も&#xA;2.18 から最新化することになりました。&lt;/p&gt;</description>
     </item>
     <item>
       <title>org-agenda を活用し始めた</title>
       <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
       <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
-      <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
+      <description>&lt;p&gt;昨年から org-mode をもっと活用していこうということで、&#xA;org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。&lt;/p&gt;&#xA;&lt;p&gt;org-mode は機能が豊富過ぎてマジで何が出来るのか全貌を把握し切れてないのですが、そんな中で、やっぱり全然把握できてなくて使ってなかった機能の1つが org-agenda ってやつ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>最近 org-pomodoro 使ってないことに気付いた</title>
       <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
       <pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid>
-      <description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/marcinkoziej/org-pomodoro&#34;&gt;org-pomodoro&lt;/a&gt; って便利な org-mode の拡張があるんですよ。&#xA;org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。&lt;/p&gt;&#xA;&lt;p&gt;デフォルト設定で話すと、何か TODO にカーソルを乗せてる状態で起動したらそいつが clock-in した上で25分のタイマーが動いて、&#xA;25分経過したら clock-out した上で、5分の休憩が挟まってその休憩終了時には「次のポモドーロ開始するかい?」みたいなのが出て来てそこでまた M-x org-pomodoro を叩いたらまた25分のタイマーが開始して……みたいなやつ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>RPA ちょっとだけ調べてみた</title>
       <link>https://mugijiru.github.io/posts/research-rpa/</link>
       <pubDate>Sun, 25 Apr 2021 23:46:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/research-rpa/</guid>
-      <description>RPA ちょっとだけ調べてみたのでとりあえず Blog 記事にする。ちなみにいくつかリンク張るけど、面倒なのでアフィリエイトとかそういうのにはなってない。お</description>
+      <description>&lt;p&gt;RPA ちょっとだけ調べてみたのでとりあえず Blog 記事にする。ちなみにいくつかリンク張るけど、面倒なのでアフィリエイトとかそういうのにはなってない。お金は好きだけど面倒が勝った。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-cli-rails の Ember.js を 2.18 から 3.4 にアップデート</title>
       <link>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</link>
       <pubDate>Sun, 04 Apr 2021 15:38:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/update-emberjs-2.18to3/</guid>
-      <description>前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。 で、どう進めていくかと</description>
+      <description>&lt;p&gt;前回までで ember-rails と ember-cli-rails の共存周りを一通り済ませてそのあたりは大体満足したので次の段階である Ember.js アプリの最新化を進めていくぞい。&lt;/p&gt;&#xA;&lt;p&gt;で、どう進めていくかというと&#xA;2.18 は最新版からはかなり遠いので&#xA;3系で LTS であったバージョンを順番に適用していく方針。&lt;/p&gt;</description>
     </item>
     <item>
       <title>自作の Ember.js Addon を ember-rails 用に無理やり Gem 化した</title>
       <link>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</link>
       <pubDate>Fri, 26 Mar 2021 01:49:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-components-addon-as-gem/</guid>
-      <description>前回の記事 で Ember.js の共通コンポーネントを詰めた Addon を NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して ember-rails でも使えるようにしたよ、というお話で</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://mugijiru.github.io/posts/my-ember-libs-to-npm/&#34;&gt;前回の記事&lt;/a&gt; で Ember.js の共通コンポーネントを詰めた Addon を&#xA;NPM package にしたわけですが、今度はそいつを割と無理やり Gem 化して&#xA;ember-rails でも使えるようにしたよ、というお話です。&lt;/p&gt;&#xA;&lt;h2 id=&#34;目的&#34;&gt;目的&lt;/h2&gt;&#xA;&lt;p&gt;Ember.js の Addon として切り出した共通コンポーネントを同一ソースで ember-rails でも使いたいな〜、使えるようにしたいな〜、という目的。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Ember.js の共通コンポーネントの NPM への分離</title>
       <link>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</link>
       <pubDate>Wed, 24 Mar 2021 13:04:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/my-ember-libs-to-npm/</guid>
-      <description>相変わらず Rails における Ember.js 関連で遊んでいます。 今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだ</description>
+      <description>&lt;p&gt;相変わらず Rails における Ember.js 関連で遊んでいます。&lt;/p&gt;&#xA;&lt;p&gt;今回の記事で書くのは「Ember.js Addon を別リポジトリに分離して NPM パッケージにして利用する」なんだけど、後追いで出す「分離したリポジトリを Gem としても使えるようにし ember-rails 環境で動かす」という感じに記事の前振りです。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-rails から ember-cli-rails へ</title>
       <link>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</link>
       <pubDate>Sat, 06 Mar 2021 17:05:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/migrate-ember-rails-to-ember-cli-rails/</guid>
-      <description>Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、 ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。 やったことはいつも通り GitHub の</description>
+      <description>&lt;p&gt;Ember.js 関係で最も書きたかった記事にやっと辿り着いた。表題の通りで、&#xA;ember-rails から ember-cli-rails に置き換える、という記事です。多分長くなる。&lt;/p&gt;&#xA;&lt;p&gt;やったことはいつも通り &lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app/pull/18&#34;&gt;GitHub の PR&lt;/a&gt; にしています。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-rails でユーザー情報を Rails から inject</title>
       <link>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</link>
       <pubDate>Sun, 28 Feb 2021 13:10:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-rails-inject-from-rails/</guid>
-      <description>フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡し</description>
+      <description>&lt;p&gt;フロントエンドのフレームワークを使っていて、そのフレームワークで Server Side Rendering をしてない時に&#xA;API 経由でデータ渡すよりも表示用の HTML 経由で直接データを渡したい時がある。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-rails でコンポーネントをサブフォルダに配置する</title>
       <link>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</link>
       <pubDate>Sun, 28 Feb 2021 11:19:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-rails-component-in-subfolder/</guid>
-      <description>Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。 これも、ES6 Module 対応版と旧来版</description>
+      <description>&lt;p&gt;Ember.js に限らずコンポーネントは増えてくるとサブフォルダに分割して管理したくなるよね。ということでそのあたりの記事。&lt;/p&gt;&#xA;&lt;p&gt;これも、ES6 Module 対応版と旧来版の両方を書く。&#xA;ES6 Module 対応版は何も考えることがないので、この記事は旧来版のためにあるようなものだけど。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-rails でコンポーネントを共通ライブラリとして切り出す</title>
       <link>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</link>
       <pubDate>Sun, 28 Feb 2021 10:45:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-rails-extract-common-libs/</guid>
-      <description>ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコ</description>
+      <description>&lt;p&gt;ember-rails を使って1つの Rails アプリの上に複数の Ember.js アプリケーションを動かしていると各アプリで同じようなコンポーネントを使っていたり、あるいは同じようなコンポーネントが必要だというのに気付いて共通ライブラリとして実装したくなることがある。あるんだよ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>古い ember-rails App で ES6 Module 化を完了した</title>
       <link>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</link>
       <pubDate>Tue, 23 Feb 2021 20:45:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-rails-complete-modulize/</guid>
-      <description>#10 サブフォルダのファイルを全て module に移行した #11 残りのファイルも module 化した でやってることで全てだけど 前回の記事 でやってた内容を完了まで持って行った</description>
+      <description>&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app/pull/10&#34;&gt;#10 サブフォルダのファイルを全て module に移行した&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app/pull/11&#34;&gt;#11 残りのファイルも module 化した&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;でやってることで全てだけど&#xA;&lt;a href=&#34;https://mugijiru.github.io/posts/ember-rails-partial-modulize/&#34;&gt;前回の記事&lt;/a&gt; でやってた内容を完了まで持って行った。&lt;/p&gt;&#xA;&lt;h2 id=&#34;サブフォルダ以下の-es6-module-化&#34;&gt;サブフォルダ以下の ES6 Module 化&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app/pull/10&#34;&gt;https://github.com/mugijiru/ember-rails-todo-app/pull/10&lt;/a&gt; でやったこと。&lt;/p&gt;</description>
     </item>
     <item>
       <title>古い ember-rails App で一部ファイルを ES6 Module 化</title>
       <link>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</link>
       <pubDate>Sun, 21 Feb 2021 22:41:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-rails-partial-modulize/</guid>
-      <description>これは何? ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。 何をしたのか 今回は ES6 module を使ってない ember-rails アプリケーションで一部</description>
+      <description>&lt;h2 id=&#34;これは何&#34;&gt;これは何?&lt;/h2&gt;&#xA;&lt;p&gt;ember-rails を古いスタイルで書いておいてそれをモダン化していく企画の第一弾の記事。&lt;/p&gt;&#xA;&lt;h2 id=&#34;何をしたのか&#34;&gt;何をしたのか&lt;/h2&gt;&#xA;&lt;p&gt;今回は ES6 module を使ってない ember-rails アプリケーションで一部のファイルだけ ES6 Module にしてみた。&lt;/p&gt;</description>
     </item>
     <item>
       <title>ember-rails で書いた Web アプリを GitHub で公開した</title>
       <link>https://mugijiru.github.io/posts/publish-ember-rails-app/</link>
       <pubDate>Sun, 21 Feb 2021 15:40:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/publish-ember-rails-app/</guid>
-      <description>この間の記事 で書いたように ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。 先週時点では「テストとかなくてもいいから動けばいいだ</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://mugijiru.github.io/posts/ember-rails-in-2021/&#34;&gt;この間の記事&lt;/a&gt; で書いたように&#xA;ember-rails で簡単なアプリケーションを作ってた。よくある TODO アプリである。&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://mugijiru.github.io/ox-hugo/screenshot-ember-rails-todo-app.png&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;p&gt;先週時点では「テストとかなくてもいいから動けばいいだろ」って気持ちだったけどなんとなーくテストを追加したくなったりあんまり慣れてない docker-compose 対応してみたりしていたのと平日はこのプログラムに触れてなかったので、結構日が空いてしまった。&lt;/p&gt;</description>
     </item>
     <item>
       <title>2021年にもなって ember-rails で新規アプリを書いてみてる</title>
       <link>https://mugijiru.github.io/posts/ember-rails-in-2021/</link>
       <pubDate>Sat, 13 Feb 2021 01:15:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/ember-rails-in-2021/</guid>
-      <description>少し思うところがあって、 2021 年になったというのに ember-rails を使って新規で Web アプリを書いている。 ember-rails とは? ember-rails は Ember.js という Web フロントエンド MVC なフレームワークを</description>
+      <description>&lt;p&gt;少し思うところがあって、&#xA;2021 年になったというのに &lt;a href=&#34;https://github.com/emberjs/ember-rails&#34;&gt;ember-rails&lt;/a&gt; を使って新規で Web アプリを書いている。&lt;/p&gt;&#xA;&lt;h2 id=&#34;ember-rails-とは&#34;&gt;ember-rails とは?&lt;/h2&gt;&#xA;&lt;p&gt;ember-rails は&#xA;Ember.js という Web フロントエンド MVC なフレームワークを&#xA;Rails といい感じに連携してくれて快適な Web アプリケーション開発体験を提供してくれるものであった。&lt;/p&gt;</description>
     </item>
     <item>
       <title>browse-at-remote を導入した</title>
       <link>https://mugijiru.github.io/posts/add-browse-at-remote/</link>
       <pubDate>Sat, 23 Jan 2021 23:18:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/add-browse-at-remote/</guid>
-      <description>仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょく</description>
+      <description>&lt;p&gt;仕事中、プルリクのレビューをする際に、「ここのコードがこんな感じになってるから〜」みたいな感じで既存コードへのリンクを張ることがちょくちょくある。&lt;/p&gt;</description>
     </item>
     <item>
       <title>新年明けましておめでとうございます</title>
@@ -293,35 +293,35 @@
       <link>https://mugijiru.github.io/profile/</link>
       <pubDate>Sun, 20 Dec 2020 12:15:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/profile/</guid>
-      <description>都内で Ruby on Rails と Vue.js や Ember.js などを使った Web アプリケーションを開発している Web プログラマ。一部インフラ(AWS)もかじっている。 最近は実装よりも、仕様策</description>
+      <description>&lt;p&gt;都内で Ruby on Rails と Vue.js や Ember.js などを使った Web アプリケーションを開発している Web プログラマ。一部インフラ(AWS)もかじっている。&lt;/p&gt;&#xA;&lt;p&gt;最近は実装よりも、仕様策定や全体の進捗管理、調査、その他雑用をしていることが多い。&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
       <link>https://mugijiru.github.io/about/</link>
       <pubDate>Sun, 20 Dec 2020 11:59:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/about/</guid>
-      <description>この Web サイトは Web プログラマである麦汁の個人サイトです。 気が向いたらブログ記事を更新したりするはず。</description>
+      <description>&lt;p&gt;この Web サイトは Web プログラマである麦汁の個人サイトです。&lt;/p&gt;&#xA;&lt;p&gt;気が向いたらブログ記事を更新したりするはず。&lt;/p&gt;</description>
     </item>
     <item>
       <title>org-todo を ivy で設定できるようにした</title>
       <link>https://mugijiru.github.io/posts/set-org-todo-from-ivy/</link>
       <pubDate>Sun, 31 May 2020 01:32:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/set-org-todo-from-ivy/</guid>
-      <description>posframe っていいですよね。いきなりタイトルと関係なさそうな単語出したけど。まあ ivy-posframe を使ってるので ivy を使うと posframe が使えて便利って話なんだけど。 ところで話</description>
+      <description>&lt;p&gt;posframe っていいですよね。いきなりタイトルと関係なさそうな単語出したけど。まあ ivy-posframe を使ってるので ivy を使うと posframe が使えて便利って話なんだけど。&lt;/p&gt;&#xA;&lt;p&gt;ところで話は若干変わって、&#xA;org-todo って実行するとウインドウが分割されてバッファが表示されてそこから選ぶ形になるじゃないですか。もしかしたら設定がちゃんとしてたりしたらならないのかもしれませんけど、とりあえず私の環境だとなるんですよ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Privacy Policy</title>
       <link>https://mugijiru.github.io/privacy_policy/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mugijiru.github.io/privacy_policy/</guid>
-      <description>アクセス情報の収集 当サイトでは Google Analytics によるアクセス情報の収集を行っています。 Google Analytics ではデータの収集のためにお使いのウェブブラウザから Google にアクセス</description>
+      <description>&lt;h2 id=&#34;アクセス情報の収集&#34;&gt;アクセス情報の収集&lt;/h2&gt;&#xA;&lt;p&gt;当サイトでは Google Analytics によるアクセス情報の収集を行っています。&lt;/p&gt;&#xA;&lt;p&gt;Google Analytics ではデータの収集のためにお使いのウェブブラウザから&#xA;Google にアクセスしたページの URL やユーザーの IP アドレスなどの情報が自動的に送信されます。また、Google がお使いのブラウザに Cookie を設定したり、既存の Cookie を読み取ったりする場合もあります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Projects</title>
       <link>https://mugijiru.github.io/projects/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://mugijiru.github.io/projects/</guid>
-      <description>Emacs Config Emacs の設定についてのドキュメント Ember rails TODO App Ember.js 関連の検証用プロジェクト。ember-rails から ember-cli-rails に乗り換えて最新の Ember.js にアップグレードしたり</description>
+      <description>&lt;dl&gt;&#xA;&lt;dt&gt;&lt;a href=&#34;https://mugijiru.github.io/.emacs.d/&#34;&gt;Emacs Config&lt;/a&gt;&lt;/dt&gt;&#xA;&lt;dd&gt;Emacs の設定についてのドキュメント&lt;/dd&gt;&#xA;&lt;dt&gt;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app&#34;&gt;Ember rails TODO App&lt;/a&gt;&lt;/dt&gt;&#xA;&lt;dd&gt;Ember.js 関連の検証用プロジェクト。ember-rails から ember-cli-rails に乗り換えて最新の Ember.js にアップグレードしたりしている&lt;/dd&gt;&#xA;&lt;dt&gt;&lt;a href=&#34;https://github.com/mugijiru/ember-components&#34;&gt;Ember Components&lt;/a&gt;&lt;/dt&gt;&#xA;&lt;dd&gt;Ember.js 検証関連プロジェクト。ember-rails と ember-cli-rails の両方で使える Addon を作ったりしている&lt;/dd&gt;&#xA;&lt;/dl&gt;</description>
     </item>
   </channel>
 </rss>

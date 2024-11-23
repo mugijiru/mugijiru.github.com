@@ -13,14 +13,14 @@
       <link>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</link>
       <pubDate>Sat, 03 Jun 2023 11:47:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/show-code-coverage-on-code-climate-complexity-app/</guid>
-      <description>https://github.com/mugijiru/ember-rails-todo-app のカバレッジを取るためにやったことです。 書いたコードは https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98 にあるので、それだけ見れば十分かとは思うけど、それで済ませるのも寂しいので少しテキ</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app&#34;&gt;https://github.com/mugijiru/ember-rails-todo-app&lt;/a&gt; のカバレッジを取るためにやったことです。&lt;/p&gt;&#xA;&lt;p&gt;書いたコードは&#xA;&lt;a href=&#34;https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98&#34;&gt;https://github.com/mugijiru/ember-rails-todo-app/blob/712e6ca7e2b1135ba11c56c8c3e9ca870f020ec2/.github/workflows/ci.yml#L58-L98&lt;/a&gt;&#xA;にあるので、それだけ見れば十分かとは思うけど、それで済ませるのも寂しいので少しテキストも書いておきます。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Storybook の SCSS 対応でハマった</title>
       <link>https://mugijiru.github.io/posts/storybook-with-scss/</link>
       <pubDate>Fri, 17 Sep 2021 12:07:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/storybook-with-scss/</guid>
-      <description>この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。 それは置いといて、汎</description>
+      <description>&lt;p&gt;この記事は、2021年9月16日に起きたことなので、多分賞味期限は凄く短かい内容だけど、自分用にメモとして書いています。&lt;/p&gt;&#xA;&lt;p&gt;それは置いといて、汎用的なコンポーネントライブラリみたいなのを作ってみたくなったので趣味で Storybook を動かしてみている。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

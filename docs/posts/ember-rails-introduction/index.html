@@ -15,7 +15,8 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし" />
+<meta name="description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にしちゃうぞ、というエントリです。
+" />
 <meta name="keywords" content="blog,developer,personal" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -35,7 +36,7 @@
 
 
 
-<link rel="stylesheet" href="/main.b78c3be9451dc4ca61ca377f3dc2cf2e6345a44c2bae46216a322ef366daa399.css">
+<link rel="stylesheet" href="/main.136392474f29a02c40f7eb8fc774beaed915968bec265a565e48b9ed6501cfc8.css">
 
 
     
@@ -58,7 +59,7 @@
 
 
   <meta itemprop="name" content="ember-rails アプリケーション保守入門">
-  <meta itemprop="description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし">
+  <meta itemprop="description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にしちゃうぞ、というエントリです。">
   <meta itemprop="datePublished" content="2021-05-24T09:02:00+09:00">
   <meta itemprop="dateModified" content="2021-05-24T09:02:00+09:00">
   <meta itemprop="wordCount" content="8448">
@@ -66,7 +67,7 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="ember-rails アプリケーション保守入門">
-  <meta name="twitter:description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にし">
+  <meta name="twitter:description" content="ちょっとした事情で Ember.js 入門的なサムシングをすることになったけどどうせなら公開情報にしちゃえって気持ちになったので資料化する前にブログの記事にしちゃうぞ、というエントリです。">
 
 
 
@@ -78,7 +79,7 @@
 
 
 
-    <meta property="article:published_time" content="2021-05-24 09:02:00 &#43;0900 &#43;0900" />
+    <meta property="article:published_time" content="2021-05-24 09:02:00 &#43;0900 JST" />
 
 
 
@@ -114,9 +115,8 @@
 
 
         <span class="header__right">
-            
                 <nav class="menu">
-    <ul class="menu__inner"><li><a href="/about/">About</a></li><li><a href="/profile/">Profile</a></li><li><a href="/projects/">Projects</a></li><li><a href="/posts/">Blog</a></li>
+    <ul class="menu__inner"><li><a href="/about/">About</a></li><li><a href="/posts/">Blog</a></li><li><a href="/profile/">Profile</a></li><li><a href="/projects/">Projects</a></li>
     </ul>
 </nav>
 
@@ -126,7 +126,6 @@
                         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
                     </svg>
                 </span>
-            
                 <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
    <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
    3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
@@ -303,66 +302,66 @@ Vue.js と比べて見た目以外はそんなに変わらないかなって。<
 <h3 id="ember-dot-js-のフォルダ-ファイル構成">Ember.js のフォルダ・ファイル構成</h3>
 <p>ここでは ember-rails を前提として話します。</p>
 <table>
-<thead>
-<tr>
-<th>フォルダ・ファイル</th>
-<th>概要</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>adapters</td>
-<td>サーバとの通信周りを設定するコードを置く場所</td>
-</tr>
-<tr>
-<td>components</td>
-<td>コンポーネント定義の JS ファイルを入れるところ</td>
-</tr>
-<tr>
-<td>controllers</td>
-<td>Rails でもお馴染みの Controller</td>
-</tr>
-<tr>
-<td>initializers</td>
-<td>初期化用コードを入れるところ</td>
-</tr>
-<tr>
-<td>instance-initializers</td>
-<td>アプリ起動直後の初期化コードを入れるところ</td>
-</tr>
-<tr>
-<td>helpers</td>
-<td>Rails でもお馴染みに Helper</td>
-</tr>
-<tr>
-<td>mixins</td>
-<td>Rails だと Concern にあたるものを置くところ</td>
-</tr>
-<tr>
-<td>models</td>
-<td>Rails でもお馴染みの Model</td>
-</tr>
-<tr>
-<td>routes</td>
-<td>Controller 実行前に Model などを取得したりするところ</td>
-</tr>
-<tr>
-<td>routor.js</td>
-<td>Routing を設定するところ。Vue.js の Router と似てるかも?</td>
-</tr>
-<tr>
-<td>serializers</td>
-<td>サーバと通信する前に形式変換するコードを置く場所</td>
-</tr>
-<tr>
-<td>templates</td>
-<td>Handlebars という HTML テンプレートを置く場所。Rails でいう views</td>
-</tr>
-<tr>
-<td>views</td>
-<td>使わない。Ember.js@1系の名残りかと</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">フォルダ・ファイル</th>
+          <th style="text-align: left">概要</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">adapters</td>
+          <td style="text-align: left">サーバとの通信周りを設定するコードを置く場所</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">components</td>
+          <td style="text-align: left">コンポーネント定義の JS ファイルを入れるところ</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">controllers</td>
+          <td style="text-align: left">Rails でもお馴染みの Controller</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">initializers</td>
+          <td style="text-align: left">初期化用コードを入れるところ</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">instance-initializers</td>
+          <td style="text-align: left">アプリ起動直後の初期化コードを入れるところ</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">helpers</td>
+          <td style="text-align: left">Rails でもお馴染みに Helper</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">mixins</td>
+          <td style="text-align: left">Rails だと Concern にあたるものを置くところ</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">models</td>
+          <td style="text-align: left">Rails でもお馴染みの Model</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">routes</td>
+          <td style="text-align: left">Controller 実行前に Model などを取得したりするところ</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">routor.js</td>
+          <td style="text-align: left">Routing を設定するところ。Vue.js の Router と似てるかも?</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">serializers</td>
+          <td style="text-align: left">サーバと通信する前に形式変換するコードを置く場所</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">templates</td>
+          <td style="text-align: left">Handlebars という HTML テンプレートを置く場所。Rails でいう views</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">views</td>
+          <td style="text-align: left">使わない。Ember.js@1系の名残りかと</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="ember-dot-js-アプリにアクセスした時の処理の流れ">Ember.js アプリにアクセスした時の処理の流れ</h2>
 <p>ざっくり書くと</p>
@@ -834,7 +833,7 @@ ember-cli-rails に移行して3系にした方が幸せになれそうなので
           <line x1="3" y1="10" x2="21" y2="10"></line>
         </svg>
         
-          2021年05月24日 00:02
+          2021年05月24日 09:02
         
 
         
@@ -1015,7 +1014,8 @@ ember-cli-rails に移行して3系にした方が幸せになれそうなので
 
 
 
-<script type="text/javascript" src="/bundle.min.85fad2de4f13fec3bcb3b3cb10430cdb44a7b4a9749b32938241a5c6e77718df7624f1002b880521fdc26e24ec1077fda214bf1cb36ee3045510760d09638cae.js" integrity="sha512-hfrS3k8T/sO8s7PLEEMM20SntKl0mzKTgkGlxud3GN92JPEAK4gFIf3CbiTsEHf9ohS/HLNu4wRVEHYNCWOMrg=="></script>
+<script type="text/javascript" src="/bundle.min.e89fda0f29b95d33f6f4224dd9e5cf69d84aff3818be2b0d73e731689cc374261b016d17d46f8381962fb4a1577ba3017b1f23509d894f6e66431f988c00889e.js" integrity="sha512-6J/aDym5XTP29CJN2eXPadhK/zgYvisNc&#43;cxaJzDdCYbAW0X1G&#43;DgZYvtKFXe6MBex8jUJ2JT25mQx&#43;YjACIng=="></script>
+
 
 
 

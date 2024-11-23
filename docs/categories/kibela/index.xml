@@ -13,14 +13,14 @@
       <link>https://mugijiru.github.io/posts/introduction-kibela-el/</link>
       <pubDate>Sat, 18 Mar 2023 15:58:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/introduction-kibela-el/</guid>
-      <description>最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる Kibela とは Kibela は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの</description>
+      <description>&lt;p&gt;最近 Emacs 上で動く Kibela のクライアントを作り始めたからちょっと紹介してみる&lt;/p&gt;&#xA;&lt;h2 id=&#34;kibela-とは&#34;&gt;Kibela とは&lt;/h2&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://kibe.la/&#34;&gt;Kibela&lt;/a&gt; は知識共有やドキュメント管理を目的とした SaaS 型のナレッジ管理ツールの一種。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Kibela の記事を検索できる Ivy 拡張を作った</title>
       <link>https://mugijiru.github.io/posts/release-ivy-kibela/</link>
       <pubDate>Mon, 29 Aug 2022 09:53:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/release-ivy-kibela/</guid>
-      <description>Emacs の ivy を使って Kibela の記事を検索できる拡張 ivy-kibela を作りました。 まあ自分用に作っただけなので Melpa にも登録してなかったりと、ちゃんとしてない部分は色々あり</description>
+      <description>&lt;p&gt;Emacs の &lt;a href=&#34;https://github.com/abo-abo/swiper&#34;&gt;ivy&lt;/a&gt; を使って &lt;a href=&#34;https://kibe.la/&#34;&gt;Kibela&lt;/a&gt; の記事を検索できる拡張 &lt;a href=&#34;https://github.com/mugijiru/ivy-kibela&#34;&gt;ivy-kibela&lt;/a&gt; を作りました。&lt;/p&gt;&#xA;&lt;p&gt;まあ自分用に作っただけなので Melpa にも登録してなかったりと、ちゃんとしてない部分は色々ありますが。&lt;/p&gt;&#xA;&lt;h2 id=&#34;作った理由&#34;&gt;作った理由&lt;/h2&gt;&#xA;&lt;p&gt;現職では情報共有ツールとして Kibela を使っています。そして Kibela の記事を探したい時ってのは大体 Emacs でプログラムを書いている時なので&#xA;Emacs 内からさくっと検索できると便利だな〜と思って作りました。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
