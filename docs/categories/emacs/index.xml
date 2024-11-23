@@ -6,8 +6,15 @@
     <description>Recent content in Emacs on 麦汁三昧</description>
     <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Sun, 16 Jun 2024 11:55:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 24 Nov 2024 01:20:00 +0900</lastBuildDate>
     <atom:link href="https://mugijiru.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>東京 Emacs 勉強会 秋フェス2024 に参加しました</title>
+      <link>https://mugijiru.github.io/posts/tokyo-emacs-october-festival-2024/</link>
+      <pubDate>Sun, 24 Nov 2024 01:20:00 +0900</pubDate>
+      <guid>https://mugijiru.github.io/posts/tokyo-emacs-october-festival-2024/</guid>
+      <description>&lt;p&gt;先日開催された &lt;a href=&#34;https://tokyo-emacs.connpass.com/event/330572/&#34;&gt;東京 Emacs 勉強会 秋フェス2024&lt;/a&gt; に参加して&#xA;&lt;a href=&#34;https://mugijiru.kibe.la/shared/entries/08a3195e-b85f-477f-bb85-a34bb08d3bbd&#34;&gt;私の Rails アプリケーション開発環境&lt;/a&gt; というタイトルで発表してきました。&lt;/p&gt;&#xA;&lt;p&gt;ま、私の発表とかはどうでも良いのでスルーして気になった発表について簡単に。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>プロジェクト固有の Hydra を使う</title>
       <link>https://mugijiru.github.io/posts/use-project-specific-hydra/</link>

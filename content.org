@@ -75,14 +75,14 @@
       または、[[http://www.aboutads.info/choices/]] にアクセスすれば、パーソナライズ広告に使われる第三者配信事業者の Cookie を無効にできます。
 
 ** Blog
-   :PROPERTIES:
-   :EXPORT_HUGO_SECTION: posts
-   :END:
+:PROPERTIES:
+:EXPORT_HUGO_SECTION: posts
+:END:
 *** DONE org-todo を ivy で設定できるようにした                      :@Emacs:
-    CLOSED: [2020-05-31 日 01:32]
-    :PROPERTIES:
-    :EXPORT_FILE_NAME: set-org-todo-from-ivy
-    :END:
+CLOSED: [2020-05-31 日 01:32]
+:PROPERTIES:
+:EXPORT_FILE_NAME: set-org-todo-from-ivy
+:END:
 
     posframe っていいですよね。
     いきなりタイトルと関係なさそうな単語出したけど。
@@ -6829,3 +6829,38 @@ Ruby のプロジェクトなら共通する項目もあるので、
 1つのプロジェクトを使うのに複数の Hydra を使うという非効率も解消できる。
 
 ま、このあたりは宿題ということで。
+*** DONE 東京 Emacs 勉強会 秋フェス2024 に参加しました        :@Emacs:@Rails:
+CLOSED: [2024-11-24 日 01:20]
+:PROPERTIES:
+:EXPORT_FILE_NAME: tokyo-emacs-october-festival-2024
+:ID:       5ebe9efa-8c43-400b-a888-db4cda080914
+:END:
+先日開催された [[https://tokyo-emacs.connpass.com/event/330572/][東京 Emacs 勉強会 秋フェス2024]] に参加して
+[[https://mugijiru.kibe.la/shared/entries/08a3195e-b85f-477f-bb85-a34bb08d3bbd][私の Rails アプリケーション開発環境]] というタイトルで発表してきました。
+
+ま、私の発表とかはどうでも良いのでスルーして
+気になった発表について簡単に。
+**** GNU Emacs を用いた Next.js コントリビュートの howto
+JS 関係の LSP Mode の設定が丁寧に書かれているので
+どこかのタイミングで参考にしようと思った登壇でした。
+
+資料は connpass のページで公開されているし
+設定ファイル自体も公開してくれているのでとてもありがたい。
+**** dmacro.elのVimへの移植 ~ Vim と Emacsの違い ~
+Vim と Emacs の違いそのものも大変そうなのが分かって良かったし
+dmacro.el も導入してなかったのでとりあえずこの時に入れてみた。
+ちゃんと活用したい。
+**** Emacs meets Treesitter
+自分用に Treesitter を実装して使う話。
+Treesitter 自前で用意するの素敵ね。
+**** その他
+正直、1ヶ月経って記憶が薄くなってしまった……無念。
+Nix 興味あるのにそれの内容なんで覚えてないんだ俺……。
+**** 懇親会
+今回はテキストエディタバーという試みで
+Vim や Emacs をイメージしたカクテルを用意してもらっていました。
+
+前日にちょっと飲み過ぎたのでこの日は飲むのを控えめにしてたけど
+元気だったらもっと飲みたかった……。
+とはいえ、ちょこちょこと色々な方と交流もできたし楽しかった。
+次回は二日酔いじゃない状態で参加したいです……!
