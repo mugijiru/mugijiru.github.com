@@ -13,14 +13,14 @@
       <link>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</link>
       <pubDate>Tue, 15 Aug 2023 23:03:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/org-custom-agenda-views-filters/</guid>
-      <description>しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。 Heading Level でのフィルタリング TODO タスクの中に更</description>
+      <description>&lt;p&gt;しばらく使っていて、ここなんとかしたいな〜と思っていたところの一部をなんとかしたので記事に残しておく。&lt;/p&gt;&#xA;&lt;h2 id=&#34;heading-level-でのフィルタリング&#34;&gt;Heading Level でのフィルタリング&lt;/h2&gt;&#xA;&lt;p&gt;TODO タスクの中に更に TODO でサブタスクを生やしていると&#xA;agenda 表示をした時にそのサブタスクも全部表示されてうんざりしていたのが最近ようやく解決できた。&lt;/p&gt;</description>
     </item>
     <item>
       <title>org-agenda を活用し始めた</title>
       <link>https://mugijiru.github.io/posts/try-org-agenda/</link>
       <pubDate>Thu, 29 Apr 2021 19:03:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/try-org-agenda/</guid>
-      <description>昨年から org-mode をもっと活用していこうということで、 org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。 org-mode は機能が豊富過ぎてマジ</description>
+      <description>&lt;p&gt;昨年から org-mode をもっと活用していこうということで、&#xA;org-clock を使い始めたり org-pomodoro を導入したり org-habits を設定してみたりしている麦汁さんです。&lt;/p&gt;&#xA;&lt;p&gt;org-mode は機能が豊富過ぎてマジで何が出来るのか全貌を把握し切れてないのですが、そんな中で、やっぱり全然把握できてなくて使ってなかった機能の1つが org-agenda ってやつ。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

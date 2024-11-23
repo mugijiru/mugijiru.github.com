@@ -13,7 +13,7 @@
       <link>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</link>
       <pubDate>Sat, 29 May 2021 23:31:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/hugo-build-in-github-actions/</guid>
-      <description>このサイトを構築するにあたりいつも手元で Hugo を build して push していたけどもまあだるいし、そろそろ GitHub Actions にも慣れて来たし探したら既に Action が提供されていたの</description>
+      <description>&lt;p&gt;このサイトを構築するにあたりいつも手元で Hugo を build して push していたけどもまあだるいし、そろそろ GitHub Actions にも慣れて来たし探したら既に Action が提供されていたのでそれを使って build を自動化しました。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

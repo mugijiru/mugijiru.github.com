@@ -13,14 +13,14 @@
       <link>https://mugijiru.github.io/posts/retirement-2021/</link>
       <pubDate>Tue, 30 Nov 2021 19:28:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/retirement-2021/</guid>
-      <description>約5年前、沖縄から出て来て東京の会社に就職しましたが、今年で退職することにしました。 最終出社は11月で、12月いっぱいは有休消化なので一ヶ月</description>
+      <description>&lt;p&gt;約5年前、沖縄から出て来て東京の会社に就職しましたが、今年で退職することにしました。&lt;/p&gt;&#xA;&lt;p&gt;最終出社は11月で、12月いっぱいは有休消化なので一ヶ月まるまる休みになります。一ヶ月ずっと休みなので、ちゃんと社会復帰ができるか若干心配ではあります。&lt;/p&gt;</description>
     </item>
     <item>
       <title>最近 org-pomodoro 使ってないことに気付いた</title>
       <link>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</link>
       <pubDate>Thu, 29 Apr 2021 18:03:00 +0900</pubDate>
       <guid>https://mugijiru.github.io/posts/why-not-use-org-pomodoro/</guid>
-      <description>org-pomodoro って便利な org-mode の拡張があるんですよ。 org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。 デフォルト設定で話すと、何か TODO にカーソルを乗せて</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/marcinkoziej/org-pomodoro&#34;&gt;org-pomodoro&lt;/a&gt; って便利な org-mode の拡張があるんですよ。&#xA;org-clock とポモドーロテクニックを組み合わせて使える便利なやつ。&lt;/p&gt;&#xA;&lt;p&gt;デフォルト設定で話すと、何か TODO にカーソルを乗せてる状態で起動したらそいつが clock-in した上で25分のタイマーが動いて、&#xA;25分経過したら clock-out した上で、5分の休憩が挟まってその休憩終了時には「次のポモドーロ開始するかい?」みたいなのが出て来てそこでまた M-x org-pomodoro を叩いたらまた25分のタイマーが開始して……みたいなやつ。&lt;/p&gt;</description>
     </item>
     <item>
       <title>新年明けましておめでとうございます</title>
