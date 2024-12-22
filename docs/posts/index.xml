@@ -5,8 +5,1489 @@
         <description>Recent content in Posts on 麦汁三昧</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>ja-JP</language>
-        <lastBuildDate>Sun, 24 Nov 2024 01:20:00 +0900</lastBuildDate>
+        <lastBuildDate>Sun, 22 Dec 2024 14:44:00 +0900</lastBuildDate>
         <atom:link href="https://mugijiru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>2024 年の Emacs 設定変更ふりかえり</title>
+            <link>https://mugijiru.github.io/posts/2024-emacs-config-updates/</link>
+            <pubDate>Sun, 22 Dec 2024 14:44:00 +0900</pubDate>
+            
+            <guid>https://mugijiru.github.io/posts/2024-emacs-config-updates/</guid>
+            <description>&lt;div class=&#34;ox-hugo-toc toc&#34;&gt;
+&lt;div class=&#34;heading&#34;&gt;&amp;#30446;&amp;#27425;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB&#34;&gt;はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#moderinize&#34;&gt;Moderinize&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#setq-custom-set-variables&#34;&gt;setq → custom-set-variables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#custom-set-variables-setopt&#34;&gt;custom-set-variables → setopt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#global-set-key-keymap-global-set&#34;&gt;global-set-key → keymap-global-set&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tree-sitter&#34;&gt;tree-sitter&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#treesit-auto&#34;&gt;treesit-auto&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#copilot&#34;&gt;Copilot&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#copilot-dot-el&#34;&gt;copilot.el&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E5%90%84%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96&#34;&gt;各モードでの有効化&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#warning-%E3%82%92%E9%BB%99%E3%82%89%E3%81%9B%E3%82%8B%E5%AF%BE%E5%BF%9C&#34;&gt;warning を黙らせる対応&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#copilot-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89&#34;&gt;copilot 関係のキーバインド&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#copilot-chat&#34;&gt;copilot-chat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ruby-%E9%96%A2%E4%BF%82&#34;&gt;Ruby 関係&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#major-mode&#34;&gt;major-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#yard-%E5%91%A8%E3%82%8A&#34;&gt;YARD 周り&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#erb&#34;&gt;erb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E6%A4%9C%E7%B4%A2&#34;&gt;リファレンス検索&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ruby-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4&#34;&gt;Ruby 関係のキーバインド調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ruby-%E5%91%A8%E3%82%8A%E3%81%AE%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;Ruby 周りのその他の調整&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#projectile&#34;&gt;projectile&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E8%BF%BD%E5%8A%A0%E3%81%AA%E3%81%A9&#34;&gt;コマンドの追加など&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#projectile-switch-project-%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;projectile-switch-project の調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#projectile-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4&#34;&gt;projectile 関係のキーバインド調整&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lsp-mode&#34;&gt;lsp-mode&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#eslint-%E3%81%AE%E8%87%AA%E5%8B%95%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88&#34;&gt;eslint の自動フォーマット&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#typescript-%E5%91%A8%E3%82%8A%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;TypeScript 周りの調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#graphql-lsp&#34;&gt;graphql-lsp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lsp-tailwindcss&#34;&gt;lsp-tailwindcss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#lsp-mode-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4&#34;&gt;lsp-mode 関係のキーバインド調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%B5%B7%E5%8B%95%E5%87%A6%E7%90%86%E3%81%AE%E4%BF%AE%E6%AD%A3&#34;&gt;起動処理の修正&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%82%B3%E3%83%BC%E3%83%89%E6%A4%9C%E7%B4%A2&#34;&gt;コード検索&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#color-moccur-and-moccur-edit&#34;&gt;color-moccur &amp;amp; moccur-edit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rg-dot-el&#34;&gt;rg.el&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4&#34;&gt;キーバインド調整&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-mode-%E9%96%A2%E4%BF%82&#34;&gt;org-mode 関係&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#org-mode-%E6%9C%AC%E4%BD%93%E5%91%A8%E3%82%8A&#34;&gt;org-mode 本体周り&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%9B%B4%E6%96%B0%E9%A8%92%E5%8B%95&#34;&gt;バージョン更新騒動&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#tangle-%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;tangle の調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-mode-%E5%91%A8%E3%82%8A%E3%81%AE%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E5%A4%89%E6%9B%B4&#34;&gt;org-mode 周りのその他の変更&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-agenda&#34;&gt;org-agenda&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%A8%AD%E5%AE%9A%E3%81%AE%E8%A8%98%E8%BF%B0%E5%88%86%E5%89%B2&#34;&gt;設定の記述分割&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#custom-command-%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;custom command の調整&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-journal&#34;&gt;org-journal&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#optimize&#34;&gt;Optimize&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#refile-%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;refile の調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#journal-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92-org-clock-report-%E3%81%AE%E5%AF%BE%E8%B1%A1%E3%81%AB%E3%81%AA%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E8%AA%BF%E6%95%B4&#34;&gt;journal ファイルを org-clock-report の対象になるように調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-roam-%E9%80%A3%E6%90%BA&#34;&gt;org-roam 連携&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-capture&#34;&gt;org-capture&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#capture-template-%E3%81%AE%E6%9B%B4%E6%96%B0&#34;&gt;capture template の更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-protocol-capture-html&#34;&gt;org-protocol-capture-html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-gcal&#34;&gt;org-gcal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-download&#34;&gt;org-download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#org-mode-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4&#34;&gt;org-mode 関係のキーバインド調整&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#el-get&#34;&gt;el-get&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%83%AC%E3%82%B7%E3%83%94%E4%BF%AE%E6%AD%A3&#34;&gt;レシピ修正&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;依存関係の調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%8C%87%E5%AE%9A%E6%BC%8F%E3%82%8C%E5%AF%BE%E5%BF%9C&#34;&gt;ブランチ指定漏れ対応&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%83%AC%E3%82%B7%E3%83%94%E4%BF%AE%E6%AD%A3&#34;&gt;その他のレシピ修正&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#el-get-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4&#34;&gt;el-get 関係のキーバインド調整&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E6%9B%B4%E6%96%B0&#34;&gt;パッケージ更新&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%89%8B%E5%8B%95%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E6%9B%B4%E6%96%B0&#34;&gt;手動パッケージ更新&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0%E5%87%A6%E7%90%86%E3%81%AE%E4%BF%AE%E6%AD%A3&#34;&gt;自動更新処理の修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#revert&#34;&gt;Revert&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%81%9D%E3%81%AE%E4%BB%96&#34;&gt;その他&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ci&#34;&gt;CI&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#ci-%E4%B8%8A%E3%81%AE-emacs-%E3%81%AE%E6%8C%87%E5%AE%9A%E5%A4%89%E6%9B%B4&#34;&gt;CI 上の Emacs の指定変更&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ci-%E5%91%A8%E3%82%8A%E3%81%AE%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;CI 周りのその他の調整&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#init-dot-org-%E3%81%AE%E8%AA%BF%E6%95%B4&#34;&gt;init.org の調整&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A8%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%AE%E5%90%8C%E6%9C%9F&#34;&gt;コードとドキュメントの同期&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E9%96%A2%E4%BF%82&#34;&gt;その他のパッケージ関係&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#tsx-%E9%96%A2%E4%BF%82%E3%81%AE%E4%BF%AE%E6%AD%A3&#34;&gt;tsx 関係の修正&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#text-lint&#34;&gt;text-lint&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#pdf-tools&#34;&gt;pdf-tools&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#git-modes&#34;&gt;git-modes&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#calibredb&#34;&gt;CalibreDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blamer-dot-el&#34;&gt;blamer.el&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#emojify&#34;&gt;emojify&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#smartparens-mode&#34;&gt;smartparens-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#minimap&#34;&gt;minimap&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#company-mode&#34;&gt;company-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#dmacro-dot-el&#34;&gt;dmacro.el&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#docker-dot-el&#34;&gt;docker.el&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#which-function-mode&#34;&gt;which-function-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#plantuml-mode&#34;&gt;plantuml-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#nerd-icon-dired&#34;&gt;nerd-icon-dired&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#eask&#34;&gt;Eask&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sqlformat&#34;&gt;sqlformat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#chatgtp-shell&#34;&gt;chatgtp-shell&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4&#34;&gt;その他のキーバインド調整&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#hydra&#34;&gt;Hydra&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#key-chord&#34;&gt;key-chord&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%B8%8D%E8%A6%81%E3%81%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E5%89%8A%E9%99%A4&#34;&gt;不要な設定の削除&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E5%AF%BE%E8%B1%A1-pr-%E6%8A%BD%E5%87%BA%E7%94%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%AE%E5%A4%89%E6%9B%B4&#34;&gt;レビュー対象 PR 抽出用スクリプトの変更&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%A8%AD%E5%AE%9A&#34;&gt;その他の設定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E3%81%B5%E3%82%8A%E3%81%8B%E3%81%88%E3%82%8A&#34;&gt;ふりかえり&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E6%9D%A5%E5%B9%B4%E3%83%88%E3%83%A9%E3%82%A4%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8&#34;&gt;来年トライしたいこと&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;!--endtoc--&gt;
+&lt;h2 id=&#34;はじめに&#34;&gt;はじめに&lt;/h2&gt;
+&lt;p&gt;今年のふりかえりってやつをしたいのでとりあえず今年入れた Emacs の設定更新をざっと舐めていく。&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<div class="ox-hugo-toc toc">
+<div class="heading">&#30446;&#27425;</div>
+<ul>
+<li><a href="#%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB">はじめに</a></li>
+<li><a href="#moderinize">Moderinize</a>
+<ul>
+<li><a href="#setq-custom-set-variables">setq → custom-set-variables</a></li>
+<li><a href="#custom-set-variables-setopt">custom-set-variables → setopt</a></li>
+<li><a href="#global-set-key-keymap-global-set">global-set-key → keymap-global-set</a></li>
+</ul>
+</li>
+<li><a href="#tree-sitter">tree-sitter</a>
+<ul>
+<li><a href="#treesit-auto">treesit-auto</a></li>
+</ul>
+</li>
+<li><a href="#copilot">Copilot</a>
+<ul>
+<li><a href="#copilot-dot-el">copilot.el</a>
+<ul>
+<li><a href="#%E5%90%84%E3%83%A2%E3%83%BC%E3%83%89%E3%81%A7%E3%81%AE%E6%9C%89%E5%8A%B9%E5%8C%96">各モードでの有効化</a></li>
+<li><a href="#warning-%E3%82%92%E9%BB%99%E3%82%89%E3%81%9B%E3%82%8B%E5%AF%BE%E5%BF%9C">warning を黙らせる対応</a></li>
+<li><a href="#copilot-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89">copilot 関係のキーバインド</a></li>
+</ul>
+</li>
+<li><a href="#copilot-chat">copilot-chat</a></li>
+</ul>
+</li>
+<li><a href="#ruby-%E9%96%A2%E4%BF%82">Ruby 関係</a>
+<ul>
+<li><a href="#major-mode">major-mode</a></li>
+<li><a href="#yard-%E5%91%A8%E3%82%8A">YARD 周り</a></li>
+<li><a href="#erb">erb</a></li>
+<li><a href="#%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9%E6%A4%9C%E7%B4%A2">リファレンス検索</a></li>
+<li><a href="#ruby-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4">Ruby 関係のキーバインド調整</a></li>
+<li><a href="#ruby-%E5%91%A8%E3%82%8A%E3%81%AE%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%AA%BF%E6%95%B4">Ruby 周りのその他の調整</a></li>
+</ul>
+</li>
+<li><a href="#projectile">projectile</a>
+<ul>
+<li><a href="#%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%AE%E8%BF%BD%E5%8A%A0%E3%81%AA%E3%81%A9">コマンドの追加など</a></li>
+<li><a href="#projectile-switch-project-%E3%81%AE%E8%AA%BF%E6%95%B4">projectile-switch-project の調整</a></li>
+<li><a href="#projectile-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4">projectile 関係のキーバインド調整</a></li>
+</ul>
+</li>
+<li><a href="#lsp-mode">lsp-mode</a>
+<ul>
+<li><a href="#eslint-%E3%81%AE%E8%87%AA%E5%8B%95%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88">eslint の自動フォーマット</a></li>
+<li><a href="#typescript-%E5%91%A8%E3%82%8A%E3%81%AE%E8%AA%BF%E6%95%B4">TypeScript 周りの調整</a></li>
+<li><a href="#graphql-lsp">graphql-lsp</a></li>
+<li><a href="#lsp-tailwindcss">lsp-tailwindcss</a></li>
+<li><a href="#lsp-mode-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4">lsp-mode 関係のキーバインド調整</a></li>
+<li><a href="#%E8%B5%B7%E5%8B%95%E5%87%A6%E7%90%86%E3%81%AE%E4%BF%AE%E6%AD%A3">起動処理の修正</a></li>
+</ul>
+</li>
+<li><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E6%A4%9C%E7%B4%A2">コード検索</a>
+<ul>
+<li><a href="#color-moccur-and-moccur-edit">color-moccur &amp; moccur-edit</a></li>
+<li><a href="#rg-dot-el">rg.el</a></li>
+<li><a href="#%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4">キーバインド調整</a></li>
+</ul>
+</li>
+<li><a href="#org-mode-%E9%96%A2%E4%BF%82">org-mode 関係</a>
+<ul>
+<li><a href="#org-mode-%E6%9C%AC%E4%BD%93%E5%91%A8%E3%82%8A">org-mode 本体周り</a>
+<ul>
+<li><a href="#%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%9B%B4%E6%96%B0%E9%A8%92%E5%8B%95">バージョン更新騒動</a></li>
+<li><a href="#tangle-%E3%81%AE%E8%AA%BF%E6%95%B4">tangle の調整</a></li>
+<li><a href="#org-mode-%E5%91%A8%E3%82%8A%E3%81%AE%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E5%A4%89%E6%9B%B4">org-mode 周りのその他の変更</a></li>
+</ul>
+</li>
+<li><a href="#org-agenda">org-agenda</a>
+<ul>
+<li><a href="#%E8%A8%AD%E5%AE%9A%E3%81%AE%E8%A8%98%E8%BF%B0%E5%88%86%E5%89%B2">設定の記述分割</a></li>
+<li><a href="#custom-command-%E3%81%AE%E8%AA%BF%E6%95%B4">custom command の調整</a></li>
+</ul>
+</li>
+<li><a href="#org-journal">org-journal</a>
+<ul>
+<li><a href="#optimize">Optimize</a></li>
+<li><a href="#refile-%E3%81%AE%E8%AA%BF%E6%95%B4">refile の調整</a></li>
+<li><a href="#journal-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%82%92-org-clock-report-%E3%81%AE%E5%AF%BE%E8%B1%A1%E3%81%AB%E3%81%AA%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E8%AA%BF%E6%95%B4">journal ファイルを org-clock-report の対象になるように調整</a></li>
+<li><a href="#org-roam-%E9%80%A3%E6%90%BA">org-roam 連携</a></li>
+</ul>
+</li>
+<li><a href="#org-capture">org-capture</a>
+<ul>
+<li><a href="#capture-template-%E3%81%AE%E6%9B%B4%E6%96%B0">capture template の更新</a></li>
+<li><a href="#org-protocol-capture-html">org-protocol-capture-html</a></li>
+</ul>
+</li>
+<li><a href="#org-gcal">org-gcal</a></li>
+<li><a href="#org-download">org-download</a></li>
+<li><a href="#org-mode-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4">org-mode 関係のキーバインド調整</a></li>
+</ul>
+</li>
+<li><a href="#el-get">el-get</a>
+<ul>
+<li><a href="#%E3%83%AC%E3%82%B7%E3%83%94%E4%BF%AE%E6%AD%A3">レシピ修正</a>
+<ul>
+<li><a href="#%E4%BE%9D%E5%AD%98%E9%96%A2%E4%BF%82%E3%81%AE%E8%AA%BF%E6%95%B4">依存関係の調整</a></li>
+<li><a href="#%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%8C%87%E5%AE%9A%E6%BC%8F%E3%82%8C%E5%AF%BE%E5%BF%9C">ブランチ指定漏れ対応</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%83%AC%E3%82%B7%E3%83%94%E4%BF%AE%E6%AD%A3">その他のレシピ修正</a></li>
+</ul>
+</li>
+<li><a href="#el-get-%E9%96%A2%E4%BF%82%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4">el-get 関係のキーバインド調整</a></li>
+<li><a href="#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E6%9B%B4%E6%96%B0">パッケージ更新</a>
+<ul>
+<li><a href="#%E6%89%8B%E5%8B%95%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E6%9B%B4%E6%96%B0">手動パッケージ更新</a></li>
+<li><a href="#%E8%87%AA%E5%8B%95%E6%9B%B4%E6%96%B0%E5%87%A6%E7%90%86%E3%81%AE%E4%BF%AE%E6%AD%A3">自動更新処理の修正</a></li>
+<li><a href="#revert">Revert</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96">その他</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#ci">CI</a>
+<ul>
+<li><a href="#ci-%E4%B8%8A%E3%81%AE-emacs-%E3%81%AE%E6%8C%87%E5%AE%9A%E5%A4%89%E6%9B%B4">CI 上の Emacs の指定変更</a></li>
+<li><a href="#ci-%E5%91%A8%E3%82%8A%E3%81%AE%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%AA%BF%E6%95%B4">CI 周りのその他の調整</a></li>
+</ul>
+</li>
+<li><a href="#init-dot-org-%E3%81%AE%E8%AA%BF%E6%95%B4">init.org の調整</a>
+<ul>
+<li><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E3%81%A8%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E3%81%AE%E5%90%8C%E6%9C%9F">コードとドキュメントの同期</a></li>
+</ul>
+</li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E9%96%A2%E4%BF%82">その他のパッケージ関係</a>
+<ul>
+<li><a href="#tsx-%E9%96%A2%E4%BF%82%E3%81%AE%E4%BF%AE%E6%AD%A3">tsx 関係の修正</a></li>
+<li><a href="#text-lint">text-lint</a></li>
+<li><a href="#pdf-tools">pdf-tools</a></li>
+<li><a href="#git-modes">git-modes</a></li>
+<li><a href="#calibredb">CalibreDB</a></li>
+<li><a href="#blamer-dot-el">blamer.el</a></li>
+<li><a href="#emojify">emojify</a></li>
+<li><a href="#smartparens-mode">smartparens-mode</a></li>
+<li><a href="#minimap">minimap</a></li>
+<li><a href="#company-mode">company-mode</a></li>
+<li><a href="#dmacro-dot-el">dmacro.el</a></li>
+<li><a href="#docker-dot-el">docker.el</a></li>
+<li><a href="#which-function-mode">which-function-mode</a></li>
+<li><a href="#plantuml-mode">plantuml-mode</a></li>
+<li><a href="#nerd-icon-dired">nerd-icon-dired</a></li>
+<li><a href="#eask">Eask</a></li>
+<li><a href="#sqlformat">sqlformat</a></li>
+<li><a href="#chatgtp-shell">chatgtp-shell</a></li>
+</ul>
+</li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%82%AD%E3%83%BC%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E8%AA%BF%E6%95%B4">その他のキーバインド調整</a>
+<ul>
+<li><a href="#hydra">Hydra</a></li>
+<li><a href="#key-chord">key-chord</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%8D%E8%A6%81%E3%81%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E5%89%8A%E9%99%A4">不要な設定の削除</a></li>
+<li><a href="#%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E5%AF%BE%E8%B1%A1-pr-%E6%8A%BD%E5%87%BA%E7%94%A8%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E3%81%AE%E5%A4%89%E6%9B%B4">レビュー対象 PR 抽出用スクリプトの変更</a></li>
+<li><a href="#%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%A8%AD%E5%AE%9A">その他の設定</a></li>
+<li><a href="#%E3%81%B5%E3%82%8A%E3%81%8B%E3%81%88%E3%82%8A">ふりかえり</a></li>
+<li><a href="#%E6%9D%A5%E5%B9%B4%E3%83%88%E3%83%A9%E3%82%A4%E3%81%97%E3%81%9F%E3%81%84%E3%81%93%E3%81%A8">来年トライしたいこと</a></li>
+</ul>
+</div>
+<!--endtoc-->
+<h2 id="はじめに">はじめに</h2>
+<p>今年のふりかえりってやつをしたいのでとりあえず今年入れた Emacs の設定更新をざっと舐めていく。</p>
+<p>とりあえずチェック用のクエリは以下。
+<a href="https://github.com/mugijiru/.emacs.d/pulls?q=is%3Apr+is%3Amerged+author%3Amugijiru+merged%3A2024-01-01..2025-01-01+sort%3Acreated-asc">https://github.com/mugijiru/.emacs.d/pulls?q=is%3Apr+is%3Amerged+author%3Amugijiru+merged%3A2024-01-01..2025-01-01+sort%3Acreated-asc</a></p>
+<p>なんか161個も PR がある。多いな……。</p>
+<p>なお当初は月毎に並べてふりかえろうとしてたけど数があまりにも多くてカテゴリ毎にふりかえる方が良さそうなのでそうする。</p>
+<h2 id="moderinize">Moderinize</h2>
+<p>古い記述を新しい記述に置き換える作業。地味に大事。あんまりやってないけど。</p>
+<h3 id="setq-custom-set-variables">setq → custom-set-variables</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3916">https://github.com/mugijiru/.emacs.d/pull/3916</a>
+<ul>
+<li>カスタマイズ変数を setq で設定していたのを custom-set-variables を使うように修正している</li>
+</ul>
+</li>
+</ul>
+<h3 id="custom-set-variables-setopt">custom-set-variables → setopt</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4281">https://github.com/mugijiru/.emacs.d/pull/4281</a>
+<ul>
+<li>Emacs 29.1 から生えた setopt を使うようにしている</li>
+<li>custom-set-variables より書きやすくて好み</li>
+</ul>
+</li>
+</ul>
+<h3 id="global-set-key-keymap-global-set">global-set-key → keymap-global-set</h3>
+<p>global-set-key から keymap-global-set に置き換え</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6329">https://github.com/mugijiru/.emacs.d/pull/6329</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6330">https://github.com/mugijiru/.emacs.d/pull/6330</a></li>
+</ul>
+<h2 id="tree-sitter">tree-sitter</h2>
+<h3 id="treesit-auto">treesit-auto</h3>
+<p>今年になってから <code>*-ts-mode</code> デビューした。
+<a href="https://github.com/renzmann/treesit-auto">treesit-auto</a> を導入すると <code>*-ts-mode</code> が確認されているやつは自動的にインストールしてそれを使うようにしてくれて便利ってことでその対応をしたり</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3688">https://github.com/mugijiru/.emacs.d/pull/3688</a>
+<ul>
+<li>ここで treesit-auto を導入した。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4188">https://github.com/mugijiru/.emacs.d/pull/4188</a>
+<ul>
+<li>treesit-auto を入れた影響で docker-ts-mode が動くようになったので調整している</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4189">https://github.com/mugijiru/.emacs.d/pull/4189</a>
+<ul>
+<li>同様に yaml-ts-mode でも同じことをしている</li>
+<li>とはいえインデントが気に入らなかったので yaml-mode を使うように戻していたりする
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6283">https://github.com/mugijiru/.emacs.d/pull/6283</a></li>
+<li>そのついでに yaml-pro とかいうのも入れたけど、これってどんなやつだっけ</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="copilot">Copilot</h2>
+<h3 id="copilot-dot-el">copilot.el</h3>
+<p>昨年から <a href="https://github.com/copilot-emacs/copilot.el">copilot.el</a> を導入しているのでその調整</p>
+<h4 id="各モードでの有効化">各モードでの有効化</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4461">https://github.com/mugijiru/.emacs.d/pull/4461</a>
+<ul>
+<li>よく使う major-mode では copilot-mode が有効になるようにしている</li>
+</ul>
+</li>
+</ul>
+<h4 id="warning-を黙らせる対応">warning を黙らせる対応</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3906">https://github.com/mugijiru/.emacs.d/pull/3906</a>
+<ul>
+<li>デカいファイルを開いた時に warning が popup してうざいので黙らせるようにしたやつ</li>
+<li>いくつかデカいファイルがあるからね……</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6116">https://github.com/mugijiru/.emacs.d/pull/6116</a>
+<ul>
+<li>indent offset の設定がない時の warning を黙らせた</li>
+<li>なんかやたら出て来て邪魔だったのよね</li>
+</ul>
+</li>
+</ul>
+<h4 id="copilot-関係のキーバインド">copilot 関係のキーバインド</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5917">https://github.com/mugijiru/.emacs.d/pull/5917</a>
+<ul>
+<li>単に tab で補完する以外のこともできるのでキーバインドを追加した。</li>
+<li>しかしさっぱりキーバインドを覚えてないので活用できてない。困った</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4744">https://github.com/mugijiru/.emacs.d/pull/4744</a>
+<ul>
+<li>copilot-mode を Hydra で toggle できるようにした</li>
+</ul>
+</li>
+</ul>
+<h3 id="copilot-chat">copilot-chat</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6117">https://github.com/mugijiru/.emacs.d/pull/6117</a>
+<ul>
+<li>導入してみた。最近よく使ってる。便利。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6241">https://github.com/mugijiru/.emacs.d/pull/6241</a>
+<ul>
+<li>設定を弄って使いやすくした</li>
+<li>もうちょっと弄りたいけど</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6264">https://github.com/mugijiru/.emacs.d/pull/6264</a>
+<ul>
+<li>設定読み込み順の問題に対応しただけ</li>
+</ul>
+</li>
+</ul>
+<h2 id="ruby-関係">Ruby 関係</h2>
+<h3 id="major-mode">major-mode</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5791">https://github.com/mugijiru/.emacs.d/pull/5791</a>
+<ul>
+<li>ruby-ts-mode を使えるようにするため enh-ruby-mode に使ってるのと同じ hook を追加している</li>
+<li>のだけどインデントの挙動の問題で結局 enh-ruby-mode を使っている</li>
+</ul>
+</li>
+</ul>
+<h3 id="yard-周り">YARD 周り</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4847">https://github.com/mugijiru/.emacs.d/pull/4847</a>
+<ul>
+<li>YARD の method comment 用に snippet を追加した。地味に便利。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5849">https://github.com/mugijiru/.emacs.d/pull/5849</a>
+<ul>
+<li>yard-mode を入れて YARD コメントのハイライト表示などに対応</li>
+</ul>
+</li>
+</ul>
+<h3 id="erb">erb</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6327">https://github.com/mugijiru/.emacs.d/pull/6327</a>
+<ul>
+<li>erb を弄るのに使っている web-mode の設定変更</li>
+<li>いくつかの minor-mode を有効にしている</li>
+</ul>
+</li>
+</ul>
+<h3 id="リファレンス検索">リファレンス検索</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5876">https://github.com/mugijiru/.emacs.d/pull/5876</a>
+<ul>
+<li>Emacs 内でるりまサーチとかを検索できるように engine-mode の設定を追加している</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5918">https://github.com/mugijiru/.emacs.d/pull/5918</a>
+<ul>
+<li>rurema 用の w3m-filter の調整</li>
+</ul>
+</li>
+</ul>
+<h3 id="ruby-関係のキーバインド調整">Ruby 関係のキーバインド調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5796">https://github.com/mugijiru/.emacs.d/pull/5796</a>
+<ul>
+<li>projectile-rails 用の Hydra の更新</li>
+<li>rails console などを開けるようにしている</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5885">https://github.com/mugijiru/.emacs.d/pull/5885</a>
+<ul>
+<li>projectile-rails の finder を充実させた</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5880">https://github.com/mugijiru/.emacs.d/pull/5880</a>
+<ul>
+<li>ruby 用の Hydra から LSP 関係を抜いた</li>
+<li>lsp-mode 用の Hydra は別途定義しているからね〜</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5914">https://github.com/mugijiru/.emacs.d/pull/5914</a>
+<ul>
+<li>rubocop の設定ファイルを projectile-rails-hydra から開きやすくした程度</li>
+<li>ruby 用の Hydra に入れても良かった気がする</li>
+</ul>
+</li>
+</ul>
+<h3 id="ruby-周りのその他の調整">Ruby 周りのその他の調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5916">https://github.com/mugijiru/.emacs.d/pull/5916</a>
+<ul>
+<li>ruby/rspec 関係の設定を色々更新</li>
+<li>秋フェスに向けての準備をしていた時期だった</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5881">https://github.com/mugijiru/.emacs.d/pull/5881</a>
+<ul>
+<li>rails-i18n というのを入れたけど cache でバグるので使えてない。無念。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5886">https://github.com/mugijiru/.emacs.d/pull/5886</a>
+<ul>
+<li>bundler.el を入れた。</li>
+<li>便利そうなので入れたけど使ってないな。</li>
+<li>Hydra に組込むと良いのかも</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5944">https://github.com/mugijiru/.emacs.d/pull/5944</a>
+<ul>
+<li>とりあえず ruby-refactor を入れてみた</li>
+<li>入れたことも忘れてたし keybind もわからんので使ってない</li>
+<li>Hydra も弄ってるからそれ見て思い出してね自分</li>
+</ul>
+</li>
+</ul>
+<h2 id="projectile">projectile</h2>
+<h3 id="コマンドの追加など">コマンドの追加など</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4750">https://github.com/mugijiru/.emacs.d/pull/4750</a>
+<ul>
+<li>projectile と連携したコマンドをいくつか用意している</li>
+<li>プロジェクト固有の Hydra も定義できるようにしているけど使ってね〜</li>
+</ul>
+</li>
+</ul>
+<h3 id="projectile-switch-project-の調整">projectile-switch-project の調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4237">https://github.com/mugijiru/.emacs.d/pull/4237</a>
+<ul>
+<li>projectile-switch-project で magit が開くようにしたやつ</li>
+<li>元々は neotree が動くようになってたけど neotree 活用してないんだよね……</li>
+</ul>
+</li>
+</ul>
+<h3 id="projectile-関係のキーバインド調整">projectile 関係のキーバインド調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5884">https://github.com/mugijiru/.emacs.d/pull/5884</a>
+<ul>
+<li>projectile 用の Hydra に counsel-projectile のコマンドを色々追加</li>
+<li>ついでに counsel-projectile-org-capture のテンプレートも設定しているのでプロジェクト毎の capture が取れるようになった</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5915">https://github.com/mugijiru/.emacs.d/pull/5915</a>
+<ul>
+<li>projectile-hydra から Dockerfile とかを開きやすくしている。使ってないけど</li>
+</ul>
+</li>
+</ul>
+<h2 id="lsp-mode">lsp-mode</h2>
+<h3 id="eslint-の自動フォーマット">eslint の自動フォーマット</h3>
+<p>eslint のフォーマットに lsp-format-buffer を使うようにしたり lsp-eslint-fix-all を使うようにしたりしている。うまく動いてくれないって悩んでた。最終的には <code>lsp-eslint-apply-all-fix</code> を使うようにしたみたい</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3679">https://github.com/mugijiru/.emacs.d/pull/3679</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3689">https://github.com/mugijiru/.emacs.d/pull/3689</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3845">https://github.com/mugijiru/.emacs.d/pull/3845</a>
+<ul>
+<li>ここではついでに tsx-ts-mode で smartparens-strict-mode も有効化している</li>
+</ul>
+</li>
+</ul>
+<h3 id="typescript-周りの調整">TypeScript 周りの調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3844">https://github.com/mugijiru/.emacs.d/pull/3844</a>
+<ul>
+<li>監視対象ファイルが多いぞいって怒られるので無視するディレクトリの指定をしたりインデント設定の調整をしたり
+<ul>
+<li>監視対象が多いってのは大体 eslint で怒られてた気がする</li>
+</ul>
+</li>
+<li>tsx-ts-mode を入れたばかりで調整が必要な時期だったっぽい</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4187">https://github.com/mugijiru/.emacs.d/pull/4187</a>
+<ul>
+<li>ここでも無視するディレクトリを調整している</li>
+</ul>
+</li>
+</ul>
+<h3 id="graphql-lsp">graphql-lsp</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6328">https://github.com/mugijiru/.emacs.d/pull/6328</a>
+<ul>
+<li>graphql-lsp を入れたはいいけどなんか重いので tsx ファイルなんかでは動かないようにした</li>
+</ul>
+</li>
+</ul>
+<h3 id="lsp-tailwindcss">lsp-tailwindcss</h3>
+<p>TailwindCSS を使うことになったので導入した</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6215">https://github.com/mugijiru/.emacs.d/pull/6215</a></li>
+</ul>
+<h3 id="lsp-mode-関係のキーバインド調整">lsp-mode 関係のキーバインド調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5798">https://github.com/mugijiru/.emacs.d/pull/5798</a>
+<ul>
+<li>lsp-mode 用の Hydra で lsp-workspace-restart を実行できるようにしている</li>
+<li>shutdown とかも入れると便利そうだけど lsp-mode 用の Hydra はもう混雑しているのよね</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5883">https://github.com/mugijiru/.emacs.d/pull/5883</a>
+<ul>
+<li>lsp-mode 用の Hydra に色々コマンドを追加しておいたやつ</li>
+<li>lsp-ui 系のやつとか色々入れてるけど特に使ってないな〜</li>
+</ul>
+</li>
+</ul>
+<h3 id="起動処理の修正">起動処理の修正</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5797">https://github.com/mugijiru/.emacs.d/pull/5797</a>
+<ul>
+<li>不必要に引数を追加していたので修正</li>
+</ul>
+</li>
+</ul>
+<h2 id="コード検索">コード検索</h2>
+<h3 id="color-moccur-and-moccur-edit">color-moccur &amp; moccur-edit</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4232">https://github.com/mugijiru/.emacs.d/pull/4232</a>
+<ul>
+<li>プロジェクト内の検索に便利かなって color-moccur と moccur-edit を導入している。</li>
+<li>けど最近はもっぱら rg.el を使っているな……</li>
+</ul>
+</li>
+</ul>
+<h3 id="rg-dot-el">rg.el</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4236">https://github.com/mugijiru/.emacs.d/pull/4236</a>
+<ul>
+<li>ここで <a href="https://github.com/dajva/rg.el">rg.el</a> と <a href="https://github.com/mhayashi1120/Emacs-wgrep">wgrep</a> を導入している</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6284">https://github.com/mugijiru/.emacs.d/pull/6284</a>
+<ul>
+<li>上の PR でrg.el と wgrep 入れたはいいけど連携できてなかった</li>
+<li>最近はもっぱらこの組み合わせで検索してて便利。</li>
+</ul>
+</li>
+</ul>
+<h3 id="キーバインド調整">キーバインド調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5913">https://github.com/mugijiru/.emacs.d/pull/5913</a>
+<ul>
+<li>rg.el の menu を開く方法を覚えられないのでそれだけのために Hydra を用意した</li>
+</ul>
+</li>
+</ul>
+<h2 id="org-mode-関係">org-mode 関係</h2>
+<h3 id="org-mode-本体周り">org-mode 本体周り</h3>
+<h4 id="バージョン更新騒動">バージョン更新騒動</h4>
+<p>バージョンを 9.7 に上げようとして諦めたという流れがありました。ただ ox-hugo や org-gcal が動かなくなるので今は 9.6 に固定しています</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5404">https://github.com/mugijiru/.emacs.d/pull/5404</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5411">https://github.com/mugijiru/.emacs.d/pull/5411</a></li>
+</ul>
+<p>そして orgit が org-mode 9.7 に依存するようになっていたけど
+orgit をあまり使っていないので、じゃあこいつにいなくなってもらおうという判断で消えてもらってたり</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5420">https://github.com/mugijiru/.emacs.d/pull/5420</a></li>
+</ul>
+<h4 id="tangle-の調整">tangle の調整</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3919">https://github.com/mugijiru/.emacs.d/pull/3919</a>
+<ul>
+<li>tangle した時の indent 周りの調整をしてる</li>
+</ul>
+</li>
+</ul>
+<h4 id="org-mode-周りのその他の変更">org-mode 周りのその他の変更</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3871">https://github.com/mugijiru/.emacs.d/pull/3871</a>
+<ul>
+<li>org-mode のファイルを開いた時に見出しが折り畳まれてるように設定した。</li>
+<li>いつからかデフォルト値が変わったようでずっと開いたままになっていて邪魔だったのをようやく直した感じ</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6311">https://github.com/mugijiru/.emacs.d/pull/6311</a>
+<ul>
+<li>subword-mode を有効にしただけ</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3912">https://github.com/mugijiru/.emacs.d/pull/3912</a>
+<ul>
+<li>昔は階層に合わせて indent する設定にしていた名残りが残っていてその対応</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3975">https://github.com/mugijiru/.emacs.d/pull/3975</a>
+<ul>
+<li><a href="https://github.com/jdormit/ob-graphql">ob-graphql</a> が便利と聞いてとりあえず入れたやつ</li>
+<li>活用してないな……</li>
+</ul>
+</li>
+</ul>
+<h3 id="org-agenda">org-agenda</h3>
+<h4 id="設定の記述分割">設定の記述分割</h4>
+<p>init.org で1つのコードブロックに全部書かれていたけどそれだとドキュメント的に微妙だったので分割して書けるようにしていた</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3917">https://github.com/mugijiru/.emacs.d/pull/3917</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3957">https://github.com/mugijiru/.emacs.d/pull/3957</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4471">https://github.com/mugijiru/.emacs.d/pull/4471</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4742">https://github.com/mugijiru/.emacs.d/pull/4742</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4745">https://github.com/mugijiru/.emacs.d/pull/4745</a></li>
+</ul>
+<h4 id="custom-command-の調整">custom command の調整</h4>
+<p>agenda の表示はずっと課題なので度々修正している</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3767">https://github.com/mugijiru/.emacs.d/pull/3767</a>
+<ul>
+<li>休日に見るための custom command で優先度が低いやつは表示しないようにしている。</li>
+<li>agenda が長くなるの未だに課題なのでなんとかしたい</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3768">https://github.com/mugijiru/.emacs.d/pull/3768</a>
+<ul>
+<li>こちらは平日に見る agenda にスケジュールを設定してないタスクを表示するようにしている</li>
+<li>スケジュール入れてないタスクの存在が忘れ去られないようにするための対策だね</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3769">https://github.com/mugijiru/.emacs.d/pull/3769</a>
+<ul>
+<li>これは平日用 agenda の見た目の調整。</li>
+<li>とはいえあまりうまくいってないので、現状は子タスクを作らない運用になっている</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3807">https://github.com/mugijiru/.emacs.d/pull/3807</a>
+<ul>
+<li>休日用 agenda に Private という agenda-group に放り込んでるタスクを表示するようにした</li>
+<li>ちなみに Private に分類されているものは「炊飯器の予約時間を変更する」みたいな分類が面倒だったようなやつが入りがち
+<ul>
+<li>家事に分類しても良かったなこれ。まあいいけど</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4817">https://github.com/mugijiru/.emacs.d/pull/4817</a>
+<ul>
+<li>agenda に予定日とか締切日も表示するようになった。便利。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4858">https://github.com/mugijiru/.emacs.d/pull/4858</a>
+<ul>
+<li>平日見る用 agenda の調整。見てないようなやつは表示しなくて良いよねと。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4869">https://github.com/mugijiru/.emacs.d/pull/4869</a>
+<ul>
+<li>業務タスクを引っ張り出すための agenda を追加している。完全に忘れてた。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4870">https://github.com/mugijiru/.emacs.d/pull/4870</a>
+<ul>
+<li>打刻とかの業務開始直後のタスクを入れてる agenda の調整</li>
+<li>朝以外にやっても構わないやつを取り除いている</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5790">https://github.com/mugijiru/.emacs.d/pull/5790</a>
+<ul>
+<li>日中見るための agenda に朝やるべきやつも表示するようにした</li>
+<li>忙しくてやり忘れてることとかあるからね</li>
+</ul>
+</li>
+</ul>
+<h3 id="org-journal">org-journal</h3>
+<p>昨年から org-journal を導入しているのでちょこちょこと調整をしている</p>
+<h4 id="optimize">Optimize</h4>
+<p>journal ファイルが増えて来て遅くなったのでそれを解消したりしていた</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4274">https://github.com/mugijiru/.emacs.d/pull/4274</a>
+<ul>
+<li>org-journal のファイルが増えて来て org-agenda のバッファ構築が重くなって来たから org-journal の全ファイルを舐めないように調整している</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4280">https://github.com/mugijiru/.emacs.d/pull/4280</a>
+<ul>
+<li>そして org-journal の保存も重くなってるので org-agenda-targets が自動更新される仕組みをオフにしている</li>
+</ul>
+</li>
+</ul>
+<h4 id="refile-の調整">refile の調整</h4>
+<p>org-journal ファイルを新しく作った時にそのファイルが refile のターゲットになるようにしている。その日やる予定のタスクなんかは journal ファイルに移動する運用なので、これがないと厳しい。</p>
+<p>本来は org-journal の機能で自動的に良い感じにしてくれた気がするけど、
+Optimize でそれを無効化しているので自前で適当に対応している。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3846">https://github.com/mugijiru/.emacs.d/pull/3846</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4860">https://github.com/mugijiru/.emacs.d/pull/4860</a></li>
+</ul>
+<h4 id="journal-ファイルを-org-clock-report-の対象になるように調整">journal ファイルを org-clock-report の対象になるように調整</h4>
+<p>これも Optimize の影響で良い感じにならなくなったやつの対応かな
+org-clock-report の対象にその日の journal ファイルも入れたいので org-agenda-files を良い感じに調整するコマンドを追加した。</p>
+<p>コマンドではなく何かの hook で動くとより便利な気がするけどまだそこまでは設定してない</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6289">https://github.com/mugijiru/.emacs.d/pull/6289</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6326">https://github.com/mugijiru/.emacs.d/pull/6326</a></li>
+</ul>
+<h4 id="org-roam-連携">org-roam 連携</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4859">https://github.com/mugijiru/.emacs.d/pull/4859</a>
+<ul>
+<li>出力先を org-roam の下に移動することで id を付与したら検索対象となるようにしている</li>
+<li>id 付与してないけどな……</li>
+</ul>
+</li>
+</ul>
+<h3 id="org-capture">org-capture</h3>
+<p>ぱっとメモを取るのに org-capture は便利でよく使ってるけど使っていると不満が出て来るのでちょこちょこ更新している</p>
+<h4 id="capture-template-の更新">capture template の更新</h4>
+<p>出力内容を増やしたり減らしたりしている。未だに最適な出力が分からない〜</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4288">https://github.com/mugijiru/.emacs.d/pull/4288</a>
+<ul>
+<li>org-capture-template で日付も入れるようにしている。</li>
+<li>いつ登録したタスクなのかが分かると捨てる判断材料になりそうなので入れている</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4376">https://github.com/mugijiru/.emacs.d/pull/4376</a>
+<ul>
+<li>capture template を更新。使ってないのを消したり、逆に今後使いたい読書メモ用の capture を用意したり</li>
+<li>読書メモとか取ってないけどな……!</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6097">https://github.com/mugijiru/.emacs.d/pull/6097</a>
+<ul>
+<li>不要な capture template の削除</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6288">https://github.com/mugijiru/.emacs.d/pull/6288</a>
+<ul>
+<li>counsel-projectile-org-capture-template でバグとかを登録できるようにした</li>
+<li>まだ活用できてね〜</li>
+</ul>
+</li>
+</ul>
+<h4 id="org-protocol-capture-html">org-protocol-capture-html</h4>
+<p><a href="https://github.com/alphapapa/org-protocol-capture-html">org-protocol-capture-html</a> ってのを<a href="https://github.com/mugijiru/org-protocol-capture-html">フォーク</a>した上で導入している。</p>
+<p>Web ページを org-mode の記述に変換して capture できるやつ。なんだけど活用できてない。ま、うまく変換できないこともあるしね</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4385">https://github.com/mugijiru/.emacs.d/pull/4385</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4470">https://github.com/mugijiru/.emacs.d/pull/4470</a></li>
+</ul>
+<h3 id="org-gcal">org-gcal</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4748">https://github.com/mugijiru/.emacs.d/pull/4748</a>
+<ul>
+<li>org-gcal で使う OAuth token を plstore で暗号化して保存するようにしたやつ。便利。</li>
+</ul>
+</li>
+</ul>
+<h3 id="org-download">org-download</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5879">https://github.com/mugijiru/.emacs.d/pull/5879</a>
+<ul>
+<li>キャプチャとか貼るのに便利なので入れたけどあんまり使ってないな</li>
+</ul>
+</li>
+</ul>
+<h3 id="org-mode-関係のキーバインド調整">org-mode 関係のキーバインド調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3754">https://github.com/mugijiru/.emacs.d/pull/3754</a>
+<ul>
+<li>こちらは org-mode の見出し検索が counsel でできるのでそのコマンドを Hydra から呼び出せるようにしている。</li>
+<li>ほぼ使ってないけど便利そう……。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4469">https://github.com/mugijiru/.emacs.d/pull/4469</a>
+<ul>
+<li>org-agenda-mode 用の Hydra を更新している</li>
+</ul>
+</li>
+</ul>
+<h2 id="el-get">el-get</h2>
+<h3 id="レシピ修正">レシピ修正</h3>
+<p>自前でレシピを適当に置いているけど、まあまあミスってるので度々修正している。これにミスがあるとパッケージの更新 PR 作成ワークフローがコケてしまったりする</p>
+<h4 id="依存関係の調整">依存関係の調整</h4>
+<p>時々依存関係に変更があるのでそれに追従している</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3744">https://github.com/mugijiru/.emacs.d/pull/3744</a>
+<ul>
+<li>prescient.el が corfu に依存していたのでレシピを修正している。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3750/files">https://github.com/mugijiru/.emacs.d/pull/3750/files</a>
+<ul>
+<li>こちらは copilot.el のレシピ修正。</li>
+<li>json-rpc に依存している思ったら jsonrpc に依存していたというややこしさ</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4170">https://github.com/mugijiru/.emacs.d/pull/4170</a>
+<ul>
+<li>Ember.js 関係のパッケージのレシピを修正している。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5166">https://github.com/mugijiru/.emacs.d/pull/5166</a>
+<ul>
+<li>emacsql の依存関係に pg が増えたので対応している</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5421">https://github.com/mugijiru/.emacs.d/pull/5421</a>
+<ul>
+<li>pg が peg に依存していることに気付いたので</li>
+</ul>
+</li>
+</ul>
+<h4 id="ブランチ指定漏れ対応">ブランチ指定漏れ対応</h4>
+<p>自前のパッケージ自動更新機構の都合上
+main ブランチで開発されている場合はそれを指定しないといけなくなっているので、度々その修正をしている</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5981">https://github.com/mugijiru/.emacs.d/pull/5981</a>
+<ul>
+<li>pg は main ブランチの指定が必要だった</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6225">https://github.com/mugijiru/.emacs.d/pull/6225</a>
+<ul>
+<li>chatogpt-shell と shell-maker でもブランチ指定が必要だった</li>
+</ul>
+</li>
+</ul>
+<h4 id="その他のレシピ修正">その他のレシピ修正</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3775">https://github.com/mugijiru/.emacs.d/pull/3775</a>
+<ul>
+<li>これは copilot.el のリポジトリが移動されたのでそれに追従しているだけ</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6263">https://github.com/mugijiru/.emacs.d/pull/6263</a>
+<ul>
+<li>lsp-tailwindcss のレシピでミスってたので修正</li>
+</ul>
+</li>
+</ul>
+<h3 id="el-get-関係のキーバインド調整">el-get 関係のキーバインド調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3751">https://github.com/mugijiru/.emacs.d/pull/3751</a>
+<ul>
+<li>EmacsWiki とか ELPA とかのレシピを build するためのコマンドを Hydra から呼び出せるようにしている。</li>
+<li>まあほぼ使ってないんだけど</li>
+</ul>
+</li>
+</ul>
+<h3 id="パッケージ更新">パッケージ更新</h3>
+<p>自動で毎日 PR が作られるようにしているけど時々うまく動かなかったり、更新したら壊れたりするのでそういう時は手で対応している。</p>
+<h4 id="手動パッケージ更新">手動パッケージ更新</h4>
+<p>magit 系のパッケージが texi ファイルで差分を生むようになっていて
+el-get-update ができなくなっていたのでローカルでごにゃごにゃ対応してるやつ</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4746">https://github.com/mugijiru/.emacs.d/pull/4746</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5203">https://github.com/mugijiru/.emacs.d/pull/5203</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5204">https://github.com/mugijiru/.emacs.d/pull/5204</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5244">https://github.com/mugijiru/.emacs.d/pull/5244</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5664">https://github.com/mugijiru/.emacs.d/pull/5664</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5731">https://github.com/mugijiru/.emacs.d/pull/5731</a></li>
+</ul>
+<p>それ以外にもレシピがおかしくて更新できないパターンもある</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6046">https://github.com/mugijiru/.emacs.d/pull/6046</a>
+<ul>
+<li>peg 依存の対応が必要だったかなこれは</li>
+</ul>
+</li>
+</ul>
+<h4 id="自動更新処理の修正">自動更新処理の修正</h4>
+<p>手動更新なんてしたくないので問題が起きた時は修正している。</p>
+<!--list-separator-->
+<ul>
+<li>
+<p>texi ファイルの上書き対応</p>
+<p>texi ファイルを上書きするせいでパッケージ更新ができなくなる問題への対応。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4753">https://github.com/mugijiru/.emacs.d/pull/4753</a>
+<ul>
+<li>ここではドキュメント生成処理をスルーしている</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6019">https://github.com/mugijiru/.emacs.d/pull/6019</a>
+<ul>
+<li>ここでは texi ファイルの変更を戻すという荒技を使ってる</li>
+<li>前のやり方の方が平和なのでは!?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>古い更新 PR の自動削除</p>
+<p>パッケージ更新の PR を毎日出しているけど前日分の PR が残り続ける問題への対応をした。単に古い PR は閉じちゃうという仕組み。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4775">https://github.com/mugijiru/.emacs.d/pull/4775</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4776">https://github.com/mugijiru/.emacs.d/pull/4776</a></li>
+</ul>
+</li>
+</ul>
+<!--list-separator-->
+<ul>
+<li>
+<p>無駄な努力の形跡</p>
+<p>これは別の原因でコケてるのに気付かずに努力した形跡。結局はレシピを間違えていたやつでした</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6133">https://github.com/mugijiru/.emacs.d/pull/6133</a>
+<ul>
+<li>*.elc が自動生成されるせいでパッケージ更新ができない問題の対応</li>
+<li>結局これで解決しなかったけどね</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6216">https://github.com/mugijiru/.emacs.d/pull/6216</a>
+<ul>
+<li>*.elc の生成の対応がうまくいかなかったので対応第二弾</li>
+<li>これもだめでした</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6219">https://github.com/mugijiru/.emacs.d/pull/6219</a>
+<ul>
+<li>うまくいかないので debug のためのコードを入れたり</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6220">https://github.com/mugijiru/.emacs.d/pull/6220</a>
+<ul>
+<li>そしてそれもうまくいかなかったり</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6221">https://github.com/mugijiru/.emacs.d/pull/6221</a>
+<ul>
+<li>.gitignore に書き込むことで *.elc を無視させようとしたり</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="revert">Revert</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3918">https://github.com/mugijiru/.emacs.d/pull/3918</a>
+<ul>
+<li>なんか forge が動かなくなってたみたい</li>
+<li>el-get.lock でバージョン管理しているので戻すこともできるのは大変良い</li>
+</ul>
+</li>
+</ul>
+<h4 id="その他">その他</h4>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4773">https://github.com/mugijiru/.emacs.d/pull/4773</a>
+<ul>
+<li>自動パッケージ更新 PR の codeberg の URL 出力を調整したつもりだったけどうまくいってないねハハハ</li>
+</ul>
+</li>
+</ul>
+<h2 id="ci">CI</h2>
+<h3 id="ci-上の-emacs-の指定変更">CI 上の Emacs の指定変更</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4774">https://github.com/mugijiru/.emacs.d/pull/4774</a>
+<ul>
+<li>CI で使ってる Emacs のマイナーバージョンを調整</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5878">https://github.com/mugijiru/.emacs.d/pull/5878</a>
+<ul>
+<li>テストする Emacs のバージョンを削減</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6331">https://github.com/mugijiru/.emacs.d/pull/6331</a>
+<ul>
+<li>Emacs 29.1 以降でしか動かないコードやパッケージがあるのでテスト対象を狭めた</li>
+</ul>
+</li>
+</ul>
+<h3 id="ci-周りのその他の調整">CI 周りのその他の調整</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3638">https://github.com/mugijiru/.emacs.d/pull/3638</a>
+<ul>
+<li>パッケージ更新 PR に貼るラベルを <code>dependencies</code> にしたらしい。まあ趣味の範囲か。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4462">https://github.com/mugijiru/.emacs.d/pull/4462</a>
+<ul>
+<li>CI で動かす Hugo のバージョンを上げてる。割とよく放置するのよね。</li>
+</ul>
+</li>
+</ul>
+<h2 id="init-dot-org-の調整">init.org の調整</h2>
+<h3 id="コードとドキュメントの同期">コードとドキュメントの同期</h3>
+<p>今年の頭まではドキュメントとコードにズレが生じていたのでそのズレを解消するための PR が度々立てられていた。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3756">https://github.com/mugijiru/.emacs.d/pull/3756</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3757">https://github.com/mugijiru/.emacs.d/pull/3757</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3900">https://github.com/mugijiru/.emacs.d/pull/3900</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3908">https://github.com/mugijiru/.emacs.d/pull/3908</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3909">https://github.com/mugijiru/.emacs.d/pull/3909</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3910">https://github.com/mugijiru/.emacs.d/pull/3910</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3911">https://github.com/mugijiru/.emacs.d/pull/3911</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3913">https://github.com/mugijiru/.emacs.d/pull/3913</a></li>
+</ul>
+<p>なんだけど
+<a href="https://github.com/mugijiru/.emacs.d/pull/3915">https://github.com/mugijiru/.emacs.d/pull/3915</a>
+で差分を検知するための workflow を追加している。というわけでここからはズレが生じないはず。</p>
+<h2 id="その他のパッケージ関係">その他のパッケージ関係</h2>
+<h3 id="tsx-関係の修正">tsx 関係の修正</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3755">https://github.com/mugijiru/.emacs.d/pull/3755</a>
+<ul>
+<li>context-skk-mode を有効にしているだけ</li>
+</ul>
+</li>
+</ul>
+<h3 id="text-lint">text-lint</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3899">https://github.com/mugijiru/.emacs.d/pull/3899</a>
+<ul>
+<li>magit-commit-create のタイミングで動くようにしたいけどうまくいってないやつ</li>
+<li>今でもうまくいってないんじゃないかなこれ</li>
+</ul>
+</li>
+</ul>
+<h3 id="pdf-tools">pdf-tools</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3907">https://github.com/mugijiru/.emacs.d/pull/3907</a>
+<ul>
+<li>PDF を Emacs で読むために設定していた形跡がある。実際ほぼ使ってない……</li>
+</ul>
+</li>
+</ul>
+<h3 id="git-modes">git-modes</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4213">https://github.com/mugijiru/.emacs.d/pull/4213</a>
+<ul>
+<li>便利そうなので追加したみたやつ</li>
+<li>Git の設定ファイルってあんまり触らないから実際便利なのかは覚えてない</li>
+</ul>
+</li>
+</ul>
+<h3 id="calibredb">CalibreDB</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4218">https://github.com/mugijiru/.emacs.d/pull/4218</a>
+<ul>
+<li>蔵書管理を <a href="https://github.com/chenyanming/calibredb.el">calibredb.el</a> でやろうとしていた時期のやつ</li>
+<li>ちゃんとメンテしてないんですよね蔵書周り。</li>
+</ul>
+</li>
+</ul>
+<h3 id="blamer-dot-el">blamer.el</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4282">https://github.com/mugijiru/.emacs.d/pull/4282</a>
+<ul>
+<li>カーソル位置のコミット情報を見られるようにするやつが便利そうなので入れてみている</li>
+<li>とはいえ実際なんか vc-annotate の方をよく使う気がする……</li>
+</ul>
+</li>
+</ul>
+<h3 id="emojify">emojify</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4283">https://github.com/mugijiru/.emacs.d/pull/4283</a>
+<ul>
+<li>コード中でも容赦なく変換されると邪魔なので global-emojify-mode をやめたようだ</li>
+</ul>
+</li>
+</ul>
+<h3 id="smartparens-mode">smartparens-mode</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4428">https://github.com/mugijiru/.emacs.d/pull/4428</a>
+<ul>
+<li>なんか動かなくなったので issue にあるモンキーパッチを当ててる</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4456">https://github.com/mugijiru/.emacs.d/pull/4456</a>
+<ul>
+<li>そして本体で直されたのでモンキーパッチの PR を revert</li>
+</ul>
+</li>
+</ul>
+<h3 id="minimap">minimap</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4463">https://github.com/mugijiru/.emacs.d/pull/4463</a>
+<ul>
+<li>あると便利かなって使えるように調整している</li>
+<li>けど実際使ってないのよな</li>
+</ul>
+</li>
+</ul>
+<h3 id="company-mode">company-mode</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5919">https://github.com/mugijiru/.emacs.d/pull/5919</a>
+<ul>
+<li>scss での backends を調整したり</li>
+</ul>
+</li>
+</ul>
+<h3 id="dmacro-dot-el">dmacro.el</h3>
+<p>dmacro.el は秋フェスで聞いて便利そうだから入れた。けどイマイチ活用できてない。無念。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5945">https://github.com/mugijiru/.emacs.d/pull/5945</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5946">https://github.com/mugijiru/.emacs.d/pull/5946</a></li>
+</ul>
+<h3 id="docker-dot-el">docker.el</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5964">https://github.com/mugijiru/.emacs.d/pull/5964</a>
+<ul>
+<li>docker.el を導入してた。すっかり忘れてたので使ってないですね</li>
+</ul>
+</li>
+</ul>
+<h3 id="which-function-mode">which-function-mode</h3>
+<p>デフォルトで入ってる which-function-mode って便利そうだなってことで設定してみている。最初はただの minor-mode だと思ってたけど実はこいつ global-minor-mode だったということに気付いて設定を修正したり。</p>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4272">https://github.com/mugijiru/.emacs.d/pull/4272</a></li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5882">https://github.com/mugijiru/.emacs.d/pull/5882</a></li>
+</ul>
+<h3 id="plantuml-mode">plantuml-mode</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5973">https://github.com/mugijiru/.emacs.d/pull/5973</a>
+<ul>
+<li>plantuml を書く時のインデント幅がデフォだと8文字だったけどそんなに幅取らないで欲しいので調整した</li>
+</ul>
+</li>
+</ul>
+<h3 id="nerd-icon-dired">nerd-icon-dired</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5877">https://github.com/mugijiru/.emacs.d/pull/5877</a>
+<ul>
+<li>dired にアイコン表示をしたくなったので nerd-icon-dired を追加</li>
+<li>でも dired でファイル追加した時とかのアイコン表示位置がおかしいんだよな〜</li>
+</ul>
+</li>
+</ul>
+<h3 id="eask">Eask</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6127">https://github.com/mugijiru/.emacs.d/pull/6127</a>
+<ul>
+<li>eask-mode と flycheck-eask を導入。</li>
+<li>まあ flycheck-eask の方はうまく動いていないんだけど</li>
+</ul>
+</li>
+</ul>
+<h3 id="sqlformat">sqlformat</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5972">https://github.com/mugijiru/.emacs.d/pull/5972</a>
+<ul>
+<li>SQL を書く仕事をしている時に整形したいなあってことで導入した。</li>
+<li>また SQL を書く時に存在を思い出せると良いな</li>
+<li>major-mode-hydra でも定義する?</li>
+</ul>
+</li>
+</ul>
+<h3 id="chatgtp-shell">chatgtp-shell</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6310">https://github.com/mugijiru/.emacs.d/pull/6310</a>
+<ul>
+<li>copilot-chat の中で使われてるのでこちらもついでにセットアップして Gemini と話せるようにしたやつ</li>
+</ul>
+</li>
+</ul>
+<h2 id="その他のキーバインド調整">その他のキーバインド調整</h2>
+<h3 id="hydra">Hydra</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4273">https://github.com/mugijiru/.emacs.d/pull/4273</a>
+<ul>
+<li>機能を Toggle するための Hydra の1列に物が増えて来たので分割して調整している</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5911">https://github.com/mugijiru/.emacs.d/pull/5911</a>
+<ul>
+<li>pretty-hydra 用の snippet を少し分かりやすくした</li>
+</ul>
+</li>
+</ul>
+<h3 id="key-chord">key-chord</h3>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4493">https://github.com/mugijiru/.emacs.d/pull/4493</a>
+<ul>
+<li>オリジナル版を使うようにした</li>
+</ul>
+</li>
+</ul>
+<h2 id="不要な設定の削除">不要な設定の削除</h2>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3914">https://github.com/mugijiru/.emacs.d/pull/3914</a>
+<ul>
+<li>mocha.js は使わなくなったので設定ファイルを消した</li>
+<li>けど、また使うこともあるかもしれないってことでまだ init.org には残しているみたい</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/6004">https://github.com/mugijiru/.emacs.d/pull/6004</a>
+<ul>
+<li>beorg 用の同期は Dropbox に移行したので WebDAV の設定は不要になりました</li>
+</ul>
+</li>
+</ul>
+<h2 id="レビュー対象-pr-抽出用スクリプトの変更">レビュー対象 PR 抽出用スクリプトの変更</h2>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/3727">https://github.com/mugijiru/.emacs.d/pull/3727</a>
+<ul>
+<li>自前で適当に作ってるレビュー対象の Pull requests を取得するやつの改修。</li>
+<li>なんか適当に定義していた関数を使ってないだろうって消してたけど実は使われていたのでそれを戻しているだけ。</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4190">https://github.com/mugijiru/.emacs.d/pull/4190</a>
+<ul>
+<li>エラーハンドリングに問題があったみたい</li>
+</ul>
+</li>
+</ul>
+<h2 id="その他の設定">その他の設定</h2>
+<ul>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/4743">https://github.com/mugijiru/.emacs.d/pull/4743</a>
+<ul>
+<li>.gitignore に自動生成ファイルを登録した</li>
+</ul>
+</li>
+<li><a href="https://github.com/mugijiru/.emacs.d/pull/5912">https://github.com/mugijiru/.emacs.d/pull/5912</a>
+<ul>
+<li>Emacs から GitHub のコード検索を開けるようにしたやつ。</li>
+<li>ただし開くのは Firefox</li>
+<li>地味によく使っている</li>
+</ul>
+</li>
+</ul>
+<h2 id="ふりかえり">ふりかえり</h2>
+<ul>
+<li>全体
+<ul>
+<li>1年分まとめてふりかえるの大変だったから来年は小まめにやりたいね……!</li>
+</ul>
+</li>
+<li>新しく使い始めたもの
+<ul>
+<li>copilot-chat が良い感じ
+<ul>
+<li>chatgtp-shell も気になるけどあまり触れてないな〜</li>
+</ul>
+</li>
+<li>rg.el + wgrep
+<ul>
+<li>ここ最近よく使ってる。便利。</li>
+</ul>
+</li>
+<li>tree-sitter
+<ul>
+<li>TypeScript 系はこれで良さげ。</li>
+<li>Ruby, YAML はインデントが微妙なので戻したけど
+<ul>
+<li>tree-sitter がそのあたりも担当するはずなので頑張ればなんとかなるのか……?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ruby 関係
+<ul>
+<li>色々更新して良くなった部分もある</li>
+<li>けど、使ってないのも沢山あるなあ……
+<ul>
+<li>bunlder.el, ruby-refactor, etc&hellip;</li>
+<li>リファレンス検索も今のところあまり使ってないし</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>projectile
+<ul>
+<li>Ruby 関係を弄ったついでか結構弄った。良き</li>
+<li>finder を色々追加しているけど projectile-find-file で間に合う場合そっちを使いがち
+<ul>
+<li>Dockerfile を開くとかね……</li>
+<li>counsel-projectile-org-capture は良さそう</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>lsp-mode 周り
+<ul>
+<li>面倒なのであまり設定弄りたくないけど度々重くなるので困ってる様子</li>
+<li>自動フォーマットもちょくちょく動かなくなるので悩ましい
+<ul>
+<li>重くて LSP サーバが反応しないとかもあって切り分けも面倒。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>org-mode 関係
+<ul>
+<li>agenda 周りで困ってることがよくわかる。未だに困ってるもんね。</li>
+<li>org-journal 周りも結局 org-agenda-files への登録系で困ってるからね</li>
+<li>org-roam はイマイチ活用できてないかも。とはいえ時々メモを入れてるけどね
+<ul>
+<li>org-capture を調整すると便利なのかも</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>el-get
+<ul>
+<li>自動パッケージ更新 PR 作成周りがちょくちょくバグるけど、十分助かってる感じ</li>
+</ul>
+</li>
+<li>その他
+<ul>
+<li>ちょっとだけ Modernize しているの良き</li>
+<li>ドキュメントとコードがズレない仕組みを入れてるの素晴らしい</li>
+<li>sqlformat は出番は少ないけど地味に便利。次 SQL 書く時まで忘れないであげてほしい</li>
+<li>textlint は割と無視しているので要らないかもしれない</li>
+<li>選択範囲から GitHub のコード検索に飛べるようにしているのは地味に便利。
+<ul>
+<li>emacs lisp のコードとかよく調べている</li>
+</ul>
+</li>
+<li>blamer.el あんまり要らないかも。vc-annotate 便利。</li>
+<li>minimap もそう</li>
+<li>nerd-icons-dired も挙動変なところあるし</li>
+</ul>
+</li>
+</ul>
+<h2 id="来年トライしたいこと">来年トライしたいこと</h2>
+<ul>
+<li>tab-bar-mode
+<ul>
+<li>便利らしいので気になってきた</li>
+</ul>
+</li>
+<li>leaf.el
+<ul>
+<li>そろそろ設定ファイルの書き方も Modernize したいなって</li>
+</ul>
+</li>
+<li>脱 el-get
+<ul>
+<li>straight.el とかの方が使い方的には合ってそうな気がして</li>
+</ul>
+</li>
+<li>読書環境の調整
+<ul>
+<li>pdf-tools とか入れてるけど活用できてない</li>
+<li>ちゃんと本を読んでメモる習慣を身に付けたい
+<ul>
+<li>なお昨今は iPhone の読み上げに頼ってるので腰を据えて読書する方針とは相性が悪い模様</li>
+</ul>
+</li>
+<li>CalibreDB もちゃんと更新しようね僕……</li>
+</ul>
+</li>
+<li>smartparens → puni 移行を検討したい
+<ul>
+<li>なんなら今年やりたかった</li>
+</ul>
+</li>
+</ul>
+]]></content>
+        </item>
         
         <item>
             <title>東京 Emacs 勉強会 秋フェス2024 に参加しました</title>

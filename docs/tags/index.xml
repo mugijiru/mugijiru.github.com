@@ -6,8 +6,15 @@
     <description>Recent content in Tags on 麦汁三昧</description>
     <generator>Hugo</generator>
     <language>ja-JP</language>
-    <lastBuildDate>Wed, 24 Nov 2021 15:58:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2024 14:44:00 +0900</lastBuildDate>
     <atom:link href="https://mugijiru.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Emacs</title>
+      <link>https://mugijiru.github.io/tags/emacs/</link>
+      <pubDate>Sun, 22 Dec 2024 14:44:00 +0900</pubDate>
+      <guid>https://mugijiru.github.io/tags/emacs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Config</title>
       <link>https://mugijiru.github.io/tags/config/</link>
