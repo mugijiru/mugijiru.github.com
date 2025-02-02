@@ -6865,7 +6865,7 @@ Vim や Emacs をイメージしたカクテルを用意してもらっていま
 元気だったらもっと飲みたかった……。
 とはいえ、ちょこちょこと色々な方と交流もできたし楽しかった。
 次回は二日酔いじゃない状態で参加したいです……!
-*** DONE 2024 年の Emacs 設定変更ふりかえり                           :Emacs:
+*** DONE 2024 年の Emacs 設定変更ふりかえり                          :@Emacs:
 CLOSED: [2024-12-22 日 14:44]
 :PROPERTIES:
 :EXPORT_FILE_NAME: 2024-emacs-config-updates
