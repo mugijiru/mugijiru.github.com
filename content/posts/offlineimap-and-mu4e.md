@@ -1,6 +1,7 @@
 +++
 title = "OfflineIMAP + mu4e の設定をしている"
-draft = true
+date = 2025-02-16T18:10:00+09:00
+draft = false
 +++
 
 <div class="ox-hugo-toc toc">

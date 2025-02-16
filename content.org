@@ -7468,7 +7468,8 @@ dmacro.el は秋フェスで聞いて便利そうだから入れた。
   - CalibreDB もちゃんと更新しようね僕……
 - smartparens → puni 移行を検討したい
   - なんなら今年やりたかった
-*** TODO OfflineIMAP + mu4e の設定をしている
+*** DONE OfflineIMAP + mu4e の設定をしている
+CLOSED: [2025-02-16 日 18:10]
 :PROPERTIES:
 :EXPORT_FILE_NAME: offlineimap-and-mu4e
 :END:
