@@ -5,23 +5,17 @@
     <loc>https://mugijiru.github.io/posts/2024-emacs-config-updates/</loc>
     <lastmod>2024-12-22T14:44:00+09:00</lastmod>
   </url><url>
-    <loc>https://mugijiru.github.io/tags/emacs/</loc>
+    <loc>https://mugijiru.github.io/categories/</loc>
+    <lastmod>2024-12-22T14:44:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/categories/emacs/</loc>
     <lastmod>2024-12-22T14:44:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/posts/</loc>
     <lastmod>2024-12-22T14:44:00+09:00</lastmod>
   </url><url>
-    <loc>https://mugijiru.github.io/tags/</loc>
-    <lastmod>2024-12-22T14:44:00+09:00</lastmod>
-  </url><url>
     <loc>https://mugijiru.github.io/</loc>
     <lastmod>2024-12-22T14:44:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/categories/</loc>
-    <lastmod>2024-11-24T01:20:00+09:00</lastmod>
-  </url><url>
-    <loc>https://mugijiru.github.io/categories/emacs/</loc>
-    <lastmod>2024-11-24T01:20:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/categories/rails/</loc>
     <lastmod>2024-11-24T01:20:00+09:00</lastmod>
@@ -84,6 +78,9 @@
     <lastmod>2021-11-24T15:58:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/tags/pentablet/</loc>
+    <lastmod>2021-11-24T15:58:00+09:00</lastmod>
+  </url><url>
+    <loc>https://mugijiru.github.io/tags/</loc>
     <lastmod>2021-11-24T15:58:00+09:00</lastmod>
   </url><url>
     <loc>https://mugijiru.github.io/tags/display/</loc>

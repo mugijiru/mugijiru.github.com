@@ -1,7 +1,7 @@
 +++
 title = "2024 年の Emacs 設定変更ふりかえり"
 date = 2024-12-22T14:44:00+09:00
-tags = ["Emacs"]
+categories = ["Emacs"]
 draft = false
 +++
 
