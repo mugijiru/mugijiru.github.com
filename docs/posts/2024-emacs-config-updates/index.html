@@ -17,7 +17,7 @@
 <meta name="author" content="">
 <meta name="description" content=" &#30446;&#27425; はじめに Moderinize setq → custom-set-variables custom-set-variables → setopt global-set-key → keymap-global-set tree-sitter treesit-auto Copilot copilot.el 各モードでの有効化 warning を黙らせる対応 copilot 関係のキーバインド copilot-chat Ruby 関係 major-mode YARD 周り erb リファレンス検索 Ruby 関係のキーバインド調整 Ruby 周りのその他の調整 projectile コマンドの追加など projectile-switch-project の調整 projectile 関係のキーバインド調整 lsp-mode eslint の自動フォーマット TypeScript 周りの調整 graphql-lsp lsp-tailwindcss lsp-mode 関係のキーバインド調整 起動処理の修正 コード検索 color-moccur &amp; moccur-edit rg.el キーバインド調整 org-mode 関係 org-mode 本体周り バージョン更新騒動 tangle の調整 org-mode 周りのその他の変更 org-agenda 設定の記述分割 custom command の調整 org-journal Optimize refile の調整 journal ファイルを org-clock-report の対象になるように調整 org-roam 連携 org-capture capture template の更新 org-protocol-capture-html org-gcal org-download org-mode 関係のキーバインド調整 el-get レシピ修正 依存関係の調整 ブランチ指定漏れ対応 その他のレシピ修正 el-get 関係のキーバインド調整 パッケージ更新 手動パッケージ更新 自動更新処理の修正 Revert その他 CI CI 上の Emacs の指定変更 CI 周りのその他の調整 init.org の調整 コードとドキュメントの同期 その他のパッケージ関係 tsx 関係の修正 text-lint pdf-tools git-modes CalibreDB blamer.el emojify smartparens-mode minimap company-mode dmacro.el docker.el which-function-mode plantuml-mode nerd-icon-dired Eask sqlformat chatgtp-shell その他のキーバインド調整 Hydra key-chord 不要な設定の削除 レビュー対象 PR 抽出用スクリプトの変更 その他の設定 ふりかえり 来年トライしたいこと はじめに 今年のふりかえりってやつをしたいのでとりあえず今年入れた Emacs の設定更新をざっと舐めていく。
 " />
-<meta name="keywords" content="blog,developer,personal, Emacs" />
+<meta name="keywords" content="blog,developer,personal" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
 <link rel="canonical" href="https://mugijiru.github.io/posts/2024-emacs-config-updates/" />
@@ -72,6 +72,8 @@
 
 
 
+
+    <meta property="article:section" content="Emacs" />
 
 
 
@@ -1471,14 +1473,14 @@ el-get-update ができなくなっていたのでローカルでごにゃごに
 
     <div class="post-info">
       
+      
     <p>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder meta-icon"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
 
-        <span class="tag"><a href="https://mugijiru.github.io/tags/emacs/">Emacs</a></span>
+        <span class="tag"><a href="https://mugijiru.github.io/categories/emacs/">Emacs</a></span>
         
     </p>
 
-      
 
       <p>
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
@@ -1646,7 +1648,7 @@ el-get-update ができなくなっていたのでローカルでごにゃごに
                 <footer class="footer">
     <div class="footer__inner">
         <div class="footer__content">
-            <span>&copy; 2024</span>
+            <span>&copy; 2025</span>
             
             
             <span><a href="https://mugijiru.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
