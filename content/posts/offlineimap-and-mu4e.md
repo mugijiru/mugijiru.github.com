@@ -18,7 +18,7 @@ draft = true
         - [Prov](#prov)
     - [functions.py](#functions-dot-py)
     - [メール取り込み](#メール取り込み)
-    - [おまけ: nametrans を設定せずに同期しちゃった場合](#おまけ-nametrans-を設定せずに同期しちゃった場合)
+    - [おまけ: nametrans を設定せずに Modified UTF-7 のまま同期しちゃった時の対応](#おまけ-nametrans-を設定せずに-modified-utf-7-のまま同期しちゃった時の対応)
 - [mu](#mu)
     - [インストール](#インストール)
     - [初期化](#初期化)
@@ -40,15 +40,16 @@ draft = true
 
 -   複数アカウントのメール受信
 -   Emacs でメール表示
+-   フォルダ名の UTF-8 変換
 
 
 ## やってないこと {#やってないこと}
 
 -   メールの表示調整
     -   HTML メールの表示など
+    -   見にくいメールもあるけど見れなくはないので後回し
 -   メールの送信周りの設定
--   通知
-    -   [mu4e-alert](https://github.com/iqbalansari/mu4e-alert) を入れたら良さそうだけど後回し
+    -   普段メール送らないから後回し
 -   org-mode 連携
     -   なんか mu に mu4e-org とかいうのが付随しているけどこれも後回し
 
@@ -78,7 +79,7 @@ $ yay -S offlineimap
 
 #### general {#general}
 
-まずは全体的な設定。アカウントを現時点では3つほど同期していてそれぞれ Prov, Main, Nue という名前を付けている。
+まずは全体的な設定。アカウントをいくつか同期していてそれぞれ Prov, Main, Nue などという名前を付けている。
 
 また、パスワードとかを秘匿するために便利関数を用意してそれ経由でそういう情報は取得しているのでその便利関数を格納するファイルを設定ファイルと同じ階層に `functions.py` という名前で保存している。中身については後で書くか。
 
@@ -228,6 +229,8 @@ def utf8_to_utf7_imap_by_iconv(str):
   return get_output(cmd).decode('ascii')
 ```
 
+なお、どうやらこれだけだと完璧ではないようで、変なフォルダが複数できてる気がする。どうも名前に `.` が入るフォルダだとおかしなことになるっぽい。ま、そんなに困ってないのでその内に直そうと思っている。
+
 
 ### メール取り込み {#メール取り込み}
 
@@ -240,12 +243,12 @@ $ offlineimap
 とか叩くと同期が始まる。
 `Ctrl+c` で中断してから再開もできる。
 
-自分の場合は20年ぐらい使っている Gmail の全てを同期したら途中中断しながら断続的にやっていたとはいえ2週間かかったので注意。そういうのを避けるためには Remote の方で folderfilter をかけて必要なフォルダだけ取得すべきみたいだけど自分は一旦全部取得してみている。
+自分の場合は20年ぐらい使っている Gmail の全てを同期したら、途中中断しながら断続的にやっていたとはいえ2週間かかったので注意。そういうのを避けるためには Remote の方で folderfilter をかけて必要なフォルダだけ取得すべきみたいだけど自分は一旦全部取得してみている。
 
 
-### おまけ: nametrans を設定せずに同期しちゃった場合 {#おまけ-nametrans-を設定せずに同期しちゃった場合}
+### おまけ: nametrans を設定せずに Modified UTF-7 のまま同期しちゃった時の対応 {#おまけ-nametrans-を設定せずに-modified-utf-7-のまま同期しちゃった時の対応}
 
-上の設定ではしっかり nametrans とか書いているのですが最初に同期を試した時なんかはそういうのはやっていなかったので Modified UTF-7 でフォルダが作られていた。それだとかなり使い勝手が悪いので、後から UTF-8 に変換したりした。
+上の設定ではしっかり nametrans とか書いているけど最初に同期を試した時なんかはフォルダ名変換はやっていなかったので Modified UTF-7 でフォルダが作られていた。それだと人間が読むには困難でかなり使い勝手が悪いので、後から UTF-8 に変換したりした。
 
 以下がとりあえず変換に使った bash スクリプト。指定したフォルダ直下にある Modified UTF-7 のフォルダを UTF-8 に一括変換してくれる君。まあ一部フォルダが変換されなかったけどそれは一部だったので個別に iconv 使ってごにゃごにゃした。
 
@@ -262,7 +265,7 @@ do
     echo "processing $dir..."
     utf8_dir=$(echo -n $dir | iconv -f UTF-7-IMAP)
 
-    if [[ "$dir"  != "$utf8_dir" ]]; then
+    if [[ "$dir" != "$utf8_dir" ]]; then
         echo "Convert ${dir} to $utf8_dir"
         mv "$dir" "$utf8_dir"
     fi
@@ -300,6 +303,14 @@ $ mu init --my-address='foo@example.com' --my-address='bar@example.com'
 
 この時どのフォルダを使うのかも指定できるんだけど `~/Maildir` が初期値なのでそこは特に手を出さず。
 
+なお、アカウントを追加する際には再初期化する必要がある。例えば、新しく `baz@example.com` を追加する場合は
+
+```text
+$ mu init --my-address='foo@example.com' --my-address='bar@example.com' --my-address='baz@example.com'
+```
+
+という感じで元々使っていたメアドに更に追加した形で初期化する。
+
 
 ### インデックス構築 {#インデックス構築}
 
@@ -311,11 +322,14 @@ $ mu index
 
 を実行する。メールの件数が多いと少し時間がかかるけど数分程度なので `offlineimap` に比べると一瞬。
 
+アカウント追加で初期化し直した場合にも実行する必要あり
+
 
 ## mu4e {#mu4e}
 
-同期ができたら Emacs から見られるように設定する
-mu に付属してくるんで、インストールは不要。
+同期ができたら Emacs から見られるように設定する。
+Manjaro のリポジトリから mu をインストールした場合にはそれに付属してくるので、
+mu4e を別途インストールする必要はない。
 
 
 ### require {#require}
@@ -326,7 +340,7 @@ el-get とかで入れていたら `require` とかは自動でやってくれ�
 (require 'mu4e)
 ```
 
-なお [mu のインストール時](#インストール)に `/usr/share/emacs/site-lisp/mu4e/` に入れてくれるので load-path は気にする必要はない。
+なお [mu のインストール時](#インストール)に `/usr/share/emacs/site-lisp/mu4e/` に入れてくれるので `load-path` は気にする必要はない。
 
 
 ### ユーザー名/パスワード読み込み関数の定義 {#ユーザー名-パスワード読み込み関数の定義}
@@ -372,7 +386,7 @@ mu4e には context を切り替える機能があるのでそれを適当に設
 `:vars` はそのコンテキストの時に適用される設定。今のところ `mu4e-maildir-shortcusts` だけ役立っている気がする。
 
 `mu4e-maildir-shortcusts` を設定しておくとチェックしたい条件のメールをぱっと引っ張り出せるので便利げ。一旦よくあるフォルダだけ設定しているけど、よく見る系のフォルダを設定するとか
-[Query](https://djcbsoftware.nl/code/mu/mu4e/Queries.html) を駆使して良い感じに取れるようにするとかできそう。
+[Query](https://djcbsoftware.nl/code/mu/mu4e/Queries.html) を駆使して良い感じに取れるようにするとかできそう。なお `mu4e-maildir-shortcusts` の `:maildir` に日本語フォルダを指定するとエラーになるので `:name` を指定することでエラーを回避している。
 
 ```emacs-lisp
 (setopt mu4e-contexts
@@ -408,11 +422,11 @@ mu4e には context を切り替える機能があるのでそれを適当に設
                   (mu4e-trash-folder . "/main/[Gmail].ゴミ箱")
                   (mu4e-refile-folder . "/main/[Gmail].すべてのメール")
                   (mu4e-compose-signature . ,(concat (plist-get (nth 0 (auth-source-search :host "offlineimap-main")) :fullname) "\n"))
-                  (mu4e-maildir-shortcuts . (("/main/INBOX" . ?i)
-                                             ;; ("/main/[Gmail].送信済みメール" . ?s)
-                                             ;; ("/main/[Gmail].すべてのメール" . ?a)
-                                             ;; ("/main/[Gmail].下書き" . ?d)
-                                             ;; ("/main/[Gmail].ゴミ箱" . ?t)
+                  (mu4e-maildir-shortcuts . ((:maildir "/main/INBOX"                  :key ?i :name "INBOX")
+                                             (:maildir "/main/[Gmail].送信済みメール" :key ?s :name "送信済み")
+                                             (:maildir "/main/[Gmail].すべてのメール" :key ?a :name "すべてのメール")
+                                             (:maildir "/main/[Gmail].下書き"         :key ?d :name "下書き")
+                                             (:maildir "/main/[Gmail].ゴミ箱"         :key ?t :name "ゴミ箱")                  (mu4e-maildir-shortcuts . (("/main/INBOX" . ?i)
                                              ))))))
 ```
 
