@@ -1,6 +1,7 @@
 +++
 title = "OfflineIMAP + mu4e の設定をしている"
 date = 2025-02-16T18:10:00+09:00
+categories = ["Emacs"]
 draft = false
 +++
 
